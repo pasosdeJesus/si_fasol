@@ -6,4 +6,5 @@
 //= link_directory ../../../node_modules/chosen-js .png
 //= link recursos_sprockets.js
 //= link recursos_sprockets.js.map
+//= link_directory ../../../vendor/assets/Beau_Rivage .ttf
 //= link_tree ../builds
