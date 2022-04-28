@@ -1,0 +1,12 @@
+
+es:
+  attributes:
+    fechadeshabilitacion: Fecha de deshabilitación
+    fechacreacion: Fecha de creación
+  activerecord:
+    attributes:
+      "sip/orgsocial":
+        tipoorg: Tipo de organización
+      "sip/tipoorg": 
+        Tipoorg: Tipo de organización
+        Tiposorg: Tipos de organización
