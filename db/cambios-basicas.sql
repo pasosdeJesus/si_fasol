@@ -29,3 +29,7 @@ INSERT INTO heb412_gen_campoplantillahcm
   (plantillahcm_id, nombrecampo, columna) 
   VALUES (1, 'tipificacion', 'G');
 
+
+
+
+DELETE public.sip_tipoorg WHERE id = 1;
