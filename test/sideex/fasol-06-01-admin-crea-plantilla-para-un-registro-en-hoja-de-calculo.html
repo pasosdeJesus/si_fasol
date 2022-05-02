@@ -8,6 +8,36 @@
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
+<tr><td rowspan="1" colspan="3">plantilla-listado-crear-formulario</td></tr>
+</thead>
+<tbody>
+<tr><td>clickAt</td><td>id=navbarDropdownAdministrar<datalist><option>id=navbarDropdownAdministrar</option><option>link=Administrar</option><option>css=#navbarDropdownAdministrar</option><option>//a[contains(text(),'Administrar')]</option><option>//a[@id='navbarDropdownAdministrar']</option><option>//div[@id='navbarSupportedContent']/ul[2]/li[2]/a</option><option>xpath=(//a[contains(@href, '#')])[6]</option><option>//ul[2]/li[2]/a</option></datalist></td><td>40,17</td>
+</tr>
+<tr><td>clickAt</td><td>link=Formularios<datalist><option>link=Formularios</option><option>//a[contains(text(),'Formularios')]</option><option>//div[@id='navbarSupportedContent']/ul[2]/li[2]/ul/li[8]/a</option><option>//a[contains(@href, '/fasol/si/formularios')]</option><option>//li[8]/a</option></datalist></td><td>37,24</td>
+</tr>
+<tr><td>clickAt</td><td>link=Nuevo<datalist><option>link=Nuevo</option><option>css=a.btn.btn-primary</option><option>xpath=(//a[contains(text(),'Nuevo')])[2]</option><option>//div[@id='div_contenido']/form/div[2]/div[2]/a</option><option>//a[contains(@href, '/fasol/si/formularios/nuevo.%23%3CMr519Gen::Formulario::ActiveRecord_Relation:0x0000068c4eb454c0%3E')]</option><option>//div[2]/a</option></datalist></td><td>23,25</td>
+</tr>
+<tr><td>clickAt</td><td>id=formulario_nombre<datalist><option>id=formulario_nombre</option><option>name=formulario[nombre]</option><option>css=#formulario_nombre</option><option>//input[@id='formulario_nombre']</option><option>//form[@id='edit_formulario_3']/div[2]/input</option><option>//div[2]/input</option></datalist></td><td>148,20</td>
+</tr>
+<tr><td>type</td><td>id=formulario_nombre<datalist><option>id=formulario_nombre</option><option>name=formulario[nombre]</option><option>css=#formulario_nombre</option><option>//input[@id='formulario_nombre']</option><option>//form[@id='edit_formulario_3']/div[2]/input</option><option>//div[2]/input</option></datalist></td><td>Formulario Nuevo</td>
+</tr>
+<tr><td>clickAt</td><td>id=formulario_nombreinterno<datalist><option>id=formulario_nombreinterno</option><option>name=formulario[nombreinterno]</option><option>css=#formulario_nombreinterno</option><option>//input[@id='formulario_nombreinterno']</option><option>//form[@id='edit_formulario_4']/div[3]/input</option><option>//div[3]/input</option></datalist></td><td>175,14</td>
+</tr>
+<tr><td>type</td><td>id=formulario_nombreinterno<datalist><option>id=formulario_nombreinterno</option><option>name=formulario[nombreinterno]</option><option>css=#formulario_nombreinterno</option><option>//input[@id='formulario_nombreinterno']</option><option>//form[@id='edit_formulario_4']/div[3]/input</option><option>//div[3]/input</option></datalist></td><td>formulario_nuevo</td>
+</tr>
+<tr><td>clickAt</td><td>name=commit<datalist><option>name=commit</option><option>css=input[name="commit"]</option><option>//input[@name='commit']</option><option>//form[@id='edit_formulario_11']/div[6]/input</option><option>//div[6]/input</option></datalist></td><td>38,14</td>
+</tr>
+<tr><td>clickAt</td><td>css=h1<datalist><option>css=h1</option><option>//div[@id='div_contenido']/div[3]/h1</option><option>//h1</option></datalist></td><td>Formulario</td>
+</tr>
+<tr><td>clickAt</td><td>css=div.alert.alert-success.alert-dismissible.fade.show<datalist><option>css=div.alert.alert-success.alert-dismissible.fade.show</option><option>//div[@id='div_contenido']/div[2]</option><option>//div[2]</option></datalist></td><td>Mr519Gen::Formulario actualizado.</td>
+</tr>
+<tr><td>clickAt</td><td>css=dd<datalist><option>css=dd</option><option>//div[@id='div_contenido']/dl/dd</option><option>//dd</option></datalist></td><td>6,14</td>
+</tr>
+<tr><td>runScript</td><td>localStorage.setItem('formulario_id', +document.querySelector('dd').innerText)<datalist><option>localStorage.setItem('pchr_id', +document.querySelector('dd').innerText)</option><option>$('[id^=caso_desplazamiento_attributes][id$=_id_expulsion] option:contains(HUILA)').attr('selected', 'selected');</option><option>$('[id^=caso_desplazamiento_attributes][id$=_id_expulsion] option:contains(TOLIMA)').attr('selected', 'selected');</option><option>$('#caso_casosjr_attributes_id_salidam option:contains(COLOMBIA / CAUCA )').attr('selected', 'selected');</option><option>$('#caso_casosjr_attributes_id_salida option:contains(VENEZUELA)').attr('selected', 'selected');</option><option>$('#caso_casosjr_attributes_id_llegada option:contains(COLOMBIA)').attr('selected', 'selected');</option><option>$('#caso_casosjr_attributes_id_llegada option:contains(VENEZUELA)').attr('selected', 'selected');</option><option>$('#caso_casosjr_attributes_id_salida option:contains(COLOMBIA / CAUCA )').attr('selected', 'selected');</option><option>$('#caso_casosjr_attributes_id_expulsion option:contains(COLOMBIA / CAUCA )').attr('selected', 'selected');</option><option>localStorage.setItem('formulario_id', +document.querySelector('dd').innerText)</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
 <tr><td rowspan="1" colspan="3">plantilla-registro-ruta-nombre-fila-inicial</td></tr>
 </thead>
 <tbody>
@@ -97,9 +127,9 @@
 </tr>
 <tr><td>runScript</td><td>$('.chosen-select').removeAttr('style'); $('.chosen-container').remove(); $('.chosen-select').removeClass('chosen-select')<datalist><option>$('.chosen-select').removeAttr('style'); $('.chosen-container').remove(); $('.chosen-select').removeClass('chosen-select')</option></datalist></td><td></td>
 </tr>
-<tr><td>addSelection</td><td>id=plantillahcr_formulario_ids<datalist><option>id=plantillahcr_formulario_ids</option><option>css=#plantillahcr_formulario_ids</option><option>//select[@id='plantillahcr_formulario_ids']</option><option>//form[@id='edit_plantillahcr_10']/div[7]/select</option><option>//div[7]/select</option></datalist></td><td>label=Prueba1</td>
+<tr><td>addSelection</td><td>id=plantillahcr_formulario_ids<datalist><option>id=plantillahcr_formulario_ids</option><option>css=#plantillahcr_formulario_ids</option><option>//select[@id='plantillahcr_formulario_ids']</option><option>//form[@id='edit_plantillahcr_2']/div[7]/select</option><option>//div[7]/select</option></datalist></td><td>label=Formulario Nuevo</td>
 </tr>
-<tr><td>clickAt</td><td>css=option[value="7"]<datalist><option>css=option[value="7"]</option><option>//option[@value='7']</option><option>//select[@id='plantillahcr_formulario_ids']/option[4]</option><option>//div[7]/select/option[4]</option></datalist></td><td>94,8</td>
+<tr><td>clickAt</td><td>//div[7]/select/option<datalist><option>css=option[value="14"]</option><option>//option[@value='14']</option><option>//select[@id='plantillahcr_formulario_ids']/option</option><option>//div[7]/select/option</option></datalist></td><td>48,11</td>
 </tr>
 <tr><td>clickAt</td><td>name=commit<datalist><option>name=commit</option><option>css=input[name="commit"]</option><option>//input[@name='commit']</option><option>//form[@id='edit_plantillahcr_124']/div[9]/input</option><option>//div[9]/input</option></datalist></td><td>50,14</td>
 </tr>
