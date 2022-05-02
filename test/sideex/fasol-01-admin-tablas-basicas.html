@@ -79,7 +79,7 @@
 </tr>
 <tr><td>select</td><td>id=categoria_contadaen<datalist><option>id=categoria_contadaen</option><option>name=categoria[contadaen]</option><option>css=#categoria_contadaen</option><option>//select[@id='categoria_contadaen']</option><option>//form[@id='new_categoria']/div[5]/select</option><option>//div[5]/select</option></datalist></td><td>label=CAMPO MINADO (BÉLICAS / ACCIONES BÉLICAS)</td>
 </tr>
-<tr><td>select</td><td>id=categoria_id_pconsolidado<datalist><option>id=categoria_id_pconsolidado</option><option>name=categoria[id_pconsolidado]</option><option>css=#categoria_id_pconsolidado</option><option>//select[@id='categoria_id_pconsolidado']</option><option>//form[@id='new_categoria']/div[7]/select</option><option>//div[7]/select</option></datalist></td><td>label=13 - AMENAZA-DH</td>
+<tr><td>select</td><td>id=categoria_id_pconsolidado<datalist><option>id=categoria_id_pconsolidado</option><option>name=categoria[id_pconsolidado]</option><option>css=#categoria_id_pconsolidado</option><option>//select[@id='categoria_id_pconsolidado']</option><option>//form[@id='new_categoria']/div[7]/select</option><option>//div[7]/select</option></datalist></td><td>label=1 - MUERTOS</td>
 </tr>
 <tr><td>clickAt</td><td>id=categoria_id_pconsolidado<datalist><option>id=categoria_id_pconsolidado</option><option>name=categoria[id_pconsolidado]</option><option>css=#categoria_id_pconsolidado</option><option>//select[@id='categoria_id_pconsolidado']</option><option>//form[@id='new_categoria']/div[7]/select</option><option>//div[7]/select</option></datalist></td><td>0,0</td>
 </tr>
@@ -539,9 +539,7 @@
 </tr>
 <tr><td>runScript</td><td>$('.chosen-select').removeAttr('style'); $('.chosen-container').remove(); $('.chosen-select').removeClass('chosen-select')<datalist><option>$('.chosen-select').removeAttr('style'); $('.chosen-container').remove(); $('.chosen-select').removeClass('chosen-select')</option></datalist></td><td></td>
 </tr>
-<tr><td>addSelection</td><td>id=grupo_usuario_ids<datalist><option>id=grupo_usuario_ids</option><option>css=#grupo_usuario_ids</option><option>//select[@id='grupo_usuario_ids']</option><option>//form[@id='new_grupo']/div[3]/select</option><option>//select</option></datalist></td><td>label=caos - Carlos Andres Ojeda Sierra</td>
-</tr>
-<tr><td>clickAt</td><td>css=option[value="4"]<datalist><option>css=option[value="4"]</option><option>//option[@value='4']</option><option>//select[@id='grupo_usuario_ids']/option[3]</option><option>//option[3]</option></datalist></td><td>184,13</td>
+<tr><td>addSelection</td><td>id=grupo_usuario_ids<datalist><option>id=grupo_usuario_ids</option><option>css=#grupo_usuario_ids</option><option>//select[@id='grupo_usuario_ids']</option><option>//form[@id='new_grupo']/div[3]/select</option><option>//select</option></datalist></td><td>label=sivel2 - sivel2</td>
 </tr>
 <tr><td>clickAt</td><td>id=grupo_observaciones<datalist><option>id=grupo_observaciones</option><option>name=grupo[observaciones]</option><option>css=#grupo_observaciones</option><option>//textarea[@id='grupo_observaciones']</option><option>//form[@id='new_grupo']/div[4]/textarea</option><option>//textarea</option></datalist></td><td>58,15</td>
 </tr>
@@ -676,6 +674,8 @@
 <tr><td>chooseOkOnNextConfirmation</td><td><datalist><option></option></datalist></td><td></td>
 </tr>
 <tr><td>clickAt</td><td>link=Eliminar<datalist><option>link=Eliminar</option><option>css=a.btn.btn-danger</option><option>//a[contains(text(),'Eliminar')]</option><option>xpath=(//a[contains(@href, '/sivel2/admin/municipios/100004')])[2]</option><option>//div[4]/a</option></datalist></td><td>12,19</td>
+</tr>
+<tr><td>pause</td><td><datalist><option></option></datalist></td><td>1000</td>
 </tr>
 <tr><td>assertText</td><td>css=h1<datalist><option>css=h1</option><option>//h1</option></datalist></td><td>Municipios</td>
 </tr>
@@ -957,11 +957,11 @@
 </tr>
 <tr><td>runScript</td><td>$('.chosen-select').removeAttr('style'); $('.chosen-container').remove(); $('.chosen-select').removeClass('chosen-select')<datalist><option>$('.chosen-select').removeAttr('style'); $('.chosen-container').remove(); $('.chosen-select').removeClass('chosen-select')</option></datalist></td><td></td>
 </tr>
-<tr><td>addSelection</td><td>id=region_departamento_ids<datalist><option>id=region_departamento_ids</option><option>css=#region_departamento_ids</option><option>//select[@id='region_departamento_ids']</option><option>//form[@id='new_region']/div[4]/select</option><option>//select</option></datalist></td><td>label=Amazonas</td>
+<tr><td>addSelection</td><td>id=region_departamento_ids<datalist><option>id=region_departamento_ids</option><option>css=#region_departamento_ids</option><option>//select[@id='region_departamento_ids']</option><option>//form[@id='new_region']/div[4]/select</option><option>//select</option></datalist></td><td>label=Amazonas / Colombia</td>
 </tr>
 <tr><td>clickAt</td><td>css=option[value="19"]<datalist><option>css=option[value="19"]</option><option>//option[@value='19']</option><option>//select[@id='region_departamento_ids']/option</option><option>//option</option></datalist></td><td>57,10</td>
 </tr>
-<tr><td>addSelection</td><td>id=region_municipio_ids<datalist><option>id=region_municipio_ids</option><option>css=#region_municipio_ids</option><option>//select[@id='region_municipio_ids']</option><option>//form[@id='new_region']/div[5]/select</option><option>//div[5]/select</option></datalist></td><td>label=Abejorral / Antioquia</td>
+<tr><td>addSelection</td><td>id=region_municipio_ids<datalist><option>id=region_municipio_ids</option><option>css=#region_municipio_ids</option><option>//select[@id='region_municipio_ids']</option><option>//form[@id='new_region']/div[5]/select</option><option>//div[5]/select</option></datalist></td><td>label=Abejorral / Antioquia / Colombia</td>
 </tr>
 <tr><td>clickAt</td><td>css=option[value="300"]<datalist><option>css=option[value="300"]</option><option>//option[@value='300']</option><option>//select[@id='region_municipio_ids']/option</option><option>//div[5]/select/option</option></datalist></td><td>116,11</td>
 </tr>
@@ -1104,6 +1104,8 @@
 <tr><td>chooseOkOnNextConfirmation</td><td><datalist><option></option></datalist></td><td></td>
 </tr>
 <tr><td>clickAt</td><td>link=Eliminar<datalist><option>link=Eliminar</option><option>css=a.btn.btn-danger</option><option>//a[contains(text(),'Eliminar')]</option><option>xpath=(//a[contains(@href, '/sivel2/admin/pconsolidados/101')])[2]</option><option>//div[4]/a</option></datalist></td><td>22,18</td>
+</tr>
+<tr><td>pause</td><td><datalist><option></option></datalist></td><td>1000</td>
 </tr>
 <tr><td>assertText</td><td>css=h1<datalist><option>css=h1</option><option>//h1</option></datalist></td><td>Rótulos para el listado de víctimas y casos</td>
 </tr>
