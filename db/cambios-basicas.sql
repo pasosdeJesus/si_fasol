@@ -32,4 +32,4 @@ INSERT INTO heb412_gen_campoplantillahcm
 
 
 
-DELETE public.sip_tipoorg WHERE id = 1;
+DELETE FROM public.sip_tipoorg WHERE id = 1;
