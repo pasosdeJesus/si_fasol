@@ -1,6 +1,6 @@
-# SIVeL 2.1 #
+# SI-FASOL 2.1 #
 
-## Bienvenido al código fuente de SIVeL 2.1##
+## Bienvenido al código fuente de SI-FASOL 2.1 ##
 Sistema de Información de Violencia Política en Línea versión 2.1
 
 
@@ -8,7 +8,7 @@ Sistema de Información de Violencia Política en Línea versión 2.1
 
 ![Logo de sivel2_1](https://raw.githubusercontent.com/pasosdeJesus/sivel2/main/app/assets/images/logo.jpg)
 
-## Sobre SIVeL 2.1
+## Sobre SI-FASOL 
 
 SIVeL 2.1 es una aplicación web para manejar casos de violencia política y
 desaparición.  Es segura y de fuentes abiertas.  Su desarrollo es liderado
