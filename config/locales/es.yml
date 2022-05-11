@@ -7,6 +7,11 @@ es:
     attributes:
       "sip/orgsocial":
         tipoorg: Tipo de organización
+        tipoorg_id: Tipo de organización
+        subde_id: Subestructura de
+        subde: Subestructura de
+        created_at_localizada: Fecha de creación
+        habilitado: Habilitada
       "sip/tipoorg": 
         Tipoorg: Tipo de organización
         Tiposorg: Tipos de organización

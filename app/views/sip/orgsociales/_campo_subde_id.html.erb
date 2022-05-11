@@ -1,0 +1,21 @@
+<% col = Sip::ModeloHelper.opciones_tabla_basica(Sip::Orgsocial, f, :subde) %>
+<% # Aseguramos que se arma bosque --sin ciclos-- %>
+<% descendientes = f.object.id ? [f.object.id] : [] %>
+<% desant = [] %>
+<% while descendientes.count > 0 && descendientes != desant %>
+  <% col = col.where('id NOT IN (?)', descendientes) %>
+  <% desant = descendientes %>
+  <% descendientes += col.where('subde_id IN (?)', descendientes).map(&:id) %>
+<% end %>
+<% opassoc = {
+  collection: col.order(Sip::Orgsocial.send(:orden_presenta_nombre)),
+  label_method: :presenta_nombre,
+  value_method: :id,
+  input_html: { class: 'chosen-select' }
+} %>
+  <!--% if @registro.respond_to?(n) && @registro.send(n) &&
+    @registro.send(n).id %-->
+    <!--% opassoc[:selected] = @registro.send(n).id %-->
+    <!--% end %-->
+
+<%= f.association :subde, opassoc %>

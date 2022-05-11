@@ -2578,7 +2578,8 @@ CREATE TABLE public.sip_orgsocial (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     fechadeshabilitacion date,
-    tipoorg_id integer DEFAULT 2 NOT NULL
+    tipoorg_id integer DEFAULT 2 NOT NULL,
+    subde_id integer
 );
 
 
@@ -6880,6 +6881,14 @@ ALTER TABLE ONLY public.heb412_gen_campohc
 
 
 --
+-- Name: sip_orgsocial fk_rails_1fa2bd3f4a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_orgsocial
+    ADD CONSTRAINT fk_rails_1fa2bd3f4a FOREIGN KEY (subde_id) REFERENCES public.sip_orgsocial(id);
+
+
+--
 -- Name: apo214_listadepositados fk_rails_2449cb19a2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8235,6 +8244,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220422190546'),
 ('20220428145059'),
 ('20220428201619'),
-('20220428205817');
+('20220428205817'),
+('20220510212133');
 
 
