@@ -37,6 +37,18 @@ module Sip
       ]
     end
 
+    def arma_jerarquia(subde_id, nombre_papa)
+      hijos = Sip::Orgsocial.habilitados.where(subde_id: subde_id)
+      hijosa = hijos.map do |h|
+        arma_jerarquia(h.id, h.grupoper.nombre)
+      end
+      return {id: subde_id, nombre: nombre_papa, hijos: hijosa}
+    end
+
+    def jerarquia
+      @jerarquiaorgsociales = arma_jerarquia(nil, '')
+      render 'jerarquia', layout: 'application'
+    end
 
   end
 end

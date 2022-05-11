@@ -29,14 +29,8 @@ Rails.application.routes.draw do
 
     get '/casos/mapaosm' => 'sivel2_gen/casos#mapaosm'
 
-    get '/maps/WORLD' => 'mapatiempo#worldjson', 
-             :as => 'worldjson'
-    get '/maps/gadm36_COL_1' => 'mapatiempo#colombia', 
-             :as => 'colombia'
-    get '/casos/mapatiempo' => 'mapatiempo#mapatiempo', 
-             :as => 'mapatiempo'
-    get '/casos/mapatiempo/datoscovid' => 'mapatiempo#datoscovid', 
-             :as => 'mapatiempocovid'
+    get '/orgsociales/jerarquia' => 'sip/orgsociales#jerarquia',
+      as: :jerarquia_orgsociales
 
     root 'sivel2_gen/hogar#index'
   end # scope
