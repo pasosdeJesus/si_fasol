@@ -32,7 +32,10 @@ Han apoyado financiando el desarrollo de componentes de dominio público:
 * Universida de Sheffield a comienzos de 2019 agradecimiento especial a
   	Miguel Kanai
 
-
+* Algunos organizaciones sociales se basan en algunas categorías
+  de adversarios de la Base de datos de Luchas Sociales del CINEP
+  disponible en
+  https://docs.google.com/spreadsheets/d/1_-S0Ap-l1pKL2mNYoe_cN3zy83GP1ia8xo2muhUYXT4/edit#gid=1303138924
 
 El mayor agradecimiento a Dios trino, el de la Biblia, a quien dedicamos 
 este trabajo y a quien oramos para que no sea usado por estructuras armadas
