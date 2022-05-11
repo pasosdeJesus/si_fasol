@@ -12,6 +12,8 @@ es:
         subde: Subestructura de
         created_at_localizada: Fecha de creación
         habilitado: Habilitada
+        Orgsocial: Entidad
+        Orgsociales: Entidades
       "sip/tipoorg": 
         Tipoorg: Tipo de organización
         Tiposorg: Tipos de organización
