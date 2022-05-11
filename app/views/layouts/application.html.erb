@@ -100,6 +100,8 @@
           <%= opcion_menu "Usuarios", main_app.usuarios_path,
             desplegable: true %>
         <% end %>
+        <%= opcion_menu "Organizaciones sociales",
+          sip.orgsociales_path, desplegable: true %>
         <%= opcion_menu "Árbol de presuntos responsables",
           sivel2_gen.arbol_presponsables_path, desplegable: true %>
         <% if can? :manage, :tablasbasicas %>
