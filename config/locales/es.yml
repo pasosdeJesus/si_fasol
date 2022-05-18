@@ -5,6 +5,9 @@ es:
     fechacreacion: Fecha de creación
   activerecord:
     attributes:
+      "cargoestado":
+        Cargoestado: Cargo con el Estado
+        Cargosestado: Cargos con el Estado
       "sip/orgsocial":
         tipoorg: Tipo de organización
         tipoorg_id: Tipo de organización

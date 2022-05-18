@@ -1137,6 +1137,40 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
+-- Name: cargoestado; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.cargoestado (
+    id bigint NOT NULL,
+    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
+    observaciones character varying(5000),
+    fechacreacion date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: cargoestado_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.cargoestado_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cargoestado_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.cargoestado_id_seq OWNED BY public.cargoestado.id;
+
+
+--
 -- Name: caso_etiqueta_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4518,6 +4552,13 @@ ALTER TABLE ONLY public.apo214_tipotestigo ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
+-- Name: cargoestado id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cargoestado ALTER COLUMN id SET DEFAULT nextval('public.cargoestado_id_seq'::regclass);
+
+
+--
 -- Name: heb412_gen_campohc id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4964,6 +5005,14 @@ ALTER TABLE ONLY public.apo214_tipotestigo
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: cargoestado cargoestado_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cargoestado
+    ADD CONSTRAINT cargoestado_pkey PRIMARY KEY (id);
 
 
 --
@@ -8246,6 +8295,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220428201619'),
 ('20220428205817'),
 ('20220510212133'),
-('20220511095650');
+('20220511095650'),
+('20220518155511'),
+('20220518161531'),
+('20220518185450'),
+('20220518192229');
 
 
