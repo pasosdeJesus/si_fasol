@@ -20,6 +20,10 @@ es:
       "sip/tipoorg": 
         Tipoorg: Tipo de organización
         Tiposorg: Tipos de organización
+      "sivel2_gen/caso":
+        codigofasol: Código FASOL
+        ayudafasol: Ayuda de FASOL
+        marbetefasol: Marbete FASOL
       "sivel2_gen/victima":
         entidad_id: Entidad del Estado
         cargoestado: Cargo con el Estado

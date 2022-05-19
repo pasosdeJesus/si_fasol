@@ -23,6 +23,9 @@ module Sivel2Gen
       l[l.count-1][:victima_attributes].unshift(:entidad_id)
       l[l.count-1][:victima_attributes].unshift(:detallevinculoestado)
       l[l.count-1][:victima_attributes].unshift(:cargoestado_id)
+      l.unshift(:ayudafasol)
+      l.unshift(:codigofasol)
+      l.unshift(:marbetefasol)
 
       return l
     end

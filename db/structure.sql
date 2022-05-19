@@ -1264,7 +1264,10 @@ CREATE TABLE public.sivel2_gen_caso (
     id_intervalo integer DEFAULT 5,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    ubicacion_id integer
+    ubicacion_id integer,
+    ayudafasol character varying(1024),
+    codigofasol character varying(32),
+    marbetefasol character varying(256)
 );
 
 
@@ -8345,6 +8348,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220518185450'),
 ('20220518192229'),
 ('20220519111515'),
-('20220519130906');
+('20220519130906'),
+('20220519144629');
 
 
