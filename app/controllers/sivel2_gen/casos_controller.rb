@@ -17,5 +17,15 @@ module Sivel2Gen
       'fecha'
     end
 
+    def lista_params
+      l = lista_params_sivel2_gen
+      l[l.count-1][:victima_attributes].delete(:id_vinculoestado)
+      l[l.count-1][:victima_attributes].unshift(:entidad_id)
+      l[l.count-1][:victima_attributes].unshift(:detallevinculoestado)
+      l[l.count-1][:victima_attributes].unshift(:cargoestado_id)
+
+      return l
+    end
+
   end
 end

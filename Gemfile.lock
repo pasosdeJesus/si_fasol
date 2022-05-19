@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/apo214.git
-  revision: 08887bd3e85d95a49dc462a78e5616e87a716bab
+  revision: 3d1da282c22eb8848c2fa8cec8af3a84937e53db
   branch: main
   specs:
     apo214 (2.1a1)
@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 6d45e76bbcd5e95e3e1f48c40f94107c42906cab
+  revision: 25463bfc404df05a72ea4dba7f7b841ed8f68673
   branch: main
   specs:
     heb412_gen (2.1a1)
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 6a5aeac09f860db330d448c9b11fd7cff827418b
+  revision: ebe6633106d5d201093aedec96336687b6734305
   branch: main
   specs:
     mr519_gen (2.1a1)
@@ -48,7 +48,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 841c262d240729ffc226b4a536ae30e5eb186630
+  revision: 322e8c95ee181e761e6ed4f89b6db493d518e599
   branch: main
   specs:
     sip (2.1a1)
@@ -66,7 +66,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: a97d917bc4cfe919ebe15c9a5350a85047757b41
+  revision: b90f825f4cfb337753e45fae6e85f160a51fe2e0
   branch: main
   specs:
     sivel2_gen (2.1a1)
@@ -167,7 +167,7 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
-    bcrypt (3.1.17)
+    bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.11.1)
       msgpack (~> 1.2)
@@ -272,10 +272,10 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.0.2)
       railties (>= 6.0.0)
-    json (2.6.1)
+    json (2.6.2)
     kgio (2.11.4)
     libxml-ruby (3.2.2)
-    loofah (2.17.0)
+    loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -414,7 +414,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
-    strscan (3.0.2)
+    strscan (3.0.3)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.1)
