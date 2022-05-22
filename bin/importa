@@ -1,0 +1,17 @@
+#!/bin/sh
+# Importa CSV con víctimas
+if (test "$RAILS_ENV" = "") then {
+	RAILS_ENV=development
+} fi;
+if (test "$RAILS_ENV" != "development" -a "$RAILS_ENV" != "production") then {
+	echo "Ambiente desconocido en RAILS_ENV solo puede ser development o production"
+	exit 1;
+} fi;
+if (test "$RAILS_ENV" = "development") then {
+	prog="bin/rails"
+} else {
+	prog="bin/railsp"
+} fi;
+
+f=`date +%Y-%m-%d`
+fecharep=$f $prog runner -e $RAILS_ENV lib/guiones/importa.rb $@
