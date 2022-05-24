@@ -4591,3 +4591,26 @@ INSERT INTO public.sip_orgsocial (id, grupoper_id, telefono, fax, direccion, pai
 
 SELECT pg_catalog.setval('public.sip_orgsocial_id_seq', 10000, true);
 
+
+UPDATE sivel2_gen_region  SET fechadeshabilitacion='2022-05-23'
+	WHERE id IN (6,7,9,10,11);
+INSERT INTO sivel2_gen_region (id, nombre, 
+	fechacreacion, created_at, updated_at)
+	VALUES (20, 'ANTIOQUIA', '2022-05-23', '2022-05-23', '2022-05-23');
+INSERT INTO sivel2_gen_region (id, nombre, 
+	fechacreacion, created_at, updated_at)
+	VALUES (21, 'SANTANDERES', '2022-05-23', '2022-05-23', '2022-05-23');
+INSERT INTO sivel2_gen_region (id, nombre, 
+	fechacreacion, created_at, updated_at)
+	VALUES (22, 'SUR', '2022-05-23', '2022-05-23', '2022-05-23');
+
+
+
+
+INSERT INTO sip_fuenteprensa (id, tfuente, nombre, 
+        fechacreacion, created_at, updated_at) VALUES 
+        (30, 'Directa', 'FASOL', 
+        '2022-05-23', '2022-05-23', '2022-05-23');
+
+
+
