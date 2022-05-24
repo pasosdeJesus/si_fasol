@@ -12,6 +12,24 @@ if ARGV.length != 1
   exit 1
 end
 
+
+# Cambia presunto responsable SIN INFORMACIÓN a SIN PRESUNTO RESPONSABLE
+# o si no lo hay lo crea
+def sin_presponsable(rpr)
+  if rpr.count == 0
+    rpr << {
+      id_presponsable: 50
+    }
+  else
+    rpr.each do |r|
+      if r[:id_presponsable] == 35
+        r[:id_presponsable] = 50
+      end
+    end
+  end
+end
+
+
 cargo_entidad = {
   "1 PISO PALACIO" => [33, 31],
   "106 DDHH" => [33, 31],
@@ -410,6 +428,112 @@ treg = {
   "SUR"=>[22, nil]
 }
 
+
+tcat = {
+  ['Muerte', 'PP', 39] => [10, ''], # Polo Estatal
+  ['Muerte', 'AA', 39] => [20, ''],
+  ['Muerte', 'IS', 39] => [30, ''],
+  ['Muerte', 'VPS', 39] => [10, 'Cambiando categoría a DH-PP (Revisar porque podría ser AA o IS)'],
+
+  ['Muerte', 'VPS', 40] => [701, 'Cambiando categoría a DIH'], # Insurgente
+
+  ['Muerte', 'PP', 35] => [40, ''], # Polo Sin Información
+  ['Muerte', 'VPS', 35] => [40, ''], 
+  ['Muerte', 'VSP', 35] => [40, ''], 
+  ['Muerte', 'VSP', nil] => [40, 'Agregando presunto responsable SIN INFORMACIÓN'], 
+  ['Muerte', 'IS', 35] => [50, ''],
+  ['Muerte', 'IS', nil] => [50, 'Agregando presunto responsable SIN INFORMACIÓN'],
+  ['Muerte', 'AL', 35] => [1000, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
+  ['Muerte', 'AL', nil] => [1000, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
+  ['Muerte', 'AT', 35] => [1000, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
+  ['Muerte', 'AT', nil] => [1000, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
+  ['Muerte', 'DN', 35] => [1001, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
+  ['Muerte', 'DN', nil] => [1001, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
+  ['Muerte', 'ENF', 35] => [1002, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
+  ['Muerte', 'ENF', nil] => [1002, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
+  ['Muerte', 'MN', 35] => [1003, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
+  ['Muerte', 'MN', nil] => [1003, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
+  ['Muerte', 'SUI', 35] => [1004, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
+  ['Muerte', 'SUI', nil] => [1004, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
+
+
+  ['Tortura', 'PP', 39] => [12, ''], # Polo Estatal
+  ['Tortura', 'AA', 39] => [22, ''],
+  ['Tortura', 'IS', 39] => [36, ''],
+
+  ['Tortura', 'PP', 35] => [47, ''], # Polo Sin Información
+  ['Tortura', 'VPS', 35] => [47, ''], 
+  ['Tortura', 'IS', 35] => [56, ''],
+
+  ['Tortura', 'VPS', 39] => [12, 'No corresponden Polo Estatal y categoría VPS. Cambiando a DH-PP (revisar manualmente, podría ser AA o IS)'], 
+  ['Tortura', 'VPS', 40] => [72, 'No corresponden Polo Insurgente y categoría VPS. Cambiando a DIH'], 
+      
+
+ 
+  ['Atentado', 'PP', 39] => [16, ''], # Polo Estatal
+  ['Atentado', 'AA', 39] => [26, ''],
+  ['Atentado', 'IS', 39] => [37, ''],
+
+  ['Atentado', 'PP', 35] => [46, ''], # Polo Sin Info
+  ['Atentado', 'VPS', 35] => [46, ''],
+  ['Atentado', 'VSP', 35] => [46, ''],
+  ['Atentado', 'IS', 35] => [47, ''],
+
+
+  ['Amenaza', 'PP', 39] => [15, ''], # Polo Estatal
+  ['Amenaza', 'AA', 39] => [25, ''],
+  ['Amenaza', 'IS', 39] => [35, ''],
+
+  ['Amenaza', 'PP', 35] => [45, ''], # Polo Sin Info
+  ['Amenaza', 'VPS', 35] => [45, ''],
+  ['Amenaza', 'VSP', 35] => [45, ''],
+  ['Amenaza', 'IS', 35] => [55, ''],
+
+  ['Desaparición', 'PP', 39] => [11, ''], # Polo Estatal
+  ['Desaparición', 'AA', 39] => [21, ''],
+  ['Desaparición', 'IS', 39] => [302, ''],
+
+  ['Detención', 'PP', 39] => [14, ''], # Polo Estatal
+  ['Detención', 'AA', 39] => [24, ''],
+  ['Detención', 'IS', 39] => [301, ''],
+
+  ['Exilio', 'PP', 39] => [1030, ''], # Polo Estatal
+
+  ['Exilio', 'VPS', 35] => [1040, ''], # Polo Sin Info
+  ['Exilio', 'VSP', 35] => [1040, ''], # Polo Sin Info
+
+  ['Secuestro', 'PP', 39] => [41, ''], # Polo Estatal
+  ['Secuestro', 'PP', 35] => [41, ''], # Polo Sin Info
+  ['Secuestro', 'PP', 40] => [41, ''], # Polo Insurgente
+
+  ['Desplazamiento', 'PP', 39] => [1050, ''], # Polo Estatal
+
+  ['Desplazamiento', 'PP', 35] => [1060, ''], # Polo Sin Info
+  ['Desplazamiento', 'VPS', 35] => [1060, ''],
+  ['Desplazamiento', 'VSP', 35] => [1060, ''],
+
+  ['Desplazamiento', 'VPS', 40] => [1060, ''], # Polo Insurgente
+
+  ['Judicialización', 'PP', 39] => [141, ''], # Polo Estatal
+  ['Judicialización', 'AA', 39] => [241, ''],
+  ['Judicialización', 'IS', 39] => [341, ''],
+
+  ['Judicialización', 'VPS', 39] => [1080, ''], # Polo Sin Info
+  ['Judicialización', 'AL', 39] => [1080, 'Cambiando AL por VPS'], 
+
+  ['Otras Afectaciones', 'ACOSO LABORAL', 39] => [1070, ''], # Polo Estatal
+  
+  ['Otras Afectaciones', 'AL', 35] => [1023, 'Cambiando PR a SIN PR'], # Polo Sin Presp
+  ['Otras Afectaciones', 'AL', nil] => [1023, 'Cambiando PR a SIN PR'], 
+  ['Otras Afectaciones', 'AT', 35] => [1023, 'Cambiando PR a SIN PR'], 
+  ['Otras Afectaciones', 'AT', nil] => [1023, 'Cambiando PR a SIN PR'], 
+  ['Otras Afectaciones', 'ENF', 35] => [1024, 'Cambiando PR a SIN PR'],
+  ['Otras Afectaciones', 'ENF', 35] => [1024, 'Cambiando PR a SIN PR'],
+  ['Otras Afectaciones', 'PEN', nil] => [1020, 'Cambiando PR a SIN PR'],
+  ['Otras Afectaciones', 'CE', nil] => [1021, 'Cambiando PR a SIN PR'],
+}
+
+ 
 nimp = ARGV[0]
 STDERR.puts "Leyendo casos de #{nimp}"
 impcsv = CSV.read(nimp, headers: true)
@@ -597,7 +721,7 @@ impcsv.each do |r|
   ppresp.each do |np|
     np = np.gsub(/  */, ' ').gsub(/^ /, ''). gsub(/ $/, '')
     if !tpresp.keys.include?(np)
-      puts "#{nimp}:#{nreg}: *** Presunto responsable sin homolagcion '#{np}'"
+      puts "#{nimp}:#{nreg}: *** Presunto responsable sin homologacion '#{np}'"
     else
       rpra = {
         id_presponsable: tpresp[np]
@@ -675,7 +799,7 @@ impcsv.each do |r|
     }
   end
 
-  p = Sip::Persona.new(rp)
+  p = Sip::Persona.create!(rp)
 
   #FAMILIAR
   fam = r['FAMILIAR']
@@ -686,10 +810,12 @@ impcsv.each do |r|
     if menserror != ''
       puts "#{nimp}:#{nreg}: *** Familiar. #{menserror}"
     else
-      f = Sip::Persona.new(
+      f = Sip::Persona.create!(
         nombres: fa[0],
-        apellidos: fa[1])
-      Sip::PersonaTrelacion.new(
+        apellidos: fa[1],
+        sexo: 'S'
+      )
+      Sip::PersonaTrelacion.create!(
         persona1: p.id,
         persona2: f.id,
         id_trelacion: 'SI'
@@ -697,151 +823,109 @@ impcsv.each do |r|
     end
   end
 
-  c = Sivel2Gen::Caso.new(rc)
+  rc[:id] = nreg+1001
+  c = Sivel2Gen::Caso.create!(rc)
   rv[:id_caso] = c.id
   rv[:id_persona] = p.id
-  v = Sivel2Gen::Victima.new(rv)
-  ru[:id_caso] = c.id
-  u = Sip::Ubicacion.new(ru)
+  v = Sivel2Gen::Victima.create!(rv)
+  if ru[:id_departamento]
+    ru[:id_caso] = c.id
+    ru[:id_pais] = 170
+    u = Sip::Ubicacion.create!(ru)
+    c.ubicacion_id = u.id
+    c.save!
+  end
   polounico = nil
+  npolounico = ''
   rpr.each do |rpra|
     rpra[:id_caso] = c.id
-    Sivel2Gen::CasoPresponsable.new(rpra)
     polo = Sivel2Gen::CasoPresponsable.connection.execute("SELECT sivel2_gen_polo_id(#{rpra[:id_presponsable]})")[0]['sivel2_gen_polo_id']
-    if polounico == nil 
+    if polounico == nil && polo.to_i > 0
       polounico = polo
+      npolounico = Sivel2Gen::Presponsable.find(polounico).nombre
     elsif polounico != polo
       polounico = 'NO'
     end
   end
   if rreg1
     rreg1[:id_caso] = c.id
-    Sivel2Gen::CasoRegion.new(rreg1)
+    Sivel2Gen::CasoRegion.create!(rreg1)
   end
   if rreg2
     rreg2[:id_caso] = c.id
-    Sivel2Gen::CasoRegion.new(rreg2)
+    Sivel2Gen::CasoRegion.create!(rreg2)
   end
-  if rfuente
+  if rfuente && rfuente[:fecha]
     rfuente[:id_caso] = c.id
-    Sivel2Gen::CasoFuenteprensa.new(rfuente)
+    of = Sivel2Gen::CasoFuenteprensa.create(rfuente)
+    if !of.valid?
+      debugger
+    end
+    of.save!
   end
-
+  
+  ractos = []
   rcat = ''
   ['Muerte', 'Tortura', 'Atentado', 'Amenaza', 'Desaparición', 'Detención',
    'Exilio', 'Secuestro', 'Desplazamiento', 'Judicialización', 
-   'Otras Afectaciones'].each do |c|
-     if r[c]
-       rcat << c + " - " + r[c] + ". "
-     end
-   end
+   'Otras Afectaciones'
+  ].each do |cat|
 
-   ractos = []
-   racto = nil
-   if r['Muerte']
-     racto = {
-       id_persona: p.id,
-       id_caso: c.id,
-     }
-     scf = r['Muerte']
-     if scf == 'AA' && polounico == 39 # Abuso de autoridad
-       racto[:id_categoria] = 20
-     elsif scf == 'AL' && (rpr == [] || polounico == 35) #Accidente Laboral
-       racto[:id_categoria] = 1000
-       rpr[0][:id_presponsable] = 50
-     elsif scf == 'AT' && (rpr == [] || polounico == 35) # Accidente de Trabajo(?)
-       racto[:id_categoria] = 1000
-       rpr[0][:id_presponsable] = 50
-     elsif scf == 'DN' && (rpr == [] || polounico == 35) # Desastre Natural
-       racto[:id_categoria] = 1001
-       rpr[0][:id_presponsable] = 50
-     elsif scf == 'ENF' && (rpr == [] || polounico == 35) # Enfermedad
-       racto[:id_categoria] = 1002
-       rpr[0][:id_presponsable] = 50
-     elsif scf == 'IS' && polounico == 35 # Intolerancia Social Polo Sin Info
-       racto[:id_categoria] = 50
-     elsif scf == 'MN' && (rpr == [] || polounico == 35) # Muerte Natural
-       racto[:id_categoria] = 1003
-       rpr[0][:id_presponsable] = 50
-     elsif scf == 'PP' && polounico == 39 # Persecución Política
-       racto[:id_categoria] = 10
-     elsif scf == 'SUI' && (rpr == [] || polounico == 35) # Suicidio
-       racto[:id_categoria] = 1004
-       rpr[0][:id_presponsable] = 50
-     elsif scf == 'VPS' && (rpr == [] || polounico != 39) # Violencia Político Social - PP
-       racto[:id_categoria] = 40
-     elsif scf == 'VSP' && polounico != 39 # Violencia Político Social - PP
-       racto[:id_categoria] = 40
-  if rpr == []
-    if rcat != ''
-      puts "#{nimp}:#{nreg}: *** Sin presunto responsable no es posible crear acto #{rcat}"
-      pcaso << "Sin presunto responsable no es posible crear acto #{rcat}"
-    end
-  elsif polounico.nil? || polounico == 'NO'
-    puts "#{nimp}:#{nreg}: *** Presuntos responsables son de diferentes polos no se pueden asignar automáticamente categorias #{rcat}"
-    pcaso << "Presuntos responsables son de diferentes polos no se pueden asignar automáticamente categorias #{rcat}"
-  else
-    npolounico = Sivel2Gen::Presponsable.find(polounico).nombre
-    puts "#{nimp}:#{nreg}: *** Categoria desconocida o no conciliable con polo del presunto responsable (#{npolounico}). Muerte - #{scf}"
-    pcaso << "Categoria desconocida o no conciliable con polo del presunto responsable (#{npolounico}). Muerte - #{scf}"
-  end
-  if racto[:id_categoria]
-    ractos << racto
-  end
-
-
-  if r['Tortura']
-    racto = {
-      id_persona: p.id,
-      id_caso: c.id,
-    }
-    scf = r['Tortura']
-    if scf == 'IS' && polounico == 35 # Intolerancia Social Polo Sin Info
-      racto[:id_categoria] = 56
-    elsif scf == 'VPS' && polounico == 39 # Estado
-      racto[:id_categoria] = 12
-    elsif scf == 'VPS' && polounico == 35 # Sin Información
-      racto[:id_categoria] = 47
-    elsif scf == 'VPS' && polounico == 29 # Sin Información
-      racto[:id_categoria] = 72
-    else
-      puts "#{nimp}:#{nreg}: *** Categoria desconocida o no conciliable con polo del presunto responsable (#{npolounico}). Tortura - #{scf}"
-      pcaso << "Categoria desconocida o no conciliable con polo del presunto responsable (#{npolounico}). Tortura - #{scf}"
-    end
-      if racto[:id_categoria]
-        #racto.save
+    racto = nil
+    if r[cat]
+      rcat << cat + " - " + r[cat] + ". "
+      racto = { }
+      scf = r[cat]
+      if tcat.keys.include?([cat, scf, polounico])
+        rc = tcat[[cat, scf, polounico]]
+        racto[:id_categoria] = rc[0]
+        if rc[1] != ''
+          puts "#{nimp}:#{nreg}: *** Polo #{polounico}. Categoria: #{cat} - #{scf}. #{rc[1]}"
+          pcaso << "Polo #{npolounico} (#{polounico}). Categoria: #{cat} - #{scf}. #{rc[1]}"
+        end
+        ractos << racto
+        if rc[0] >= 1000 && rc[0] <=1024
+          sin_presponsable(rpr)
+        end
+      else
+        puts "#{nimp}:#{nreg}: *** Categoria desconocida o no conciliable con polo del presunto responsable (#{npolounico}). #{cat} - #{scf}"
+        pcaso << "Categoria desconocida o no conciliable con polo del presunto responsable (#{npolounico}). #{cat} - #{scf}"
       end
-
     end
-
   end
 
-  if r['Tortura']
+  rpr.each do |rpra|
+    rpra[:id_caso] = c.id
+    pt = Sivel2Gen::CasoPresponsable.create(rpra)
+    if !pt.valid?
+      debugger
+    else
+      pt.save!
+    end
   end
-#Atentado
-#Amenaza
-#Desaparición
-#Detención
-#Exilio
-#Secuestro
-#Desplazamiento
-#Judicialización
-#Otras Afectaciones
 
-  # AA Abuso de Autorida
-  # AL Accidente Laboral
-  # AT Accidente de Trabajo(?)
-  # DN Desastre Natural
-  # ENF Enfermedad
-  # IS Intolerancia Social
-  # MN Muerte Natural
-  # PP Persecución Política
-  # SUI Suicidio
-  # VPS Violencia Político Social - PP
-  # VSP Violencia Político Social - PP
-  # x
+  ractos.each do |racto|
+    racto[:id_caso] = c.id
+    racto[:id_persona] = p.id
+    rpr.each do |rpra|
+      racto[:id_presponsable] = rpra[:id_presponsable]
+      if Sivel2Gen::Acto.where(racto).count == 0
+        Sivel2Gen::Acto.create!(racto)
+      end
+    end
+  end
 
+  pcaso.each do |prob|
+    Sivel2Gen::CasoEtiqueta.create!(
+      id_caso: c.id,
+      id_etiqueta: 4, # ERROR_IMPORTACIÓN
+      id_usuario: 1,
+      fecha: Date.today,
+      observaciones: prob
+    )
+  end
 end
+
 STDERR.puts "#{nreg} registros leidos"
 STDERR.puts tpresp
 
