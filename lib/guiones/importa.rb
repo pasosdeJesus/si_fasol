@@ -12,6 +12,404 @@ if ARGV.length != 1
   exit 1
 end
 
+cargo_entidad = {
+  "1 PISO PALACIO" => [33, 31],
+  "106 DDHH" => [33, 31],
+  "112 SECCIONAL" => [33, 31],
+  "117 LOCAL" => [33, 325],
+  "139 FISCALIA SECCIONAL" => [33, 31],
+  "156 ESPECIALIZADA" => [33, 31],
+  "188 LOCAL" => [33, 325],
+  "2 PISO PALACIO" => [33, 31],
+  "3 PISO PALACIO " => [33, 31],
+  "32 SECCIONAL" => [33, 31],
+  "ABOGADO ASESOR" => [3, 1],
+  "ADMON PUBLICA MEDELLIN" => [33, 1],
+  "AGENTE DE PROTECCION " => [33, 1],
+  "ALMACENISTA" => [2, 1],
+  "ARAUCA" => [33, 31],
+  "ASESOR JURIDICO TRIBUNALES" => [3, 30],
+  "ASESOR UNIDAD FISCAL" => [3, 31],
+  "ASIGNACIONES" => [33, 1],
+  "ASISTENTE" => [4, 1],
+  "ASISTENTE ADMINISTRATIVO" => [5, 1],
+  "ASISTENTE DE FISCAL" => [6, 31],
+  "ASISTENTE DE FISCAL 1" => [6, 31],
+  "ASISTENTE DE FISCAL 2" => [6, 31],
+  "ASISTENTE DE INVESTIGADOR CRIMINALISTICO" => [7, 31],
+  "ASISTENTE FICAL " => [6, 31],
+  "ASISTENTE FISCAL" => [6, 31],
+  "ASISTENTE FISCAL " => [6, 31],
+  "ASISTENTE FISCAL 1" => [6, 31],
+  "ASISTENTE FISCAL 81" => [6, 31],
+  "ASISTENTE JUDICIAL" => [8, 30],
+  "ASISTENTE SOCIAL" => [9, 1],
+  "ASITENTE SOCIAL 1" => [9, 1],
+  "AUXILIAR " => [4, 1],
+  "AUXILIAR ADMINISTRATIVO" => [5, 1],
+  "AUXILIAR JUDICIAL" => [8, 1],
+  "AUXILIAR JUDICIAL 2" => [8, 1],
+  "CESPA" => [33, 31],
+  "CITADOR 3" => [10, 1],
+  "CITADOR GRADO 3" => [10, 1],
+  "CITADOR JUZGADO" => [10, 1],
+  "CITADORA" => [10, 1],
+  "CITADORA 3" => [10, 1],
+  "CONDUCTOR" => [11, 1],
+  "COORDINADOR ACTOS URGENTES DE LA URI" => [12, 31],
+  "COORDINADOR AREA UNIDAD DDHH" => [12, 31],
+  "COORDINADOR CTI" => [12, 311],
+  "COORDINADOR DE FISCALIAS ESPECIALIZADA" => [12, 320],
+  "COORDINADOR FISCALIA UNIDAD FUSAGASUGA FISCAL 2 SECCIONAL" => [12, 31],
+  "COORDINADOR POLICIA JUDICIAL" => [12, 31],
+  "COORDINADOR PROCURADORES JUDICIALES" => [12, 31],
+  "COORDINADOR SUBUNIDAD EXHUMACIONES UNIDAD JUSTICIA Y PAZ" => [12, 31],
+  "COORDINADOR UNIDAD BACRIM" => [12, 31],
+  "COORDINADOR UNIDAD FISCALIA DELEGADA" => [12, 31],
+  "COORDINADOR UNIDAD INVESTIGACION CTI" => [12, 311],
+  "COORDINADORA BIENESTAR" => [12, 1],
+  "CRIMINALISTICA" => [18, 31],
+  "CTI" => [33, 311],
+  "DDHH" => [33, 31],
+  "DECOC" => [33, 31],
+  "DERECHOS HUMANOS" => [33, 31],
+  "DIRECTOR REGIONAL" => [33, 31],
+  "DIRECTOR SECCIONAL" => [33, 31],
+  "DIRECTOR UNIDAD DDHH" => [33, 31],
+  "EDA" => [33, 319],
+  "EMPLEADA JUZGADO PENAL" => [33, 30],
+  "EMPLEADO ASONAL" => [33, 30],
+  "EMPLEADO CAFETERIA PALACIO" => [33, 30],
+  "EMPLEADO DEL CENTRO DE EJECUCION DE PENAS" => [33, 30],
+  "EMPLEADO JURISPRUDENCIA" => [33, 30],
+  "EMPLEADO JUZGADO" => [33, 30],
+  "EMPLEADO JUZGADO DE MENORES" => [33, 30],
+  "EMPLEADO RAMA JUDICIAL" => [33, 30],
+  "ESCOLTA CTI" => [13, 311],
+  "ESCRIBIENTE" => [14, 30],
+  "Escribiente" => [14, 30],
+  "ESCRIBIENTE MUNICIPAL CENTRO DE SERVICIOS JUDICIALES" => [14, 30],
+  "EX FISCAL" => [15, 31],
+  "EX-FISCAL" => [15, 31],
+  "FIS ENVIGADO" => [16, 31],
+  "FISCAL" => [16, 31],
+  "FISCAL " => [16, 31],
+  "FISCAL 1 LOCAL EDA" => [16, 319],
+  "FISCAL 122 MEDELLIN" => [16, 31],
+  "FISCAL 18 SECCIONAL " => [16, 31],
+  "FISCAL 20 SECCIONAL " => [16, 31],
+  "FISCAL 262" => [16, 31],
+  "FISCAL 36 UNIDAD ANTITERRORISMO" => [16, 31],
+  "FISCAL 4" => [16, 31],
+  "FISCAL 56 DELEGADA ANTE EL CTI" => [16, 31],
+  "FISCAL 62 SECCIONAL" => [16, 31],
+  "FISCAL 65" => [16, 31],
+  "FISCAL 71" => [16, 31],
+  "FISCAL 72" => [16, 31],
+  "FISCAL 96 ESPECIALIZADO CONTRA DELINCUENCIA ORGANIZADA" => [16, 320],
+  "FISCAL ACTIVO" => [16, 31],
+  "FISCAL ANTE TRIBUANL " => [16, 31],
+  "FISCAL ANTITERRORISMO" => [16, 31],
+  "FISCAL CONTRA DELITOS FINANCIEROS" => [16, 31],
+  "FISCAL COORDINADOR UNAIM" => [16, 31],
+  "FISCAL DE ASUNTOS URGENTES" => [16, 31],
+  "FISCAL DE CIRCUITO " => [16, 31],
+  "FISCAL DE VIOLENCIA SEXUAL" => [16, 31],
+  "FISCAL DELEGADA ANTE JUECES MUNICIPALES DEL MUNICIPIO DE SEVILLA" => [16, 31],
+  "FISCAL DELEGADA ANTE LOS JUECES PENAL" => [16, 31],
+  "FISCAL DELEGADO" => [16, 31],
+  "FISCAL DELEGADO " => [16, 31],
+  "FISCAL DELEGADO ANTE EL CIRCUITO" => [16, 31],
+  "FISCAL DELEGADO ANTE JUECES PENALES" => [16, 31],
+  "FISCAL DELEGADO GAULA" => [16, 31],
+  "FISCAL DELEGADO SALA PENAL" => [16, 31],
+  "FISCAL ENCARGADO" => [16, 31],
+  "FISCAL ESPECIALIZADA" => [16, 320],
+  "FISCAL ESPECIALIZADO" => [16, 320],
+  "FISCAL JEFE UNIDAD NACIONAL DDHH" => [16, 31],
+  "FISCAL JUECES" => [16, 31],
+  "FISCAL LOCAL" => [16, 325],
+  "FISCAL LOCAL " => [16, 325],
+  "FISCAL REGIONAL" => [16, 31],
+  "FISCAL SECCIONAL" => [16, 31],
+  "FISCAL SECCIONAL " => [16, 31],
+  "FISCAL SECCIONAL 13" => [16, 31],
+  "FISCAL SECCIONAL 2" => [16, 31],
+  "FISCAL SECCIONAL 3" => [16, 31],
+  "FISCAL SECCIONAL UNIDAD DE ADMON PUBLICA" => [16, 31],
+  "FISCAL SEGUNDA DAC SUPREMA" => [16, 31],
+  "FISCAL UNAIM" => [16, 31],
+  "FISCAL UNIDAD DDHH" => [16, 31],
+  "FISCAL UNIDAD DDHH Y DIH" => [16, 31],
+  "FISCAL UNIDAD DE VIDA" => [16, 31],
+  "FISCAL UNIDAD LOCAL" => [16, 325],
+  "FISCAL UNIDAD NACIONAL JUSTICIA Y PAZ" => [16, 31],
+  "FISCAL UNIDAD TERRORISMO" => [16, 31],
+  "FISCALIA 61 BACRIM" => [33, 31],
+  "FISCALIA 73" => [33, 31],
+  "FISCALIA 88" => [33, 31],
+  "FISCALIAS LOCALES" => [33, 325],
+  "FOTOGRAFO" => [17, 1],
+  "Funcionaria Fiscalia" => [33, 31],
+  "FUNCIONARIO CTI" => [33, 311],
+  "FUNCIONARIO JUDICIAL" => [33, 31],
+  "INFANCIA Y ADOLESCENCIA" => [33, 31],
+  "INGENIERO SISTEMAS" => [33, 1],
+  "INVDESTIGADOR CTI" => [18, 311],
+  "INVESTIGADOR" => [18, 31],
+  "INVESTIGADOR CRIMINALISTICO" => [18, 31],
+  "INVESTIGADOR CTI" => [18, 311],
+  "INVESTIGADOR CTI - CTI" => [18, 311],
+  "INVESTIGADOR CTI GRADO II" => [18, 311],
+  "INVESTIGADOR CUERPO TECNICO DE INVESTIGACIÓN - URI" => [18, 311],
+  "INVESTIGADOR GRADO II" => [18, 31],
+  "INVESTIGADOR II" => [18, 31],
+  "INVESTIGADOR JUDICIAL" => [18, 31],
+  "INVESTIGADOR UNIDAD DE VIDA" => [18, 31],
+  "INVESTIGADORA CTI" => [18, 311],
+  "INVESTIGADORES CTI" => [18, 311],
+  "JEFE INVESTIGADOR" => [12, 31],
+  "JEFE OFICINA INFORMACION CTI" => [12, 31],
+  "JEFE POLICIA JUDICIAL" => [12, 31],
+  "JEFE SECCION DE INFORMACION Y ANALISIS" => [12, 31],
+  "JEFE UNIDAD SECCIONAL CTI" => [12, 311],
+  "JUEZ" => [19, 33],
+  "JUEZ  " => [19, 33],
+  "JUEZ - JUZGADO 2 PENAL DEL CTO" => [19, 33],
+  "JUEZ 10 PEJNAL DEL CIRCUITO" => [19, 33],
+  "JUEZ 10 PENAL DEL CIRCUITO DE CONOCIMIENTO DE CALI" => [19, 33],
+  "JUEZ 11 DEL CIRCUITO DE BOGOTA" => [19, 33],
+  "JUEZ 17" => [19, 33],
+  "JUEZ 19 PENAL" => [19, 33],
+  "JUEZ 2" => [19, 33],
+  "JUEZ 2 DE GARANTIAS" => [19, 33],
+  "JUEZ 20 PENAL DEL CIRCUITO" => [19, 33],
+  "JUEZ 29 DE FAMILIA" => [19, 33],
+  "JUEZ 31" => [19, 33],
+  "JUEZ 32 ADMINISTRATIVO" => [19, 33],
+  "JUEZ 35" => [19, 33],
+  "JUEZ 4 CIVIL DEL CIRCUITO DE IBAGUE" => [19, 33],
+  "JUEZ 5 CIVIL DEL CIRCUITO DE IBAGUE" => [19, 33],
+  "JUEZ CIVIL" => [19, 33],
+  "JUEZ COORDINADOR CENTRO DE SERVICIOS JUDICIALES" => [19, 33],
+  "JUEZ DE CONOCIMIENTO" => [19, 33],
+  "JUEZ DE FAMILIA" => [19, 33],
+  "JUEZ DE GARANTIAS" => [19, 33],
+  "JUEZ DE MENORES" => [19, 33],
+  "JUEZ DE PEQUEÑAS CAUSAS" => [19, 33],
+  "JUEZ DE RESTITUCION DE TIERRAS" => [19, 33],
+  "JUEZ DE RESTITUCIÓN TERCERO CIVIL DEL CIRCUITO" => [19, 33],
+  "JUEZ DISTRITO PENAL ADUANERO" => [19, 33],
+  "JUEZ EJECUCION DE PENAS" => [19, 33],
+  "JUEZ ENCARGADO" => [19, 33],
+  "JUEZ ESPECIALIZADO" => [19, 33],
+  "JUEZ GARANTIAS" => [19, 33],
+  "JUEZ INSTRUCCION CRIMINAL" => [19, 33],
+  "JUEZ LABORAL" => [19, 33],
+  "JUEZ MUNICIPAL" => [19, 33],
+  "JUEZ ORDEN PUBLICO" => [19, 33],
+  "JUEZ PENAL" => [19, 33],
+  "JUEZ PENAL DEL CIRCUITO" => [19, 33],
+  "JUEZ PROMISCUO DE PUERTO COLOMBIA" => [19, 33],
+  "JUEZ PROMISCUO MUNICIPAL" => [19, 33],
+  "JUEZ PROMISCUO TERRITORIAL" => [19, 33],
+  "JUEZ, JUZGADO 1 PENAL DEL CIRCUITO ESPECIALIZADO" => [19, 33],
+  "JUZGADO 2 MUNICIPAL DE MEDELLIN" => [19, 33],
+  "JZ TERCERA FILA ASISTENTE SOCIAL" => [19, 33],
+  "JZ TERCERO DE FAMILIA" => [19, 33],
+  "LOCALES" => [33, 325],
+  "MAGISTRADO" => [21, 30],
+  "Magistrado" => [21, 30],
+  "MAGISTRADO AUXILIAR" => [20, 30],
+  "MAGISTRADO ORDEN PUBLICO" => [21, 30],
+  "MAGISTRADO SALA PENAL CORTE SUPREMA DE JUSTICIA" => [21, 30],
+  "MAGISTRADO SALA PENAL TRIBUNAL SUPERIOR" => [21, 30],
+  "MAGISTRADO TRIBUNAL" => [21, 30],
+  "MAGISTRADO TRIBUNAL ADMINISTRATIVO" => [21, 30],
+  "MAGISTRADO TRIBUNAL CONTENCIOSO" => [21, 30],
+  "MAGISTRADO TRIBUNAL SUPERIOR" => [21, 30],
+  "MEDICO LEGISTA" => [22, 30],
+  "NO REGISTRA" => [33, 1],
+  "NO REGISTRA " => [33, 1],
+  "NOTIFICADOR" => [23, 30],
+  "NOTIFICADOR GRADO 3" => [23, 30],
+  "OCAÑA" => [33, 1],
+  "ODONTOLOGO FORENSE" => [24, 30],
+  "OFICIAL MAYOR" => [25, 30],
+  "OFICIAL MAYOR JUZGADO" => [25, 30],
+  "OFICIAL MAYOR JUZGADO PROMISCUO DE FAMILIA" => [25, 30],
+  "PALACIO NACIONAL" => [33, 1],
+  "PAMPLONA" => [33, 1],
+  "PATIOS" => [33, 1],
+  "PERITO EN AUTOMOTORES" => [26, 30],
+  "PERSONERO" => [27, 42],
+  "presidente del Tribunal Superior de Valledupar" => [28, 30],
+  "PRESIDENTE TRIBUNAL SUPERIOR" => [28, 30],
+  "PROCURADOR PROVINCIA" => [29, 30],
+  "PROFESIONAL " => [31, 1],
+  "PROFESIONAL EN GESTION" => [30, 1],
+  "PROFESIONAL EN GESTION 3" => [30, 1],
+  "PROFESIONAL GESTION " => [30, 1],
+  "PROFESIONAL GESTION 2 " => [30, 1],
+  "PROFESIONAL GESTION 3 " => [30, 1],
+  "PROFESIONAL UNIVERSITARIO" => [31, 1],
+  "SECRETARIA" => [32, 1],
+  "SECRETARIA ADMINISTRATIVA " => [32, 1],
+  "SECRETARIA ADTIVA " => [32, 1],
+  "SECRETARIA CIRCUITO" => [32, 30],
+  "secretaria de la Fiscalía Sexta" => [32, 31],
+  "SECRETARIO" => [32, 1],
+  "SECRETARIO ADMINISTRATIVO JUZGADO" => [32, 1],
+  "SECRETARIO AUXILIAR" => [32, 1],
+  "SECRETARIO DE JUZGADO" => [32, 30],
+  "SECRETARIO ENCARGADO" => [32, 1],
+  "SECRETARIO JUDICIAL" => [32, 30],
+  "SECRETARIO JUZGADO" => [32, 30],
+  "SECRETARIO JUZGADO CIVIL CIRCUITO RIOSUCIO CALDAS" => [32, 30],
+  "SECRETARIO JUZGADO MUNICIPAL" => [32, 30],
+  "SECRETARIO NOMINADO" => [32, 1],
+  "SECRETARIO TRIBUNAL SUPERIOR" => [32, 30],
+  "SECRETARIO UNIDAD DE PATRIMONIO" => [32, 31],
+  "SECRETARIO UNIDAD FISCALIA" => [32, 31],
+  "SERVIDOR CTI" => [33, 311],
+  "SERVIDOR FISCALIA" => [33, 31],
+  "SERVIDOR JUZGADO PROMISCUO MUNICIPAL" => [33, 30],
+  "SUBDIRECTOR CUERPO TECNICO POLICIA JUDICIAL" => [34, 30],
+  "SUSTANCIADOR" => [35, 30],
+  "SUSTANCIADOR JUZGADO" => [35, 30],
+  "SUSTANCIADORA" => [35, 30],
+  "TEC FORENCE 2" => [39, 30],
+  "TEC INVESTIGADOR" => [40, 31],
+  "TEC INVESTIGADOR 1" => [40, 31],
+  "TEC INVESTIGADOR 2 " => [40, 31],
+  "TEC INVESTIGADOR 4" => [40, 31],
+  "TEC INVESTIGADOR 4 " => [40, 31],
+  "TEC INVESTIGADRO 4 " => [40, 31],
+  "TEC INVESTIGARDOR 2" => [40, 31],
+  "TECNICA INVESTIGADORA 1" => [40, 31],
+  "TECNICO ADMINISTRATIVO 2" => [36, 1],
+  "TECNICO CRIMINALISTICO" => [37, 31],
+  "TECNICO EN EXPLOSIVOS" => [38, 31],
+  "TECNICO INVESTIGACION II - CTI" => [40, 31],
+  "TECNICO INVESTIGADOR" => [40, 31],
+  "TECNICO INVESTIGADOR 1" => [40, 31],
+  "TECNICO INVESTIGADOR 2" => [40, 31],
+  "TECNICO INVESTIGADOR FISCALIA" => [40, 31],
+  "TECNICO INVESTIGADOR I - CTI" => [40, 31],
+  "TECNICO INVESTIGADOR II" => [40, 31],
+  "TECNICO INVESTIGADOR IV" => [40, 31],
+  "TECNICO JUDICIAL" => [41, 31],
+  "TRIBUNAL FISCAL" => [33, 31],
+  "UNIDAD VIDA-PALOQUEMAO" => [33, 31],
+  "URI" => [33, 328],
+  "VIDA -PALOQUEMAO" => [33, 31]
+}
+
+tpresp = {
+  "AGUILAS NEGRAS" => 14,
+  "AL MANDO DE ALIAS GUACHO" => 14,
+  "ALIAS TOTO" => 14,
+  "APARENTEMENTE DELINCUENCIA COMUN" => 35,
+  "AUTODEFENSAS UNIDAS DE COLOMBIA" => 14,
+  "AUTORES DESCONOCIDOS" => 35,
+  "BACRIM" => 14,
+  "BACRIN" => 14,
+  "BANDAS CRIMINALES BACRIM" => 14,
+  "CARTEL DEL VALLE" => 14,
+  "CLAN DEL GOLFO" => 14,
+  "CLAN USUGA" => 14,
+  "CONDUCTOR CAMION" => 35,
+  "CONVIVIR" => 14,
+  "COORDINADOR DE LA URI" => 1,
+  "DAS" => 12,
+  "DEA" => 24,
+  "DELINCUANCIA ORGANIZADA" => 35,
+  "DELINCUENCIA" => 35,
+  "DELINCUENCIA COMUN" => 35,
+  "DELINCUENCIA ORGANIZADA" => 35,
+  "DELINCUENCIA ORGANIZADA - BANDAS CRIMINALES ORGANIZADAS EN LA ZONA \"LOS PACHENCAS\"" => 35,
+  "DELINCUENCIA ORGANIZADA URABEÑOS" => 35,
+  "DIJIN" => 10,
+  "DIJIN MON" => 10,
+  "DISCIDENCIAS DE LA FARC" => 25,
+  "EJERCITO" => 4,
+  "ELN" => 25,
+  "ELN - GRUPO OLIVER SINISETRRA" => 25,
+  "ELN ALIAS EL NENE" => 25,
+  "EN INVESTIGACION" => 35,
+  "EPL" => 25,
+  "ESCOLTA FISCAL GENERAL DE LA NACION" => 35,
+  "ESTADO" => 1,
+  "ESTADO F2" => 1,
+  "EX-AGENTES DE POLICIA" => 35,
+  "FARC" => 25,
+  "FLIAR DE IMPUTADO" => 359,
+  "FUE ENCONTRADO MUERTO EN EL APTO" => 35,
+  "FUERZA PUBLICA" => 2,
+  "FUERZA PUBLICA - POLICIA" => 7,
+  "FUERZAS DEL ESTADO" => 2,
+  "Fueza publica" => 2,
+  "GOBERNADOR DE CORDOBA ALEJANDRO JOSE LYONS MUSKUS Y PERIODICO EL MERIDIANO DE CORDOBA" => 1,
+  "GRUPO ARMADO" => 35,
+  "GRUPO ARMADO DEFENSORES DEL PUEBLO" => 35,
+  "GRUPO ILEGAL" => 35,
+  "GRUPO PARAMILITAR MAS" => 14,
+  "GUERRILLA" => 25,
+  "GUERRILLA ERP" => 14,
+  "HAYADO MUERTO POR ENVENAMIENTO CON CIANURO" => 35,
+  "INSTITUCIONALIDAD" => 1,
+  "INSURGENCIA" => 25,
+  "JAIRO ENRIQUE POLO VIDES" => 35,
+  "LOS URABEÑOS" => 14,
+  "MIEMBROS CTI" => 13,
+  "MILICIANOS DE LA GUERRILLA" => 25,
+  "MILICIAS BOLIVARIANAS" => 25,
+  "MILICIAS POPULARES" => 25,
+  "N/A" => 35,
+  "NARCO TRAFICO" => 35,
+  "NARCOGRAFICO" => 35,
+  "NARCOTRAFICO" => 35,
+  "NO SE CONOCE" => 35,
+  "NO SE SABE" => 35,
+  "OFICINA DE ENVIGADO" => 14,
+  "ORGANISMOS ESTATALES" => 1,
+  "PARAMILITARES" => 14,
+  "PERSECUCION POR EL GOBERNADOR Y MEDIOS DE COMUNICACIÓN" => 1,
+  "POLICIA" => 7,
+  "POSIBLES COMPAÑEROS CTI" => 13,
+  "Providencia y Santa Catalina" => 35,
+  "RASTROJOS" => 14,
+  "SICARIATO" => 35,
+  "SIJIN" => 9,
+  "SIJIN Y EJERCITO" => 9,
+  "SIN INFORMACION" => 35,
+  "TERRORISMO" => 35,
+  "VALLE DEL CAUCA" => 35,
+  "VARIOS ACTORES ARMADOS" => 35,
+  "WILSON DE JESUS MEJIA GUZMAN" => 35,
+  "X CASO DE ACTO SEXUAL CON MENOR DE EDAD" => 35,
+  "" => 35
+}
+
+treg = {
+  "A"=>[20, nil],
+  "A / C"=>[20, 8],
+  "ANTIOQUIA"=>[20, nil],
+  "C"=>[8, nil],
+  "C / SUR"=>[8, 22],
+  "CC"=>[5, nil],
+  "CC / A"=>[5, 20],
+  "COSTA CARIBE"=>[5, nil],
+  "CUNDINAMARCA"=>[8, nil],
+  "NORTE DE SANTANDER"=>[21, nil],
+  "S"=>[21, nil],
+  "S / C"=>[21, 8],
+  "S / CC"=>[21, 5],
+  "SANTANDER"=>[21, nil],
+  "SANTANDERES"=>[21, nil],
+  "SUR"=>[22, nil]
+}
+
 nimp = ARGV[0]
 STDERR.puts "Leyendo casos de #{nimp}"
 impcsv = CSV.read(nimp, headers: true)
@@ -146,10 +544,280 @@ impcsv.each do |r|
   end
   rp['sexo']=sexo
 
-#CARGO
-#Muerte
-#Tortura
-#Herido
+  ru = {}
+  puts r['DEPARTAMENTO']
+  rd =r['DEPARTAMENTO']
+  if rd
+    pd = Sip::Departamento.where(id_pais: 170).
+      where("unaccent(nombre) ILIKE '%' || unaccent(?) || '%'",rd) 
+    if pd.count == 1 || (pd.count > 1 && (pd = Sip::Departamento.
+        where(id_pais: 170).
+        where('upper(unaccent(nombre))=upper(unaccent(?))', rd)).count == 1 )
+      d = pd.take
+      ru = {
+        id_departamento: d.id
+      }
+      pm = r['LUGAR DE LOS HECHOS']
+      if pm
+        pindex=pm.index('.')
+        nm = pindex ? pm[0, pindex-1] : nil
+        m = Sip::Municipio.where(id_departamento: d.id).
+          where("unaccent(nombre) ILIKE '%' || unaccent(?) || '%'", pm) 
+        if m.count == 1
+          ru[:id_municipio] = m.take.id
+        elsif m.count > 1 && (m = Sip::Municipio.
+            where(id_departamento: d.id).
+            where('upper(unaccent(nombre))=upper(unaccent(?))', 
+                  pm)).count == 1 
+          ru[:id_municipio] = m.take.id
+        elsif nm && (m = Sip::Municipio.
+              where(id_departamento: d.id).
+              where("unaccent(nombre) ILIKE '%' || unaccent(?) || '%'", 
+                    nm)).count == 1
+          ru[:id_municipio] = m.take.id
+        elsif d.nombre == 'Cundinamarca' && pm == 'BOGOTA'
+          ru[:id_departamento] = 4
+          ru[:id_municipio] = 24
+        else
+          ru[:lugar] = pm
+        end
+      end
+    else
+      puts "#{nimp}:#{nreg}: *** Departamento #{rd} desconocido"
+      pcaso << "Departamento desconocido, dejando el caso sin ubicación"
+    end
+  else
+      puts "#{nimp}:#{nreg}: *** Registro sin departamento"
+      pcaso << "Caso sin ubicación"
+  end
+
+  rpr = []
+  presp=r['PRESUNTOS RESPONSABLES']
+  ppresp = presp.to_s.split(',')
+  ppresp.each do |np|
+    np = np.gsub(/  */, ' ').gsub(/^ /, ''). gsub(/ $/, '')
+    if !tpresp.keys.include?(np)
+      puts "#{nimp}:#{nreg}: *** Presunto responsable sin homolagcion '#{np}'"
+    else
+      rpra = {
+        id_presponsable: tpresp[np]
+      }
+      if tpresp[np] == 14 && np.upcase != 'PARAMILITARES'
+        rpra[:bloque] = np
+      else
+        rpra[:otro] = np
+      end
+      rpr << rpra
+    end
+  end
+
+  fr = r['FECHA REGISTRO']
+  begin
+    fechareg = Date.strptime(fr, '%m/%d/%Y')
+  rescue Exception
+    puts "#{nimp}:#{nreg}: *** Fecha de registro con formato desconocido "\
+      "'#{fr}'"
+    fechareg = Date.today
+    pcaso << "Fecha del caso desconocida '#{fr}'. Asignando la del dia de la importación"
+  end
+
+  rc = {
+    fecha: fechad.to_s,
+    memo: r['OBSERVACIONES'] || 'Sin descripción',
+    marbetefasol: r['MARBETE'] || '',
+    codigofasol: r['CODIGO'] || '',
+    ayudafasol: r['AYUDA DE FASOL'] || '',
+    observacionfasol: r['OBSERVACION'] || '',
+    created_at: fechareg
+  }
+  rv = {
+    anotaciones: r['NO PERSONAS'] || ''
+  }
+
+  #REGIONAL
+  rreg1 = nil
+  rreg2 = nil
+  reg = r['REGIONAL']
+  if reg
+    if !treg[reg] 
+      puts "#{nimp}:#{nreg}: *** Regional no homologable '#{reg}'"
+    else
+      mreg = treg[reg] 
+      rreg1 = {
+        id_region: mreg[0]
+      }
+      if !mreg[1].nil?
+        rreg2 = {
+          id_region: mreg[1]
+        }
+      end
+    end
+  end
+
+  cargo = r['CARGO']
+  ce = cargo_entidad[cargo]
+  if ce
+    rv['cargoestado_id']=ce[0]
+    rv['entidad_id']=ce[1]
+  else
+    puts "#{nimp}:#{nreg}: *** Cargo/Entidad del estado desconocidos '#{cargo}'"
+    pcaso << "Caso sin cargo/entidad (#{cargo})"
+  end
+
+  #CARPETAS
+  carp = r['CARPETAS']
+  rfuente = {}
+  if carp
+    rfuente = {
+      fuenteprensa_id: 30,
+      ubicacionfisica: carp,
+      fecha: fechareg
+    }
+  end
+
+  p = Sip::Persona.new(rp)
+
+  #FAMILIAR
+  fam = r['FAMILIAR']
+  rfam = {}
+  if fam
+    menserror = ''
+    fa = Sip::ImportaHelper.separa_apellidos_nombres(fam, menserror)
+    if menserror != ''
+      puts "#{nimp}:#{nreg}: *** Familiar. #{menserror}"
+    else
+      f = Sip::Persona.new(
+        nombres: fa[0],
+        apellidos: fa[1])
+      Sip::PersonaTrelacion.new(
+        persona1: p.id,
+        persona2: f.id,
+        id_trelacion: 'SI'
+      )
+    end
+  end
+
+  c = Sivel2Gen::Caso.new(rc)
+  rv[:id_caso] = c.id
+  rv[:id_persona] = p.id
+  v = Sivel2Gen::Victima.new(rv)
+  ru[:id_caso] = c.id
+  u = Sip::Ubicacion.new(ru)
+  polounico = nil
+  rpr.each do |rpra|
+    rpra[:id_caso] = c.id
+    Sivel2Gen::CasoPresponsable.new(rpra)
+    polo = Sivel2Gen::CasoPresponsable.connection.execute("SELECT sivel2_gen_polo_id(#{rpra[:id_presponsable]})")[0]['sivel2_gen_polo_id']
+    if polounico == nil 
+      polounico = polo
+    elsif polounico != polo
+      polounico = 'NO'
+    end
+  end
+  if rreg1
+    rreg1[:id_caso] = c.id
+    Sivel2Gen::CasoRegion.new(rreg1)
+  end
+  if rreg2
+    rreg2[:id_caso] = c.id
+    Sivel2Gen::CasoRegion.new(rreg2)
+  end
+  if rfuente
+    rfuente[:id_caso] = c.id
+    Sivel2Gen::CasoFuenteprensa.new(rfuente)
+  end
+
+  rcat = ''
+  ['Muerte', 'Tortura', 'Atentado', 'Amenaza', 'Desaparición', 'Detención',
+   'Exilio', 'Secuestro', 'Desplazamiento', 'Judicialización', 
+   'Otras Afectaciones'].each do |c|
+     if r[c]
+       rcat << c + " - " + r[c] + ". "
+     end
+   end
+
+   ractos = []
+   racto = nil
+   if r['Muerte']
+     racto = {
+       id_persona: p.id,
+       id_caso: c.id,
+     }
+     scf = r['Muerte']
+     if scf == 'AA' && polounico == 39 # Abuso de autoridad
+       racto[:id_categoria] = 20
+     elsif scf == 'AL' && (rpr == [] || polounico == 35) #Accidente Laboral
+       racto[:id_categoria] = 1000
+       rpr[0][:id_presponsable] = 50
+     elsif scf == 'AT' && (rpr == [] || polounico == 35) # Accidente de Trabajo(?)
+       racto[:id_categoria] = 1000
+       rpr[0][:id_presponsable] = 50
+     elsif scf == 'DN' && (rpr == [] || polounico == 35) # Desastre Natural
+       racto[:id_categoria] = 1001
+       rpr[0][:id_presponsable] = 50
+     elsif scf == 'ENF' && (rpr == [] || polounico == 35) # Enfermedad
+       racto[:id_categoria] = 1002
+       rpr[0][:id_presponsable] = 50
+     elsif scf == 'IS' && polounico == 35 # Intolerancia Social Polo Sin Info
+       racto[:id_categoria] = 50
+     elsif scf == 'MN' && (rpr == [] || polounico == 35) # Muerte Natural
+       racto[:id_categoria] = 1003
+       rpr[0][:id_presponsable] = 50
+     elsif scf == 'PP' && polounico == 39 # Persecución Política
+       racto[:id_categoria] = 10
+     elsif scf == 'SUI' && (rpr == [] || polounico == 35) # Suicidio
+       racto[:id_categoria] = 1004
+       rpr[0][:id_presponsable] = 50
+     elsif scf == 'VPS' && (rpr == [] || polounico != 39) # Violencia Político Social - PP
+       racto[:id_categoria] = 40
+     elsif scf == 'VSP' && polounico != 39 # Violencia Político Social - PP
+       racto[:id_categoria] = 40
+  if rpr == []
+    if rcat != ''
+      puts "#{nimp}:#{nreg}: *** Sin presunto responsable no es posible crear acto #{rcat}"
+      pcaso << "Sin presunto responsable no es posible crear acto #{rcat}"
+    end
+  elsif polounico.nil? || polounico == 'NO'
+    puts "#{nimp}:#{nreg}: *** Presuntos responsables son de diferentes polos no se pueden asignar automáticamente categorias #{rcat}"
+    pcaso << "Presuntos responsables son de diferentes polos no se pueden asignar automáticamente categorias #{rcat}"
+  else
+    npolounico = Sivel2Gen::Presponsable.find(polounico).nombre
+    puts "#{nimp}:#{nreg}: *** Categoria desconocida o no conciliable con polo del presunto responsable (#{npolounico}). Muerte - #{scf}"
+    pcaso << "Categoria desconocida o no conciliable con polo del presunto responsable (#{npolounico}). Muerte - #{scf}"
+  end
+  if racto[:id_categoria]
+    ractos << racto
+  end
+
+
+  if r['Tortura']
+    racto = {
+      id_persona: p.id,
+      id_caso: c.id,
+    }
+    scf = r['Tortura']
+    if scf == 'IS' && polounico == 35 # Intolerancia Social Polo Sin Info
+      racto[:id_categoria] = 56
+    elsif scf == 'VPS' && polounico == 39 # Estado
+      racto[:id_categoria] = 12
+    elsif scf == 'VPS' && polounico == 35 # Sin Información
+      racto[:id_categoria] = 47
+    elsif scf == 'VPS' && polounico == 29 # Sin Información
+      racto[:id_categoria] = 72
+    else
+      puts "#{nimp}:#{nreg}: *** Categoria desconocida o no conciliable con polo del presunto responsable (#{npolounico}). Tortura - #{scf}"
+      pcaso << "Categoria desconocida o no conciliable con polo del presunto responsable (#{npolounico}). Tortura - #{scf}"
+    end
+      if racto[:id_categoria]
+        #racto.save
+      end
+
+    end
+
+  end
+
+  if r['Tortura']
+  end
 #Atentado
 #Amenaza
 #Desaparición
@@ -159,67 +827,21 @@ impcsv.each do |r|
 #Desplazamiento
 #Judicialización
 #Otras Afectaciones
-#LUGAR DE LOS HECHOS
-#DEPARTAMENTO
-#PRESUNTOS RESPONSABLES
-#FECHA REGISTRO
-#AYUDA DE FASOL
-#CARPETAS
-#REGIONAL
-#FAMILIAR
-#OBSERVACION
 
-  ru = {}
-  puts r['DEPARTAMENTO']
-  rd =r['DEPARTAMENTO']
-  if rd
-    pd = Sip::Departamento.where(id_pais: 170).
-      where("unaccent(nombre) ILIKE unaccent(?)",rd) 
-    if pd.count == 1
-      d = pd.take
-      ru = {
-        id_departamento: d.id
-      }
-      pm = r['LUGAR DE LOS HECHOS']
-      if pm
-        m = Sip::Municipio.where(id_departamento: d.id).
-          where("unaccent(nombre) ILIKE unaccent(?)", pm) 
-        if m.count == 1
-          ru[:id_municipio] = m.take.id
-        else
-          ru[:lugar] = pm
-        end
-      end
-    else
-      puts "#{nimp}:#{nreg}: *** Departamento #{nd} desconocido"
-      pcaso << "Departamento desconocido, dejando el caso sin ubicación"
-      debugger
-    end
-  else
-      puts "#{nimp}:#{nreg}: *** Registro sin departamento"
-      pcaso << "Caso sin ubicación"
-  end
-  rc = {
-    fecha: fechad.to_s,
-    memo: r['OBSEREVACIONES'] || 'Sin descripción',
-    marbetefasol: r['MARBETE'] || '',
-    codigofasol: r['CODIGO'] || '',
+  # AA Abuso de Autorida
+  # AL Accidente Laboral
+  # AT Accidente de Trabajo(?)
+  # DN Desastre Natural
+  # ENF Enfermedad
+  # IS Intolerancia Social
+  # MN Muerte Natural
+  # PP Persecución Política
+  # SUI Suicidio
+  # VPS Violencia Político Social - PP
+  # VSP Violencia Político Social - PP
+  # x
 
-
-  }
-  rv = {
-    anotaciones: r['NO PERSONAS'] || ''
-  }
-
-  p = Sip::Persona.new(rp)
-  c = Sivel2Gen::Caso.new(rc)
-  rv[:id_caso] = c.id
-  rv[:id_persona] = p.id
-  v = Sivel2Gen::Victima.new(rv)
-  ru[:id_caso] = c.id
-  u = Sip::Ubicacion.new(ru)
-
-  
 end
 STDERR.puts "#{nreg} registros leidos"
+STDERR.puts tpresp
 
