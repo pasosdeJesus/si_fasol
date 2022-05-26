@@ -13,6 +13,36 @@ module Sivel2Gen
 
     include Sivel2Gen::Concerns::Controllers::CasosController
 
+
+    def pestanas_formulariocaso
+      #byebug
+      if current_usuario && can?(:solocambiaretiquetas, Sivel2Gen::Caso)
+        [
+          { titulo: 'Etiquetas', parcial: 'etiquetas'},
+        ]
+      elsif current_usuario && can?(:update, Sivel2Gen::Caso)
+        [
+          { titulo: 'Datos Básicos', parcial: 'basicos'},
+          { titulo: 'Ubicación', parcial: 'ubicaciones'},
+          { titulo: 'Fuentes Frecuentes', parcial: 'fuentesprensa'},
+          { titulo: 'Otras Fuentes', parcial: 'fotras'},
+          { titulo: 'Contexto', parcial: 'contextos'},
+          { titulo: 'Presuntos Responsables', parcial: 'presponsables'},
+          { titulo: 'Víctimas', parcial: 'victimas'},
+          { titulo: 'Víctimas Colectivas', parcial: 'victimascolectivas'},
+          { titulo: 'Combatientes', parcial: 'combatientes'},
+          { titulo: 'Actos', parcial: 'actos'},
+          { titulo: 'Descripción', parcial: 'memo'},
+          { titulo: 'Anexos', parcial: 'sivel2_gen/casos/anexos'},
+          { titulo: 'Respuesta', parcial: 'respuesta'},
+          { titulo: 'Etiquetas', parcial: 'etiquetas'},
+          { titulo: 'Evaluación', parcial: 'evaluacion'}
+         ]
+      else
+        []
+      end
+    end
+
     def campoord_inicial
       'fecha'
     end
@@ -23,6 +53,16 @@ module Sivel2Gen
       l[l.count-1][:victima_attributes].unshift(:entidad_id)
       l[l.count-1][:victima_attributes].unshift(:detallevinculoestado)
       l[l.count-1][:victima_attributes].unshift(:cargoestado_id)
+      l[l.count-1][:caso_observacion_attributes] = [
+        :id, 
+        :_destroy,
+        :observacion_attributes => [
+          :id,
+          :usuario_id, 
+          :fecha,
+          :observacion
+        ]
+      ]
       l.unshift(:ayudafasol)
       l.unshift(:codigofasol)
       l.unshift(:marbetefasol)
