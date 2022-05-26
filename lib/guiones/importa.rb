@@ -361,7 +361,7 @@ tpresp = {
   "ESTADO F2" => 1,
   "EX-AGENTES DE POLICIA" => 35,
   "FARC" => 25,
-  "FLIAR DE IMPUTADO" => 359,
+  "FLIAR DE IMPUTADO" => 35,
   "FUE ENCONTRADO MUERTO EN EL APTO" => 35,
   "FUERZA PUBLICA" => 2,
   "FUERZA PUBLICA - POLICIA" => 7,
@@ -884,6 +884,10 @@ impcsv.each do |r|
       polounico = 'NO'
     end
   end
+  if rpr == []
+    rpr << {id_presponsable: 35}
+  end
+
   if rreg1
     rreg1[:id_caso] = c.id
     Sivel2Gen::CasoRegion.create!(rreg1)
@@ -918,7 +922,7 @@ impcsv.each do |r|
         rc = tcat[[cat, scf, polounico]]
         racto[:id_categoria] = rc[0]
         if rc[1] != ''
-          puts "#{nimp}:#{nreg}: *** Polo #{polounico}. Categoria: #{cat} - #{scf}. #{rc[1]}"
+          puts "#{nimp}:#{nreg}: *** Polo #{npolounico} (#{polounico}). Categoria: #{cat} - #{scf}. #{rc[1]}"
           pcaso << "Polo #{npolounico} (#{polounico}). Categoria: #{cat} - #{scf}. #{rc[1]}"
         end
         ractos << racto
