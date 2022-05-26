@@ -632,20 +632,7 @@ impcsv.each do |r|
   fecha = r['FECHA HECHO']
   fechanacd = nil
   fechanac = r['FECHA DE NACIMIENTO']
-  if fechanac
-    pf = fechanac.split('/')
-    if pf.count == 3
-      fechanacd = Date.strptime(fechanac, '%m/%d/%Y')
-    else
-      puts "#{nimp}:#{nreg}: *** Fecha de nacimiento en formato desconocido "\
-        "'#{fechanac}'"
-      if fechanac.to_i>=1900 and fechanac.to_i<=2020
-        fechanacd = Date.new(fechanac.to_i, 6, 15)
-        pcaso << "Fecha de nacimiento desconocida '#{fechanac}', "\
-          "asignando #{fechanacd.to_s}"
-      end
-    end
-  end
+  edad = r['EDAD HECHO']
   if fecha
     pf = fecha.split('/')
     if pf.count == 3
@@ -668,25 +655,37 @@ impcsv.each do |r|
       fechad=Date.new(2000,6,15)
       pcaso << "Fecha del caso desconocida, asignada 2000-06-15"
   end
-  edad = r['EDAD HECHO']
+  if fechanac
+    pf = fechanac.split('/')
+    if pf.count == 3
+      fechanacd = Date.strptime(fechanac, '%m/%d/%Y')
+    else
+      puts "#{nimp}:#{nreg}: *** Fecha de nacimiento en formato desconocido "\
+        "'#{fechanac}'"
+      if fechanac.to_i>=1900 and fechanac.to_i<=2020
+        if edad.to_i > 0 && (fechad.year - edad.to_i) == fechanac.to_i
+          fechanacd = Date.new(fechanac.to_i, fechad.month, fechad.day)-1
+        else
+          fechanacd = Date.new(fechanac.to_i, fechad.month, fechad.day)+1
+        end
+          pcaso << "Fecha de nacimiento desconocida '#{fechanac}', "\
+            "empleando fecha del hecho #{fechad.to_s} para asignar #{fechanacd.to_s}"
+      end
+    end
+  end
   if edad
     ei = edad.to_i
-    if !fechanacd.nil?
-      ec = Sivel2Gen::RangoedadHelper.edad_de_fechanac_fecha(
-        fechanacd.year, fechanacd.month, fechanacd.day,
-        fechad.year, fechad.month, fechad.day)
-      if ei != ec 
-        puts "#{nimp}:#{nreg}: *** Registro con edad #{ei} no corresponde "\
-          "con la edad calculada #{ec}"
-        if (ei+1)!=ec
-          pcaso << "Diferencia notable ente edad en el registro #{ei}, con "\
-            " edad calculada con fecha de nacimiento, "\
-            " manteniendo fecha de nacimiento ${fechanacd.to_s}"
-        end
-      end
-    else
-      fechanacd=Date.new(fechad.year - ei, fechad.month, fechad.day)+1
-      pcaso << "Con edad #{ei} estableciendo fecha de nacimiento #{fechanacd.to_s}"
+    if fechanacd.nil?
+      fechanacd=Date.new(fechad.year - ei, fechad.month, fechad.day)-1
+      pcaso << "Con edad #{ei} y fecha del caso #{fechad.to_s}, estableciendo fecha de nacimiento #{fechanacd.to_s}"
+    end
+    ec = Sivel2Gen::RangoedadHelper.edad_de_fechanac_fecha(
+      fechanacd.year, fechanacd.month, fechanacd.day,
+      fechad.year, fechad.month, fechad.day)
+    if ei != ec 
+      puts "#{nimp}:#{nreg}: *** Registro con edad #{ei} no corresponde "\
+        "con la edad calculada #{ec}"
+      pcaso << "Edad calculada #{ec}, usando la fecha del hecho #{fechad.to_s} y la fecha de nacimiento #{fechanacd.to_s},  no corresponde a la del registro #{ei}"
     end
   end
   if fechanacd
@@ -782,11 +781,15 @@ impcsv.each do |r|
     pcaso << "Fecha del caso desconocida '#{fr}'. Asignando la del dia de la importación"
   end
 
+  codigofasol = r['CODIGO'] || ''
+  if (pcod = codigofasol.split('/')).count == 3
+    codigofasol = pcod[2] + '-' + pcod[0]
+  end
   rc = {
     fecha: fechad.to_s,
     memo: r['OBSERVACIONES'] || 'Sin descripción',
     marbetefasol: r['MARBETE'] || '',
-    codigofasol: r['CODIGO'] || '',
+    codigofasol: codigofasol,
     ayudafasol: r['AYUDA DE FASOL'] || '',
     observacionfasol: r['OBSERVACION'] || '',
     created_at: fechareg
@@ -824,6 +827,8 @@ impcsv.each do |r|
     puts "#{nimp}:#{nreg}: *** Cargo/Entidad del estado desconocidos '#{cargo}'"
     pcaso << "Caso sin cargo/entidad (#{cargo})"
   end
+  rv[:detallevinculoestado] = cargo
+  
 
   #CARPETAS
   carp = r['CARPETAS']
@@ -930,8 +935,8 @@ impcsv.each do |r|
           sin_presponsable(rpr)
         end
       else
-        puts "#{nimp}:#{nreg}: *** Categoria desconocida o no conciliable con polo del presunto responsable (#{npolounico}). #{cat} - #{scf}"
-        pcaso << "Categoria desconocida o no conciliable con polo del presunto responsable (#{npolounico}). #{cat} - #{scf}"
+        puts "#{nimp}:#{nreg}: *** Categoria desconocida o no conciliable con polo del presunto responsable #{npolounico} (#{polounico}). #{cat} - #{scf}"
+        pcaso << "Categoria desconocida o no conciliable con polo del presunto responsable #{npolounico} (#{polounico}). #{cat} - #{scf}"
       end
     end
   end
@@ -950,9 +955,9 @@ impcsv.each do |r|
         else
           rpra[:id_responsable] = 35
         end
-        if Sivel2Gen::CasoPresponsable.where(rpra).count == 0
-          Sivel2Gen::CasoPresponsable.create!(rpra)
-        end
+      end
+      if Sivel2Gen::CasoPresponsable.where(rpra).count == 0
+        Sivel2Gen::CasoPresponsable.create!(rpra)
       end
       racto[:id_presponsable] = rpra[:id_presponsable]
       if Sivel2Gen::Acto.where(racto).count == 0
@@ -980,7 +985,8 @@ impcsv.each do |r|
     fecha: fechareg,
     usuario_id: 1,
     modelo: 'Sivel2Gen::Caso',
-    modelo_id: nreg + 1001
+    modelo_id: nreg + 1001,
+    operacion: 'iniciar'
   )
 
   pcaso.each do |prob|
