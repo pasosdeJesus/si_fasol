@@ -2586,6 +2586,39 @@ CREATE MATERIALIZED VIEW public.sip_mundep AS
 
 
 --
+-- Name: sip_observacion; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sip_observacion (
+    id bigint NOT NULL,
+    usuario_id integer NOT NULL,
+    fecha date NOT NULL,
+    observacion character varying(5000),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sip_observacion_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sip_observacion_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sip_observacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sip_observacion_id_seq OWNED BY public.sip_observacion.id;
+
+
+--
 -- Name: sip_oficina; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3424,6 +3457,36 @@ CREATE TABLE public.sivel2_gen_caso_fuenteprensa (
     id integer DEFAULT nextval('public.sivel2_gen_caso_fuenteprensa_seq'::regclass) NOT NULL,
     anexo_caso_id integer
 );
+
+
+--
+-- Name: sivel2_gen_caso_observacion; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_caso_observacion (
+    id bigint NOT NULL,
+    caso_id integer NOT NULL,
+    observacion_id integer NOT NULL
+);
+
+
+--
+-- Name: sivel2_gen_caso_observacion_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_caso_observacion_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_caso_observacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sivel2_gen_caso_observacion_id_seq OWNED BY public.sivel2_gen_caso_observacion.id;
 
 
 --
@@ -4731,6 +4794,13 @@ ALTER TABLE ONLY public.sip_grupo ALTER COLUMN id SET DEFAULT nextval('public.si
 
 
 --
+-- Name: sip_observacion id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_observacion ALTER COLUMN id SET DEFAULT nextval('public.sip_observacion_id_seq'::regclass);
+
+
+--
 -- Name: sip_oficina id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4819,6 +4889,13 @@ ALTER TABLE ONLY public.sip_ubicacionpre ALTER COLUMN id SET DEFAULT nextval('pu
 --
 
 ALTER TABLE ONLY public.sivel2_gen_actividadoficio ALTER COLUMN id SET DEFAULT nextval('public.sivel2_gen_actividadoficio_id_seq'::regclass);
+
+
+--
+-- Name: sivel2_gen_caso_observacion id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_caso_observacion ALTER COLUMN id SET DEFAULT nextval('public.sivel2_gen_caso_observacion_id_seq'::regclass);
 
 
 --
@@ -5336,6 +5413,14 @@ ALTER TABLE ONLY public.sip_municipio
 
 
 --
+-- Name: sip_observacion sip_observacion_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_observacion
+    ADD CONSTRAINT sip_observacion_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sip_orgsocial_persona sip_orgsocial_persona_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5597,6 +5682,14 @@ ALTER TABLE ONLY public.sivel2_gen_caso_fuenteprensa
 
 ALTER TABLE ONLY public.sivel2_gen_caso_fuenteprensa
     ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sivel2_gen_caso_observacion sivel2_gen_caso_observacion_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_caso_observacion
+    ADD CONSTRAINT sivel2_gen_caso_observacion_pkey PRIMARY KEY (id);
 
 
 --
@@ -6090,6 +6183,20 @@ CREATE INDEX index_sip_ubicacion_on_id_municipio ON public.sip_ubicacion USING b
 --
 
 CREATE INDEX index_sip_ubicacion_on_id_pais ON public.sip_ubicacion USING btree (id_pais);
+
+
+--
+-- Name: index_sivel2_gen_caso_observacion_on_caso_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sivel2_gen_caso_observacion_on_caso_id ON public.sivel2_gen_caso_observacion USING btree (caso_id);
+
+
+--
+-- Name: index_sivel2_gen_caso_observacion_on_observacion_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sivel2_gen_caso_observacion_on_observacion_id ON public.sivel2_gen_caso_observacion USING btree (observacion_id);
 
 
 --
@@ -6978,6 +7085,14 @@ ALTER TABLE ONLY public.apo214_listadepositados
 
 
 --
+-- Name: sivel2_gen_caso_observacion fk_rails_26cf51b19c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_caso_observacion
+    ADD CONSTRAINT fk_rails_26cf51b19c FOREIGN KEY (observacion_id) REFERENCES public.sip_observacion(id);
+
+
+--
 -- Name: mr519_gen_encuestausuario fk_rails_2cb09d778a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7111,6 +7226,14 @@ ALTER TABLE ONLY public.sip_orgsocial
 
 ALTER TABLE ONLY public.apo214_lugarpreliminar
     ADD CONSTRAINT fk_rails_5dc41e5b2c FOREIGN KEY (id_persona) REFERENCES public.sip_persona(id);
+
+
+--
+-- Name: sip_observacion fk_rails_5eac714b59; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_observacion
+    ADD CONSTRAINT fk_rails_5eac714b59 FOREIGN KEY (usuario_id) REFERENCES public.usuario(id);
 
 
 --
@@ -7359,6 +7482,14 @@ ALTER TABLE ONLY public.sip_ubicacion
 
 ALTER TABLE ONLY public.apo214_listasuelo
     ADD CONSTRAINT fk_rails_a510cd86fa FOREIGN KEY (suelo_id) REFERENCES public.apo214_suelo(id);
+
+
+--
+-- Name: sivel2_gen_caso_observacion fk_rails_a952d537bf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_caso_observacion
+    ADD CONSTRAINT fk_rails_a952d537bf FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -8244,6 +8375,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201110170225'),
 ('20201110170728'),
 ('20201119125643'),
+('20201124050637'),
 ('20201127233621'),
 ('20201128003003'),
 ('20201129144340'),
@@ -8355,6 +8487,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220523174202'),
 ('20220523182749'),
 ('20220523183213'),
-('20220524102539');
+('20220524102539'),
+('20220524184059'),
+('20220525122150');
 
 

@@ -411,17 +411,17 @@ tpresp = {
 
 treg = {
   "A"=>[20, nil],
-  "A / C"=>[20, 8],
+  "A / C"=>[20, 23],
   "ANTIOQUIA"=>[20, nil],
-  "C"=>[8, nil],
-  "C / SUR"=>[8, 22],
+  "C"=>[23, nil],
+  "C / SUR"=>[23, 22],
   "CC"=>[5, nil],
   "CC / A"=>[5, 20],
   "COSTA CARIBE"=>[5, nil],
-  "CUNDINAMARCA"=>[8, nil],
+  "CUNDINAMARCA"=>[23, nil],
   "NORTE DE SANTANDER"=>[21, nil],
   "S"=>[21, nil],
-  "S / C"=>[21, 8],
+  "S / C"=>[21, 23],
   "S / CC"=>[21, 5],
   "SANTANDER"=>[21, nil],
   "SANTANDERES"=>[21, nil],
@@ -432,21 +432,23 @@ treg = {
 tcat = {
   ['Muerte', 'PP', 39] => [10, ''], # Polo Estatal
   ['Muerte', 'AA', 39] => [20, ''],
+  ['Muerte', 'VPS', 39] => [20, 'Cambiando categoría a DH-AA (Revisar porque podría ser PP o IS)'],
   ['Muerte', 'IS', 39] => [30, ''],
-  ['Muerte', 'VPS', 39] => [10, 'Cambiando categoría a DH-PP (Revisar porque podría ser AA o IS)'],
 
   ['Muerte', 'VPS', 40] => [701, 'Cambiando categoría a DIH'], # Insurgente
 
   ['Muerte', 'PP', 35] => [40, ''], # Polo Sin Información
+  ['Muerte', 'PP', nil] => [40, 'Agregando presunto responsable SIN INFORMACIÓN'], 
   ['Muerte', 'VPS', 35] => [40, ''], 
+  ['Muerte', 'VPS', nil] => [40, 'Agregando presunto responsable SIN INFORMACIÓN'], 
   ['Muerte', 'VSP', 35] => [40, ''], 
   ['Muerte', 'VSP', nil] => [40, 'Agregando presunto responsable SIN INFORMACIÓN'], 
   ['Muerte', 'IS', 35] => [50, ''],
   ['Muerte', 'IS', nil] => [50, 'Agregando presunto responsable SIN INFORMACIÓN'],
   ['Muerte', 'AL', 35] => [1000, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
   ['Muerte', 'AL', nil] => [1000, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
-  ['Muerte', 'AT', 35] => [1000, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
-  ['Muerte', 'AT', nil] => [1000, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
+  ['Muerte', 'AT', 35] => [1005, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
+  ['Muerte', 'AT', nil] => [1005, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
   ['Muerte', 'DN', 35] => [1001, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
   ['Muerte', 'DN', nil] => [1001, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
   ['Muerte', 'ENF', 35] => [1002, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
@@ -458,12 +460,16 @@ tcat = {
 
 
   ['Tortura', 'PP', 39] => [12, ''], # Polo Estatal
+  ['Tortura', 'VPS', 39] => [22, 'Cambiando a DH-AA. Revisar'], 
   ['Tortura', 'AA', 39] => [22, ''],
   ['Tortura', 'IS', 39] => [36, ''],
 
   ['Tortura', 'PP', 35] => [47, ''], # Polo Sin Información
+  ['Tortura', 'PP', nil] => [47, 'Agregando presunto responsable SIN INFORMACIÓN'],
   ['Tortura', 'VPS', 35] => [47, ''], 
+  ['Tortura', 'VPS', nil] => [47, 'Agregando presunto responsable SIN INFORMACIÓN'],
   ['Tortura', 'IS', 35] => [56, ''],
+  ['Tortura', 'IS', nil] => [47, 'Agregando presunto responsable SIN INFORMACIÓN'],
 
   ['Tortura', 'VPS', 39] => [12, 'No corresponden Polo Estatal y categoría VPS. Cambiando a DH-PP (revisar manualmente, podría ser AA o IS)'], 
   ['Tortura', 'VPS', 40] => [72, 'No corresponden Polo Insurgente y categoría VPS. Cambiando a DIH'], 
@@ -471,50 +477,79 @@ tcat = {
 
  
   ['Atentado', 'PP', 39] => [16, ''], # Polo Estatal
+  ['Atentado', 'VPS', 39] => [16, ''], # Polo Estatal
   ['Atentado', 'AA', 39] => [26, ''],
   ['Atentado', 'IS', 39] => [37, ''],
 
   ['Atentado', 'PP', 35] => [46, ''], # Polo Sin Info
+  ['Atentado', 'PP', nil] => [46, 'Agregando presunto responsable SIN INFORMACIÓN'],
   ['Atentado', 'VPS', 35] => [46, ''],
+  ['Atentado', 'VPS', nil] => [46, 'Agregando presunto responsable SIN INFORMACIÓN'],
   ['Atentado', 'VSP', 35] => [46, ''],
+  ['Atentado', 'VSP', nil] => [46, 'Agregando presunto responsable SIN INFORMACIÓN'],
   ['Atentado', 'IS', 35] => [47, ''],
+  ['Atentado', 'IS', nil] => [47, 'Agregando presunto responsable SIN INFORMACIÓN'],
 
+  ['Atentado', 'VPS', 40] => [46, ''],
 
   ['Amenaza', 'PP', 39] => [15, ''], # Polo Estatal
+  ['Amenaza', 'VPS', 39] => [15, ''], # Polo Estatal
   ['Amenaza', 'AA', 39] => [25, ''],
   ['Amenaza', 'IS', 39] => [35, ''],
 
   ['Amenaza', 'PP', 35] => [45, ''], # Polo Sin Info
+  ['Amenaza', 'PP', nil] => [45, 'Agregando presunto responsable SIN INFORMACIÓN'],
   ['Amenaza', 'VPS', 35] => [45, ''],
+  ['Amenaza', 'VPS', nil] => [45, 'Agregando presunto responsable SIN INFORMACIÓN'],
   ['Amenaza', 'VSP', 35] => [45, ''],
+  ['Amenaza', 'VSP', nil] => [45, 'Agregando presunto responsable SIN INFORMACIÓN'],
   ['Amenaza', 'IS', 35] => [55, ''],
+  ['Amenaza', 'IS', nil] => [55, 'Agregando presunto responsable SIN INFORMACIÓN'],
+  
+  ['Amenaza', 'VPS', 40] => [73, 'Cambiando de VPS a DIH'], # Polo Insurgente
 
   ['Desaparición', 'PP', 39] => [11, ''], # Polo Estatal
+  ['Desaparición', 'VPS', 39] => [11, ''], 
   ['Desaparición', 'AA', 39] => [21, ''],
   ['Desaparición', 'IS', 39] => [302, ''],
 
   ['Detención', 'PP', 39] => [14, ''], # Polo Estatal
+  ['Detención', 'VPS', 39] => [14, ''], 
   ['Detención', 'AA', 39] => [24, ''],
   ['Detención', 'IS', 39] => [301, ''],
 
   ['Exilio', 'PP', 39] => [1030, ''], # Polo Estatal
+  ['Exilio', 'VPS', 39] => [1030, ''], 
 
   ['Exilio', 'VPS', 35] => [1040, ''], # Polo Sin Info
+  ['Exilio', 'VPS', nil] => [1040, 'Agregando presunto responsable SIN INFORMACIÓN'],
+  ['Exilio', 'PP', 35] => [1040, ''], 
+  ['Exilio', 'PP', nil] => [1040, 'Agregando presunto responsable SIN INFORMACIÓN'], 
   ['Exilio', 'VSP', 35] => [1040, ''], # Polo Sin Info
+  ['Exilio', 'VSP', nil] => [1040, 'Agregando presunto responsable SIN INFORMACIÓN'],
 
   ['Secuestro', 'PP', 39] => [41, ''], # Polo Estatal
+  ['Secuestro', 'VPS', 39] => [41, ''], # Polo Estatal
   ['Secuestro', 'PP', 35] => [41, ''], # Polo Sin Info
+  ['Secuestro', 'PP', nil] => [41, 'Agregando presunto responsable SIN INFORMACIÓN'],
+  ['Secuestro', 'VPS', nil] => [41, 'Agregando presunto responsable SIN INFORMACIÓN'],
   ['Secuestro', 'PP', 40] => [41, ''], # Polo Insurgente
+  ['Secuestro', 'VPS', 40] => [41, ''], # Polo Insurgente
 
   ['Desplazamiento', 'PP', 39] => [1050, ''], # Polo Estatal
+  ['Desplazamiento', 'VPS', 39] => [1050, ''], # Polo Estatal
 
   ['Desplazamiento', 'PP', 35] => [1060, ''], # Polo Sin Info
+  ['Desplazamiento', 'PP', nil] => [1060, 'Agregando presunto responsable SIN INFORMACIÓN'],
   ['Desplazamiento', 'VPS', 35] => [1060, ''],
+  ['Desplazamiento', 'VPS', nil] => [1060, 'Agregando presunto responsable SIN INFORMACIÓN'],
   ['Desplazamiento', 'VSP', 35] => [1060, ''],
+  ['Desplazamiento', 'VSP', nil] => [1060, 'Agregando presunto responsable SIN INFORMACIÓN'],
 
   ['Desplazamiento', 'VPS', 40] => [1060, ''], # Polo Insurgente
 
   ['Judicialización', 'PP', 39] => [141, ''], # Polo Estatal
+  ['Judicialización', 'VPS', 39] => [141, ''], # Polo Estatal
   ['Judicialización', 'AA', 39] => [241, ''],
   ['Judicialización', 'IS', 39] => [341, ''],
 
@@ -524,13 +559,15 @@ tcat = {
   ['Otras Afectaciones', 'ACOSO LABORAL', 39] => [1070, ''], # Polo Estatal
   
   ['Otras Afectaciones', 'AL', 35] => [1023, 'Cambiando PR a SIN PR'], # Polo Sin Presp
-  ['Otras Afectaciones', 'AL', nil] => [1023, 'Cambiando PR a SIN PR'], 
-  ['Otras Afectaciones', 'AT', 35] => [1023, 'Cambiando PR a SIN PR'], 
-  ['Otras Afectaciones', 'AT', nil] => [1023, 'Cambiando PR a SIN PR'], 
+  ['Otras Afectaciones', 'AL', nil] => [1023, 'Agregando SIN PR'], # Polo Sin Presp
+  ['Otras Afectaciones', 'AT', 35] => [1025, 'Cambiando PR a SIN PR'], 
+  ['Otras Afectaciones', 'AT', nil] => [1025, 'Agregando SIN PR'], 
   ['Otras Afectaciones', 'ENF', 35] => [1024, 'Cambiando PR a SIN PR'],
-  ['Otras Afectaciones', 'ENF', 35] => [1024, 'Cambiando PR a SIN PR'],
-  ['Otras Afectaciones', 'PEN', nil] => [1020, 'Cambiando PR a SIN PR'],
-  ['Otras Afectaciones', 'CE', nil] => [1021, 'Cambiando PR a SIN PR'],
+  ['Otras Afectaciones', 'ENF', nil] => [1024, 'Agregando SIN PR'],
+  ['Otras Afectaciones', 'PEN', 35] => [1020, 'Cambiando PR a SIN PR'],
+  ['Otras Afectaciones', 'PEN', nil] => [1020, 'Agregando SIN PR'],
+  ['Otras Afectaciones', 'CE', 35] => [1021, 'Cambiando PR a SIN PR'],
+  ['Otras Afectaciones', 'CE', nil] => [1021, 'Agregando SIN PR'],
 }
 
  
@@ -857,6 +894,7 @@ impcsv.each do |r|
   end
   if rfuente && rfuente[:fecha]
     rfuente[:id_caso] = c.id
+    rfuente[:id] = nreg + 1001
     of = Sivel2Gen::CasoFuenteprensa.create(rfuente)
     if !of.valid?
       debugger
@@ -896,24 +934,50 @@ impcsv.each do |r|
 
   rpr.each do |rpra|
     rpra[:id_caso] = c.id
-    pt = Sivel2Gen::CasoPresponsable.create(rpra)
-    if !pt.valid?
-      debugger
-    else
-      pt.save!
-    end
   end
 
   ractos.each do |racto|
     racto[:id_caso] = c.id
     racto[:id_persona] = p.id
     rpr.each do |rpra|
+      if rpra[:id_presponsable].nil?
+        if racto[:id_categoria] >= 1000 && racto[:id_categoria] <= 1025
+          rpra[:id_responsable] = 50
+        else
+          rpra[:id_responsable] = 35
+        end
+        if Sivel2Gen::CasoPresponsable.where(rpra).count == 0
+          Sivel2Gen::CasoPresponsable.create!(rpra)
+        end
+      end
       racto[:id_presponsable] = rpra[:id_presponsable]
       if Sivel2Gen::Acto.where(racto).count == 0
         Sivel2Gen::Acto.create!(racto)
       end
     end
   end
+
+  if r['OBSERVACION'].to_s != ''
+    so = Sip::Observacion.create!(
+      id: nreg + 1001,
+      usuario_id: 1,
+      fecha: Date.today,
+      observacion: r['OBSERVACION']
+    )
+    Sivel2Gen::CasoObservacion.create!(
+      id: nreg + 1001,
+      observacion_id: so.id,
+      caso_id: c.id
+    )
+  end
+
+  Sip::Bitacora.create!(
+    id: nreg + 1001,
+    fecha: fechareg,
+    usuario_id: 1,
+    modelo: 'Sivel2Gen::Caso',
+    modelo_id: nreg + 1001
+  )
 
   pcaso.each do |prob|
     Sivel2Gen::CasoEtiqueta.create!(
@@ -925,6 +989,19 @@ impcsv.each do |r|
     )
   end
 end
+
+Sivel2Gen::Acto.connection.execute <<-SQL
+  SELECT setval('public.caso_etiqueta_seq', 3000);
+  SELECT setval('public.sip_persona_id_seq', 3000);
+  SELECT setval('public.sivel2_gen_caso_id_seq', 3000);
+  SELECT setval('public.caso_presponsable_seq', 3000);
+  SELECT setval('public.sivel2_gen_caso_fuenteprensa_seq', 3000);
+  SELECT setval('public.sip_ubicacion_id_seq', 3000);
+  SELECT setval('public.victima_seq', 3000);
+  SELECT setval('public.sip_bitacora_id_seq', 3000);
+  SELECT setval('public.sip_persona_id_seq', 3000);
+  SELECT setval('public.sip_persona_trelacion_id_seq', 3000);
+SQL
 
 STDERR.puts "#{nreg} registros leidos"
 STDERR.puts tpresp

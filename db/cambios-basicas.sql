@@ -4592,8 +4592,7 @@ INSERT INTO public.sip_orgsocial (id, grupoper_id, telefono, fax, direccion, pai
 SELECT pg_catalog.setval('public.sip_orgsocial_id_seq', 10000, true);
 
 
-UPDATE sivel2_gen_region  SET fechadeshabilitacion='2022-05-23'
-	WHERE id IN (6,7,9,10,11);
+DELETE FROM sivel2_gen_region  WHERE id IN (6,7,8,9,10,11);
 INSERT INTO sivel2_gen_region (id, nombre, 
 	fechacreacion, created_at, updated_at)
 	VALUES (20, 'ANTIOQUIA', '2022-05-23', '2022-05-23', '2022-05-23');
@@ -4603,15 +4602,15 @@ INSERT INTO sivel2_gen_region (id, nombre,
 INSERT INTO sivel2_gen_region (id, nombre, 
 	fechacreacion, created_at, updated_at)
 	VALUES (22, 'SUR', '2022-05-23', '2022-05-23', '2022-05-23');
-
-
+INSERT INTO sivel2_gen_region (id, nombre, 
+  fechacreacion, created_at, updated_at)
+  VALUES (23, 'CUNDINAMARCA', '2022-05-23', '2022-05-23', '2022-05-23');
 
 
 INSERT INTO sip_fuenteprensa (id, tfuente, nombre, 
         fechacreacion, created_at, updated_at) VALUES 
         (30, 'Directa', 'FASOL', 
         '2022-05-23', '2022-05-23', '2022-05-23');
-
 
 
 INSERT INTO sivel2_gen_presponsable (id, nombre, papa_id, 
@@ -4661,42 +4660,53 @@ INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
   '2022-05-23', '2022-05-23', '2022-05-23');
 
 
-      INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
-        fechacreacion, created_at, updated_at) VALUES
-        (1023, 'ACCIDENTE LABORAL', 100, --NV
-        '2022-05-23', '2022-05-23', '2022-05-23');
-      INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
-        fechacreacion, created_at, updated_at) VALUES
-        (1024, 'ENFERMEDAD', 100, --NV
-        '2022-05-23', '2022-05-23', '2022-05-23');
+INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
+  fechacreacion, created_at, updated_at) VALUES
+  (1023, 'ACCIDENTE LABORAL', 100, --NV
+  '2022-05-23', '2022-05-23', '2022-05-23');
+INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
+  fechacreacion, created_at, updated_at) VALUES
+  (1024, 'ENFERMEDAD', 100, --NV
+  '2022-05-23', '2022-05-23', '2022-05-23');
 
 
-      INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
-        fechacreacion, created_at, updated_at) VALUES
-        (1030, 'EXILIO', 1, --DH PP
-        '2022-05-23', '2022-05-23', '2022-05-23');
-      INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
-        fechacreacion, created_at, updated_at) VALUES
-        (1040, 'EXILIO', 2, --VPS PP
-        '2022-05-23', '2022-05-23', '2022-05-23');
+INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
+  fechacreacion, created_at, updated_at) VALUES
+  (1030, 'EXILIO', 1, --DH PP
+  '2022-05-23', '2022-05-23', '2022-05-23');
+INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
+  fechacreacion, created_at, updated_at) VALUES
+  (1040, 'EXILIO', 2, --VPS PP
+  '2022-05-23', '2022-05-23', '2022-05-23');
 
-      INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
-        fechacreacion, created_at, updated_at) VALUES
-        (1050, 'DESPLAZAMIENTO FORZADO INDIVIDUAL', 1, --DH PP
-        '2022-05-23', '2022-05-23', '2022-05-23');
+INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
+  fechacreacion, created_at, updated_at) VALUES
+  (1050, 'DESPLAZAMIENTO FORZADO INDIVIDUAL', 1, --DH PP
+  '2022-05-23', '2022-05-23', '2022-05-23');
 
-      INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
-        fechacreacion, created_at, updated_at) VALUES
-        (1060, 'DESPLAZAMIENTO FORZADO INDIVIDUAL', 2, --VPS PP
-        '2022-05-23', '2022-05-23', '2022-05-23');
+INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
+  fechacreacion, created_at, updated_at) VALUES
+  (1060, 'DESPLAZAMIENTO FORZADO INDIVIDUAL', 2, --VPS PP
+  '2022-05-23', '2022-05-23', '2022-05-23');
 
-      INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
-        fechacreacion, created_at, updated_at) VALUES
-        (1080, 'JUDICIALIZACIÓN ARBITRARIA', 2, --VPS PP
-        '2022-05-23', '2022-05-23', '2022-05-23');
+INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
+  fechacreacion, created_at, updated_at) VALUES
+  (1080, 'JUDICIALIZACIÓN ARBITRARIA', 2, --VPS PP
+  '2022-05-23', '2022-05-23', '2022-05-23');
 
-      INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
-        fechacreacion, created_at, updated_at) VALUES
-        (1070, 'ACOSO LABORAL', 1, --DH PP
-        '2022-05-23', '2022-05-23', '2022-05-23');
+INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
+  fechacreacion, created_at, updated_at) VALUES
+  (1070, 'ACOSO LABORAL', 1, --DH PP
+  '2022-05-23', '2022-05-23', '2022-05-23');
+
+INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
+  fechacreacion, created_at, updated_at) VALUES
+  (1005, 'MUERTE POR ACCIDENTE DE TRÁNSITO', 100, --NV
+  '2022-05-23', '2022-05-23', '2022-05-23');
+INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
+  fechacreacion, created_at, updated_at) VALUES
+  (1025, 'ACCIDENTE DE TRÁNSITO', 100, --NV
+  '2022-05-23', '2022-05-23', '2022-05-23');
+
+
 
