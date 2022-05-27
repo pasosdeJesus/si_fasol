@@ -13,7 +13,7 @@ Sistema de Información de FASOL versión 2.1
 Se trata de una personalización a SIVeL 2.1.
 
 Aplican las mismas instrucciones que para ese sistema disponibles en
-<https://github.com/pasosdeJesus/si_fasol>
+<https://github.com/pasosdeJesus/sivel2>
 
 
 
