@@ -1,4 +1,4 @@
-# SI-FASOL 2.1 #
+# SI-FASOL 2.1
 
 ## Bienvenido al código fuente de SI-FASOL 2.1 ##
 Sistema de Información de Violencia Política en Línea versión 2.1
@@ -6,7 +6,7 @@ Sistema de Información de Violencia Política en Línea versión 2.1
 
 [![Revisado por Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com) Pruebas y seguridad: [![Estado Construcción](https://gitlab.com/pasosdeJesus/sivel2/badges/main/pipeline.svg)](https://gitlab.com/pasosdeJesus/sivel2/-/pipelines?page=1&scope=all&ref=main) [![Clima del Código](https://codeclimate.com/github/pasosdeJesus/sivel2/badges/gpa.svg)](https://codeclimate.com/github/pasosdeJesus/sivel2) [![Cobertura de Pruebas](https://codeclimate.com/github/pasosdeJesus/sivel2/badges/coverage.svg)](https://codeclimate.com/github/pasosdeJesus/sivel2)
 
-![Logo de sivel2_1](https://raw.githubusercontent.com/pasosdeJesus/sivel2/main/app/assets/images/logo.jpg)
+![Logo de SI-FASOL](https://gitlab.com/pasosdeJesus/si_fasol/-/raw/main/app/assets/images/logo.png?inline=false)
 
 ## Sobre SI-FASOL 
 
