@@ -2,7 +2,7 @@ module Sip
   class ObservacionesController < Heb412Gen::ModelosController
     before_action :set_observacion,
       only: [:show, :edit, :update, :destroy]
-    load_and_authorize_resource  class: ::Observacion
+    load_and_authorize_resource  class: Sip::Observacion
 
     def clase 
       "Sip::Observacion"
@@ -47,3 +47,4 @@ module Sip
     end
 
   end
+end
