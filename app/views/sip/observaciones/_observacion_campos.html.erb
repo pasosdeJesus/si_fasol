@@ -32,12 +32,17 @@
     <td>
       <% if autorizado %>
         <%= ob.input :observacion,
-          label: false
+          as: :text,
+          label: false,
+          :input_html => { 
+            rows: 3
+          }
         %>
       <% else %>
         <%= ob.input :observacion,
           label: false,
-          :input_html => { class: 'deshabilitado'}
+          :input_html => { 
+            class: 'deshabilitado'}
         %>
       <% end %>
     </td>
