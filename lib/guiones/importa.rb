@@ -477,7 +477,8 @@ tcat = {
 
  
   ['Atentado', 'PP', 39] => [16, ''], # Polo Estatal
-  ['Atentado', 'VPS', 39] => [16, ''], # Polo Estatal
+  ['Atentado', 'VPS', 39] => [16, ''], 
+  ['Atentado', 'VSP', 39] => [16, ''], 
   ['Atentado', 'AA', 39] => [26, ''],
   ['Atentado', 'IS', 39] => [37, ''],
 
@@ -490,7 +491,8 @@ tcat = {
   ['Atentado', 'IS', 35] => [47, ''],
   ['Atentado', 'IS', nil] => [47, 'Agregando presunto responsable SIN INFORMACIÓN'],
 
-  ['Atentado', 'VPS', 40] => [46, ''],
+  ['Atentado', 'VPS', 40] => [46, ''], # Polo Insurgente
+  ['Atentado', 'PP', 40] => [46, ''],
 
   ['Amenaza', 'PP', 39] => [15, ''], # Polo Estatal
   ['Amenaza', 'VPS', 39] => [15, ''], # Polo Estatal
@@ -507,6 +509,7 @@ tcat = {
   ['Amenaza', 'IS', nil] => [55, 'Agregando presunto responsable SIN INFORMACIÓN'],
   
   ['Amenaza', 'VPS', 40] => [73, 'Cambiando de VPS a DIH'], # Polo Insurgente
+  ['Amenaza', 'PP', 40] => [73, 'Cambiando de DH a DIH'], # Polo Insurgente
 
   ['Desaparición', 'PP', 39] => [11, ''], # Polo Estatal
   ['Desaparición', 'VPS', 39] => [11, ''], 
@@ -520,6 +523,7 @@ tcat = {
 
   ['Exilio', 'PP', 39] => [1030, ''], # Polo Estatal
   ['Exilio', 'VPS', 39] => [1030, ''], 
+  ['Exilio', 'VSP', 39] => [1030, ''], 
 
   ['Exilio', 'VPS', 35] => [1040, ''], # Polo Sin Info
   ['Exilio', 'VPS', nil] => [1040, 'Agregando presunto responsable SIN INFORMACIÓN'],
@@ -529,7 +533,8 @@ tcat = {
   ['Exilio', 'VSP', nil] => [1040, 'Agregando presunto responsable SIN INFORMACIÓN'],
 
   ['Secuestro', 'PP', 39] => [41, ''], # Polo Estatal
-  ['Secuestro', 'VPS', 39] => [41, ''], # Polo Estatal
+  ['Secuestro', 'VPS', 39] => [41, ''], 
+  ['Secuestro', 'VSP', 39] => [41, ''], 
   ['Secuestro', 'PP', 35] => [41, ''], # Polo Sin Info
   ['Secuestro', 'PP', nil] => [41, 'Agregando presunto responsable SIN INFORMACIÓN'],
   ['Secuestro', 'VPS', nil] => [41, 'Agregando presunto responsable SIN INFORMACIÓN'],
@@ -541,6 +546,8 @@ tcat = {
 
   ['Desplazamiento', 'PP', 35] => [1060, ''], # Polo Sin Info
   ['Desplazamiento', 'PP', nil] => [1060, 'Agregando presunto responsable SIN INFORMACIÓN'],
+  ['Desplazamiento', 'IS', 35] => [1060, 'Agregando presunto responsable SIN INFORMACIÓN'],
+  ['Desplazamiento', 'IS', nil] => [1060, 'Agregando presunto responsable SIN INFORMACIÓN'],
   ['Desplazamiento', 'VPS', 35] => [1060, ''],
   ['Desplazamiento', 'VPS', nil] => [1060, 'Agregando presunto responsable SIN INFORMACIÓN'],
   ['Desplazamiento', 'VSP', 35] => [1060, ''],
@@ -668,8 +675,10 @@ impcsv.each do |r|
         else
           fechanacd = Date.new(fechanac.to_i, fechad.month, fechad.day)+1
         end
-          pcaso << "Fecha de nacimiento desconocida '#{fechanac}', "\
-            "empleando fecha del hecho #{fechad.to_s} para asignar #{fechanacd.to_s}"
+        pcaso << "Fecha de nacimiento desconocida '#{fechanac}', "\
+          "empleando fecha del hecho #{fechad.to_s} " +
+          (edad.to_i > 0 ? "y la edad #{edad.to_i}" : "") +
+          " para asignar #{fechanacd.to_s}"
       end
     end
   end
