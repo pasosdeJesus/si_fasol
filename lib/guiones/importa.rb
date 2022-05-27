@@ -990,7 +990,6 @@ impcsv.each do |r|
   end
 
   Sip::Bitacora.create!(
-    id: nreg + 1001,
     fecha: fechareg,
     usuario_id: 1,
     modelo: 'Sivel2Gen::Caso',
@@ -1017,7 +1016,6 @@ Sivel2Gen::Acto.connection.execute <<-SQL
   SELECT setval('public.sivel2_gen_caso_fuenteprensa_seq', 3000);
   SELECT setval('public.sip_ubicacion_id_seq', 3000);
   SELECT setval('public.victima_seq', 3000);
-  SELECT setval('public.sip_bitacora_id_seq', 3000);
   SELECT setval('public.sip_persona_id_seq', 3000);
   SELECT setval('public.sip_persona_trelacion_id_seq', 3000);
 SQL

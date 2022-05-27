@@ -1,5 +1,7 @@
 #!/bin/sh
 # Importa CSV con víctimas
+. .env
+
 if (test "$RAILS_ENV" = "") then {
 	RAILS_ENV=development
 } fi;
@@ -14,4 +16,6 @@ if (test "$RAILS_ENV" = "development") then {
 } fi;
 
 f=`date +%Y-%m-%d`
-fecharep=$f $prog runner -e $RAILS_ENV lib/guiones/importa.rb $@
+ord="fecharep=$f $prog runner -e $RAILS_ENV lib/guiones/importa.rb $@"
+echo $ord
+eval $ord
