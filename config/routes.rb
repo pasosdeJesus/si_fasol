@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
     get '/casos/mapaosm' => 'sivel2_gen/casos#mapaosm'
 
+    get '/casos/numcasos' => 'sivel2_gen/casos#numcasos'
+
     get '/orgsociales/jerarquia' => 'sip/orgsociales#jerarquia',
       as: :jerarquia_orgsociales
 

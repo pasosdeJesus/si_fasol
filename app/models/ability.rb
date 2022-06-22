@@ -24,6 +24,7 @@ class Ability  < Apo214::Ability
     initialize_sivel2_gen(usuario)
     initialize_apo214(usuario)
     can :contar, Sivel2Gen::Caso
+    can :numcasos, Sivel2Gen::Caso
     if usuario && usuario.rol then
       can [:read, :update], Mr519Gen::Encuestausuario
       if usuario && usuario.sip_grupo.pluck(:id).include?(

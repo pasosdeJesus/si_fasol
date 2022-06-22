@@ -43,6 +43,11 @@ module Sivel2Gen
       end
     end
 
+
+    def numcasos
+      render json: Conscaso.count, status: :ok
+    end
+
     def campoord_inicial
       'fecha'
     end

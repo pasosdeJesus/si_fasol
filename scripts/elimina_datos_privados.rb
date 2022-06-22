@@ -17,6 +17,8 @@ ActiveRecord::Base.connection.execute <<-SQL
   DELETE FROM sivel2_gen_caso_fuenteprensa;
   DELETE FROM sivel2_gen_caso_fotra;
   DELETE FROM sivel2_gen_anexo_caso;
+  DELETE FROM sivel2_gen_caso_observacion;
+  DELETE FROM sip_observacion;
   DELETE FROM sip_anexo;
   DELETE FROM sivel2_gen_fotra;
   DELETE FROM sip_bitacora;
