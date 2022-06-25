@@ -5,15 +5,15 @@ module Sivel2Gen
   class Caso < ActiveRecord::Base
     include Sivel2Gen::Concerns::Models::Caso
 
-    has_many :caso_observacion, dependent: :delete_all,
-      class_name: 'Sivel2Gen::CasoObservacion',
+    has_many :caso_solicitud, dependent: :delete_all,
+      class_name: 'Sivel2Gen::CasoSolicitud',
       foreign_key: 'caso_id'
-    has_many :observacion, through: :caso_observacion, 
+    has_many :solicitud, through: :caso_solicitud, 
       dependent: :delete_all,
-      class_name: 'Sip::Observacion'
-    accepts_nested_attributes_for :observacion,
+      class_name: 'Sip::Solicitud'
+    accepts_nested_attributes_for :solicitud,
       allow_destroy: true, reject_if: :all_blank
-    accepts_nested_attributes_for :caso_observacion,
+    accepts_nested_attributes_for :caso_solicitud,
       allow_destroy: true, reject_if: :all_blank
 
     validates :ayudafasol, length: {maximum: 1024}

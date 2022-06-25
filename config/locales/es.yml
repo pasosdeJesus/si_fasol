@@ -17,6 +17,9 @@ es:
         habilitado: Habilitada
         Orgsocial: Entidad
         Orgsociales: Entidades
+      "sip/solicitud":
+        Solicitud: Observacion
+        Solicitudes: Observaciones
       "sip/tipoorg": 
         Tipoorg: Tipo de organización
         Tiposorg: Tipos de organización

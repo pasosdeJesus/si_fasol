@@ -58,14 +58,14 @@ module Sivel2Gen
       l[l.count-1][:victima_attributes].unshift(:entidad_id)
       l[l.count-1][:victima_attributes].unshift(:detallevinculoestado)
       l[l.count-1][:victima_attributes].unshift(:cargoestado_id)
-      l[l.count-1][:caso_observacion_attributes] = [
+      l[l.count-1][:caso_solicitud_attributes] = [
         :id, 
         :_destroy,
-        :observacion_attributes => [
+        :solicitud_attributes => [
           :id,
           :usuario_id, 
           :fecha,
-          :observacion
+          :solicitud
         ]
       ]
       l.unshift(:ayudafasol)

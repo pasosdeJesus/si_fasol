@@ -1,7 +1,7 @@
 <hr>
 <p>Observaciones históricas para este caso</p>
 
-<div id="observacion" class="panel-body table-responsive" >
+<div id="solicitud" class="panel-body table-responsive" >
   <table class="table table-bordered table-sm">
     <thead class="thead-light">
       <tr>
@@ -11,18 +11,18 @@
         <th>Acciones</th>
       </tr>
     </thead>
-    <tbody id="filas_observacion">
-      <%= f.simple_fields_for :caso_observacion do |op| %>
-        <%= render partial: 'sip/observaciones/observacion_campos', 
+    <tbody id="filas_solicitud">
+      <%= f.simple_fields_for :caso_solicitud do |op| %>
+        <%= render partial: 'sip/solicitudes/solicitud_campos', 
           locals: {f: op} %>
       <% end %>
     </tbody>
   </table>
   <div class="links">
     <%= link_to_add_association 'Añadir Observación', f,
-      :caso_observacion,
-      partial: 'sip/observaciones/observacion_campos',
-      "data-association-insertion-node" => "tbody#filas_observacion",
+      :caso_solicitud,
+      partial: 'sip/solicitudes/solicitud_campos',
+      "data-association-insertion-node" => "tbody#filas_solicitud",
       "data-association-insertion-method" => "append",
       class: 'btn-primary' %>
   </div>

@@ -2419,6 +2419,40 @@ ALTER SEQUENCE public.sip_bitacora_id_seq OWNED BY public.sip_bitacora.id;
 
 
 --
+-- Name: sip_estadosol; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sip_estadosol (
+    id bigint NOT NULL,
+    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
+    observaciones character varying(5000),
+    fechacreacion date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sip_estadosol_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sip_estadosol_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sip_estadosol_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sip_estadosol_id_seq OWNED BY public.sip_estadosol.id;
+
+
+--
 -- Name: sip_etiqueta_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -2583,39 +2617,6 @@ CREATE MATERIALIZED VIEW public.sip_mundep AS
    FROM public.sip_mundep_sinorden
   ORDER BY (sip_mundep_sinorden.nombre COLLATE public.es_co_utf_8)
   WITH NO DATA;
-
-
---
--- Name: sip_observacion; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sip_observacion (
-    id bigint NOT NULL,
-    usuario_id integer NOT NULL,
-    fecha date NOT NULL,
-    observacion character varying(5000),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: sip_observacion_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sip_observacion_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sip_observacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.sip_observacion_id_seq OWNED BY public.sip_observacion.id;
 
 
 --
@@ -2913,6 +2914,49 @@ CREATE SEQUENCE public.sip_sectororgsocial_id_seq
 --
 
 ALTER SEQUENCE public.sip_sectororgsocial_id_seq OWNED BY public.sip_sectororgsocial.id;
+
+
+--
+-- Name: sip_solicitud; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sip_solicitud (
+    id bigint NOT NULL,
+    usuario_id integer NOT NULL,
+    fecha date NOT NULL,
+    solicitud character varying(5000),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sip_solicitud_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sip_solicitud_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sip_solicitud_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sip_solicitud_id_seq OWNED BY public.sip_solicitud.id;
+
+
+--
+-- Name: sip_solicitud_usuarionotificar; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sip_solicitud_usuarionotificar (
+    usuarionotificar_id integer,
+    solicitud_id integer
+);
 
 
 --
@@ -3460,36 +3504,6 @@ CREATE TABLE public.sivel2_gen_caso_fuenteprensa (
 
 
 --
--- Name: sivel2_gen_caso_observacion; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_caso_observacion (
-    id bigint NOT NULL,
-    caso_id integer NOT NULL,
-    observacion_id integer NOT NULL
-);
-
-
---
--- Name: sivel2_gen_caso_observacion_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_caso_observacion_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_caso_observacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.sivel2_gen_caso_observacion_id_seq OWNED BY public.sivel2_gen_caso_observacion.id;
-
-
---
 -- Name: sivel2_gen_caso_presponsable; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3527,6 +3541,36 @@ CREATE TABLE public.sivel2_gen_caso_respuestafor (
     caso_id integer NOT NULL,
     respuestafor_id integer NOT NULL
 );
+
+
+--
+-- Name: sivel2_gen_caso_solicitud; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_caso_solicitud (
+    id bigint NOT NULL,
+    caso_id integer NOT NULL,
+    solicitud_id integer NOT NULL
+);
+
+
+--
+-- Name: sivel2_gen_caso_solicitud_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_caso_solicitud_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_caso_solicitud_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sivel2_gen_caso_solicitud_id_seq OWNED BY public.sivel2_gen_caso_solicitud.id;
 
 
 --
@@ -4787,17 +4831,17 @@ ALTER TABLE ONLY public.sip_bitacora ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
+-- Name: sip_estadosol id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_estadosol ALTER COLUMN id SET DEFAULT nextval('public.sip_estadosol_id_seq'::regclass);
+
+
+--
 -- Name: sip_grupo id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.sip_grupo ALTER COLUMN id SET DEFAULT nextval('public.sip_grupo_id_seq'::regclass);
-
-
---
--- Name: sip_observacion id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sip_observacion ALTER COLUMN id SET DEFAULT nextval('public.sip_observacion_id_seq'::regclass);
 
 
 --
@@ -4850,6 +4894,13 @@ ALTER TABLE ONLY public.sip_sectororgsocial ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: sip_solicitud id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_solicitud ALTER COLUMN id SET DEFAULT nextval('public.sip_solicitud_id_seq'::regclass);
+
+
+--
 -- Name: sip_tdocumento id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4892,10 +4943,10 @@ ALTER TABLE ONLY public.sivel2_gen_actividadoficio ALTER COLUMN id SET DEFAULT n
 
 
 --
--- Name: sivel2_gen_caso_observacion id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sivel2_gen_caso_solicitud id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.sivel2_gen_caso_observacion ALTER COLUMN id SET DEFAULT nextval('public.sivel2_gen_caso_observacion_id_seq'::regclass);
+ALTER TABLE ONLY public.sivel2_gen_caso_solicitud ALTER COLUMN id SET DEFAULT nextval('public.sivel2_gen_caso_solicitud_id_seq'::regclass);
 
 
 --
@@ -5373,6 +5424,14 @@ ALTER TABLE ONLY public.sip_departamento
 
 
 --
+-- Name: sip_estadosol sip_estadosol_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_estadosol
+    ADD CONSTRAINT sip_estadosol_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sip_grupo sip_grupo_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5410,14 +5469,6 @@ ALTER TABLE ONLY public.sip_municipio
 
 ALTER TABLE ONLY public.sip_municipio
     ADD CONSTRAINT sip_municipio_pkey PRIMARY KEY (id);
-
-
---
--- Name: sip_observacion sip_observacion_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sip_observacion
-    ADD CONSTRAINT sip_observacion_pkey PRIMARY KEY (id);
 
 
 --
@@ -5490,6 +5541,14 @@ ALTER TABLE ONLY public.sip_persona_trelacion
 
 ALTER TABLE ONLY public.sip_sectororgsocial
     ADD CONSTRAINT sip_sectororgsocial_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sip_solicitud sip_solicitud_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_solicitud
+    ADD CONSTRAINT sip_solicitud_pkey PRIMARY KEY (id);
 
 
 --
@@ -5685,14 +5744,6 @@ ALTER TABLE ONLY public.sivel2_gen_caso_fuenteprensa
 
 
 --
--- Name: sivel2_gen_caso_observacion sivel2_gen_caso_observacion_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_caso_observacion
-    ADD CONSTRAINT sivel2_gen_caso_observacion_pkey PRIMARY KEY (id);
-
-
---
 -- Name: sivel2_gen_caso sivel2_gen_caso_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5722,6 +5773,14 @@ ALTER TABLE ONLY public.sivel2_gen_caso_region
 
 ALTER TABLE ONLY public.sivel2_gen_caso_respuestafor
     ADD CONSTRAINT sivel2_gen_caso_respuestafor_pkey1 PRIMARY KEY (caso_id, respuestafor_id);
+
+
+--
+-- Name: sivel2_gen_caso_solicitud sivel2_gen_caso_solicitud_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_caso_solicitud
+    ADD CONSTRAINT sivel2_gen_caso_solicitud_pkey PRIMARY KEY (id);
 
 
 --
@@ -6158,6 +6217,20 @@ CREATE INDEX index_sip_orgsocial_on_pais_id ON public.sip_orgsocial USING btree 
 
 
 --
+-- Name: index_sip_solicitud_usuarionotificar_on_solicitud_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sip_solicitud_usuarionotificar_on_solicitud_id ON public.sip_solicitud_usuarionotificar USING btree (solicitud_id);
+
+
+--
+-- Name: index_sip_solicitud_usuarionotificar_on_usuarionotificar_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sip_solicitud_usuarionotificar_on_usuarionotificar_id ON public.sip_solicitud_usuarionotificar USING btree (usuarionotificar_id);
+
+
+--
 -- Name: index_sip_ubicacion_on_id_clase; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6186,17 +6259,17 @@ CREATE INDEX index_sip_ubicacion_on_id_pais ON public.sip_ubicacion USING btree 
 
 
 --
--- Name: index_sivel2_gen_caso_observacion_on_caso_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_sivel2_gen_caso_solicitud_on_caso_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_sivel2_gen_caso_observacion_on_caso_id ON public.sivel2_gen_caso_observacion USING btree (caso_id);
+CREATE INDEX index_sivel2_gen_caso_solicitud_on_caso_id ON public.sivel2_gen_caso_solicitud USING btree (caso_id);
 
 
 --
--- Name: index_sivel2_gen_caso_observacion_on_observacion_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_sivel2_gen_caso_solicitud_on_solicitud_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_sivel2_gen_caso_observacion_on_observacion_id ON public.sivel2_gen_caso_observacion USING btree (observacion_id);
+CREATE INDEX index_sivel2_gen_caso_solicitud_on_solicitud_id ON public.sivel2_gen_caso_solicitud USING btree (solicitud_id);
 
 
 --
@@ -7085,11 +7158,11 @@ ALTER TABLE ONLY public.apo214_listadepositados
 
 
 --
--- Name: sivel2_gen_caso_observacion fk_rails_26cf51b19c; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sivel2_gen_caso_solicitud fk_rails_26cf51b19c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.sivel2_gen_caso_observacion
-    ADD CONSTRAINT fk_rails_26cf51b19c FOREIGN KEY (observacion_id) REFERENCES public.sip_observacion(id);
+ALTER TABLE ONLY public.sivel2_gen_caso_solicitud
+    ADD CONSTRAINT fk_rails_26cf51b19c FOREIGN KEY (solicitud_id) REFERENCES public.sip_solicitud(id);
 
 
 --
@@ -7229,11 +7302,19 @@ ALTER TABLE ONLY public.apo214_lugarpreliminar
 
 
 --
--- Name: sip_observacion fk_rails_5eac714b59; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sip_solicitud fk_rails_5eac714b59; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.sip_observacion
+ALTER TABLE ONLY public.sip_solicitud
     ADD CONSTRAINT fk_rails_5eac714b59 FOREIGN KEY (usuario_id) REFERENCES public.usuario(id);
+
+
+--
+-- Name: sip_solicitud_usuarionotificar fk_rails_6296c40917; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_solicitud_usuarionotificar
+    ADD CONSTRAINT fk_rails_6296c40917 FOREIGN KEY (solicitud_id) REFERENCES public.sip_solicitud(id);
 
 
 --
@@ -7485,10 +7566,10 @@ ALTER TABLE ONLY public.apo214_listasuelo
 
 
 --
--- Name: sivel2_gen_caso_observacion fk_rails_a952d537bf; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sivel2_gen_caso_solicitud fk_rails_a952d537bf; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.sivel2_gen_caso_observacion
+ALTER TABLE ONLY public.sivel2_gen_caso_solicitud
     ADD CONSTRAINT fk_rails_a952d537bf FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
@@ -7578,6 +7659,14 @@ ALTER TABLE ONLY public.apo214_lugarpreliminar
 
 ALTER TABLE ONLY public.apo214_lugarpreliminar
     ADD CONSTRAINT fk_rails_d2074c8fa3 FOREIGN KEY (otrolubicacionpre_id) REFERENCES public.sip_ubicacionpre(id);
+
+
+--
+-- Name: sip_solicitud_usuarionotificar fk_rails_db0f7c1dd6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_solicitud_usuarionotificar
+    ADD CONSTRAINT fk_rails_db0f7c1dd6 FOREIGN KEY (usuarionotificar_id) REFERENCES public.usuario(id);
 
 
 --
@@ -8375,7 +8464,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201110170225'),
 ('20201110170728'),
 ('20201119125643'),
+('20201124035715'),
 ('20201124050637'),
+('20201124142002'),
+('20201124145624'),
+('20201124145625'),
 ('20201127233621'),
 ('20201128003003'),
 ('20201129144340'),
@@ -8489,6 +8582,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220523183213'),
 ('20220524102539'),
 ('20220524184059'),
-('20220525122150');
+('20220525122150'),
+('20220601111520'),
+('20220613224844');
 
 
