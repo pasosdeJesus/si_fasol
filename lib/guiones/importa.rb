@@ -976,15 +976,15 @@ impcsv.each do |r|
   end
 
   if r['OBSERVACION'].to_s != ''
-    so = Sip::Observacion.create!(
+    so = Sip::Solicitud.create!(
       id: nreg + 1001,
       usuario_id: 1,
       fecha: Date.today,
-      observacion: r['OBSERVACION']
+      solicitud: r['OBSERVACION']
     )
-    Sivel2Gen::CasoObservacion.create!(
+    Sivel2Gen::CasoSolicitud.create!(
       id: nreg + 1001,
-      observacion_id: so.id,
+      solicitud_id: so.id,
       caso_id: c.id
     )
   end
