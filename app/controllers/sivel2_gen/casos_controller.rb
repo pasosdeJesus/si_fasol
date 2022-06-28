@@ -18,7 +18,7 @@ module Sivel2Gen
       #byebug
       if current_usuario && can?(:solocambiaretiquetas, Sivel2Gen::Caso)
         [
-          { titulo: 'Etiquetas', parcial: 'etiquetas'},
+          { titulo: 'Etiquetas', parcial: 'etiquetas_sin_sol'},
         ]
       elsif current_usuario && can?(:update, Sivel2Gen::Caso)
         [
@@ -35,7 +35,7 @@ module Sivel2Gen
           { titulo: 'Descripción', parcial: 'memo'},
           { titulo: 'Anexos', parcial: 'sivel2_gen/casos/anexos'},
           { titulo: 'Respuesta', parcial: 'respuesta'},
-          { titulo: 'Etiquetas', parcial: 'etiquetas'},
+          { titulo: 'Etiquetas', parcial: 'etiquetas_sin_sol'},
           { titulo: 'Evaluación', parcial: 'evaluacion'}
          ]
       else
@@ -58,16 +58,6 @@ module Sivel2Gen
       l[l.count-1][:victima_attributes].unshift(:entidad_id)
       l[l.count-1][:victima_attributes].unshift(:detallevinculoestado)
       l[l.count-1][:victima_attributes].unshift(:cargoestado_id)
-      l[l.count-1][:caso_solicitud_attributes] = [
-        :id, 
-        :_destroy,
-        :solicitud_attributes => [
-          :id,
-          :usuario_id, 
-          :fecha,
-          :solicitud
-        ]
-      ]
       l.unshift(:ayudafasol)
       l.unshift(:codigofasol)
       l.unshift(:marbetefasol)

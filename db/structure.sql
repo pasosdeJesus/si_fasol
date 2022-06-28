@@ -2926,7 +2926,8 @@ CREATE TABLE public.sip_solicitud (
     fecha date NOT NULL,
     solicitud character varying(5000),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    estadosol_id integer
 );
 
 
@@ -8584,6 +8585,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220524184059'),
 ('20220525122150'),
 ('20220601111520'),
-('20220613224844');
+('20220613224844'),
+('20220628162341');
 
 

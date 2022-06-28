@@ -1,0 +1,8 @@
+<% unless caso.caso_solicitud.empty? %>
+  <p>
+  Observaciones:
+  </p>
+  <%= render partial: 'sip/solicitudes/resumen_tabla_solicitudes_simplificada',
+    locals: { objeto: caso } %>
+<% end %>
+
