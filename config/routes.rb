@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
     get '/casos/numcasos' => 'sivel2_gen/casos#numcasos'
 
+    get '/fasol/banco' => 'sivel2_gen/conteos#fasol_banco'
+
     get '/orgsociales/jerarquia' => 'sip/orgsociales#jerarquia',
       as: :jerarquia_orgsociales
 

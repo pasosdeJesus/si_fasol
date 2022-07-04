@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+.fasol_banco {
+  font-family: 'Lato',Helvetica,Arial,Lucida,sans-serif;
+  font-size: 15px;
+  text-align: center;
+  color: #777;
+}
+    </style>
+  </head>
+  <body>
+    <div class="fasol_banco">
+      <table border="1">
+        <thead>
+          <tr>
+            <td colspan="2">
+              <h5><%= @numpersonas %> personas registradas en Fasol y afectadas por las acciones violatorias a <%= Date.today %></h5>
+            </td>
+          </tr>
+          <tr>
+            <td  colspan="2">
+              <h5>Acciones Violatorias</h5>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <% s = 0 %>
+          <% (0..@enctabla.length-1).each do |i| %>
+            <tr>
+              <td>
+                <%= @enctabla[i] %>
+              </td>
+              <td>
+                <%= @cuerpotabla[0][i] %>
+                <% s += @cuerpotabla[0][i].to_i %>
+              </td>
+            </tr>
+          <% end %>
+          <tr>
+            <td>
+              <h5>Total acciones violatorias</h5>
+            </td>
+            <td>
+              <h5><%= s %></h5>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+  </body>
+</html>
