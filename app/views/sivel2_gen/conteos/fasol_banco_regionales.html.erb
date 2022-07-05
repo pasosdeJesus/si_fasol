@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <style>
+body {
+  font-family: 'Lato',Helvetica,Arial,Lucida,sans-serif;
+  font-size: 15px;
+  text-align: center;
+  color: #777;
+}
+table {
+  border-collapse: collapse;
+}
+    </style>
+  </head>
+  <body>
+    <div class="fasol_banco_regionales">
+      <table border="1">
+      <tbody>
+        <tr>
+          <td>
+            <h5>Hecho Violento</h5>
+          </td>
+          <td colspan="<%= @cuerpotabla.length %>">
+            <h5>Regional</h5>
+          </td>
+          <td><h5>Total</h5></td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <% totcol = [] %>
+          <% (0..@cuerpotabla.length-1).each do |i| %>
+            <td>
+              <%= @cuerpotabla[i][0] %>
+              <% totcol[i] = 0 %>
+            </td>
+          <% end %>
+          <td></td>
+        </tr>
+        <% (1..@enctabla.length-1).each do |j| %>
+          <tr>
+            <td>
+              <%= @enctabla[j] %>
+            </td>
+            <% totfil = 0 %>
+            <% (0..@cuerpotabla.length-1).each do |i| %>
+              <td>
+                <%= @cuerpotabla[i][j] %>
+                <% totcol[i] += @cuerpotabla[i][j] %>
+                <% totfil += @cuerpotabla[i][j] %>
+              </td>
+            <% end %>
+            <td><%= totfil %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td>
+            Total
+          </td>
+          <% totfil = 0 %>
+          <% (0..@cuerpotabla.length-1).each do |i| %>
+            <td>
+              <%= totcol[i] %>
+              <% totfil += totcol[i] %>
+            </td>
+          <% end %>
+          <td><%= totfil %></td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+  </body>
+</html>
