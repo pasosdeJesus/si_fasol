@@ -34,8 +34,13 @@ Rails.application.routes.draw do
     get '/fasol/banco' => 'sivel2_gen/conteos#fasol_banco',
       as: :banco
     
-    get '/fasol/banco_regionales' => 'sivel2_gen/conteos#fasol_banco_regionales',
+    get '/fasol/banco_regionales' => 
+      'sivel2_gen/conteos#fasol_banco_regionales',
       as: :banco_regionales
+    
+    get '/fasol/banco_detalle/:regional' => 
+      'sivel2_gen/conteos#fasol_banco_detalle',
+      as: :banco_detalle
 
     get '/orgsociales/jerarquia' => 'sip/orgsociales#jerarquia',
       as: :jerarquia_orgsociales
