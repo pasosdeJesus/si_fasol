@@ -26,7 +26,6 @@ module Sivel2Gen
           "0", pSegun, "0", "0",
           nil, pCategoria, 'RÓTULO'
       )
-
       respond_to do |format|
         format.html { render 'fasol_banco', layout: false}
         format.json { head :no_content }

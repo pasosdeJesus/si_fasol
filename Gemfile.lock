@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/apo214.git
-  revision: d503865e22259f4ff6cc1733c5edf8a21571e6f1
+  revision: 8e44b38ea594f4338e483d979186eeca97c0bdad
   branch: main
   specs:
     apo214 (2.1a1)
@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: a5b4c2078a970c3f8b1b52158d2be2693b82ab71
+  revision: 2352d7740b14b71380fba200761d562d42e347eb
   branch: main
   specs:
     heb412_gen (2.1a1)
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 6baba849d7f061c48aa4f09797cfe9d7529ee959
+  revision: f5c52f60a66d127634305b92726cb4b8378b57bd
   branch: main
   specs:
     mr519_gen (2.1a1)
@@ -48,7 +48,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 9601cafa8e426177bbee89e42bcf77d58e1cd22f
+  revision: 7acc8a6379016f196b9fb3de0f8b16509a9784c0
   branch: main
   specs:
     sip (2.1a1)
@@ -66,7 +66,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: f0b4d7ee5f7d1bf2705868b49b6dab85ecd0833d
+  revision: 833781bb14a8974692d8fafe44ccd3f88eabf8c9
   branch: main
   specs:
     sivel2_gen (2.1a1)
@@ -288,8 +288,8 @@ GEM
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
-    minitest (5.16.1)
-    msgpack (1.5.2)
+    minitest (5.16.2)
+    msgpack (1.5.3)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -327,7 +327,7 @@ GEM
     puma (5.6.4)
       nio4r (~> 2.0)
     racc (1.6.0)
-    rack (2.2.3.1)
+    rack (2.2.4)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
     rack-test (2.0.2)
@@ -360,7 +360,7 @@ GEM
       ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
-    rails-i18n (7.0.3)
+    rails-i18n (7.0.5)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
     railties (7.0.3)
@@ -373,7 +373,7 @@ GEM
     raindrops (0.20.0)
     rake (13.0.6)
     redcarpet (3.5.1)
-    redis (4.7.0)
+    redis (4.7.1)
     regexp_parser (2.5.0)
     reline (0.3.1)
       io-console (~> 0.5)
