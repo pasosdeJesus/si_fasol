@@ -25,7 +25,7 @@ class Ability  < Apo214::Ability
     initialize_apo214(usuario)
     can :contar, Sivel2Gen::Caso
     can :numcasos, Sivel2Gen::Caso
-    can :fasol_banco, Sivel2Gen::Caso
+    can [:fasol_banco, :fasol_banco_regionales], Sivel2Gen::Caso
 
     if usuario && usuario.rol then
       can [:read, :update], Mr519Gen::Encuestausuario
