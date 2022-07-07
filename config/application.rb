@@ -32,7 +32,7 @@ module Sivel2
     config.relative_url_root = ENV.fetch('RUTA_RELATIVA', "/sivel2.1")
 
     config.action_dispatch.default_headers = {
-      'X-Frame-Options' => 'ALLOW'
+      'X-Frame-Options' => 'ALLOWALL'
     }
 
     config.x.origen_cors = ENV.fetch('ORIGEN_CORS','').split(',')
