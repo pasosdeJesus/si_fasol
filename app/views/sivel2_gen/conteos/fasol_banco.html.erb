@@ -30,14 +30,14 @@ table {
         </thead>
         <tbody>
           <% s = 0 %>
-          <% (0..@enctabla.length-1).each do |i| %>
+          <% (0..@cuerpotabla.length-1).each do |i| %>
             <tr>
               <td>
-                <%= @enctabla[i] %>
+                <%= @cuerpotabla[i][0] %>
               </td>
               <td>
-                <%= @cuerpotabla[0][i] %>
-                <% s += @cuerpotabla[0][i].to_i %>
+                <%= @cuerpotabla[i][1] %>
+                <% s += @cuerpotabla[i][1].to_i %>
               </td>
             </tr>
           <% end %>

@@ -23,7 +23,7 @@ table {
           <td>
             <h5>Hecho Violento</h5>
           </td>
-          <td colspan="<%= @cuerpotabla.length %>">
+          <td colspan="<%= @enctabla.length-1 %>">
             <h5>Regional</h5>
           </td>
           <td><h5>Total</h5></td>
@@ -32,28 +32,28 @@ table {
           <th>
           </th>
           <% totcol = [] %>
-          <% (0..@cuerpotabla.length-1).each do |i| %>
+          <% (1..@enctabla.length-1).each do |i| %>
             <th>
-              <% if @cuerpotabla[i][0].to_s == '' %>
+              <% if @enctabla[i].to_s == '' %>
                 S/R
               <% else %>
-                <%= @cuerpotabla[i][0] %>
+                <%= @enctabla[i][0..2] %>
               <% end %>
               <% totcol[i] = 0 %>
             </th>
           <% end %>
           <th></th>
         </tr>
-        <% (1..@enctabla.length-1).each do |j| %>
+        <% (0..@cuerpotabla.length-1).each do |i| %>
           <tr>
             <th>
-              <%= @enctabla[j] %>
+              <%= @cuerpotabla[i][0] %>
             </th>
             <% totfil = 0 %>
-            <% (0..@cuerpotabla.length-1).each do |i| %>
+            <% (1..@enctabla.length-1).each do |j| %>
               <td>
                 <%= @cuerpotabla[i][j] %>
-                <% totcol[i] += @cuerpotabla[i][j] %>
+                <% totcol[j] += @cuerpotabla[i][j] %>
                 <% totfil += @cuerpotabla[i][j] %>
               </td>
             <% end %>
@@ -65,7 +65,7 @@ table {
             Total
           </th>
           <% totfil = 0 %>
-          <% (0..@cuerpotabla.length-1).each do |i| %>
+          <% (1..@enctabla.length-1).each do |i| %>
             <td>
               <%= totcol[i] %>
               <% totfil += totcol[i] %>
