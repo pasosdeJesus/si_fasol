@@ -89,13 +89,13 @@ module Sivel2Gen
       filas = []
       et = []
       r.each do |t|
-        if !inter[t[fila]]
-          inter[t[fila]] = {}
+        if !inter[t[fila].to_s]
+          inter[t[fila].to_s] = {}
         end
-        if !inter[t[fila]][t[columna]]
-          inter[t[fila]][t[columna]] = {}
+        if !inter[t[fila].to_s][t[columna].to_s]
+          inter[t[fila].to_s][t[columna].to_s] = {}
         end
-        inter[t[fila]][t[columna]] = t['count'].to_i
+        inter[t[fila].to_s][t[columna].to_s] = t['count'].to_i
         if !et.include?(t[columna].to_s)
           et << t[columna].to_s
         end
