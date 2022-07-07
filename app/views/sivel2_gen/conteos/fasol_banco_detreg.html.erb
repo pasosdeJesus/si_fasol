@@ -5,12 +5,34 @@
     <style>
 body {
   font-family: 'Lato',Helvetica,Arial,Lucida,sans-serif;
-  font-size: 15px;
+  font-size: 12px;
   text-align: center;
   color: #777;
 }
+
+.elemento_acordeon {
+  border: solid rgb(102,102,102) 1px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 80%;
+}
+.titulo_acordeon {
+  border: solid rgb(102,102,102) 1px;
+  background-color: #eee;
+  height: 40px;
+  line-height: 40px;
+  margin: 0px;
+}
+.contenido_acordeon {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
 table {
   border-collapse: collapse;
+  margin: auto;
 }
 </style>
 
@@ -19,20 +41,24 @@ table {
       r=document.querySelector(id);
       if (r) {
         if (r.style.display == 'none') {
-          r.style.display = 'block';
+          sig = 'block';
         } else {
-          r.style.display = 'none';
+          sig = 'none';
         }
+        document.querySelectorAll('.contenido_acordeon').forEach(function(e) {
+          e.style.display='none';
+        })
+        r.style.display = sig;
       }
     }
   </script>
 
   </head>
   <body>
-    <div class="et_pb_module et_pb_accordion et_pb_accordion_0">
+    <div class="acordeon">
       <% nreg = Sivel2Gen::Region.habilitados.reorder(:nombre).pluck(:nombre) + [nil] %>
       <% nreg.each do |nom| %>
-        <div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_0  et_pb_toggle_open">
+        <div class="elemento_acordeon">
           <% if nom %>
             <% nid = nom.split(" ").join('') %>
             <% t = "Regional " + nom.split(" ").map(&:capitalize).join(" ") %>
@@ -40,16 +66,16 @@ table {
             <% nid = 'SINREGIONAL' %>
             <% t = "Sin Regional" %>
           <% end %>
-          <h5 class="et_pb_toggle_title" onclick="window.alternaDiv(<%= nid %>)">
+          <h5 class="titulo_acordeon" onclick="window.alternaDiv('#<%= nid %>')">
             <%= t %>
           </h5>
-          <div id='<%= nid %>' class="et_pb_toggle_content clearfix">
+          <div id='<%= nid %>' class="contenido_acordeon" style='display: none'>
             <% enctabla, cuerpotabla = Sivel2Gen::ConteosController::
               calcula_fasol_banco_detalle(nom) %>
             <%= render partial: 'tabla_detreg', 
               locals: { enctabla: enctabla, cuerpotabla: cuerpotabla } %>
-          </div> <!-- .et_pb_toggle_content -->
-        </div> <!-- .et_pb_toggle -->
+          </div> <!-- .contenido_acordeon -->
+        </div> <!-- .elemento_acordeon -->
       <% end %> 
     </div>
   </body>
