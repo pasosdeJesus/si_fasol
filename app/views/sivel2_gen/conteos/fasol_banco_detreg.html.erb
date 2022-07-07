@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css' type='text/css' media='all'>
+    <style>
+body {
+  font-family: 'Lato',Helvetica,Arial,Lucida,sans-serif;
+  font-size: 15px;
+  text-align: center;
+  color: #777;
+}
+table {
+  border-collapse: collapse;
+}
+    </style>
+    <script>
+// De https://www.phpied.com/parents-styles-in-an-iframe/
+function styleMe() {
+  if(window.top && window.top.location.href != document.location.href) {
+
+    var linkrels = window.top.document.getElementsByTagName('link');
+    var small_head = document.getElementsByTagName('head').item(0);
+    for (var i = 0, max = linkrels.length; i < max; i++) {
+      if (linkrels[i].rel && linkrels[i].rel == 'stylesheet') {
+        var thestyle = document.createElement('link');
+        var attrib = linkrels[i].attributes;
+        for (var j = 0, attribmax = attrib.length; j < attribmax; j++) {
+          thestyle.setAttribute(attrib[j].nodeName, attrib[j].nodeValue);
+        }
+
+        small_head.appendChild(thestyle);
+      }
+    }
+
+  } else {
+    alert('Debe ser embebida');
+  }
+}
+styleMe()
+</script>
+  </head>
+  <body>
+    <div class="et_pb_module et_pb_accordion et_pb_accordion_0">
+      <% nreg = Sivel2Gen::Region.habilitados.reorder(:nombre).pluck(:nombre) + [nil] %>
+      <% nreg.each do |nom| %>
+        <div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_0  et_pb_toggle_open">
+          <h5 class="et_pb_toggle_title">
+            <% if nom %>
+              Regional <%= nom.split(" ").map(&:capitalize).join(" ") %>
+            <% else %>
+              Sin Regional
+            <% end %>
+          </h5>
+          <div class="et_pb_toggle_content clearfix">
+            <% enctabla, cuerpotabla = Sivel2Gen::ConteosController::
+              calcula_fasol_banco_detalle(nom) %>
+            <%= render partial: 'tabla_detreg', 
+              locals: { enctabla: enctabla, cuerpotabla: cuerpotabla } %>
+          </div> <!-- .et_pb_toggle_content -->
+        </div> <!-- .et_pb_toggle -->
+      <% end %> 
+    </div>
+  </body>
+</html>

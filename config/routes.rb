@@ -42,6 +42,11 @@ Rails.application.routes.draw do
       'sivel2_gen/conteos#fasol_banco_detalle',
       as: :banco_detalle
 
+      get '/fasol/banco_detreg' => 
+      'sivel2_gen/conteos#fasol_banco_detreg',
+      as: :banco_detreg
+
+
     get '/orgsociales/jerarquia' => 'sip/orgsociales#jerarquia',
       as: :jerarquia_orgsociales
 

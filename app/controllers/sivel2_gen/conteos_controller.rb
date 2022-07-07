@@ -59,12 +59,35 @@ module Sivel2Gen
 
     def fasol_banco_detalle
       preg = params[:regional] ? params[:regional].upcase : 'CUNDINAMARCA'
-      c = Sivel2Gen::Region.where(fechadeshabilitacion: nil).
-        where(nombre: preg)
-      if c.count == 0 
-        return
+      @enctabla, @cuerpotabla = 
+        Sivel2Gen::ConteosController::calcula_fasol_banco_detalle(preg)
+
+      respond_to do |format|
+        format.html { render 'fasol_banco_detalle', layout: false}
+        format.json { head :no_content }
       end
-      reg = c.take
+    end
+
+    def fasol_banco_detreg
+
+      respond_to do |format|
+        format.html { render 'fasol_banco_detreg', layout: false}
+        format.json { head :no_content }
+      end
+
+
+    end
+
+    def self.calcula_fasol_banco_detalle(preg)
+      if preg.nil?
+        condreg="region is NULL"
+      else
+        c = Sivel2Gen::Region.where(fechadeshabilitacion: nil).
+          where(nombre: preg)
+        return if c.count == 0 
+        reg = c.take
+        condreg="sub.region = '#{preg}'"
+      end
       sub = "SELECT DISTINCT caso.id AS caso_id, "\
         " per.id, per.sexo, re.nombre AS rangoedad, "\
         " id_categoria, cat.id_pconsolidado, p.nombre AS rotulo, "\
@@ -85,7 +108,7 @@ module Sivel2Gen
         "  ON vic.id_rangoedad=re.id "
 
       q4 = "SELECT rotulo, rangoedad, sexo, count(*) FROM (#{sub}) AS sub "\
-        " WHERE sub.region = '#{preg}' "\
+        " WHERE #{condreg}"\
         " GROUP BY 1, 2, 3 ORDER BY 1,2,3"
 
 
@@ -135,15 +158,9 @@ module Sivel2Gen
           cuerpotabla << ft
         end
 
-        @cuerpotabla = cuerpotabla
-        @enctabla = enctabla
-
-        respond_to do |format|
-          format.html { render 'fasol_banco_detalle', layout: false}
-          format.json { head :no_content }
-        end
-
+        return [enctabla, cuerpotabla]
     end
+
 
 
   end
