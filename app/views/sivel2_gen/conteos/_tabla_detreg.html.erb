@@ -1,20 +1,18 @@
 <table border="1">
   <tbody>
     <tr>
-      <td>
-        <h5>Hecho Violento</h5>
-      </td>
-      <td colspan="<%= enctabla.length-1 %>">
-        <h5>Rango de Edad</h5>
-      </td>
-      <td><h5>Total</h5></td>
+      <th>Hecho Violento</th>
+      <th colspan="<%= (enctabla.length-1)*3 %>">
+        Rango de Edad
+      </th>
+      <th colspan="3">Total</th>
     </tr>
     <tr>
       <th>
       </th>
       <% totcol = [] %>
       <% (1..enctabla.length-1).each do |i| %>
-        <th>
+        <th colspan='3'>
           <%= enctabla[i] %>
           <% totcol[i] = [0, 0, 0] %>
         </th>
@@ -27,24 +25,20 @@
         </th>
         <% totfil = [0, 0, 0] %>
         <% (1..enctabla.length-1).each do |i| %>
-          <td>
-            <% fem = cuerpotabla[j][i][0] %>
-            <% mas = cuerpotabla[j][i][1] %>
-            <% sin = cuerpotabla[j][i][2] %>
-            <%= render partial: 'fbd_celda_fms', 
-              locals: { f: fem, m: mas, s: sin} %>
-            <% totcol[i][0] += fem %>
-            <% totcol[i][1] += mas %>
-            <% totcol[i][2] += sin %>
-            <% totfil[0] += fem %>
-            <% totfil[1] += mas %>
-            <% totfil[2] += sin %>
-          </td>
-        <% end %>
-        <td>
+          <% fem = cuerpotabla[j][i][0] %>
+          <% mas = cuerpotabla[j][i][1] %>
+          <% sin = cuerpotabla[j][i][2] %>
           <%= render partial: 'fbd_celda_fms', 
-            locals: { f: totfil[0], m: totfil[1], s: totfil[2]} %>
-      </td>
+            locals: { f: fem, m: mas, s: sin} %>
+          <% totcol[i][0] += fem %>
+          <% totcol[i][1] += mas %>
+          <% totcol[i][2] += sin %>
+          <% totfil[0] += fem %>
+          <% totfil[1] += mas %>
+          <% totfil[2] += sin %>
+        <% end %>
+        <%= render partial: 'fbd_celda_fms', 
+          locals: { f: totfil[0], m: totfil[1], s: totfil[2]} %>
       </tr>
     <% end %>
     <tr>
@@ -53,18 +47,14 @@
       </th>
       <% totfil = [0, 0, 0] %>
       <% (1..enctabla.length-1).each do |i| %>
-        <td>
-          <%= render partial: 'fbd_celda_fms', 
-            locals: { f: totcol[i][0], m: totcol[i][1], s: totcol[i][2]} %>
-          <% totfil[0] += totcol[i][0] %>
-          <% totfil[1] += totcol[i][1] %>
-          <% totfil[2] += totcol[i][2] %>
-        </td>
-      <% end %>
-      <td>
         <%= render partial: 'fbd_celda_fms', 
-          locals: { f: totfil[0], m: totfil[1], s: totfil[2]} %>
-    </td>
+          locals: { f: totcol[i][0], m: totcol[i][1], s: totcol[i][2]} %>
+        <% totfil[0] += totcol[i][0] %>
+        <% totfil[1] += totcol[i][1] %>
+        <% totfil[2] += totcol[i][2] %>
+      <% end %>
+      <%= render partial: 'fbd_celda_fms', 
+        locals: { f: totfil[0], m: totfil[1], s: totfil[2]} %>
     </tr>
   </tbody>
 </table>
