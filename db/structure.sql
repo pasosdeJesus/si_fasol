@@ -1547,6 +1547,16 @@ CREATE TABLE public.sivel2_gen_acto (
 
 
 --
+-- Name: sivel2_gen_caso_region; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_caso_region (
+    id_caso integer NOT NULL,
+    id_region integer NOT NULL
+);
+
+
+--
 -- Name: sivel2_gen_categoria; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1564,6 +1574,34 @@ CREATE TABLE public.sivel2_gen_categoria (
     supracategoria_id integer,
     CONSTRAINT "$3" CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
     CONSTRAINT categoria_tipocat_check CHECK (((tipocat = 'I'::bpchar) OR (tipocat = 'C'::bpchar) OR (tipocat = 'O'::bpchar)))
+);
+
+
+--
+-- Name: sivel2_gen_region_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_region_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_region; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_region (
+    id integer DEFAULT nextval('public.sivel2_gen_region_id_seq'::regclass) NOT NULL,
+    nombre character varying(500) COLLATE public.es_co_utf_8,
+    fechacreacion date DEFAULT '2001-01-01'::date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    observaciones character varying(5000),
+    CONSTRAINT region_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
 
@@ -1606,7 +1644,12 @@ CREATE VIEW public.cvt1 AS
     acto.id_persona,
     acto.id_categoria,
     supracategoria.id_tviolencia,
-    categoria.nombre AS categoria
+    categoria.nombre AS categoria,
+    ( SELECT r.nombre
+           FROM (public.sivel2_gen_caso_region cr
+             JOIN public.sivel2_gen_region r ON ((cr.id_region = r.id)))
+          WHERE (cr.id_caso = caso.id)
+         LIMIT 1) AS region
    FROM (((((public.sivel2_gen_acto acto
      JOIN public.sivel2_gen_caso caso ON ((acto.id_caso = caso.id)))
      JOIN public.sivel2_gen_categoria categoria ON ((acto.id_categoria = categoria.id)))
@@ -3674,16 +3717,6 @@ CREATE TABLE public.sivel2_gen_caso_presponsable (
 
 
 --
--- Name: sivel2_gen_caso_region; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_caso_region (
-    id_caso integer NOT NULL,
-    id_region integer NOT NULL
-);
-
-
---
 -- Name: sivel2_gen_caso_respuestafor; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4486,34 +4519,6 @@ CREATE TABLE public.sivel2_gen_rangoedad (
 CREATE TABLE public.sivel2_gen_rangoedad_victimacolectiva (
     id_rangoedad integer NOT NULL,
     victimacolectiva_id integer NOT NULL
-);
-
-
---
--- Name: sivel2_gen_region_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_region_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_region; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_region (
-    id integer DEFAULT nextval('public.sivel2_gen_region_id_seq'::regclass) NOT NULL,
-    nombre character varying(500) COLLATE public.es_co_utf_8,
-    fechacreacion date DEFAULT '2001-01-01'::date NOT NULL,
-    fechadeshabilitacion date,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    observaciones character varying(5000),
-    CONSTRAINT region_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
 

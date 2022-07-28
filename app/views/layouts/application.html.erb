@@ -43,6 +43,19 @@
           sivel2_gen.graficar_victimizaciones_individuales_path,
           'data-turbo' => false,
           desplegable: true %>
+        <%= opcion_menu "Tabla para web con totales",
+          main_app.banco_path,
+          'data-turbo' => false,
+          desplegable: true %>
+        <%= opcion_menu "Tabla para web con totales por regional",
+          main_app.banco_regionales_path,
+          'data-turbo' => false,
+          desplegable: true %>
+        <%= opcion_menu "Acordeón para web con rango de edad y sexo",
+          main_app.banco_detreg_path,
+          'data-turbo' => false,
+          desplegable: true %>
+
       <% end %>
       <%= despliega_abajo "Mapas" do %>
         <%= opcion_menu "Casos sobre Open Street Maps", 
