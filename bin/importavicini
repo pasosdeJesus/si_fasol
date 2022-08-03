@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if (test "$RAILS_ENV" = "") then {
+  RAILS_ENV=development
+} fi;
+f=`date +%Y-%m-%d`
+fecharep=$f bin/railsp runner -e $RAILS_ENV lib/guiones/importavicini.rb $@
