@@ -23,6 +23,8 @@ class Ability  < Apo214::Ability
   def initialize(usuario = nil)
     initialize_sivel2_gen(usuario)
     initialize_apo214(usuario)
+    Cor1440Gen::Ability.initialize_cor1440_gen(self, usuario)
+
     can :contar, Sivel2Gen::Caso
     can :numcasos, Sivel2Gen::Caso
     can [:fasol_banco, :fasol_banco_regionales, :fasol_banco_detalle,

@@ -11,9 +11,9 @@
         <% if can?(:new, Sivel2Gen::Caso) %>
           <%= opcion_menu "Nuevo Caso", sivel2_gen.new_caso_path,
             desplegable: true %>
-          <%= opcion_menu "Refrescar Listado de Casos", 
+          <!--%= opcion_menu "Refrescar Listado de Casos", 
             sivel2_gen.casos_refresca_path,
-            desplegable: true %>
+            desplegable: true %-->
           <%= opcion_menu "Validar casos", sivel2_gen.validarcasos_path,
             desplegable: true %>
           <%= opcion_menu "Buscar repetidos", sivel2_gen.buscarrepetidos_path,
@@ -21,8 +21,6 @@
           <%= opcion_menu "Importar relatos XRLAT", 
             sivel2_gen.casos_importarrelatos_path, desplegable: true %>
         <% end %>
-      <% end %>
-      <%= despliega_abajo "Reportes y conteos" do %>
         <%= opcion_menu "Conteo demografía víctimas", 
           sivel2_gen.conteos_personas_path,
           desplegable: true %>
@@ -56,8 +54,6 @@
           'data-turbo' => false,
           desplegable: true %>
 
-      <% end %>
-      <%= despliega_abajo "Mapas" do %>
         <%= opcion_menu "Casos sobre Open Street Maps", 
           sivel2_gen.casos_mapaosm_path, desplegable: true %>
         <%= opcion_menu 'Mapa de victimizaciones por departamento', 
@@ -71,8 +67,23 @@
           sip.orgsociales_path, desplegable: true %>
         <%= opcion_menu "Jeraraquía de entidades",
           main_app.jerarquia_orgsociales_path, desplegable: true %>
-
       <% end %>
+
+      <%= despliega_abajo 'Proyectos y Actividades' do %>
+        <%= opcion_menu 'Actividades', cor1440_gen.actividades_path,
+          desplegable: true %>
+        <%= opcion_menu 'Proyectos', 
+          cor1440_gen.proyectosfinancieros_path, 
+          desplegable: true %>
+        <%= opcion_menu "Conteo por actividades de proyecto", 
+          cor1440_gen.contar_actividades_path, desplegable: true %>
+        <%= opcion_menu "Conteo por beneficiario y actividad de proyecto", 
+          cor1440_gen.contar_actividades_beneficiarios_path, 
+          desplegable: true %>
+        <%= opcion_menu 'Medición de indicadores', 
+          cor1440_gen.mindicadorespf_path, desplegable: true %>
+      <% end %>
+
     <% end %>
   <% end %>
   <%= grupo_menus :pull => :right do %>

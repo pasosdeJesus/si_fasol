@@ -27,6 +27,19 @@ GIT
       sip
 
 GIT
+  remote: https://github.com/pasosdeJesus/cor1440_gen.git
+  revision: 1311739c4d0a8eb7464418649ab1b6a4c987a4fe
+  branch: main
+  specs:
+    cor1440_gen (2.1a1)
+      devise
+      heb412_gen
+      kt-paperclip
+      mr519_gen
+      rails
+      sip
+
+GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
   revision: fa0162e02e7cd1b4316827ad53151f2bf7bcf961
   branch: main
@@ -475,6 +488,7 @@ DEPENDENCIES
   coffee-rails
   color
   colorize
+  cor1440_gen!
   cuprite
   debug
   devise
