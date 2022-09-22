@@ -14,6 +14,9 @@ class Ability  < Apo214::Ability
           ['Sivel2Gen', 'maternidad']
         ] + Apo214::Ability::BASICAS_PROPIAS + [
           ['', 'cargoestado']
+        ] + Cor1440Gen::Ability::BASICAS_PROPIAS - [
+          ['Cor1440Gen', 'actividadarea'],
+          ['Cor1440Gen', 'proyecto']
         ]
 
     return r
