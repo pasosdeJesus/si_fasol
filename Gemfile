@@ -42,6 +42,8 @@ gem 'odf-report' # Genera ODT
 
 gem 'nokogiri', '>=1.11.1'
 
+gem 'parslet' 
+
 gem 'pg' # Postgresql
 
 gem 'prawn' # Generación de PDF
