@@ -63,6 +63,7 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   mr519_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_comunes(root);
   apo214_prepara_eventos_comunes(root);
+  cor1440_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_unicos(root);
 
   var p = new URL(document.URL).pathname.split('/')
