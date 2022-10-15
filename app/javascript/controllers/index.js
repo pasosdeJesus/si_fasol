@@ -27,3 +27,6 @@ application.register("hello", HelloController)
 
 import Sip__CancelarVacioEsEliminarController from "./sip/cancelar_vacio_es_eliminar_controller"
 application.register("sip--cancelar-vacio-es-eliminar", Sip__CancelarVacioEsEliminarController)
+
+import UsuarioConGrupoController from "./usuario_con_grupo_controller"
+application.register("usuario-con-grupo", UsuarioConGrupoController)

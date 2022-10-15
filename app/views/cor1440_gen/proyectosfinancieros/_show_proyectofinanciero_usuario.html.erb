@@ -1,0 +1,19 @@
+<div class='table-responsive'>
+  <table boder='1' class='table-bordered'>
+    <thead>
+      <tr><th>Nombre</th><th>Cargo (grupos)</th></tr>
+    </thead>
+    <tbody>
+      <% @registro.proyectofinanciero_usuario.each do |pu| %>
+        <tr>
+          <td>
+            <%= pu.usuario.nombre %>
+          </td>
+          <td>
+            <%= pu.usuario.sip_grupo.map(&:nombre).join("; ") %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

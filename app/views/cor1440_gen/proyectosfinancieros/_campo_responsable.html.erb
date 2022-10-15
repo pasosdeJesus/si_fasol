@@ -1,0 +1,40 @@
+<div class='table-responsive'>
+  <table boder='1' class='table table-bordered' width='100%'>
+    <thead>
+      <tr><th>Coordinador</th><th>Cargo (grupos)</th></tr>
+    </thead>
+    <tbody>
+      <tr data-controller='usuario-con-grupo'>
+        <td>
+          <% col = Sip::ModeloHelper.opciones_tabla_basica(
+            ::Usuario, f, :usuario) %>
+          <%= f.association :responsable,
+            collection: col.order(:nusuario),
+            include_blank: false,
+            label: false,
+            label_method: lambda { |t|  t.presenta_nombre },
+            value_method: :id,
+            selected:  f.object.responsable_id ?  f.object.responsable_id : 
+            current_usuario.id,
+            input_html: { 
+              #class: 'chosen-select',
+              'data-action': 'usuario-con-grupo#cambiar_grupo'
+            }
+          %>
+        </td>
+        <td data-usuario-con-grupo-target='grupo'>
+          <%= @registro.responsable.sip_grupo.map(&:nombre).join("; ") %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  window.cor1440_usuario_con_grupo_tabla = {
+  <% col.each do |u| %>
+    <%= u.id %>: "<%= u.sip_grupo.map(&:nombre).join("; ") %>",
+  <% end %>
+  }
+</script>
+</ul>

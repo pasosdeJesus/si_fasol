@@ -1,0 +1,17 @@
+<div class='table-responsive'>
+  <table boder='1' class='table-bordered'>
+    <thead>
+      <tr><th>Nombre</th><th>Cargo (grupos)</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%= @registro.responsable.nombre %>
+        </td>
+        <td>
+          <%= @registro.responsable.sip_grupo.map(&:nombre).join("; ") %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

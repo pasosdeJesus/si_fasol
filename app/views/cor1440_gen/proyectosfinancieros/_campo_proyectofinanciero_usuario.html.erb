@@ -1,0 +1,25 @@
+<p>
+<%= t('Equipo de trabajo') %>:
+<table class='table table-bordered' border=1 width="100%">
+  <thead>
+    <tr>
+      <th><%= t('Persona') %></th>
+      <th><%= t('Cargo / Grupos') %></th>
+      <th><%= t('Acciones') %></th>
+    </tr>
+  </thead>
+  <tbody id="proyectofinanciero_usuario">
+    <%= f.simple_fields_for :proyectofinanciero_usuario do |pu| %>
+      <%= render 'proyectofinanciero_usuario_campos', :f => pu%>
+    <% end %>
+  </tbody>
+</table>
+<div class="links">
+  <%= link_to_add_association t('Añadir funcionario'), f, 
+    :proyectofinanciero_usuario,
+    :"data-association-insertion-node" => "tbody#proyectofinanciero_usuario", 
+    :"data-association-insertion-method" => "append", 
+    partial: 'proyectofinanciero_usuario_campos',
+    :class => 'btn-primary'
+  %>
+</div>
