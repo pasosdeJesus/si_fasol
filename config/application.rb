@@ -63,6 +63,8 @@ module Sivel2
       'SIVEL2_MAPAOSM_DIASATRAS', 182
     )
 
+    config.x.cor1440_edita_poblacion = false
+
   end
 end
 
