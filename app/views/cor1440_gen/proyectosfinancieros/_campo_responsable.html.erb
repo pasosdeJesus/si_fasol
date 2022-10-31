@@ -23,7 +23,9 @@
           %>
         </td>
         <td data-usuario-con-grupo-target='grupo'>
-          <%= @registro.responsable.sip_grupo.map(&:nombre).join("; ") %>
+          <% if @registro && @registro.responsable %>
+            <%= @registro.responsable.sip_grupo.map(&:nombre).join("; ") %>
+          <% end %>
         </td>
       </tr>
     </tbody>
