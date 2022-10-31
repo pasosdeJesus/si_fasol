@@ -5,7 +5,7 @@ class CreaProyectoActividadesComunes < ActiveRecord::Migration[7.0]
 
       INSERT INTO public.cor1440_gen_proyectofinanciero (id, nombre, observaciones, fechainicio, fechacierre, responsable_id, fechacreacion, fechadeshabilitacion, created_at, updated_at, compromisos, monto, sectorapc_id, fechaformulacion, fechaaprobacion, fechaliquidacion, estado, dificultad, tipomoneda_id, saldoaejecutarp, centrocosto, tasaej, montoej, aportepropioej, aporteotrosej, presupuestototalej, titulo, poromision) VALUES (10, 'Actividades Comunes', NULL, '2022-09-01', NULL, NULL, NULL, NULL, '2022-09-21 23:28:22.251528', '2022-09-22 13:47:24.322302', NULL, 1.0, NULL, '2022-06-15', NULL, NULL, 'E', 'N', NULL, NULL, '', 1, 0, 0, 0, 0, 'Actividades Comunes', NULL);
 
-      INSERT INTO public.cor1440_gen_financiador_proyectofinanciero (financiador_id, proyectofinanciero_id) VALUES (10, 101);
+      INSERT INTO public.cor1440_gen_financiador_proyectofinanciero (financiador_id, proyectofinanciero_id) VALUES (10, 10);
       
       
       INSERT INTO public.cor1440_gen_objetivopf (id, proyectofinanciero_id, numero, objetivo) VALUES (1, 10, 'VISIÓN.', 'FASOL avanza en estrategias de análisis y producción de conocimiento acerca de las problemáticas y afectaciones causadas por la violencia contra el sector judicial; convirtiéndose en un referente de estos temas dentro de la red de organizaciones de derechos humanos para generar propuestas de cambios estructurales a estas realidades. Contaremos con financiación multidonante, con alianzas institucionales consolidadas y con mayor capacidad financiera de auto sostenimiento.');

@@ -32,3 +32,9 @@ es:
         entidad_id: Entidad del Estado
         cargoestado: Cargo con el Estado
         detallevinculoestado: Detalle de la entidad/cargo con el Estado
+      "usuario":
+        fechanac: Fecha de nacimiento
+        sexonac: Sexo de nacimiento
+        tdocumento_id: Tipo de documento
+        tdocumento: Tipo de documento
+        numerodocumento: Número de documento
