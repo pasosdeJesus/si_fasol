@@ -9,7 +9,7 @@ Sip.setup do |config|
   if ENV["HEROKU_POSTGRESQL_MAUVE_URL"]
     config.ruta_anexos = "#{Rails.root}/tmp/"
   end
-  config.titulo = "SI-FASOL #{Sivel2Gen::VERSION}"
+  config.titulo = "SISFASOL #{Sivel2Gen::VERSION}"
 
   config.colorom_fondo = '#f2f2f2'
   config.colorom_color_fuente = '#000000'
