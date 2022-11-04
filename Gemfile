@@ -104,10 +104,6 @@ gem 'sivel2_gen', # Motor para manejo de casos
   git: 'https://github.com/pasosdeJesus/sivel2_gen.git', branch: :main
   #path: '../sivel2_gen'
 
-gem 'apo214', # Motor para manejo de casos
-  git: 'https://github.com/pasosdeJesus/apo214.git', branch: :main
-  #path: '../apo214'
-
 gem 'cor1440_gen',
   git: 'https://github.com/pasosdeJesus/cor1440_gen.git', branch: :main
   #path: '../cor1440_gen'
