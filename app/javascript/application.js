@@ -6,6 +6,7 @@ import Rails from "@rails/ujs";
 Rails.start();
 window.Rails = Rails
 
+console.log('Depura 1')
 import './jquery'
 import '../../vendor/assets/javascripts/jquery-ui.js'
 
@@ -36,6 +37,8 @@ import plotly_serietiempo_actos from './plotly_actos'
 import {AutocompletaAjaxExpreg} from '@pasosdejesus/autocompleta_ajax'
 window.AutocompletaAjaxExpreg = AutocompletaAjaxExpreg
 
+console.log('Paquetes inicializados')
+
 let esperarRecursosSprocketsYDocumento = function (resolver) {
   if (typeof window.puntomontaje == 'undefined') {
     setTimeout(esperarRecursosSprocketsYDocumento, 100, resolver)
@@ -62,7 +65,6 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   heb412_gen_prepara_eventos_comunes(root);
   mr519_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_comunes(root);
-  apo214_prepara_eventos_comunes(root);
   cor1440_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_unicos(root);
 
@@ -79,15 +81,17 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
 
 })
 
-document.addEventListener('turbo:load', (e) => {
+document.addEventListener('turbo:render', (e) => {
  /* Lo que debe ejecutarse cada vez que turbo cargue una página,
  * tener cuidado porque puede dispararse el evento turbo varias
  * veces consecutivas al cargar una página.
  */
   
-  console.log('Escuchador turbo:load')
+  console.log('Escuchador turbo:render')
 
   sip_ejecutarAlCargarPagina(window)
 })
 
 import "./controllers"
+
+console.log('Fin de archivo application.js')

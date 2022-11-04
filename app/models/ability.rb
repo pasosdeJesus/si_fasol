@@ -1,8 +1,11 @@
-class Ability  < Apo214::Ability
+class Ability  < Cor1440Gen::Ability
 
 
   GRUPO_DESAPARICION_CASOS = 25
 
+  BASICAS_PROPIAS = [
+    ['Cor1440Gen', 'opcioncaracterizacion']
+  ]
 
   def tablasbasicas
     r = (Sip::Ability::BASICAS_PROPIAS - 
@@ -14,12 +17,13 @@ class Ability  < Apo214::Ability
           ['Sivel2Gen', 'escolaridad'],
           ['Sivel2Gen', 'estadocivil'],
           ['Sivel2Gen', 'maternidad']
-        ] + Apo214::Ability::BASICAS_PROPIAS + [
+        ] + [
           ['', 'cargoestado']
         ] + Cor1440Gen::Ability::BASICAS_PROPIAS - [
           ['Cor1440Gen', 'actividadarea'],
           ['Cor1440Gen', 'proyecto']
-        ]
+        ] + 
+        BASICAS_PROPIAS
 
     return r
   end
@@ -34,10 +38,13 @@ class Ability  < Apo214::Ability
       BASICAS_ID_NOAUTO
   end
 
-  NOBASICAS_INDSEQID = []
+  NOBASICAS_INDSEQID = [
+    ['cor1440_gen', 'asistencia_opcioncaracterizacion']
+  ]
 
   def nobasicas_indice_seq_con_id 
     Sip::Ability::NOBASICAS_INDSEQID +
+      Mr519Gen::Ability::NOBASICAS_INDSEQID +
       Heb412Gen::Ability::NOBASICAS_INDSEQID +
       Cor1440Gen::Ability::NOBASICAS_INDSEQID +
       Sivel2Gen::Ability::NOBASICAS_INDSEQID +
@@ -67,8 +74,7 @@ class Ability  < Apo214::Ability
 
   # Establece autorizaciones con CanCanCan
   def initialize(usuario = nil)
-    initialize_sivel2_gen(usuario)
-    initialize_apo214(usuario)
+    Sivel2Gen::Ability.initialize_sivel2_gen(self, usuario)
     Cor1440Gen::Ability.initialize_cor1440_gen(self, usuario)
 
     can :contar, Sivel2Gen::Caso

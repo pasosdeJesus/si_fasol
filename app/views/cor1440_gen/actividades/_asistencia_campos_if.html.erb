@@ -1,0 +1,12 @@
+<td>
+  <%= fasistencia.association :opcioncaracterizacion,
+    collection: Cor1440Gen::Opcioncaracterizacion.habilitados,
+    label_method: :nombre,
+    label: false,
+    value_method: :id,
+    input_html: {
+      class: 'chosen-select',
+      style: 'width: 6em'
+    }
+  %>
+</td>

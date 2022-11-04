@@ -2022,6 +2022,36 @@ ALTER SEQUENCE public.cor1440_gen_asistencia_id_seq OWNED BY public.cor1440_gen_
 
 
 --
+-- Name: cor1440_gen_asistencia_opcioncaracterizacion; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.cor1440_gen_asistencia_opcioncaracterizacion (
+    id bigint NOT NULL,
+    asistencia_id integer,
+    opcioncaracterizacion_id integer
+);
+
+
+--
+-- Name: cor1440_gen_asistencia_opcioncaracterizacion_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.cor1440_gen_asistencia_opcioncaracterizacion_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cor1440_gen_asistencia_opcioncaracterizacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.cor1440_gen_asistencia_opcioncaracterizacion_id_seq OWNED BY public.cor1440_gen_asistencia_opcioncaracterizacion.id;
+
+
+--
 -- Name: cor1440_gen_beneficiariopf; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2612,6 +2642,41 @@ CREATE SEQUENCE public.cor1440_gen_objetivopf_id_seq
 --
 
 ALTER SEQUENCE public.cor1440_gen_objetivopf_id_seq OWNED BY public.cor1440_gen_objetivopf.id;
+
+
+--
+-- Name: cor1440_gen_opcioncaracterizacion; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.cor1440_gen_opcioncaracterizacion (
+    id bigint NOT NULL,
+    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
+    observaciones character varying(5000),
+    actividadpf_id integer,
+    fechacreacion date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: cor1440_gen_opcioncaracterizacion_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.cor1440_gen_opcioncaracterizacion_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cor1440_gen_opcioncaracterizacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.cor1440_gen_opcioncaracterizacion_id_seq OWNED BY public.cor1440_gen_opcioncaracterizacion.id;
 
 
 --
@@ -4645,7 +4710,8 @@ CREATE TABLE public.sip_tdocumento (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    observaciones character varying(5000) COLLATE public.es_co_utf_8
+    observaciones character varying(5000) COLLATE public.es_co_utf_8,
+    ayuda character varying(1000)
 );
 
 
@@ -5764,6 +5830,10 @@ CREATE TABLE public.usuario (
     tema_id integer,
     observadorffechaini date,
     observadorffechafin date,
+    tdocumento_id integer,
+    numerodocumento character varying(128),
+    fechanac date,
+    sexonac character varying(128),
     CONSTRAINT usuario_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
     CONSTRAINT usuario_rol_check CHECK ((rol >= 1))
 );
@@ -6439,6 +6509,13 @@ ALTER TABLE ONLY public.cor1440_gen_asistencia ALTER COLUMN id SET DEFAULT nextv
 
 
 --
+-- Name: cor1440_gen_asistencia_opcioncaracterizacion id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_asistencia_opcioncaracterizacion ALTER COLUMN id SET DEFAULT nextval('public.cor1440_gen_asistencia_opcioncaracterizacion_id_seq'::regclass);
+
+
+--
 -- Name: cor1440_gen_campoact id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6541,6 +6618,13 @@ ALTER TABLE ONLY public.cor1440_gen_mindicadorpf ALTER COLUMN id SET DEFAULT nex
 --
 
 ALTER TABLE ONLY public.cor1440_gen_objetivopf ALTER COLUMN id SET DEFAULT nextval('public.cor1440_gen_objetivopf_id_seq'::regclass);
+
+
+--
+-- Name: cor1440_gen_opcioncaracterizacion id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_opcioncaracterizacion ALTER COLUMN id SET DEFAULT nextval('public.cor1440_gen_opcioncaracterizacion_id_seq'::regclass);
 
 
 --
@@ -7255,6 +7339,14 @@ ALTER TABLE ONLY public.cor1440_gen_anexo_proyectofinanciero
 
 
 --
+-- Name: cor1440_gen_asistencia_opcioncaracterizacion cor1440_gen_asistencia_opcioncaracterizacion_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_asistencia_opcioncaracterizacion
+    ADD CONSTRAINT cor1440_gen_asistencia_opcioncaracterizacion_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: cor1440_gen_asistencia cor1440_gen_asistencia_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7380,6 +7472,14 @@ ALTER TABLE ONLY public.cor1440_gen_mindicadorpf
 
 ALTER TABLE ONLY public.cor1440_gen_objetivopf
     ADD CONSTRAINT cor1440_gen_objetivopf_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cor1440_gen_opcioncaracterizacion cor1440_gen_opcioncaracterizacion_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_opcioncaracterizacion
+    ADD CONSTRAINT cor1440_gen_opcioncaracterizacion_pkey PRIMARY KEY (id);
 
 
 --
@@ -9876,6 +9976,14 @@ ALTER TABLE ONLY public.cor1440_gen_indicadorpf
 
 
 --
+-- Name: cor1440_gen_opcioncaracterizacion fk_rails_4b2604c56b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_opcioncaracterizacion
+    ADD CONSTRAINT fk_rails_4b2604c56b FOREIGN KEY (actividadpf_id) REFERENCES public.cor1440_gen_actividadpf(id);
+
+
+--
 -- Name: sip_ubicacion fk_rails_4dd7a7f238; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9961,6 +10069,14 @@ ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
 
 ALTER TABLE ONLY public.sip_orgsocial
     ADD CONSTRAINT fk_rails_5b21e3a2af FOREIGN KEY (grupoper_id) REFERENCES public.sip_grupoper(id);
+
+
+--
+-- Name: cor1440_gen_asistencia_opcioncaracterizacion fk_rails_5b8eeffa7a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_asistencia_opcioncaracterizacion
+    ADD CONSTRAINT fk_rails_5b8eeffa7a FOREIGN KEY (asistencia_id) REFERENCES public.cor1440_gen_asistencia(id);
 
 
 --
@@ -10244,6 +10360,14 @@ ALTER TABLE ONLY public.sip_departamento
 
 
 --
+-- Name: cor1440_gen_asistencia_opcioncaracterizacion fk_rails_9349203984; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_asistencia_opcioncaracterizacion
+    ADD CONSTRAINT fk_rails_9349203984 FOREIGN KEY (opcioncaracterizacion_id) REFERENCES public.cor1440_gen_opcioncaracterizacion(id);
+
+
+--
 -- Name: apo214_lugarpreliminar fk_rails_9408f90341; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10513,6 +10637,14 @@ ALTER TABLE ONLY public.cor1440_gen_financiador_proyectofinanciero
 
 ALTER TABLE ONLY public.usuario
     ADD CONSTRAINT fk_rails_cc636858ad FOREIGN KEY (tema_id) REFERENCES public.sip_tema(id);
+
+
+--
+-- Name: usuario fk_rails_cc8897078c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.usuario
+    ADD CONSTRAINT fk_rails_cc8897078c FOREIGN KEY (tdocumento_id) REFERENCES public.sip_tdocumento(id);
 
 
 --
@@ -11765,6 +11897,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220805181901'),
 ('20220822132754'),
 ('20221005165307'),
-('20221030145215');
+('20221030145215'),
+('20221031110549'),
+('20221031213009'),
+('20221031213451'),
+('20221031213925'),
+('20221101003627'),
+('20221102144613'),
+('20221102145906');
 
 

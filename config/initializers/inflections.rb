@@ -17,4 +17,5 @@
 
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'cargoestado', 'cargosestado'
+  inflect.irregular 'opcioncaracterizacion', 'opcionescaracterizacion'
 end

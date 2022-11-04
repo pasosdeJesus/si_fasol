@@ -8,6 +8,9 @@ es:
       "cargoestado":
         Cargoestado: Cargo con el Estado
         Cargosestado: Cargos con el Estado
+      "cor1440_gen/opcioncaracterizacion":
+        Opcioncaracterizacion: Opción para caracterización en listado de asistencia
+        Opcionescaracterizacion: Opciones para caracterización en listado de asistencia
       "sip/orgsocial":
         tipoorg: Tipo de organización
         tipoorg_id: Tipo de organización
