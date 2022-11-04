@@ -1,12 +1,19 @@
-<td>
+<td data-controller='arregla-opcioncaracterizacion'>
   <%= fasistencia.association :opcioncaracterizacion,
     collection: Cor1440Gen::Opcioncaracterizacion.habilitados,
+    multiple: false,
     label_method: :nombre,
     label: false,
     value_method: :id,
     input_html: {
+      style: 'width: 10em',
       class: 'chosen-select',
-      style: 'width: 6em'
+      'data-arregla-opcioncaracterizacion-target': 'opcioncaracterizacion'
     }
   %>
+        <script>
+          document.eventListe
+
+        document.querySelectorAll(".chosen-container[id$=opcioncaracterizacion_ids_chosen][style^='width: 0px']").forEach((a) => a.setAttribute('style', 'width: 10em'))
+      </script>
 </td>

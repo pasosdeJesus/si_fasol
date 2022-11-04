@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import ArreglaOpcioncaracterizacionController from "./arregla_opcioncaracterizacion_controller"
+application.register("arregla-opcioncaracterizacion", ArreglaOpcioncaracterizacionController)
+
 import InicializaController from "./inicializa_controller"
 application.register("inicializa", InicializaController)
 

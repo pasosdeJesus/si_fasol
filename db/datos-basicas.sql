@@ -109,7 +109,7 @@ INSERT INTO public.cor1440_gen_opcioncaracterizacion
 );
 INSERT INTO public.cor1440_gen_opcioncaracterizacion 
 (id, nombre, actividadpf_id, fechacreacion, created_at, updated_at) VALUES (
-  7, 'Auxilio Educativa', 35, '2022-10-31', '2022-10-31', '2022-10-31' -- PLJTC  ActividadMLA3RedT
+  7, 'Auxilio Educativo', 35, '2022-10-31', '2022-10-31', '2022-10-31' -- PLJTC  ActividadMLA3RedT
 );
 INSERT INTO public.cor1440_gen_opcioncaracterizacion 
 (id, nombre, actividadpf_id, fechacreacion, created_at, updated_at) VALUES (
