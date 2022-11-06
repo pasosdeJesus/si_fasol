@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: f8c028af34482e7fd386ff40d6a1381df63ac3df
+  revision: b1c915e78e3abfee026c556341eb892f3290f895
   branch: main
   specs:
     cor1440_gen (2.1a1)
@@ -32,7 +32,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: bc713f7a91af2ed0f3e120cfa56cb8b0558e6277
+  revision: 87e43427f178acc905fbb3be60698902b765f3b6
   branch: main
   specs:
     heb412_gen (2.1.0.beta1)
@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 5249c0b9274ef74f0a83bd3a9a46f12bff76b13b
+  revision: 947040d49f4bfe7b05152df616079c87a8d8a801
   branch: main
   specs:
     mr519_gen (2.1.0.beta1)
@@ -52,7 +52,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 7a3bb16cf39cd66780eff98a62f2cb70ad7113c2
+  revision: e6ed8907e324873b20372ff8821f8495be9d54a9
   branch: main
   specs:
     sip (2.1.0.beta1)
@@ -70,7 +70,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 72b31cf0eb2faa47a8d1fa7349b384faf37c30c9
+  revision: 7241a5794f4ce5a9fee3a385b240e35622b9462d
   branch: main
   specs:
     sivel2_gen (2.1.0.beta1)
@@ -228,34 +228,31 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
-    dry-configurable (0.16.1)
-      dry-core (~> 0.6)
+    dry-configurable (1.0.0)
+      dry-core (~> 1.0, < 2)
       zeitwerk (~> 2.6)
-    dry-container (0.11.0)
-      concurrent-ruby (~> 1.0)
-    dry-core (0.9.1)
+    dry-core (1.0.0)
       concurrent-ruby (~> 1.0)
       zeitwerk (~> 2.6)
-    dry-inflector (0.3.0)
+    dry-inflector (1.0.0)
     dry-initializer (3.1.1)
-    dry-logic (1.3.0)
+    dry-logic (1.4.0)
       concurrent-ruby (~> 1.0)
-      dry-core (~> 0.9, >= 0.9)
+      dry-core (~> 1.0, < 2)
       zeitwerk (~> 2.6)
-    dry-schema (1.11.3)
+    dry-schema (1.12.0)
       concurrent-ruby (~> 1.0)
-      dry-configurable (~> 0.16, >= 0.16)
-      dry-core (~> 0.9, >= 0.9)
+      dry-configurable (~> 1.0, < 2)
+      dry-core (~> 1.0, < 2)
       dry-initializer (~> 3.0)
-      dry-logic (~> 1.3)
-      dry-types (~> 1.6)
+      dry-logic (>= 1.4, < 2)
+      dry-types (>= 1.7, < 2)
       zeitwerk (~> 2.6)
-    dry-types (1.6.1)
+    dry-types (1.7.0)
       concurrent-ruby (~> 1.0)
-      dry-container (~> 0.3)
-      dry-core (~> 0.9, >= 0.9)
-      dry-inflector (~> 0.1, >= 0.1.2)
-      dry-logic (~> 1.3, >= 1.3)
+      dry-core (~> 1.0, < 2)
+      dry-inflector (~> 1.0, < 2)
+      dry-logic (>= 1.4, < 2)
       zeitwerk (~> 2.6)
     erd (0.8.1)
       nokogiri
@@ -382,7 +379,7 @@ GEM
     redcarpet (3.5.1)
     redis (5.0.5)
       redis-client (>= 0.9.0)
-    redis-client (0.11.0)
+    redis-client (0.11.1)
       connection_pool
     regexp_parser (2.6.0)
     reline (0.3.1)
@@ -405,7 +402,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.5.0)
+    selenium-webdriver (4.6.1)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -463,7 +460,7 @@ GEM
     will_paginate (3.3.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.4)
+    zeitwerk (2.6.5)
 
 PLATFORMS
   x86_64-openbsd
@@ -530,4 +527,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.3.24
+   2.3.25

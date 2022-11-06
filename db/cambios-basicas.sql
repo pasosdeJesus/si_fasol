@@ -4800,7 +4800,7 @@ INSERT INTO public.sivel2_gen_categoria (id, nombre, supracategoria_id,
 
 
 -- Tema
-UPDATE sip_tema SET
+UPDATE public.sip_tema SET
   nombre='PREDETERMINADO FASOL',
   fondo = '#f2f2f2',
   color_fuente = '#000000',
