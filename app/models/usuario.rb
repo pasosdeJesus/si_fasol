@@ -7,15 +7,15 @@ class Usuario < ActiveRecord::Base
 
 
     belongs_to :tdocumento, class_name: "Sip::Tdocumento", 
-      foreign_key: "tdocumento_id", validate: true, optional: true
+      foreign_key: "tdocumento_id", validate: true, optional: false
 
     campofecha_localizado :fechanac
 
     validates :numerodocumento, length: { maximum: 100 }, 
       presence: true, allow_blank: false
-    validates :tdocumento_id, presence: true, allow_blank: false
-    validates :tdocumento_id, uniqueness: { 
-        scope: :tdocumento_id,
+    validates :tdocumento, presence: true, allow_blank: false
+    validates :numerodocumento, uniqueness: { 
+        scope: :tdocumento,
         message: "Tipo y número de documento repetido" 
       }
     validates :fechanac, presence: true, allow_blank: false
