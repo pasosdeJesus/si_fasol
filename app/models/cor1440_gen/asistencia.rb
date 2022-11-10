@@ -8,7 +8,8 @@ module Cor1440Gen
       class_name: 'Cor1440Gen::Opcioncaracterizacion',
       foreign_key: 'asistencia_id',
       association_foreign_key: 'opcioncaracterizacion_id',
-      join_table: 'cor1440_gen_asistencia_opcioncaracterizacion'
+      join_table: 'cor1440_gen_asistencia_opcioncaracterizacion',
+      dependant: :destroy
 
   end
 end

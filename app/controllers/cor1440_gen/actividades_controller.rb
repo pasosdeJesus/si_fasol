@@ -31,6 +31,29 @@ module Cor1440Gen
       ]
     end
 
+    def otros_impedimentos_para_borrar_persona_ex_asistente(a)
+      # Estar como víctima en un caso es impedimento
+      if Sivel2Gen::Victima.where(id_persona: a.persona_id).count > 0
+        return true
+      end
+      return false
+    end
+
+    def otras_acciones_antes_eliminar_asistencia(a)
+      if a.opcioncaracterizacion
+        a.opcioncaracterizacion.destroy_all
+      end
+    end
+
+    def destroy
+      opc = Cor1440Gen::AsistenteOpcioncaracterizacion.
+        where(actividad_id: @registro.id)
+      if opc.count > 0
+        opc.destroy_all
+      end
+      destroy_cor1440_gen
+    end
+
     def lista_params
       l = lista_params_cor1440_gen
       l[-1][:asistencia_attributes][-1][:opcioncaracterizacion_ids] = []
