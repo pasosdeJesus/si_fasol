@@ -14,9 +14,9 @@ class Usuario < ActiveRecord::Base
     validates :numerodocumento, length: { maximum: 100 }, 
       presence: true, allow_blank: false
     validates :tdocumento, presence: true, allow_blank: false
-    validates :numerodocumento, uniqueness: { 
-        scope: :tdocumento,
-        message: "Tipo y número de documento repetido" 
+    validates :numerodocumento, presence: true, allow_blank: false,
+      uniqueness: { scope: :tdocumento,
+                    message: "Tipo y número de documento repetido" 
       }
     validates :fechanac, presence: true, allow_blank: false
     validates :sexonac, presence: true
