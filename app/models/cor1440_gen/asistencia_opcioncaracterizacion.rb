@@ -5,7 +5,7 @@ module Cor1440Gen
     belongs_to :opcioncaracterizacion, 
       class_name: 'Cor1440Gen::Opcioncaracterizacion', 
       foreign_key: 'opcioncaracterizacion_id', 
-      dependat: :destroy,
+      dependent: :destroy,
       optional: false
     belongs_to :asistencia, 
       class_name: 'Cor1440Gen::Proyectofinanciero',
