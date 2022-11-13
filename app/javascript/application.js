@@ -6,7 +6,6 @@ import Rails from "@rails/ujs";
 Rails.start();
 window.Rails = Rails
 
-console.log('Depura 1')
 import './jquery'
 import '../../vendor/assets/javascripts/jquery-ui.js'
 
@@ -39,7 +38,7 @@ window.AutocompletaAjaxExpreg = AutocompletaAjaxExpreg
 
 console.log('Paquetes inicializados')
 
-let esperarRecursosSprocketsYDocumento = function (resolver) {
+/* let esperarRecursosSprocketsYDocumento = function (resolver) {
   if (typeof window.puntomontaje == 'undefined') {
     setTimeout(esperarRecursosSprocketsYDocumento, 100, resolver)
     return false
@@ -80,6 +79,7 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
 
 
 })
+*/
 
 document.addEventListener('turbo:render', (e) => {
  /* Lo que debe ejecutarse cada vez que turbo cargue una página,
