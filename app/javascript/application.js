@@ -3,6 +3,7 @@
 console.log('Hola Mundo desde ESM')
 
 import Rails from "@rails/ujs";
+import "@hotwired/turbo-rails";
 Rails.start();
 window.Rails = Rails
 
@@ -38,7 +39,7 @@ window.AutocompletaAjaxExpreg = AutocompletaAjaxExpreg
 
 console.log('Paquetes inicializados')
 
-/* let esperarRecursosSprocketsYDocumento = function (resolver) {
+let esperarRecursosSprocketsYDocumento = function (resolver) {
   if (typeof window.puntomontaje == 'undefined') {
     setTimeout(esperarRecursosSprocketsYDocumento, 100, resolver)
     return false
@@ -79,9 +80,8 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
 
 
 })
-*/
 
-document.addEventListener('turbo:render', (e) => {
+document.addEventListener('turbo:load', (e) => {
  /* Lo que debe ejecutarse cada vez que turbo cargue una página,
  * tener cuidado porque puede dispararse el evento turbo varias
  * veces consecutivas al cargar una página.
