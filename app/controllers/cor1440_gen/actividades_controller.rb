@@ -46,8 +46,9 @@ module Cor1440Gen
     end
 
     def destroy
-      opc = Cor1440Gen::AsistenteOpcioncaracterizacion.
-        where(actividad_id: @registro.id)
+      opc = Cor1440Gen::AsistenciaOpcioncaracterizacion.
+        joins('JOIN cor1440_gen_asistencia ON cor1440_gen_asistencia.id=cor1440_gen_asistencia_opcioncaracterizacion.asistencia_id').where(
+          'cor1440_gen_asistencia.actividad_id': @registro.id)
       if opc.count > 0
         opc.destroy_all
       end
