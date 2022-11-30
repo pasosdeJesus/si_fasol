@@ -20,7 +20,6 @@ module Cor1440Gen
         :corresponsables,
         :proyectofinanciero, 
         :actividadpf, 
-        :respuestafor,
         :objetivo,
         :resultado, 
         # :orgsocial,  -- por la cantidad de organizaicones hace muy lenta
