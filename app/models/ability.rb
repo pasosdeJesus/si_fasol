@@ -4,7 +4,6 @@ class Ability  < Cor1440Gen::Ability
   GRUPO_DESAPARICION_CASOS = 25
 
   BASICAS_PROPIAS = [
-    ['Cor1440Gen', 'opcioncaracterizacion']
   ]
 
   def tablasbasicas

@@ -1,14 +1,12 @@
 module Cor1440Gen
   class AsistenciaOpcioncaracterizacion < ActiveRecord::Base
-    include Sip::Basica
 
     belongs_to :opcioncaracterizacion, 
-      class_name: 'Cor1440Gen::Opcioncaracterizacion', 
+      class_name: 'Cor1440Gen::Actividadpf', 
       foreign_key: 'opcioncaracterizacion_id', 
-      dependent: :destroy,
       optional: false
     belongs_to :asistencia, 
-      class_name: 'Cor1440Gen::Proyectofinanciero',
+      class_name: 'Cor1440Gen::Asistencia',
       foreign_key: 'asistencia_id', 
       optional: false
 
