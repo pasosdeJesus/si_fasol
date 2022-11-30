@@ -4,9 +4,6 @@
 
 import { application } from "./application"
 
-import ArreglaOpcioncaracterizacionController from "./arregla_opcioncaracterizacion_controller"
-application.register("arregla-opcioncaracterizacion", ArreglaOpcioncaracterizacionController)
-
 import Sip__CancelarVacioEsEliminarController from "./sip/cancelar_vacio_es_eliminar_controller"
 application.register("sip--cancelar-vacio-es-eliminar", Sip__CancelarVacioEsEliminarController)
 

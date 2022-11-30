@@ -1,19 +1,24 @@
-<td data-controller='arregla-opcioncaracterizacion'>
-  <%= fasistencia.association :opcioncaracterizacion,
-    collection: Cor1440Gen::Opcioncaracterizacion.habilitados,
+<% if @registro.actividadpf_ids.include?(35) %>
+  <td>
+    <% col = Cor1440Gen::Actividadpf.where(
+      proyectofinanciero_id: Rails.application.config.x.cor1440_pf_comunes) %>
+    <%= fasistencia.association :opcioncaracterizacion,
+    collection: col,
     multiple: false,
-    label_method: :nombre,
+    label_method: :presenta_nombre,
     label: false,
     value_method: :id,
     input_html: {
       style: 'width: 10em',
       class: 'chosen-select',
-      'data-arregla-opcioncaracterizacion-target': 'opcioncaracterizacion'
     }
   %>
-        <script>
-          document.eventListe
+  </td>
+<% end %>
+<% if (@registro.actividadpf_ids & [33, 35]) != [] %>
+  <td>
+    <%= fasistencia.input :numsesiones, label: false %>
+  </td>
+<% end %>
 
-        document.querySelectorAll(".chosen-container[id$=opcioncaracterizacion_ids_chosen][style^='width: 0px']").forEach((a) => a.setAttribute('style', 'width: 10em'))
-      </script>
-</td>
+

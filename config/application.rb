@@ -65,6 +65,15 @@ module Sivel2
 
     config.x.cor1440_edita_poblacion = false
 
+    config.x.cor1440_pf_comunes= 
+      ENV.fetch('COR1440_PF_COMUNES', 0).to_i
+
+    config.x.cor1440_pf_todaact = 
+      ENV.fetch('COR1440_PF_TODAACT', 0).to_i
+
+    config.x.cor1440_pf_calidad= 
+      ENV.fetch('COR1440_PF_CALIDAD', 0).to_i
+
   end
 end
 

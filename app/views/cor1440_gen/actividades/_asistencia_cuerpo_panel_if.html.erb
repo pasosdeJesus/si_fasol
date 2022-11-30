@@ -1,3 +1,10 @@
-<th>
-  Caracterización
-</th>
+<% if @registro.actividadpf_ids.include?(35) %>
+  <th>
+    Caracterización
+  </th>
+<% end %>
+<% if (@registro.actividadpf_ids & [33, 35]) != [] %>
+  <th>
+    Número de sesiones
+  </th>
+<% end %>

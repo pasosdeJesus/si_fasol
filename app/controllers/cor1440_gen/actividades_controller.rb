@@ -47,8 +47,12 @@ module Cor1440Gen
 
     def destroy
       opc = Cor1440Gen::AsistenciaOpcioncaracterizacion.
-        joins('JOIN cor1440_gen_asistencia ON cor1440_gen_asistencia.id=cor1440_gen_asistencia_opcioncaracterizacion.asistencia_id').where(
-          'cor1440_gen_asistencia.actividad_id': @registro.id)
+        joins(
+          'JOIN cor1440_gen_asistencia ON cor1440_gen_asistencia.id='\
+          'cor1440_gen_asistencia_opcioncaracterizacion.asistencia_id'
+        ).where(
+          'cor1440_gen_asistencia.actividad_id': @registro.id
+        )
       if opc.count > 0
         opc.destroy_all
       end
@@ -58,6 +62,7 @@ module Cor1440Gen
     def lista_params
       l = lista_params_cor1440_gen
       l[-1][:asistencia_attributes][-1][:opcioncaracterizacion_ids] = []
+      l[-1][:asistencia_attributes].insert(0, :numsesiones)
       return l
     end
 
