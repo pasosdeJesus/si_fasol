@@ -1,5 +1,5 @@
-<% col = Sip::ModeloHelper.opciones_tabla_basica(
-  Sip::Orgsocial.joins(:grupoper).where(tipoorg_id: 3).reorder(:nombre), 
+<% col = Msip::ModeloHelper.opciones_tabla_basica(
+  Msip::Orgsocial.joins(:grupoper).where(tipoorg_id: 3).reorder(:nombre), 
   f, :entidad) %>
 <%= f.association :entidad,
   collection: col,

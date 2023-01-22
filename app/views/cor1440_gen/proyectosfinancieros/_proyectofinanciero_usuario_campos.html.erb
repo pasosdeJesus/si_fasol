@@ -1,6 +1,6 @@
 <tr class='nested-fields' data-controller='usuario-con-grupo'>
   <td>
-    <% col = Sip::ModeloHelper.opciones_tabla_basica(::Usuario, f, :usuario) %>
+    <% col = Msip::ModeloHelper.opciones_tabla_basica(::Usuario, f, :usuario) %>
     <%= f.association :usuario,
       collection: col,
       label: false,
@@ -14,7 +14,7 @@
   </td>
   <td data-usuario-con-grupo-target='grupo'>
     <%= f.object.usuario ? 
-      f.object.usuario.sip_grupo.map(&:nombre).join('; ') : '' %>
+      f.object.usuario.msip_grupo.map(&:nombre).join('; ') : '' %>
   </td>
   <td>
     <%= f.input :id, as: :hidden %>

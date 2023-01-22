@@ -86,7 +86,7 @@ viccsv.each do |r|
     memo: r['OBSERVACION'] || ' '
   )
   menserr = ''
-  sep = Sip::ImportaHelper.separa_apellidos_nombres(
+  sep = Msip::ImportaHelper.separa_apellidos_nombres(
     r['NOMBRE DEL SERVIDOR'], menserr)
   nombres = sep[0]
   apellidos = sep[1]
@@ -111,7 +111,7 @@ viccsv.each do |r|
     sexo = 'S'
   end
 
-  p = Sip::Persona.create(
+  p = Msip::Persona.create(
     nombres: nombres,
     apellidos: nombres,
     numerodocumento: r['CEDULA'],

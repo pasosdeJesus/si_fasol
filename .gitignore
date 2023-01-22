@@ -21,7 +21,7 @@ archivos/
 public/heb412/
 public/fasol/si/assets/
 .byebug_history
-app/views/sip/hogar/
+app/views/msip/hogar/
 bin/u.sh
 coverage/
 bin/corre.sh
@@ -41,7 +41,7 @@ config/credentials.yml.enc
 .env
 *.cp
 app/assets/builds/
-app/javascript/controllers/sip
+app/javascript/controllers/msip
 app/javascript/controllers/mr519_gen
 app/javascript/controllers/heb412_gen
 app/javascript/controllers/cor1440_gen
@@ -50,3 +50,4 @@ app/javascript/controllers/sivel2_gen
 public/fasol/si/csv/
 public/fasol/sipub
 ref
+app/javascript/controllers/sip

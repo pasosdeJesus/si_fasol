@@ -625,7 +625,7 @@ impcsv.each do |r|
   nreg += 1
   pcaso = [] # Problemas en el caso
   menserror = ''
-  pa = Sip::ImportaHelper.separa_apellidos_nombres(
+  pa = Msip::ImportaHelper.separa_apellidos_nombres(
     r['NOMBRE DEL SERVIDOR'], menserror)
   if menserror != ''
     puts "#{nimp}:#{nreg}: *** #{menserror}"
@@ -633,7 +633,7 @@ impcsv.each do |r|
   rp = { nombres: pa[0], apellidos: pa[1]}
   if r['CEDULA']
     rp['numerodocumento'] = r['CEDULA']
-    rp['tdocumento_id'] = Sip::Tdocumento.where(sigla: 'CC')[0].id
+    rp['tdocumento_id'] = Msip::Tdocumento.where(sigla: 'CC')[0].id
   end
   fechad = nil
   fecha = r['FECHA HECHO']
@@ -717,9 +717,9 @@ impcsv.each do |r|
   puts r['DEPARTAMENTO']
   rd =r['DEPARTAMENTO']
   if rd
-    pd = Sip::Departamento.where(id_pais: 170).
+    pd = Msip::Departamento.where(id_pais: 170).
       where("unaccent(nombre) ILIKE '%' || unaccent(?) || '%'",rd) 
-    if pd.count == 1 || (pd.count > 1 && (pd = Sip::Departamento.
+    if pd.count == 1 || (pd.count > 1 && (pd = Msip::Departamento.
         where(id_pais: 170).
         where('upper(unaccent(nombre))=upper(unaccent(?))', rd)).count == 1 )
       d = pd.take
@@ -730,16 +730,16 @@ impcsv.each do |r|
       if pm
         pindex=pm.index('.')
         nm = pindex ? pm[0, pindex-1] : nil
-        m = Sip::Municipio.where(id_departamento: d.id).
+        m = Msip::Municipio.where(id_departamento: d.id).
           where("unaccent(nombre) ILIKE '%' || unaccent(?) || '%'", pm) 
         if m.count == 1
           ru[:id_municipio] = m.take.id
-        elsif m.count > 1 && (m = Sip::Municipio.
+        elsif m.count > 1 && (m = Msip::Municipio.
             where(id_departamento: d.id).
             where('upper(unaccent(nombre))=upper(unaccent(?))', 
                   pm)).count == 1 
           ru[:id_municipio] = m.take.id
-        elsif nm && (m = Sip::Municipio.
+        elsif nm && (m = Msip::Municipio.
               where(id_departamento: d.id).
               where("unaccent(nombre) ILIKE '%' || unaccent(?) || '%'", 
                     nm)).count == 1
@@ -850,23 +850,23 @@ impcsv.each do |r|
     }
   end
 
-  p = Sip::Persona.create!(rp)
+  p = Msip::Persona.create!(rp)
 
   #FAMILIAR
   fam = r['FAMILIAR']
   rfam = {}
   if fam
     menserror = ''
-    fa = Sip::ImportaHelper.separa_apellidos_nombres(fam, menserror)
+    fa = Msip::ImportaHelper.separa_apellidos_nombres(fam, menserror)
     if menserror != ''
       puts "#{nimp}:#{nreg}: *** Familiar. #{menserror}"
     else
-      f = Sip::Persona.create!(
+      f = Msip::Persona.create!(
         nombres: fa[0],
         apellidos: fa[1],
         sexo: 'S'
       )
-      Sip::PersonaTrelacion.create!(
+      Msip::PersonaTrelacion.create!(
         persona1: p.id,
         persona2: f.id,
         id_trelacion: 'SI'
@@ -882,7 +882,7 @@ impcsv.each do |r|
   if ru[:id_departamento]
     ru[:id_caso] = c.id
     ru[:id_pais] = 170
-    u = Sip::Ubicacion.create!(ru)
+    u = Msip::Ubicacion.create!(ru)
     c.ubicacion_id = u.id
     c.save!
   end
@@ -976,7 +976,7 @@ impcsv.each do |r|
   end
 
   if r['OBSERVACION'].to_s != ''
-    so = Sip::Solicitud.create!(
+    so = Msip::Solicitud.create!(
       id: nreg + 1001,
       usuario_id: 1,
       fecha: Date.today,
@@ -989,7 +989,7 @@ impcsv.each do |r|
     )
   end
 
-  Sip::Bitacora.create!(
+  Msip::Bitacora.create!(
     fecha: fechareg,
     usuario_id: 1,
     modelo: 'Sivel2Gen::Caso',
@@ -1010,14 +1010,14 @@ end
 
 Sivel2Gen::Acto.connection.execute <<-SQL
   SELECT setval('public.caso_etiqueta_seq', 3000);
-  SELECT setval('public.sip_persona_id_seq', 3000);
+  SELECT setval('public.msip_persona_id_seq', 3000);
   SELECT setval('public.sivel2_gen_caso_id_seq', 3000);
   SELECT setval('public.caso_presponsable_seq', 3000);
   SELECT setval('public.sivel2_gen_caso_fuenteprensa_seq', 3000);
-  SELECT setval('public.sip_ubicacion_id_seq', 3000);
+  SELECT setval('public.msip_ubicacion_id_seq', 3000);
   SELECT setval('public.victima_seq', 3000);
-  SELECT setval('public.sip_persona_id_seq', 3000);
-  SELECT setval('public.sip_persona_trelacion_id_seq', 3000);
+  SELECT setval('public.msip_persona_id_seq', 3000);
+  SELECT setval('public.msip_persona_trelacion_id_seq', 3000);
 SQL
 
 STDERR.puts "#{nreg} registros leidos"

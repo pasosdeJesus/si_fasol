@@ -1,4 +1,4 @@
-<% col = Sip::ModeloHelper.opciones_tabla_basica(Sip::Orgsocial, f, :subde) %>
+<% col = Msip::ModeloHelper.opciones_tabla_basica(Msip::Orgsocial, f, :subde) %>
 <% # Aseguramos que se arma bosque --sin ciclos-- %>
 <% descendientes = f.object.id ? [f.object.id] : [] %>
 <% desant = [] %>
@@ -8,7 +8,7 @@
   <% descendientes += col.where('subde_id IN (?)', descendientes).map(&:id) %>
 <% end %>
 <% opassoc = {
-  collection: col.order(Sip::Orgsocial.send(:orden_presenta_nombre)),
+  collection: col.order(Msip::Orgsocial.send(:orden_presenta_nombre)),
   label_method: :presenta_nombre,
   value_method: :id,
   input_html: { class: 'chosen-select' }

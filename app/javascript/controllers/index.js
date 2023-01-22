@@ -4,11 +4,11 @@
 
 import { application } from "./application"
 
-import Sip__CancelarVacioEsEliminarController from "./sip/cancelar_vacio_es_eliminar_controller"
-application.register("sip--cancelar-vacio-es-eliminar", Sip__CancelarVacioEsEliminarController)
+import Msip__CancelarVacioEsEliminarController from "./msip/cancelar_vacio_es_eliminar_controller"
+application.register("msip--cancelar-vacio-es-eliminar", Msip__CancelarVacioEsEliminarController)
 
-import Sip__SindocautController from "./sip/sindocaut_controller"
-application.register("sip--sindocaut", Sip__SindocautController)
+import Msip__SindocautController from "./msip/sindocaut_controller"
+application.register("msip--sindocaut", Msip__SindocautController)
 
 import UsuarioConGrupoController from "./usuario_con_grupo_controller"
 application.register("usuario-con-grupo", UsuarioConGrupoController)

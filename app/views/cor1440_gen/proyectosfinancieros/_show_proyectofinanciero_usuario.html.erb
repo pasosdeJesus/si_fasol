@@ -10,7 +10,7 @@
             <%= pu.usuario.nombre %>
           </td>
           <td>
-            <%= pu.usuario.sip_grupo.map(&:nombre).join("; ") %>
+            <%= pu.usuario.msip_grupo.map(&:nombre).join("; ") %>
           </td>
         </tr>
       <% end %>

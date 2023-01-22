@@ -1,5 +1,5 @@
 <% content_for :titulo do %>
-    <%= Sip.titulo %>
+    <%= Msip.titulo %>
 <% end %>
 
 <% content_for :menu do %>
@@ -64,7 +64,7 @@
       <% end %>
       <%= despliega_abajo "Entidades" do %>
         <%= opcion_menu "Listado",
-          sip.orgsociales_path, desplegable: true %>
+          msip.orgsociales_path, desplegable: true %>
         <%= opcion_menu "Jeraraquía de entidades",
           main_app.jerarquia_orgsociales_path, desplegable: true %>
       <% end %>
@@ -76,7 +76,7 @@
           cor1440_gen.proyectosfinancieros_path, 
           desplegable: true %>
         <%= opcion_menu 'Población vinculada', 
-          sip.personas_path, 
+          msip.personas_path, 
           desplegable: true %>
         <%= opcion_menu "Conteo por actividades de proyecto", 
           cor1440_gen.contar_actividades_path, desplegable: true %>
@@ -136,8 +136,8 @@
           <%= opcion_menu "Tablas Básicas", sivel2_gen.tablasbasicas_path,
             desplegable: true %>
         <% end %>
-        <% if can? :manage, Sip::Respaldo7z %>
-          <%= opcion_menu "Respaldo cifrado", sip.respaldo7z_path,
+        <% if can? :manage, Msip::Respaldo7z %>
+          <%= opcion_menu "Respaldo cifrado", msip.respaldo7z_path,
             desplegable: true %>
         <% end %>
         <% if can? :manage, Mr519Gen::Formulario %>
@@ -165,4 +165,4 @@
   </span>
 <% end %>
 
-<%= render template: "layouts/sip/application" %>
+<%= render template: "layouts/msip/application" %>

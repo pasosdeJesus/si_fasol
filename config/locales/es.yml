@@ -11,7 +11,7 @@ es:
       "cor1440_gen/opcioncaracterizacion":
         Opcioncaracterizacion: Opción para caracterización en listado de asistencia
         Opcionescaracterizacion: Opciones para caracterización en listado de asistencia
-      "sip/orgsocial":
+      "msip/orgsocial":
         tipoorg: Tipo de organización
         tipoorg_id: Tipo de organización
         subde_id: Subestructura de
@@ -20,10 +20,10 @@ es:
         habilitado: Habilitada
         Orgsocial: Entidad
         Orgsociales: Entidades
-      "sip/solicitud":
+      "msip/solicitud":
         Solicitud: Observacion
         Solicitudes: Observaciones
-      "sip/tipoorg": 
+      "msip/tipoorg": 
         Tipoorg: Tipo de organización
         Tiposorg: Tipos de organización
       "sivel2_gen/caso":

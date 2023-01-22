@@ -7,8 +7,8 @@ class Ability  < Cor1440Gen::Ability
   ]
 
   def tablasbasicas
-    r = (Sip::Ability::BASICAS_PROPIAS - 
-         [['Sip', 'oficina']]
+    r = (Msip::Ability::BASICAS_PROPIAS - 
+         [['Msip', 'oficina']]
         ) + 
         Heb412Gen::Ability::BASICAS_PROPIAS +
         Sivel2Gen::Ability::BASICAS_PROPIAS - [
@@ -30,7 +30,7 @@ class Ability  < Cor1440Gen::Ability
   BASICAS_ID_NOAUTO = []
 
   def basicas_id_noauto 
-    Sip::Ability::BASICAS_ID_NOAUTO +
+    Msip::Ability::BASICAS_ID_NOAUTO +
       Heb412Gen::Ability::BASICAS_ID_NOAUTO +
       Cor1440Gen::Ability::BASICAS_ID_NOAUTO +
       Sivel2Gen::Ability::BASICAS_ID_NOAUTO +
@@ -42,7 +42,7 @@ class Ability  < Cor1440Gen::Ability
   ]
 
   def nobasicas_indice_seq_con_id 
-    Sip::Ability::NOBASICAS_INDSEQID +
+    Msip::Ability::NOBASICAS_INDSEQID +
       Mr519Gen::Ability::NOBASICAS_INDSEQID +
       Heb412Gen::Ability::NOBASICAS_INDSEQID +
       Cor1440Gen::Ability::NOBASICAS_INDSEQID +
@@ -53,7 +53,7 @@ class Ability  < Cor1440Gen::Ability
   BASICAS_PRIO = []
 
   def tablasbasicas_prio 
-    Sip::Ability::BASICAS_PRIO +
+    Msip::Ability::BASICAS_PRIO +
       Heb412Gen::Ability::BASICAS_PRIO +
       Sivel2Gen::Ability::BASICAS_PRIO +
       Cor1440Gen::Ability::BASICAS_PRIO +
@@ -83,7 +83,7 @@ class Ability  < Cor1440Gen::Ability
 
     if usuario && usuario.rol then
       can [:read, :update], Mr519Gen::Encuestausuario
-      if usuario && usuario.sip_grupo.pluck(:id).include?(
+      if usuario && usuario.msip_grupo.pluck(:id).include?(
           GRUPO_DESAPARICION_CASOS)
         can :pestanadesaparicion, Sivel2Gen::Caso
         cannot :solocambiaretiquetas, Sivel2Gen::Caso

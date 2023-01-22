@@ -10,7 +10,7 @@ module Sivel2Gen
       foreign_key: 'caso_id'
     has_many :solicitud, through: :caso_solicitud, 
       dependent: :delete_all,
-      class_name: 'Sip::Solicitud'
+      class_name: 'Msip::Solicitud'
     accepts_nested_attributes_for :solicitud,
       allow_destroy: true, reject_if: :all_blank
     accepts_nested_attributes_for :caso_solicitud,

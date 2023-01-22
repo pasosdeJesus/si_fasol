@@ -1,6 +1,6 @@
 <div class='row'>
   <div class='col-md-6'>
-    <% col=Sip::ModeloHelper.opciones_tabla_basica(
+    <% col=Msip::ModeloHelper.opciones_tabla_basica(
       ::Cargoestado, f, :cargoestado) %>
     <%= f.association :cargoestado,
       collection: col,

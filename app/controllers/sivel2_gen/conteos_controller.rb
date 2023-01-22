@@ -172,7 +172,7 @@ module Sivel2Gen
         "  ON ac.id_categoria=cat.id "\
         " JOIN sivel2_gen_pconsolidado AS p "\
         "  ON p.id=cat.id_pconsolidado "\
-        " JOIN sip_persona AS per "\
+        " JOIN msip_persona AS per "\
         "  ON per.id=ac.id_persona "\
         " JOIN sivel2_gen_victima AS vic "\
         "  ON per.id=vic.id_persona AND caso.id=vic.id_caso "\

@@ -1,5 +1,5 @@
 module Admin
-  class CargosestadoController < Sip::Admin::BasicasController
+  class CargosestadoController < Msip::Admin::BasicasController
     before_action :set_cargoestado, 
       only: [:show, :edit, :update, :destroy]
     load_and_authorize_resource  class: ::Cargoestado

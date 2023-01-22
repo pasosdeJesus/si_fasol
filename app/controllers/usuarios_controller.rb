@@ -1,9 +1,9 @@
-require 'sip/concerns/controllers/usuarios_controller'
+require 'msip/concerns/controllers/usuarios_controller'
 require 'sivel2_gen/concerns/controllers/usuarios_controller'
 
 class UsuariosController < Heb412Gen::ModelosController
 
-  include Sip::Concerns::Controllers::UsuariosController
+  include Msip::Concerns::Controllers::UsuariosController
   include Sivel2Gen::Concerns::Controllers::UsuariosController
 
   def atributos_index
@@ -17,7 +17,7 @@ class UsuariosController < Heb412Gen::ModelosController
       :numerodocumento,
       :email,
       :rol,
-      :sip_grupo,
+      :msip_grupo,
       :descripcion,
       :created_at_localizada,
       :habilitado
@@ -34,7 +34,7 @@ class UsuariosController < Heb412Gen::ModelosController
       :numerodocumento,
       :email,
       :rol,
-      :sip_grupo,
+      :msip_grupo,
       :descripcion,
       :tema,
       :idioma,
@@ -50,7 +50,7 @@ class UsuariosController < Heb412Gen::ModelosController
   private
 
   def lista_params
-    lista_params_sip + [
+    lista_params_msip + [
       :fechanac,
       :sexonac,
       :tdocumento_id,

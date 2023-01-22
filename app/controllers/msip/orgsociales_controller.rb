@@ -1,11 +1,11 @@
-require 'sip/concerns/controllers/orgsociales_controller'
+require 'msip/concerns/controllers/orgsociales_controller'
 
-module Sip
-  class OrgsocialesController < Sip::ModelosController
+module Msip
+  class OrgsocialesController < Msip::ModelosController
     before_action :set_orgsocial, only: [:show, :edit, :update, :destroy]
-    load_and_authorize_resource class: Sip::Orgsocial
+    load_and_authorize_resource class: Msip::Orgsocial
 
-    include Sip::Concerns::Controllers::OrgsocialesController
+    include Msip::Concerns::Controllers::OrgsocialesController
 
     def atributos_index
       [ :id, 
@@ -38,7 +38,7 @@ module Sip
     end
 
     def arma_jerarquia(subde_id, nombre_papa)
-      hijos = Sip::Orgsocial.habilitados.where(subde_id: subde_id)
+      hijos = Msip::Orgsocial.habilitados.where(subde_id: subde_id)
       hijosa = hijos.map do |h|
         arma_jerarquia(h.id, h.grupoper.nombre)
       end

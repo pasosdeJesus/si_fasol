@@ -6,7 +6,7 @@ class Usuario < ActiveRecord::Base
     include Cor1440Gen::Concerns::Models::Usuario
 
 
-    belongs_to :tdocumento, class_name: "Sip::Tdocumento", 
+    belongs_to :tdocumento, class_name: "Msip::Tdocumento", 
       foreign_key: "tdocumento_id", validate: true, optional: false
 
     campofecha_localizado :fechanac
@@ -21,13 +21,13 @@ class Usuario < ActiveRecord::Base
     validates :fechanac, presence: true, allow_blank: false
     validates :sexonac, presence: true
     validates :sexonac, inclusion: {in: [
-      Sip::Persona::convencion_sexo[:sexo_femenino].to_s,
-      Sip::Persona::convencion_sexo[:sexo_masculino].to_s,
-      Sip::Persona::convencion_sexo[:sexo_sininformacion].to_s
+      Msip::Persona::convencion_sexo[:sexo_femenino].to_s,
+      Msip::Persona::convencion_sexo[:sexo_masculino].to_s,
+      Msip::Persona::convencion_sexo[:sexo_sininformacion].to_s
     ], message: 'Sexó debe ser ' +
-    Sip::Persona::convencion_sexo[:sexo_femenino].to_s + ' o ' +
-    Sip::Persona::convencion_sexo[:sexo_masculino].to_s + ' o ' +
-    Sip::Persona::convencion_sexo[:sexo_sininformacion].to_s
+    Msip::Persona::convencion_sexo[:sexo_femenino].to_s + ' o ' +
+    Msip::Persona::convencion_sexo[:sexo_masculino].to_s + ' o ' +
+    Msip::Persona::convencion_sexo[:sexo_sininformacion].to_s
     }
 
     scope :filtro_numerodocumento, lambda { |n|

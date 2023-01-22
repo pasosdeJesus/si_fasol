@@ -6,7 +6,7 @@ module Sivel2Gen
     include Sivel2Gen::Concerns::Models::Victima
 
     belongs_to :entidad, foreign_key: 'entidad_id',
-      validate: true, class_name: 'Sip::Orgsocial',
+      validate: true, class_name: 'Msip::Orgsocial',
       optional: true
     belongs_to :cargoestado, foreign_key: 'cargoestado_id',
       validate: true, class_name: '::Cargoestado',
