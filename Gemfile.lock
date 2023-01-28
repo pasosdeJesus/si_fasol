@@ -18,7 +18,23 @@ GIT
       railties (>= 3.2)
 
 GIT
-  remote: https://github.com/pasosdeJesus/cor1440_gen.git
+  remote: https://github.com/vtamara/apexcharts.rb.git
+  revision: 7eb03e6075dbbff8602a815cc69daa4d1d83339b
+  branch: master
+  specs:
+    apexcharts (0.1.11)
+      dry-schema (~> 1.5)
+      smart_kv (~> 0.2.8)
+
+GIT
+  remote: https://github.com/vtamara/cocoon.git
+  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
+  branch: new_id_with_ajax
+  specs:
+    cocoon (1.2.11)
+
+GIT
+  remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
   revision: c71d239d907786d1684af1ed352dd517909cb8e4
   branch: main
   specs:
@@ -31,8 +47,8 @@ GIT
       rails
 
 GIT
-  remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: be65a9dde51940ad2a62ee056c29d30a579c887c
+  remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
+  revision: 0232b347482605480f1ccde5898b7013c146e06e
   branch: main
   specs:
     heb412_gen (2.2.0.alfa1)
@@ -42,7 +58,7 @@ GIT
       rspreadsheet
 
 GIT
-  remote: https://github.com/pasosdeJesus/mr519_gen.git
+  remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
   revision: 5ec914c25764529252701df1b5e6e1e6926b078d
   branch: main
   specs:
@@ -51,7 +67,7 @@ GIT
       rails
 
 GIT
-  remote: https://github.com/pasosdeJesus/msip.git
+  remote: https://gitlab.com/pasosdeJesus/msip.git
   revision: 918170d534e9d0e5fd3035b2e85fec797aa9c4d3
   branch: main
   specs:
@@ -71,30 +87,14 @@ GIT
       will_paginate (~> 3)
 
 GIT
-  remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 17a2b9e82e329cd8bef8a586683d14004f83cfff
+  remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
+  revision: 40e2bc6d11d519b7b77acf4bc7f2b0f935b7ccfe
   branch: main
   specs:
     sivel2_gen (2.2.0.beta1)
       color
       devise
       rails
-
-GIT
-  remote: https://github.com/vtamara/apexcharts.rb.git
-  revision: 7eb03e6075dbbff8602a815cc69daa4d1d83339b
-  branch: master
-  specs:
-    apexcharts (0.1.11)
-      dry-schema (~> 1.5)
-      smart_kv (~> 0.2.8)
-
-GIT
-  remote: https://github.com/vtamara/cocoon.git
-  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
-  branch: new_id_with_ajax
-  specs:
-    cocoon (1.2.11)
 
 GEM
   remote: https://rubygems.org/
