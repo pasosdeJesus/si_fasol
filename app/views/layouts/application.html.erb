@@ -145,10 +145,11 @@
             desplegable: true %>
         <% end %>
       <% end %>
-      <%= opcion_menu "Salir #{current_usuario.nusuario}", main_app.sign_out_path %>
+      <%= opcion_menu "Salir #{current_usuario.nusuario}", 
+        main_app.terminar_sesion_path %>
     <% else %>
       <%= opcion_menu "Acerca de", sivel2_gen.acercade_path %>
-      <%= opcion_menu "Iniciar Sesión", main_app.new_usuario_session_path %> 
+      <%= opcion_menu "Iniciar Sesión", main_app.iniciar_sesion_path %> 
     <% end %>
   <% end %>
 <% end %>
@@ -159,7 +160,7 @@
       Rails.configuration.x.sivel2_consweb_pie.html_safe : '' %>
     <hr>
     <div align="right"> 
-      Sistema de información de <a href="https://gitlab.com/pasosdeJesus/si_fasol">código abierto</a> desarrollado por <a href="https://www.pasosdeJesus.org" target="_blank">Pasos de Jesús</a>. 2022.
+      Sistema de información de <a href="https://gitlab.com/pasosdeJesus/si_fasol">código abierto</a> desarrollado por <a href="https://www.pasosdeJesus.org" target="_blank">Pasos de Jesús</a>. 2023.
 
     </div>
   </span>
