@@ -83,7 +83,7 @@ class Ability  < Cor1440Gen::Ability
 
     if usuario && usuario.rol then
       can [:read, :update], Mr519Gen::Encuestausuario
-      if usuario && usuario.msip_grupo.pluck(:id).include?(
+      if usuario && usuario.grupo.pluck(:id).include?(
           GRUPO_DESAPARICION_CASOS)
         can :pestanadesaparicion, Sivel2Gen::Caso
         cannot :solocambiaretiquetas, Sivel2Gen::Caso
