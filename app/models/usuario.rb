@@ -20,15 +20,17 @@ class Usuario < ActiveRecord::Base
       }
     validates :fechanac, presence: true, allow_blank: false
     validates :sexonac, presence: true
-    validates :sexonac, inclusion: {in: [
-      Msip::Persona::convencion_sexo[:sexo_femenino].to_s,
-      Msip::Persona::convencion_sexo[:sexo_masculino].to_s,
+    if defined?(Msip::Persona::convencion_sexo[:sexo_femenino])
+      validates :sexonac, inclusion: {in: [
+        Msip::Persona::convencion_sexo[:sexo_femenino].to_s,
+        Msip::Persona::convencion_sexo[:sexo_masculino].to_s,
+        Msip::Persona::convencion_sexo[:sexo_sininformacion].to_s
+      ], message: 'Sexó debe ser ' +
+      Msip::Persona::convencion_sexo[:sexo_femenino].to_s + ' o ' +
+      Msip::Persona::convencion_sexo[:sexo_masculino].to_s + ' o ' +
       Msip::Persona::convencion_sexo[:sexo_sininformacion].to_s
-    ], message: 'Sexó debe ser ' +
-    Msip::Persona::convencion_sexo[:sexo_femenino].to_s + ' o ' +
-    Msip::Persona::convencion_sexo[:sexo_masculino].to_s + ' o ' +
-    Msip::Persona::convencion_sexo[:sexo_sininformacion].to_s
-    }
+      }
+    end
 
     scope :filtro_numerodocumento, lambda { |n|
       where("unaccent(numerodocumento) ILIKE '%' || " +
