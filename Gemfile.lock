@@ -35,10 +35,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: 031643d3edbe0008d35ca5d3d47f23e324c4820d
+  revision: c74b40ed5531bb56bf089fe5ddcfa3e77877dc4c
   branch: main
   specs:
-    cor1440_gen (2.1a1)
+    cor1440_gen (2.2.0.beta1)
       devise
       heb412_gen
       kt-paperclip
@@ -48,10 +48,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: d604f67438f7500582cab94720a34db2f129015b
+  revision: fc61bedb905e5b33d41898f041c88df9ae468fa9
   branch: main
   specs:
-    heb412_gen (2.2.0.alfa1)
+    heb412_gen (2.2.0.beta1)
       mr519_gen
       msip
       redcarpet
@@ -59,7 +59,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 0d9f9ca1166622347907d92fcb1b1fba1a6def22
+  revision: b707fab42611385b249f3474e2a219d96c263864
   branch: main
   specs:
     mr519_gen (2.2.0.beta1)
@@ -68,7 +68,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: d6082750df0dfd8d1eebcdbf7928aa3ec6bcdfc8
+  revision: 418dc6b97035451467d1f75e9d80935bda53f870
   branch: main
   specs:
     msip (2.2.0.beta1)
@@ -88,7 +88,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 639be30fb037d1fa384c7a14805c62b1594261d6
+  revision: da7d2985f6cf6f77d6124d4cc073aa0c4c3bee27
   branch: main
   specs:
     sivel2_gen (2.2.0.beta1)
@@ -201,7 +201,7 @@ GEM
     coffee-script-source (1.12.2)
     color (1.8)
     colorize (0.8.1)
-    concurrent-ruby (1.2.0)
+    concurrent-ruby (1.2.2)
     connection_pool (2.3.0)
     crass (1.0.6)
     cuprite (0.14.3)
@@ -277,7 +277,6 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.1.1)
       railties (>= 6.0.0)
-    json (2.6.3)
     kgio (2.11.4)
     libxml-ruby (4.0.0)
     loofah (2.19.1)
@@ -318,7 +317,7 @@ GEM
     orm_adapter (0.5.0)
     parslet (2.0.0)
     pdf-core (0.9.0)
-    pg (1.4.5)
+    pg (1.4.6)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
       ttfunk (~> 1.7)
@@ -328,7 +327,7 @@ GEM
       prawn (>= 1.0.0)
       rails (>= 3.2)
     public_suffix (5.0.1)
-    puma (6.1.0)
+    puma (6.1.1)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.2)
@@ -374,12 +373,12 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
-    raindrops (0.20.0)
+    raindrops (0.20.1)
     rake (13.0.6)
     redcarpet (3.6.0)
     redis (5.0.6)
       redis-client (>= 0.9.0)
-    redis-client (0.12.2)
+    redis-client (0.13.0)
       connection_pool
     regexp_parser (2.7.0)
     reline (0.3.2)
@@ -409,11 +408,12 @@ GEM
     simple_form (5.2.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
-    simplecov (0.17.1)
+    simplecov (0.22.0)
       docile (~> 1.1)
-      json (>= 1.8, < 3)
-      simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.2)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
     smart_kv (0.2.8.1)
     spring (4.1.1)
     sprockets (4.2.0)
@@ -513,7 +513,7 @@ DEPENDENCIES
   sassc-rails
   selenium-webdriver
   simple_form
-  simplecov (< 0.18)
+  simplecov
   sivel2_gen!
   spring
   sprockets-rails
@@ -526,4 +526,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.6
+   2.4.7
