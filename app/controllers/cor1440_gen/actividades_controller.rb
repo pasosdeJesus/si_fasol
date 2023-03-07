@@ -56,8 +56,40 @@ module Cor1440Gen
       if opc.count > 0
         opc.destroy_all
       end
-      destroy_cor1440_gen
+
+      ['Cor1440Gen::ActividadareasActividad',
+       'Cor1440Gen::ActividadActividadpf',
+       'Cor1440Gen::ActividadActividadtipo',
+       'Cor1440Gen::ActividadOrgsocial',
+       'Cor1440Gen::ActividadProyecto',
+       'Cor1440Gen::ActividadProyectofinanciero',
+       'Cor1440Gen::ActividadRangoedadac',
+       'Cor1440Gen::ActividadRespuestafor',
+       'Cor1440Gen::ActividadAnexo',
+       'Cor1440Gen::ActividadUsuario',
+       'Cor1440Gen::Asistencia',
+      ].each do |relac|
+        r = relac.constantize.where(actividad_id: @registro.id)
+        r.delete_all if r.count > 0
+      end
+
+      rpb = @registro.respuestafor_ids
+      puts "** OJO por borrar respuestafor: #{rpb}"
+      if rpb.count > 0
+        Cor1440Gen::ActividadRespuestafor.connection.execute <<-EOF
+          DELETE FROM cor1440_gen_actividad_respuestafor 
+          WHERE actividad_id=#{@registro.id};
+          DELETE FROM mr519_gen_valorcampo 
+          WHERE respuestafor_id IN (#{rpb.join(',')});
+          DELETE FROM mr519_gen_respuestafor 
+          WHERE id IN (#{rpb.join(',')});
+        EOF
+      end
+
+      #destroy_cor1440_gen
+      destroy_gen
     end
+
 
     def lista_params
       l = lista_params_cor1440_gen
