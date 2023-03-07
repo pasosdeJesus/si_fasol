@@ -24,7 +24,7 @@
         </td>
         <td data-usuario-con-grupo-target='grupo'>
           <% if @registro && @registro.responsable %>
-            <%= @registro.responsable.msip_grupo.map(&:nombre).join("; ") %>
+            <%= @registro.responsable.grupo.map(&:nombre).join("; ") %>
           <% end %>
         </td>
       </tr>
@@ -35,7 +35,7 @@
 <script>
   window.cor1440_usuario_con_grupo_tabla = {
   <% col.each do |u| %>
-    <%= u.id %>: "<%= u.msip_grupo.map(&:nombre).join("; ") %>",
+    <%= u.id %>: "<%= u.grupo.map(&:nombre).join("; ") %>",
   <% end %>
   }
 </script>

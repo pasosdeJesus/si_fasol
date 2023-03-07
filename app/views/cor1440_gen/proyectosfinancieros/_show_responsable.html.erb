@@ -9,7 +9,7 @@
           <%= @registro.responsable.nombre if @registro.responsable %>
         </td>
         <td>
-          <%= @registro.responsable.msip_grupo.
+          <%= @registro.responsable.grupo.
             map(&:nombre).join("; ")  if @registro.responsable %>
         </td>
       </tr>
