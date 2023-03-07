@@ -3,7 +3,7 @@ require "cor1440_gen/concerns/controllers/actividades_controller"
 module Cor1440Gen
   class ActividadesController < Heb412Gen::ModelosController
 
-    before_action :set_actividad, 
+    before_action :set_actividad,
       only: [:show, :edit, :update, :destroy],
       exclude: [:contar, :contar_beneficiarios]
     load_and_authorize_resource class: Cor1440Gen::Actividad
@@ -12,16 +12,17 @@ module Cor1440Gen
 
 
     def atributos_show
-      [ :id, 
-        :fecha_localizada, 
-        :nombre, 
-        :lugar, 
+      [ :id,
+        :fecha_localizada,
+        :nombre,
+        :lugar,
         :responsable,
         :corresponsables,
-        :proyectofinanciero, 
-        :actividadpf, 
+        :proyectofinanciero,
+        :actividadpf,
+        :respuestafor,
         :objetivo,
-        :resultado, 
+        :resultado,
         # :orgsocial,  -- por la cantidad de organizaicones hace muy lenta
         # la carga, cambiar por autocompletación
         :listadoasistencia,
