@@ -18,13 +18,11 @@ GIT
       railties (>= 3.2)
 
 GIT
-  remote: https://github.com/vtamara/apexcharts.rb.git
-  revision: 7eb03e6075dbbff8602a815cc69daa4d1d83339b
+  remote: https://github.com/styd/apexcharts.rb.git
+  revision: 9dc5c3e9bbeb0a98bcab8410794807fce3977ce4
   branch: master
   specs:
-    apexcharts (0.1.11)
-      dry-schema (~> 1.5)
-      smart_kv (~> 0.2.8)
+    apexcharts (0.2.0)
 
 GIT
   remote: https://github.com/vtamara/cocoon.git
@@ -35,7 +33,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: 9d764ed776eb37e94d9b4e93834c44721d566bfa
+  revision: 7cca44c2ffbaeab1d8417eaa26e4e1dace685cf9
   branch: main
   specs:
     cor1440_gen (2.2.0.beta1)
@@ -224,32 +222,6 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
-    dry-configurable (1.0.1)
-      dry-core (~> 1.0, < 2)
-      zeitwerk (~> 2.6)
-    dry-core (1.0.0)
-      concurrent-ruby (~> 1.0)
-      zeitwerk (~> 2.6)
-    dry-inflector (1.0.0)
-    dry-initializer (3.1.1)
-    dry-logic (1.5.0)
-      concurrent-ruby (~> 1.0)
-      dry-core (~> 1.0, < 2)
-      zeitwerk (~> 2.6)
-    dry-schema (1.13.0)
-      concurrent-ruby (~> 1.0)
-      dry-configurable (~> 1.0, >= 1.0.1)
-      dry-core (~> 1.0, < 2)
-      dry-initializer (~> 3.0)
-      dry-logic (>= 1.5, < 2)
-      dry-types (>= 1.7, < 2)
-      zeitwerk (~> 2.6)
-    dry-types (1.7.1)
-      concurrent-ruby (~> 1.0)
-      dry-core (~> 1.0)
-      dry-inflector (~> 1.0)
-      dry-logic (~> 1.4)
-      zeitwerk (~> 2.6)
     erd (0.8.1)
       nokogiri
       ruby-graphviz
@@ -270,7 +242,7 @@ GEM
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.6.2)
+    irb (1.6.3)
       reline (>= 0.3.0)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
@@ -414,7 +386,6 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
-    smart_kv (0.2.8.1)
     spring (4.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)

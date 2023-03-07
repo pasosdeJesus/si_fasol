@@ -4,7 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'acts_as_list'
 
 gem 'apexcharts',
-  git: 'https://github.com/vtamara/apexcharts.rb.git', branch: :master
+  git: 'https://github.com/styd/apexcharts.rb.git', branch: :master
+
 
 gem 'babel-transpiler'
 
