@@ -1,0 +1,4 @@
+#!/bin/sh
+
+bin/cor
+node test/puppeteer/Fasol-crear-actividad-p.js
