@@ -13,6 +13,7 @@
     "@hotwired/turbo-rails": "^7.1.0",
     "@pasosdejesus/autocompleta_ajax": "https://gitlab.com/pasosdeJesus/autocompleta_ajax.git",
     "@popperjs/core": "^2.10.1",
+    "@puppeteer/replay": "^2.10.2",
     "@rails/actioncable": "^6.0.0-alpha",
     "@rails/actiontext": "^6.0.0",
     "@rails/activestorage": "^6.0.0-alpha",
@@ -33,6 +34,7 @@
     "mini-css-extract-plugin": "^2.4.3",
     "popper.js": "^2.0.0-next.4",
     "postcss": "^8.2.10",
+    "puppeteer-core": "^19.7.5",
     "sortable": "^2.0.0",
     "sortablejs": "^1.14.0"
   },

@@ -1,7 +1,26 @@
-const puppeteer = require('puppeteer'); // v13.0.0 or later
+const puppeteer = require('puppeteer-core'); // v13.0.0 or later
 
 (async () => {
-    const browser = await puppeteer.launch();
+
+    if (typeof process.env.CI == "string") {
+      browser = await puppeteer.launch({
+        defaultViewport: { width: 1240, height: 800},
+        headless: true,
+        args: [
+          '--no-sandbox', 
+          '--disable-setuid-sandbox', 
+          '--disable-dev-shm-usage'
+        ]
+      });
+    } else {
+      browser = await puppeteer.launch({
+        executablePath: '/usr/local/bin/chrome',
+        defaultViewport: { width: 1240, height: 800},
+        headless: true
+      });
+    }
+
+    //const browser = await puppeteer.launch();
     const page = await browser.newPage();
     const timeout = 5000;
     page.setDefaultTimeout(timeout);
