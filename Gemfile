@@ -114,39 +114,51 @@ gem 'jos19',
   #path: '../jos19'
 
 group  :development, :test do
-  gem 'debug' # Depurar
 
-  gem 'colorize' # Colores en terminal
+  gem "brakeman"
 
-  gem 'dotenv-rails'
+  gem "bundler-audit"
+
+  gem "code-scanning-rubocop"
+
+  gem "colorize"
+
+  gem "debug"
+
+  gem "dotenv-rails"
+
+  gem "rails-erd"
+
+  gem "rubocop-minitest"
+
+  gem "rubocop-rails"
+
+  gem "rubocop-shopify"
 end
 
 
 group :development do
-  gem 'erd'
-
-  gem 'puma'
-
-  gem 'rails-erd'
-
-  gem 'redis'
-
-  gem 'spring' # Acelera ejecutando en fondo. 
-
   gem 'web-console'
 end
 
 
 group :test do
-  gem 'cuprite'
 
-  gem 'capybara'
+  gem "capybara"
 
-  gem 'rails-controller-testing'
+  gem "connection_pool"
 
-  gem 'selenium-webdriver'
+  gem "cuprite"
 
-  gem 'simplecov'
+  gem "minitest", "~> 5.16"
+
+  gem "minitest-reporters"
+
+  gem "rails-controller-testing"
+
+  gem "simplecov"
+
+  gem "spork" # Un proceso para cada prueba -- acelera
 end
 
 
