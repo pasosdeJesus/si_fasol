@@ -8,6 +8,16 @@ module Msip
 
     include Jos19::Concerns::Controllers::PersonasController
 
+    def atributos_show
+      atributos_show_jos19 +
+        [:familiarvictima_ids] -
+        [:proyectofinanciero_ids]
+    end
+
+    def index_reordenar(c)
+      c.reorder([:nombres, :apellidos])
+    end
+
     def destroy
       if Sivel2Gen::Victima.where(id_persona: @registro.id).count == 0
         Msip::PersonaTrelacion.where(persona1: @registro.id).delete_all

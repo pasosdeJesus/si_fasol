@@ -20,6 +20,9 @@ es:
         habilitado: Habilitada
         Orgsocial: Entidad
         Orgsociales: Entidades
+      "msip/persona":
+        caso_ids: Casos en los que es Vic. Directa
+        familiarvictima_ids: Casos en los que es Vic. Indirecta
       "msip/solicitud":
         Solicitud: Observacion
         Solicitudes: Observaciones
