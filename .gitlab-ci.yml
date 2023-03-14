@@ -69,7 +69,7 @@ test:
     - bin/rails msip:indices
     - bin/rails msip:stimulus_motores
     - bin/rails assets:precompile
-    - node test/puppeteer/Fasol-crear-actividad-p.js
+    - bin/pruebajs
   script:
     - (. .env && CONFIG_HOSTS=www.example.com bin/rails test)
     - ./cc-test-reporter after-build -t simplecov --exit-code $?

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "=== Pruebas de regresión al sistema con Javascript"
+
 export PUERTODES=3000 
 export IPDES=127.0.0.1 
 export RAILS_ENV=development
