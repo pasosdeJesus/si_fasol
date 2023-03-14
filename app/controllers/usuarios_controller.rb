@@ -1,8 +1,9 @@
-require 'msip/concerns/controllers/usuarios_controller'
-require 'sivel2_gen/concerns/controllers/usuarios_controller'
+# frozen_string_literal: true
+
+require "msip/concerns/controllers/usuarios_controller"
+require "sivel2_gen/concerns/controllers/usuarios_controller"
 
 class UsuariosController < Heb412Gen::ModelosController
-
   include Msip::Concerns::Controllers::UsuariosController
   include Sivel2Gen::Concerns::Controllers::UsuariosController
 
@@ -20,7 +21,7 @@ class UsuariosController < Heb412Gen::ModelosController
       :msip_grupo,
       :descripcion,
       :created_at_localizada,
-      :habilitado
+      :habilitado,
     ]
   end
 
@@ -43,7 +44,7 @@ class UsuariosController < Heb412Gen::ModelosController
       :fechadeshabilitacion_localizada,
       :failed_attempts,
       :unlock_token,
-      :locked_at
+      :locked_at,
     ]
   end
 
@@ -54,15 +55,12 @@ class UsuariosController < Heb412Gen::ModelosController
       :fechanac,
       :sexonac,
       :tdocumento_id,
-      :numerodocumento
+      :numerodocumento,
     ]
   end
 
   def usuario_params
     p = params.require(:usuario).permit(lista_params)
-    return p
+    p
   end
-
-
 end
-

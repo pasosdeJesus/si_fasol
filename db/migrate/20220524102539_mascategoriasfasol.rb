@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Mascategoriasfasol < ActiveRecord::Migration[7.0]
   def up
-    execute <<-SQL
+    execute(<<-SQL)
       INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id,
         fechacreacion, created_at, updated_at) VALUES
         (1023, 'ACCIDENTE LABORAL', 100, --NV
@@ -44,8 +46,8 @@ class Mascategoriasfasol < ActiveRecord::Migration[7.0]
   end
 
   def down
-    execute <<-SQL
-      DELETE FROM sivel2_gen_categoria 
+    execute(<<-SQL)
+      DELETE FROM sivel2_gen_categoria#{" "}
         WHERE id IN (1023, 1024, 1030, 1040, 1050, 1060, 1070, 1080);
     SQL
   end

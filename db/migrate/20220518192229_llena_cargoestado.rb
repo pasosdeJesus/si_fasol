@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class LlenaCargoestado < ActiveRecord::Migration[7.0]
   def up
-    execute <<-SQL
+    execute(<<-SQL)
       INSERT INTO public.cargoestado (id, nombre, fechacreacion, created_at, updated_at) VALUES (1, 'Sin Información', '2022-05-18', '2022-05-18', '2022-05-18');
       INSERT INTO public.cargoestado (id, nombre, fechacreacion, created_at, updated_at) VALUES (2, 'Almacenista', '2022-05-18', '2022-05-18', '2022-05-18');
       INSERT INTO public.cargoestado (id, nombre, fechacreacion, created_at, updated_at) VALUES (3, 'Asesor(a)', '2022-05-18', '2022-05-18', '2022-05-18');
@@ -47,7 +49,7 @@ class LlenaCargoestado < ActiveRecord::Migration[7.0]
   end
 
   def down
-    execute <<-SQL
+    execute(<<-SQL)
       DELETE FROM public.cargoestado WHERE id>='1' AND id<='41';
     SQL
   end

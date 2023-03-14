@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CreaProyectoLjtc < ActiveRecord::Migration[7.0]
   def up
-    execute <<-SQL
+    execute(<<-SQL)
       INSERT INTO public.cor1440_gen_proyectofinanciero (id, nombre, observaciones, fechainicio, fechacierre, responsable_id, fechacreacion, fechadeshabilitacion, created_at, updated_at, compromisos, monto, sectorapc_id, fechaformulacion, fechaaprobacion, fechaliquidacion, estado, dificultad, tipomoneda_id, saldoaejecutarp, centrocosto, tasaej, montoej, aportepropioej, aporteotrosej, presupuestototalej, titulo, poromision) VALUES (11, 'La Justicia tiene Corazón', NULL, '2022-09-01', '2025-08-31', NULL, NULL, NULL, '2022-09-22 14:11:06.475054', '2022-09-30 15:13:40.079267', NULL, 1.0, 17, '2022-06-15', NULL, NULL, 'J', 'M', 2, NULL, '', 4200, 560470, 120000, 0, 680470, 'Visibilización e incidencia de las afectaciones a la independencia judicial por violencias contra los servidores judiciales en Colombia. ', NULL);
 
       INSERT INTO public.cor1440_gen_financiador_proyectofinanciero (financiador_id, proyectofinanciero_id) VALUES (10, 11);
@@ -41,7 +43,7 @@ class CreaProyectoLjtc < ActiveRecord::Migration[7.0]
 
       INSERT INTO public.cor1440_gen_actividadpf (id, proyectofinanciero_id, nombrecorto, titulo, descripcion, resultadopf_id, actividadtipo_id, formulario_id, heredade_id) VALUES (31, 11, 'A1Base', 'Se consolida una base de datos', 'Para ser incluida en plataforma SISFASOL', 31, NULL, NULL, NULL);
       INSERT INTO public.cor1440_gen_actividadpf (id, proyectofinanciero_id, nombrecorto, titulo, descripcion, resultadopf_id, actividadtipo_id, formulario_id, heredade_id) VALUES (32, 11, 'A2ORP', 'Se consolida un observatorio', '', 32, NULL, NULL, NULL);
-      INSERT INTO public.cor1440_gen_actividadpf (id, proyectofinanciero_id, nombrecorto, titulo, descripcion, resultadopf_id, actividadtipo_id, formulario_id, heredade_id) VALUES (33, 11, 'A1Psi', 'Atención psicología', '', 34, NULL, NULL, NULL); 
+      INSERT INTO public.cor1440_gen_actividadpf (id, proyectofinanciero_id, nombrecorto, titulo, descripcion, resultadopf_id, actividadtipo_id, formulario_id, heredade_id) VALUES (33, 11, 'A1Psi', 'Atención psicología', '', 34, NULL, NULL, NULL);#{" "}
       INSERT INTO public.cor1440_gen_actividadpf (id, proyectofinanciero_id, nombrecorto, titulo, descripcion, resultadopf_id, actividadtipo_id, formulario_id, heredade_id) VALUES (34, 11, 'A2For', 'Encuentro formación', '', 35, NULL, NULL, NULL);
       INSERT INTO public.cor1440_gen_actividadpf (id, proyectofinanciero_id, nombrecorto, titulo, descripcion, resultadopf_id, actividadtipo_id, formulario_id, heredade_id) VALUES (35, 11, 'A3RedT', 'Consolidación red apoyo', '', 36, NULL, NULL, NULL);
 
@@ -59,10 +61,10 @@ class CreaProyectoLjtc < ActiveRecord::Migration[7.0]
   end
 
   def down
-    execute <<-SQL
+    execute(<<-SQL)
       DELETE FROM public.cor1440_gen_mindicadorpf
         WHERE proyectofinanciero_id=11;
-      DELETE FROM public.cor1440_gen_actividadpf 
+      DELETE FROM public.cor1440_gen_actividadpf#{" "}
         WHERE proyectofinanciero_id=11;
       DELETE FROM public.cor1440_gen_indicadorpf
         WHERE proyectofinanciero_id=11;
@@ -74,9 +76,9 @@ class CreaProyectoLjtc < ActiveRecord::Migration[7.0]
         WHERE proyectofinanciero_id=11;
       DELETE FROM public.cor1440_gen_informeauditoria
         WHERE proyectofinanciero_id=11;
-      DELETE FROM public.cor1440_gen_financiador_proyectofinanciero 
+      DELETE FROM public.cor1440_gen_financiador_proyectofinanciero#{" "}
         WHERE proyectofinanciero_id=11;
-      DELETE FROM public.cor1440_gen_proyectofinanciero 
+      DELETE FROM public.cor1440_gen_proyectofinanciero#{" "}
         WHERE id=11;
     SQL
   end

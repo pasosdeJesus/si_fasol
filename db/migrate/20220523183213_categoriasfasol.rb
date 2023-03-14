@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 class Categoriasfasol < ActiveRecord::Migration[7.0]
   def up
-    execute <<-SQL
-      INSERT INTO sivel2_gen_presponsable (id, nombre, papa_id, 
+    execute(<<-SQL)
+      INSERT INTO sivel2_gen_presponsable (id, nombre, papa_id,#{" "}
         fechacreacion, created_at, updated_at) VALUES
-        (50, 'SIN PRESUNTO RESPONSABLE', NULL, 
+        (50, 'SIN PRESUNTO RESPONSABLE', NULL,#{" "}
         '2022-05-23', '2022-05-23', '2022-05-23');
 
-      INSERT INTO sivel2_gen_tviolencia (id, nombre, nomcorto, 
+      INSERT INTO sivel2_gen_tviolencia (id, nombre, nomcorto,#{" "}
         fechacreacion, created_at, updated_at) VALUES
-        ('N', 'NO VIOLENTA', 'NV', '2022-05-23', '2022-05-23', 
+        ('N', 'NO VIOLENTA', 'NV', '2022-05-23', '2022-05-23',#{" "}
         '2022-05-23');
-      INSERT INTO sivel2_gen_supracategoria (id, codigo, nombre, 
+      INSERT INTO sivel2_gen_supracategoria (id, codigo, nombre,#{" "}
         id_tviolencia, fechacreacion, created_at, updated_at) VALUES
         (100, 1, 'NO VIOLENTA', 'N',
         '2022-05-23', '2022-05-23', '2022-05-23');
@@ -50,7 +52,7 @@ class Categoriasfasol < ActiveRecord::Migration[7.0]
   end
 
   def down
-    execute <<-SQL
+    execute(<<-SQL)
       DELETE FROM sivel2_gen_categoria WHERE id>='1000' AND id<='1021';
       DELETE FROM sivel2_gen_supracategoria WHERE id='100';
       DELETE FROM sivel2_gen_tviolencia WHERE id='N';

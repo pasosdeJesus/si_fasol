@@ -1,10 +1,10 @@
-# encoding: UTF-8
+# encoding: utf-8
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/controllers/conteos_controller'
+require "sivel2_gen/concerns/controllers/conteos_controller"
 
 module Sivel2Gen
   class ConteosController < ApplicationController
-
     include Sivel2Gen::Concerns::Controllers::ConteosController
     load_and_authorize_resource class: Sivel2Gen::Caso
 
@@ -20,25 +20,26 @@ module Sivel2Gen
         "  ON p.id=cat.id_pconsolidado "
 
       r1 = ActiveRecord::Base.connection.select_all(
-        "SELECT COUNT(DISTINCT id_persona) FROM (#{sub}) AS sub")
-      @numpersonas = r1[0]['count']
+        "SELECT COUNT(DISTINCT id_persona) FROM (#{sub}) AS sub",
+      )
+      @numpersonas = r1[0]["count"]
 
       q4 = "SELECT rotulo, count(*) FROM (#{sub}) AS sub "\
         " GROUP BY 1 ORDER BY 1"
 
       puts "OJO q4=#{q4}"
-      r = ActiveRecord::Base.connection.select_all(q4) 
-      fila = 'rotulo'
+      r = ActiveRecord::Base.connection.select_all(q4)
+      fila = "rotulo"
       enctabla = []
       inter = {}
       filas = []
-      et = ['Acciones violatorias']
+      et = ["Acciones violatorias"]
       r.each do |t|
-        if !inter[t[fila]]
+        unless inter[t[fila]]
           inter[t[fila]] = {}
         end
-        inter[t[fila]] = t['count'].to_i
-        if !filas.include?(t[fila].to_s)
+        inter[t[fila]] = t["count"].to_i
+        unless filas.include?(t[fila].to_s)
           filas << t[fila].to_s
         end
       end
@@ -48,7 +49,7 @@ module Sivel2Gen
       cuerpotabla = []
       filas.each do |f|
         ft = [f]
-        et.each do |e|
+        et.each do |_e|
           ft << (inter[f] ? inter[f] : 0)
         end
         cuerpotabla << ft
@@ -58,8 +59,8 @@ module Sivel2Gen
       @cuerpotabla = cuerpotabla
 
       respond_to do |format|
-        format.html { render 'fasol_banco', layout: false}
-        format.json { head :no_content }
+        format.html { render("fasol_banco", layout: false) }
+        format.json { head(:no_content) }
       end
     end
 
@@ -81,30 +82,30 @@ module Sivel2Gen
         " GROUP BY 1, 2 ORDER BY 1,2"
 
       puts "OJO q4=#{q4}"
-      r = ActiveRecord::Base.connection.select_all(q4) 
-      fila = 'rotulo'
-      columna = 'region'
+      r = ActiveRecord::Base.connection.select_all(q4)
+      fila = "rotulo"
+      columna = "region"
       enctabla = []
       inter = {}
       filas = []
       et = []
       r.each do |t|
-        if !inter[t[fila].to_s]
+        unless inter[t[fila].to_s]
           inter[t[fila].to_s] = {}
         end
-        if !inter[t[fila].to_s][t[columna].to_s]
+        unless inter[t[fila].to_s][t[columna].to_s]
           inter[t[fila].to_s][t[columna].to_s] = {}
         end
-        inter[t[fila].to_s][t[columna].to_s] = t['count'].to_i
-        if !et.include?(t[columna].to_s)
+        inter[t[fila].to_s][t[columna].to_s] = t["count"].to_i
+        unless et.include?(t[columna].to_s)
           et << t[columna].to_s
         end
-        if !filas.include?(t[fila].to_s)
+        unless filas.include?(t[fila].to_s)
           filas << t[fila].to_s
         end
       end
       et.sort!
-      enctabla << 'Hecho de violencia'
+      enctabla << "Hecho de violencia"
 
       i = 1
       et.each do |e|
@@ -124,41 +125,39 @@ module Sivel2Gen
       @cuerpotabla = cuerpotabla
 
       respond_to do |format|
-        format.html { render 'fasol_banco_regionales', layout: false}
-        format.json { head :no_content }
+        format.html { render("fasol_banco_regionales", layout: false) }
+        format.json { head(:no_content) }
       end
     end
 
     def fasol_banco_detalle
-      preg = params[:regional] ? params[:regional].upcase : 'CUNDINAMARCA'
-      @enctabla, @cuerpotabla = 
-        Sivel2Gen::ConteosController::calcula_fasol_banco_detalle(preg)
+      preg = params[:regional] ? params[:regional].upcase : "CUNDINAMARCA"
+      @enctabla, @cuerpotabla =
+        Sivel2Gen::ConteosController.calcula_fasol_banco_detalle(preg)
 
       respond_to do |format|
-        format.html { render 'fasol_banco_detalle', layout: false}
-        format.json { head :no_content }
+        format.html { render("fasol_banco_detalle", layout: false) }
+        format.json { head(:no_content) }
       end
     end
 
     def fasol_banco_detreg
-
       respond_to do |format|
-        format.html { render 'fasol_banco_detreg', layout: false}
-        format.json { head :no_content }
+        format.html { render("fasol_banco_detreg", layout: false) }
+        format.json { head(:no_content) }
       end
-
-
     end
 
     def self.calcula_fasol_banco_detalle(preg)
       if preg.nil?
-        condreg="region is NULL"
+        condreg = "region is NULL"
       else
-        c = Sivel2Gen::Region.where(fechadeshabilitacion: nil).
-          where(nombre: preg)
-        return if c.count == 0 
+        c = Sivel2Gen::Region.where(fechadeshabilitacion: nil)
+          .where(nombre: preg)
+        return if c.count == 0
+
         reg = c.take
-        condreg="sub.region = '#{preg}'"
+        condreg = "sub.region = '#{preg}'"
       end
       sub = "SELECT DISTINCT caso.id AS caso_id, "\
         " per.id, per.sexo, re.nombre AS rangoedad, "\
@@ -183,57 +182,62 @@ module Sivel2Gen
         " WHERE #{condreg}"\
         " GROUP BY 1, 2, 3 ORDER BY 1,2,3"
 
-
-        puts "OJO q4=#{q4}"
-        r = ActiveRecord::Base.connection.select_all(q4) 
-        fila = 'rotulo'
-        columna = 'rangoedad'
-        enctabla = []
-        inter = {}
-        filas = []
-        et = []
-        r.each do |t|
-          if !inter[t[fila]]
-            inter[t[fila]] = {}
-          end
-          if !inter[t[fila]][t[columna]]
-            inter[t[fila]][t[columna]] = {}
-          end
-          inter[t[fila]][t[columna]][t['sexo']] = t['count'].to_i
-          if !et.include?(t[columna])
-            et << t[columna]
-          end
-          if !filas.include?(t[fila])
-            filas << t[fila]
-          end
+      puts "OJO q4=#{q4}"
+      r = ActiveRecord::Base.connection.select_all(q4)
+      fila = "rotulo"
+      columna = "rangoedad"
+      enctabla = []
+      inter = {}
+      filas = []
+      et = []
+      r.each do |t|
+        unless inter[t[fila]]
+          inter[t[fila]] = {}
         end
-        et.sort!
-        enctabla << 'Rangos de edad'
+        unless inter[t[fila]][t[columna]]
+          inter[t[fila]][t[columna]] = {}
+        end
+        inter[t[fila]][t[columna]][t["sexo"]] = t["count"].to_i
+        unless et.include?(t[columna])
+          et << t[columna]
+        end
+        unless filas.include?(t[fila])
+          filas << t[fila]
+        end
+      end
+      et.sort!
+      enctabla << "Rangos de edad"
 
-        i = 1
+      i = 1
+      et.each do |e|
+        enctabla << CGI.escapeHTML(e)
+        i += 1
+      end
+      cuerpotabla = []
+      filas.each do |f|
+        ft = [f]
         et.each do |e|
-          enctabla << CGI.escapeHTML(e)
-          i += 1
-        end
-        cuerpotabla = []
-        filas.each do |f|
-          ft = [f]
-          et.each do |e|
-            fem = inter[f] && inter[f][e] && inter[f][e]['F'] ? 
-              inter[f][e]['F'] : 0
-            mas = inter[f] && inter[f][e] && inter[f][e]['M'] ? 
-              inter[f][e]['M'] : 0
-            sin = inter[f] && inter[f][e] && inter[f][e]['S'] ? 
-              inter[f][e]['S'] : 0
-            ft << [fem, mas, sin]
+          fem = if inter[f] && inter[f][e] && inter[f][e]["F"]
+            inter[f][e]["F"]
+          else
+            0
           end
-          cuerpotabla << ft
+          mas = if inter[f] && inter[f][e] && inter[f][e]["M"]
+            inter[f][e]["M"]
+          else
+            0
+          end
+          sin = if inter[f] && inter[f][e] && inter[f][e]["S"]
+            inter[f][e]["S"]
+          else
+            0
+          end
+          ft << [fem, mas, sin]
         end
+        cuerpotabla << ft
+      end
 
-        return [enctabla, cuerpotabla]
+      [enctabla, cuerpotabla]
     end
-
-
-
   end
 end

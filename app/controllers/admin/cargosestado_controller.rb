@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Admin
   class CargosestadoController < Msip::Admin::BasicasController
-    before_action :set_cargoestado, 
+    before_action :set_cargoestado,
       only: [:show, :edit, :update, :destroy]
-    load_and_authorize_resource  class: ::Cargoestado
+    load_and_authorize_resource class: ::Cargoestado
 
-    def clase 
+    def clase
       "::Cargoestado"
     end
 
@@ -14,21 +16,20 @@ module Admin
 
     def atributos_index
       [
-        :id, 
-        :nombre, 
-        :observaciones, 
-        :fechacreacion_localizada, 
-        :habilitado
+        :id,
+        :nombre,
+        :observaciones,
+        :fechacreacion_localizada,
+        :habilitado,
       ]
     end
 
     def genclase
-      'M'
+      "M"
     end
 
     def cargoestado_params
       params.require(:cargoestado).permit(*atributos_form)
     end
-
   end
 end

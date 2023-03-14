@@ -1,24 +1,24 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
+# frozen_string_literal: true
 
 # Importa datos de un CSV
 
-d=Date.today.day
+d = Date.today.day
 
-require 'csv'
+require "csv"
 
 if ARGV.length != 1
   STDERR.puts "Primer argumento debe ser CSV por importar"
   exit 1
 end
 
-
 # Cambia presunto responsable SIN INFORMACIÓN a SIN PRESUNTO RESPONSABLE
 # o si no lo hay lo crea
 def sin_presponsable(rpr)
   if rpr.count == 0
     rpr << {
-      id_presponsable: 50
+      id_presponsable: 50,
     }
   else
     rpr.each do |r|
@@ -28,7 +28,6 @@ def sin_presponsable(rpr)
     end
   end
 end
-
 
 cargo_entidad = {
   "1 PISO PALACIO" => [33, 31],
@@ -320,7 +319,7 @@ cargo_entidad = {
   "TRIBUNAL FISCAL" => [33, 31],
   "UNIDAD VIDA-PALOQUEMAO" => [33, 31],
   "URI" => [33, 328],
-  "VIDA -PALOQUEMAO" => [33, 31]
+  "VIDA -PALOQUEMAO" => [33, 31],
 }
 
 tpresp = {
@@ -406,216 +405,218 @@ tpresp = {
   "VARIOS ACTORES ARMADOS" => 35,
   "WILSON DE JESUS MEJIA GUZMAN" => 35,
   "X CASO DE ACTO SEXUAL CON MENOR DE EDAD" => 35,
-  "" => 35
+  "" => 35,
 }
 
 treg = {
-  "A"=>[20, nil],
-  "A / C"=>[20, 23],
-  "ANTIOQUIA"=>[20, nil],
-  "C"=>[23, nil],
-  "C / SUR"=>[23, 22],
-  "CC"=>[5, nil],
-  "CC / A"=>[5, 20],
-  "COSTA CARIBE"=>[5, nil],
-  "CUNDINAMARCA"=>[23, nil],
-  "NORTE DE SANTANDER"=>[21, nil],
-  "S"=>[21, nil],
-  "S / C"=>[21, 23],
-  "S / CC"=>[21, 5],
-  "SANTANDER"=>[21, nil],
-  "SANTANDERES"=>[21, nil],
-  "SUR"=>[22, nil]
+  "A" => [20, nil],
+  "A / C" => [20, 23],
+  "ANTIOQUIA" => [20, nil],
+  "C" => [23, nil],
+  "C / SUR" => [23, 22],
+  "CC" => [5, nil],
+  "CC / A" => [5, 20],
+  "COSTA CARIBE" => [5, nil],
+  "CUNDINAMARCA" => [23, nil],
+  "NORTE DE SANTANDER" => [21, nil],
+  "S" => [21, nil],
+  "S / C" => [21, 23],
+  "S / CC" => [21, 5],
+  "SANTANDER" => [21, nil],
+  "SANTANDERES" => [21, nil],
+  "SUR" => [22, nil],
 }
-
 
 tcat = {
-  ['Muerte', 'PP', 39] => [10, ''], # Polo Estatal
-  ['Muerte', 'AA', 39] => [20, ''],
-  ['Muerte', 'VPS', 39] => [20, 'Cambiando categoría a DH-AA (Revisar porque podría ser PP o IS)'],
-  ['Muerte', 'IS', 39] => [30, ''],
+  ["Muerte", "PP", 39] => [10, ""], # Polo Estatal
+  ["Muerte", "AA", 39] => [20, ""],
+  ["Muerte", "VPS", 39] => [20, "Cambiando categoría a DH-AA (Revisar porque podría ser PP o IS)"],
+  ["Muerte", "IS", 39] => [30, ""],
 
-  ['Muerte', 'VPS', 40] => [701, 'Cambiando categoría a DIH'], # Insurgente
+  ["Muerte", "VPS", 40] => [701, "Cambiando categoría a DIH"], # Insurgente
 
-  ['Muerte', 'PP', 35] => [40, ''], # Polo Sin Información
-  ['Muerte', 'PP', nil] => [40, 'Agregando presunto responsable SIN INFORMACIÓN'], 
-  ['Muerte', 'VPS', 35] => [40, ''], 
-  ['Muerte', 'VPS', nil] => [40, 'Agregando presunto responsable SIN INFORMACIÓN'], 
-  ['Muerte', 'VSP', 35] => [40, ''], 
-  ['Muerte', 'VSP', nil] => [40, 'Agregando presunto responsable SIN INFORMACIÓN'], 
-  ['Muerte', 'IS', 35] => [50, ''],
-  ['Muerte', 'IS', nil] => [50, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Muerte', 'AL', 35] => [1000, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
-  ['Muerte', 'AL', nil] => [1000, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
-  ['Muerte', 'AT', 35] => [1005, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
-  ['Muerte', 'AT', nil] => [1005, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
-  ['Muerte', 'DN', 35] => [1001, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
-  ['Muerte', 'DN', nil] => [1001, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
-  ['Muerte', 'ENF', 35] => [1002, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
-  ['Muerte', 'ENF', nil] => [1002, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
-  ['Muerte', 'MN', 35] => [1003, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
-  ['Muerte', 'MN', nil] => [1003, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
-  ['Muerte', 'SUI', 35] => [1004, 'Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE'],
-  ['Muerte', 'SUI', nil] => [1004, 'Agregando presunto responsable a SIN PRESUNTO RESPONSABLE'],
+  ["Muerte", "PP", 35] => [40, ""], # Polo Sin Información
+  ["Muerte", "PP", nil] => [40, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Muerte", "VPS", 35] => [40, ""],
+  ["Muerte", "VPS", nil] => [40, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Muerte", "VSP", 35] => [40, ""],
+  ["Muerte", "VSP", nil] => [40, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Muerte", "IS", 35] => [50, ""],
+  ["Muerte", "IS", nil] => [50, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Muerte", "AL", 35] => [1000, "Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE"],
+  ["Muerte", "AL", nil] => [1000, "Agregando presunto responsable a SIN PRESUNTO RESPONSABLE"],
+  ["Muerte", "AT", 35] => [1005, "Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE"],
+  ["Muerte", "AT", nil] => [1005, "Agregando presunto responsable a SIN PRESUNTO RESPONSABLE"],
+  ["Muerte", "DN", 35] => [1001, "Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE"],
+  ["Muerte", "DN", nil] => [1001, "Agregando presunto responsable a SIN PRESUNTO RESPONSABLE"],
+  ["Muerte", "ENF", 35] => [1002, "Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE"],
+  ["Muerte", "ENF", nil] => [1002, "Agregando presunto responsable a SIN PRESUNTO RESPONSABLE"],
+  ["Muerte", "MN", 35] => [1003, "Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE"],
+  ["Muerte", "MN", nil] => [1003, "Agregando presunto responsable a SIN PRESUNTO RESPONSABLE"],
+  ["Muerte", "SUI", 35] => [1004, "Cambiando presunto responsable a SIN PRESUNTO RESPONSABLE"],
+  ["Muerte", "SUI", nil] => [1004, "Agregando presunto responsable a SIN PRESUNTO RESPONSABLE"],
 
+  ["Tortura", "PP", 39] => [12, ""], # Polo Estatal
+  ["Tortura", "VPS", 39] => [22, "Cambiando a DH-AA. Revisar"],
+  ["Tortura", "AA", 39] => [22, ""],
+  ["Tortura", "IS", 39] => [36, ""],
 
-  ['Tortura', 'PP', 39] => [12, ''], # Polo Estatal
-  ['Tortura', 'VPS', 39] => [22, 'Cambiando a DH-AA. Revisar'], 
-  ['Tortura', 'AA', 39] => [22, ''],
-  ['Tortura', 'IS', 39] => [36, ''],
+  ["Tortura", "PP", 35] => [47, ""], # Polo Sin Información
+  ["Tortura", "PP", nil] => [47, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Tortura", "VPS", 35] => [47, ""],
+  ["Tortura", "VPS", nil] => [47, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Tortura", "IS", 35] => [56, ""],
+  ["Tortura", "IS", nil] => [47, "Agregando presunto responsable SIN INFORMACIÓN"],
 
-  ['Tortura', 'PP', 35] => [47, ''], # Polo Sin Información
-  ['Tortura', 'PP', nil] => [47, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Tortura', 'VPS', 35] => [47, ''], 
-  ['Tortura', 'VPS', nil] => [47, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Tortura', 'IS', 35] => [56, ''],
-  ['Tortura', 'IS', nil] => [47, 'Agregando presunto responsable SIN INFORMACIÓN'],
+  [
+    "Tortura",
+    "VPS",
+    39,
+  ] => [
+    12,
+    "No corresponden Polo Estatal y categoría VPS. Cambiando a DH-PP (revisar manualmente, podría ser AA o IS)",
+  ],
+  ["Tortura", "VPS", 40] => [72, "No corresponden Polo Insurgente y categoría VPS. Cambiando a DIH"],
 
-  ['Tortura', 'VPS', 39] => [12, 'No corresponden Polo Estatal y categoría VPS. Cambiando a DH-PP (revisar manualmente, podría ser AA o IS)'], 
-  ['Tortura', 'VPS', 40] => [72, 'No corresponden Polo Insurgente y categoría VPS. Cambiando a DIH'], 
-      
+  ["Atentado", "PP", 39] => [16, ""], # Polo Estatal
+  ["Atentado", "VPS", 39] => [16, ""],
+  ["Atentado", "VSP", 39] => [16, ""],
+  ["Atentado", "AA", 39] => [26, ""],
+  ["Atentado", "IS", 39] => [37, ""],
 
- 
-  ['Atentado', 'PP', 39] => [16, ''], # Polo Estatal
-  ['Atentado', 'VPS', 39] => [16, ''], 
-  ['Atentado', 'VSP', 39] => [16, ''], 
-  ['Atentado', 'AA', 39] => [26, ''],
-  ['Atentado', 'IS', 39] => [37, ''],
+  ["Atentado", "PP", 35] => [46, ""], # Polo Sin Info
+  ["Atentado", "PP", nil] => [46, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Atentado", "VPS", 35] => [46, ""],
+  ["Atentado", "VPS", nil] => [46, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Atentado", "VSP", 35] => [46, ""],
+  ["Atentado", "VSP", nil] => [46, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Atentado", "IS", 35] => [47, ""],
+  ["Atentado", "IS", nil] => [47, "Agregando presunto responsable SIN INFORMACIÓN"],
 
-  ['Atentado', 'PP', 35] => [46, ''], # Polo Sin Info
-  ['Atentado', 'PP', nil] => [46, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Atentado', 'VPS', 35] => [46, ''],
-  ['Atentado', 'VPS', nil] => [46, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Atentado', 'VSP', 35] => [46, ''],
-  ['Atentado', 'VSP', nil] => [46, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Atentado', 'IS', 35] => [47, ''],
-  ['Atentado', 'IS', nil] => [47, 'Agregando presunto responsable SIN INFORMACIÓN'],
+  ["Atentado", "VPS", 40] => [46, ""], # Polo Insurgente
+  ["Atentado", "PP", 40] => [46, ""],
 
-  ['Atentado', 'VPS', 40] => [46, ''], # Polo Insurgente
-  ['Atentado', 'PP', 40] => [46, ''],
+  ["Amenaza", "PP", 39] => [15, ""], # Polo Estatal
+  ["Amenaza", "VPS", 39] => [15, ""], # Polo Estatal
+  ["Amenaza", "AA", 39] => [25, ""],
+  ["Amenaza", "IS", 39] => [35, ""],
 
-  ['Amenaza', 'PP', 39] => [15, ''], # Polo Estatal
-  ['Amenaza', 'VPS', 39] => [15, ''], # Polo Estatal
-  ['Amenaza', 'AA', 39] => [25, ''],
-  ['Amenaza', 'IS', 39] => [35, ''],
+  ["Amenaza", "PP", 35] => [45, ""], # Polo Sin Info
+  ["Amenaza", "PP", nil] => [45, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Amenaza", "VPS", 35] => [45, ""],
+  ["Amenaza", "VPS", nil] => [45, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Amenaza", "VSP", 35] => [45, ""],
+  ["Amenaza", "VSP", nil] => [45, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Amenaza", "IS", 35] => [55, ""],
+  ["Amenaza", "IS", nil] => [55, "Agregando presunto responsable SIN INFORMACIÓN"],
 
-  ['Amenaza', 'PP', 35] => [45, ''], # Polo Sin Info
-  ['Amenaza', 'PP', nil] => [45, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Amenaza', 'VPS', 35] => [45, ''],
-  ['Amenaza', 'VPS', nil] => [45, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Amenaza', 'VSP', 35] => [45, ''],
-  ['Amenaza', 'VSP', nil] => [45, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Amenaza', 'IS', 35] => [55, ''],
-  ['Amenaza', 'IS', nil] => [55, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  
-  ['Amenaza', 'VPS', 40] => [73, 'Cambiando de VPS a DIH'], # Polo Insurgente
-  ['Amenaza', 'PP', 40] => [73, 'Cambiando de DH a DIH'], # Polo Insurgente
+  ["Amenaza", "VPS", 40] => [73, "Cambiando de VPS a DIH"], # Polo Insurgente
+  ["Amenaza", "PP", 40] => [73, "Cambiando de DH a DIH"], # Polo Insurgente
 
-  ['Desaparición', 'PP', 39] => [11, ''], # Polo Estatal
-  ['Desaparición', 'VPS', 39] => [11, ''], 
-  ['Desaparición', 'AA', 39] => [21, ''],
-  ['Desaparición', 'IS', 39] => [302, ''],
+  ["Desaparición", "PP", 39] => [11, ""], # Polo Estatal
+  ["Desaparición", "VPS", 39] => [11, ""],
+  ["Desaparición", "AA", 39] => [21, ""],
+  ["Desaparición", "IS", 39] => [302, ""],
 
-  ['Detención', 'PP', 39] => [14, ''], # Polo Estatal
-  ['Detención', 'VPS', 39] => [14, ''], 
-  ['Detención', 'AA', 39] => [24, ''],
-  ['Detención', 'IS', 39] => [301, ''],
+  ["Detención", "PP", 39] => [14, ""], # Polo Estatal
+  ["Detención", "VPS", 39] => [14, ""],
+  ["Detención", "AA", 39] => [24, ""],
+  ["Detención", "IS", 39] => [301, ""],
 
-  ['Exilio', 'PP', 39] => [1030, ''], # Polo Estatal
-  ['Exilio', 'VPS', 39] => [1030, ''], 
-  ['Exilio', 'VSP', 39] => [1030, ''], 
+  ["Exilio", "PP", 39] => [1030, ""], # Polo Estatal
+  ["Exilio", "VPS", 39] => [1030, ""],
+  ["Exilio", "VSP", 39] => [1030, ""],
 
-  ['Exilio', 'VPS', 35] => [1040, ''], # Polo Sin Info
-  ['Exilio', 'VPS', nil] => [1040, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Exilio', 'PP', 35] => [1040, ''], 
-  ['Exilio', 'PP', nil] => [1040, 'Agregando presunto responsable SIN INFORMACIÓN'], 
-  ['Exilio', 'VSP', 35] => [1040, ''], # Polo Sin Info
-  ['Exilio', 'VSP', nil] => [1040, 'Agregando presunto responsable SIN INFORMACIÓN'],
+  ["Exilio", "VPS", 35] => [1040, ""], # Polo Sin Info
+  ["Exilio", "VPS", nil] => [1040, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Exilio", "PP", 35] => [1040, ""],
+  ["Exilio", "PP", nil] => [1040, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Exilio", "VSP", 35] => [1040, ""], # Polo Sin Info
+  ["Exilio", "VSP", nil] => [1040, "Agregando presunto responsable SIN INFORMACIÓN"],
 
-  ['Secuestro', 'PP', 39] => [41, ''], # Polo Estatal
-  ['Secuestro', 'VPS', 39] => [41, ''], 
-  ['Secuestro', 'VSP', 39] => [41, ''], 
-  ['Secuestro', 'PP', 35] => [41, ''], # Polo Sin Info
-  ['Secuestro', 'PP', nil] => [41, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Secuestro', 'VPS', nil] => [41, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Secuestro', 'PP', 40] => [41, ''], # Polo Insurgente
-  ['Secuestro', 'VPS', 40] => [41, ''], # Polo Insurgente
+  ["Secuestro", "PP", 39] => [41, ""], # Polo Estatal
+  ["Secuestro", "VPS", 39] => [41, ""],
+  ["Secuestro", "VSP", 39] => [41, ""],
+  ["Secuestro", "PP", 35] => [41, ""], # Polo Sin Info
+  ["Secuestro", "PP", nil] => [41, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Secuestro", "VPS", nil] => [41, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Secuestro", "PP", 40] => [41, ""], # Polo Insurgente
+  ["Secuestro", "VPS", 40] => [41, ""], # Polo Insurgente
 
-  ['Desplazamiento', 'PP', 39] => [1050, ''], # Polo Estatal
-  ['Desplazamiento', 'VPS', 39] => [1050, ''], # Polo Estatal
+  ["Desplazamiento", "PP", 39] => [1050, ""], # Polo Estatal
+  ["Desplazamiento", "VPS", 39] => [1050, ""], # Polo Estatal
 
-  ['Desplazamiento', 'PP', 35] => [1060, ''], # Polo Sin Info
-  ['Desplazamiento', 'PP', nil] => [1060, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Desplazamiento', 'IS', 35] => [1060, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Desplazamiento', 'IS', nil] => [1060, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Desplazamiento', 'VPS', 35] => [1060, ''],
-  ['Desplazamiento', 'VPS', nil] => [1060, 'Agregando presunto responsable SIN INFORMACIÓN'],
-  ['Desplazamiento', 'VSP', 35] => [1060, ''],
-  ['Desplazamiento', 'VSP', nil] => [1060, 'Agregando presunto responsable SIN INFORMACIÓN'],
+  ["Desplazamiento", "PP", 35] => [1060, ""], # Polo Sin Info
+  ["Desplazamiento", "PP", nil] => [1060, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Desplazamiento", "IS", 35] => [1060, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Desplazamiento", "IS", nil] => [1060, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Desplazamiento", "VPS", 35] => [1060, ""],
+  ["Desplazamiento", "VPS", nil] => [1060, "Agregando presunto responsable SIN INFORMACIÓN"],
+  ["Desplazamiento", "VSP", 35] => [1060, ""],
+  ["Desplazamiento", "VSP", nil] => [1060, "Agregando presunto responsable SIN INFORMACIÓN"],
 
-  ['Desplazamiento', 'VPS', 40] => [1060, ''], # Polo Insurgente
+  ["Desplazamiento", "VPS", 40] => [1060, ""], # Polo Insurgente
 
-  ['Judicialización', 'PP', 39] => [141, ''], # Polo Estatal
-  ['Judicialización', 'VPS', 39] => [141, ''], # Polo Estatal
-  ['Judicialización', 'AA', 39] => [241, ''],
-  ['Judicialización', 'IS', 39] => [341, ''],
+  ["Judicialización", "PP", 39] => [141, ""], # Polo Estatal
+  ["Judicialización", "VPS", 39] => [141, ""], # Polo Estatal
+  ["Judicialización", "AA", 39] => [241, ""],
+  ["Judicialización", "IS", 39] => [341, ""],
 
-  ['Judicialización', 'VPS', 39] => [1080, ''], # Polo Sin Info
-  ['Judicialización', 'AL', 39] => [1080, 'Cambiando AL por VPS'], 
+  ["Judicialización", "VPS", 39] => [1080, ""], # Polo Sin Info
+  ["Judicialización", "AL", 39] => [1080, "Cambiando AL por VPS"],
 
-  ['Otras Afectaciones', 'ACOSO LABORAL', 39] => [1070, ''], # Polo Estatal
-  
-  ['Otras Afectaciones', 'AL', 35] => [1023, 'Cambiando PR a SIN PR'], # Polo Sin Presp
-  ['Otras Afectaciones', 'AL', nil] => [1023, 'Agregando SIN PR'], # Polo Sin Presp
-  ['Otras Afectaciones', 'AT', 35] => [1025, 'Cambiando PR a SIN PR'], 
-  ['Otras Afectaciones', 'AT', nil] => [1025, 'Agregando SIN PR'], 
-  ['Otras Afectaciones', 'ENF', 35] => [1024, 'Cambiando PR a SIN PR'],
-  ['Otras Afectaciones', 'ENF', nil] => [1024, 'Agregando SIN PR'],
-  ['Otras Afectaciones', 'PEN', 35] => [1020, 'Cambiando PR a SIN PR'],
-  ['Otras Afectaciones', 'PEN', nil] => [1020, 'Agregando SIN PR'],
-  ['Otras Afectaciones', 'CE', 35] => [1021, 'Cambiando PR a SIN PR'],
-  ['Otras Afectaciones', 'CE', nil] => [1021, 'Agregando SIN PR'],
+  ["Otras Afectaciones", "ACOSO LABORAL", 39] => [1070, ""], # Polo Estatal
+
+  ["Otras Afectaciones", "AL", 35] => [1023, "Cambiando PR a SIN PR"], # Polo Sin Presp
+  ["Otras Afectaciones", "AL", nil] => [1023, "Agregando SIN PR"], # Polo Sin Presp
+  ["Otras Afectaciones", "AT", 35] => [1025, "Cambiando PR a SIN PR"],
+  ["Otras Afectaciones", "AT", nil] => [1025, "Agregando SIN PR"],
+  ["Otras Afectaciones", "ENF", 35] => [1024, "Cambiando PR a SIN PR"],
+  ["Otras Afectaciones", "ENF", nil] => [1024, "Agregando SIN PR"],
+  ["Otras Afectaciones", "PEN", 35] => [1020, "Cambiando PR a SIN PR"],
+  ["Otras Afectaciones", "PEN", nil] => [1020, "Agregando SIN PR"],
+  ["Otras Afectaciones", "CE", 35] => [1021, "Cambiando PR a SIN PR"],
+  ["Otras Afectaciones", "CE", nil] => [1021, "Agregando SIN PR"],
 }
 
- 
 nimp = ARGV[0]
 STDERR.puts "Leyendo casos de #{nimp}"
 impcsv = CSV.read(nimp, headers: true)
 encimp = impcsv[0].headers
 STDERR.puts "Se leyeron #{impcsv.count} registros de #{nimp}"
-if !encimp.include?('NO PERSONAS') || 
-  !encimp.include?('CEDULA') ||
-  !encimp.include?('NOMBRE DEL SERVIDOR') ||
-  !encimp.include?('FECHA DE NACIMIENTO') ||
-  !encimp.include?('EDAD HECHO') ||
-  !encimp.include?('GENERO') ||
-  !encimp.include?('CARGO') ||
-  !encimp.include?('Muerte') ||
-  !encimp.include?('Tortura') ||
-  !encimp.include?('Herido') ||
-  !encimp.include?('Atentado') ||
-  !encimp.include?('Amenaza') ||
-  !encimp.include?('Desaparición') ||
-  !encimp.include?('Detención') ||
-  !encimp.include?('Exilio') ||
-  !encimp.include?('Secuestro') ||
-  !encimp.include?('Desplazamiento') ||
-  !encimp.include?('Judicialización') ||
-  !encimp.include?('Otras Afectaciones') ||
-  !encimp.include?('FECHA HECHO') ||
-  !encimp.include?('LUGAR DE LOS HECHOS') ||
-  !encimp.include?('DEPARTAMENTO') ||
-  !encimp.include?('PRESUNTOS RESPONSABLES') ||
-  !encimp.include?('OBSERVACIONES') ||
-  !encimp.include?('FECHA REGISTRO') ||
-  !encimp.include?('AYUDA DE FASOL') ||
-  !encimp.include?('COMPETENCIA DE FASOL') ||
-  !encimp.include?('CARPETAS') ||
-  !encimp.include?('REGIONAL') ||
-  !encimp.include?('FAMILIAR') ||
-  !encimp.include?('CODIGO') ||
-  !encimp.include?('MARBETE') ||
-  !encimp.include?('OBSERVACION')
+if !encimp.include?("NO PERSONAS") ||
+    !encimp.include?("CEDULA") ||
+    !encimp.include?("NOMBRE DEL SERVIDOR") ||
+    !encimp.include?("FECHA DE NACIMIENTO") ||
+    !encimp.include?("EDAD HECHO") ||
+    !encimp.include?("GENERO") ||
+    !encimp.include?("CARGO") ||
+    !encimp.include?("Muerte") ||
+    !encimp.include?("Tortura") ||
+    !encimp.include?("Herido") ||
+    !encimp.include?("Atentado") ||
+    !encimp.include?("Amenaza") ||
+    !encimp.include?("Desaparición") ||
+    !encimp.include?("Detención") ||
+    !encimp.include?("Exilio") ||
+    !encimp.include?("Secuestro") ||
+    !encimp.include?("Desplazamiento") ||
+    !encimp.include?("Judicialización") ||
+    !encimp.include?("Otras Afectaciones") ||
+    !encimp.include?("FECHA HECHO") ||
+    !encimp.include?("LUGAR DE LOS HECHOS") ||
+    !encimp.include?("DEPARTAMENTO") ||
+    !encimp.include?("PRESUNTOS RESPONSABLES") ||
+    !encimp.include?("OBSERVACIONES") ||
+    !encimp.include?("FECHA REGISTRO") ||
+    !encimp.include?("AYUDA DE FASOL") ||
+    !encimp.include?("COMPETENCIA DE FASOL") ||
+    !encimp.include?("CARPETAS") ||
+    !encimp.include?("REGIONAL") ||
+    !encimp.include?("FAMILIAR") ||
+    !encimp.include?("CODIGO") ||
+    !encimp.include?("MARBETE") ||
+    !encimp.include?("OBSERVACION")
   puts "El CSV #{nimp} no tiene los encabezados esperados"
   exit 1
 end
@@ -624,127 +625,133 @@ nreg = 0
 impcsv.each do |r|
   nreg += 1
   pcaso = [] # Problemas en el caso
-  menserror = ''
+  menserror = ""
   pa = Msip::ImportaHelper.separa_apellidos_nombres(
-    r['NOMBRE DEL SERVIDOR'], menserror)
-  if menserror != ''
+    r["NOMBRE DEL SERVIDOR"], menserror
+  )
+  if menserror != ""
     puts "#{nimp}:#{nreg}: *** #{menserror}"
   end
-  rp = { nombres: pa[0], apellidos: pa[1]}
-  if r['CEDULA']
-    rp['numerodocumento'] = r['CEDULA']
-    rp['tdocumento_id'] = Msip::Tdocumento.where(sigla: 'CC')[0].id
+  rp = { nombres: pa[0], apellidos: pa[1] }
+  if r["CEDULA"]
+    rp["numerodocumento"] = r["CEDULA"]
+    rp["tdocumento_id"] = Msip::Tdocumento.where(sigla: "CC")[0].id
   end
   fechad = nil
-  fecha = r['FECHA HECHO']
+  fecha = r["FECHA HECHO"]
   fechanacd = nil
-  fechanac = r['FECHA DE NACIMIENTO']
-  edad = r['EDAD HECHO']
+  fechanac = r["FECHA DE NACIMIENTO"]
+  edad = r["EDAD HECHO"]
   if fecha
-    pf = fecha.split('/')
+    pf = fecha.split("/")
     if pf.count == 3
       begin
-        fechad = Date.strptime(fecha, '%m/%d/%Y')
+        fechad = Date.strptime(fecha, "%m/%d/%Y")
       rescue Exception
         puts "#{nimp}:#{nreg}: *** Fecha del hecho en formato desconocido "\
           "'#{fecha}'"
-        fechad=Date.new(2000,6,15)
+        fechad = Date.new(2000, 6, 15)
         pcaso << "Fecha del caso desconocida, asignada 2000-06-15"
       end
     else
       puts "#{nimp}:#{nreg}: *** Fecha del hecho en formato desconocido "\
         "'#{fecha}'"
-      fechad=Date.new(2000,6,15)
+      fechad = Date.new(2000, 6, 15)
       pcaso << "Fecha del caso desconocida, asignada 2000-06-15"
     end
   else
-      puts "#{nimp}:#{nreg}: *** Registro sin fecha del hecho '#{fecha}'"
-      fechad=Date.new(2000,6,15)
-      pcaso << "Fecha del caso desconocida, asignada 2000-06-15"
+    puts "#{nimp}:#{nreg}: *** Registro sin fecha del hecho '#{fecha}'"
+    fechad = Date.new(2000, 6, 15)
+    pcaso << "Fecha del caso desconocida, asignada 2000-06-15"
   end
   if fechanac
-    pf = fechanac.split('/')
+    pf = fechanac.split("/")
     if pf.count == 3
-      fechanacd = Date.strptime(fechanac, '%m/%d/%Y')
+      fechanacd = Date.strptime(fechanac, "%m/%d/%Y")
     else
       puts "#{nimp}:#{nreg}: *** Fecha de nacimiento en formato desconocido "\
         "'#{fechanac}'"
-      if fechanac.to_i>=1900 and fechanac.to_i<=2020
-        if edad.to_i > 0 && (fechad.year - edad.to_i) == fechanac.to_i
-          fechanacd = Date.new(fechanac.to_i, fechad.month, fechad.day)-1
+      if fechanac.to_i >= 1900 and fechanac.to_i <= 2020
+        fechanacd = if edad.to_i > 0 && (fechad.year - edad.to_i) == fechanac.to_i
+          Date.new(fechanac.to_i, fechad.month, fechad.day) - 1
         else
-          fechanacd = Date.new(fechanac.to_i, fechad.month, fechad.day)+1
+          Date.new(fechanac.to_i, fechad.month, fechad.day) + 1
         end
         pcaso << "Fecha de nacimiento desconocida '#{fechanac}', "\
-          "empleando fecha del hecho #{fechad.to_s} " +
+          "empleando fecha del hecho #{fechad} " +
           (edad.to_i > 0 ? "y la edad #{edad.to_i}" : "") +
-          " para asignar #{fechanacd.to_s}"
+          " para asignar #{fechanacd}"
       end
     end
   end
   if edad
     ei = edad.to_i
     if fechanacd.nil?
-      fechanacd=Date.new(fechad.year - ei, fechad.month, fechad.day)-1
-      pcaso << "Con edad #{ei} y fecha del caso #{fechad.to_s}, estableciendo fecha de nacimiento #{fechanacd.to_s}"
+      fechanacd = Date.new(fechad.year - ei, fechad.month, fechad.day) - 1
+      pcaso << "Con edad #{ei} y fecha del caso #{fechad}, estableciendo fecha de nacimiento #{fechanacd}"
     end
     ec = Sivel2Gen::RangoedadHelper.edad_de_fechanac_fecha(
-      fechanacd.year, fechanacd.month, fechanacd.day,
-      fechad.year, fechad.month, fechad.day)
-    if ei != ec 
+      fechanacd.year,
+      fechanacd.month,
+      fechanacd.day,
+      fechad.year,
+      fechad.month,
+      fechad.day,
+    )
+    if ei != ec
       puts "#{nimp}:#{nreg}: *** Registro con edad #{ei} no corresponde "\
         "con la edad calculada #{ec}"
-      pcaso << "Edad calculada #{ec}, usando la fecha del hecho #{fechad.to_s} y la fecha de nacimiento #{fechanacd.to_s},  no corresponde a la del registro #{ei}"
+      pcaso << "Edad calculada #{ec}, usando la fecha del hecho #{fechad} y la fecha de nacimiento #{fechanacd},  no corresponde a la del registro #{ei}"
     end
   end
   if fechanacd
-    rp['anionac']=fechanacd.year
-    rp['mesnac']=fechanacd.month
-    rp['dianac']=fechanacd.day
+    rp["anionac"] = fechanacd.year
+    rp["mesnac"] = fechanacd.month
+    rp["dianac"] = fechanacd.day
   end
 
-  sexo = 'S'
-  if r['GENERO']
-    if r['GENERO'] != 'M' and r['GENERO'] != 'F'
-      puts "#{nimp}:#{nreg}: *** Genero desconocido #{r['GENERO']}"
+  sexo = "S"
+  if r["GENERO"]
+    if r["GENERO"] != "M" and r["GENERO"] != "F"
+      puts "#{nimp}:#{nreg}: *** Genero desconocido #{r["GENERO"]}"
     else
-      sexo = r['GENERO']
+      sexo = r["GENERO"]
     end
   end
-  rp['sexo']=sexo
+  rp["sexo"] = sexo
 
   ru = {}
-  puts r['DEPARTAMENTO']
-  rd =r['DEPARTAMENTO']
+  puts r["DEPARTAMENTO"]
+  rd = r["DEPARTAMENTO"]
   if rd
-    pd = Msip::Departamento.where(id_pais: 170).
-      where("unaccent(nombre) ILIKE '%' || unaccent(?) || '%'",rd) 
-    if pd.count == 1 || (pd.count > 1 && (pd = Msip::Departamento.
-        where(id_pais: 170).
-        where('upper(unaccent(nombre))=upper(unaccent(?))', rd)).count == 1 )
+    pd = Msip::Departamento.where(id_pais: 170)
+      .where("unaccent(nombre) ILIKE '%' || unaccent(?) || '%'", rd)
+    if pd.count == 1 || (pd.count > 1 && (pd = Msip::Departamento
+        .where(id_pais: 170)
+        .where("upper(unaccent(nombre))=upper(unaccent(?))", rd)).count == 1)
       d = pd.take
       ru = {
-        id_departamento: d.id
+        id_departamento: d.id,
       }
-      pm = r['LUGAR DE LOS HECHOS']
+      pm = r["LUGAR DE LOS HECHOS"]
       if pm
-        pindex=pm.index('.')
-        nm = pindex ? pm[0, pindex-1] : nil
-        m = Msip::Municipio.where(id_departamento: d.id).
-          where("unaccent(nombre) ILIKE '%' || unaccent(?) || '%'", pm) 
+        pindex = pm.index(".")
+        nm = pindex ? pm[0, pindex - 1] : nil
+        m = Msip::Municipio.where(id_departamento: d.id)
+          .where("unaccent(nombre) ILIKE '%' || unaccent(?) || '%'", pm)
         if m.count == 1
           ru[:id_municipio] = m.take.id
-        elsif m.count > 1 && (m = Msip::Municipio.
-            where(id_departamento: d.id).
-            where('upper(unaccent(nombre))=upper(unaccent(?))', 
-                  pm)).count == 1 
+        elsif m.count > 1 && (m = Msip::Municipio
+            .where(id_departamento: d.id)
+            .where("upper(unaccent(nombre))=upper(unaccent(?))",
+              pm)).count == 1
           ru[:id_municipio] = m.take.id
-        elsif nm && (m = Msip::Municipio.
-              where(id_departamento: d.id).
-              where("unaccent(nombre) ILIKE '%' || unaccent(?) || '%'", 
-                    nm)).count == 1
+        elsif nm && (m = Msip::Municipio
+              .where(id_departamento: d.id)
+              .where("unaccent(nombre) ILIKE '%' || unaccent(?) || '%'",
+                nm)).count == 1
           ru[:id_municipio] = m.take.id
-        elsif d.nombre == 'Cundinamarca' && pm == 'BOGOTA'
+        elsif d.nombre == "Cundinamarca" && pm == "BOGOTA"
           ru[:id_departamento] = 4
           ru[:id_municipio] = 24
         else
@@ -756,22 +763,22 @@ impcsv.each do |r|
       pcaso << "Departamento desconocido, dejando el caso sin ubicación"
     end
   else
-      puts "#{nimp}:#{nreg}: *** Registro sin departamento"
-      pcaso << "Caso sin ubicación"
+    puts "#{nimp}:#{nreg}: *** Registro sin departamento"
+    pcaso << "Caso sin ubicación"
   end
 
   rpr = []
-  presp=r['PRESUNTOS RESPONSABLES']
-  ppresp = presp.to_s.split(',')
+  presp = r["PRESUNTOS RESPONSABLES"]
+  ppresp = presp.to_s.split(",")
   ppresp.each do |np|
-    np = np.gsub(/  */, ' ').gsub(/^ /, ''). gsub(/ $/, '')
+    np = np.gsub(/  */, " ").gsub(/^ /, "").gsub(/ $/, "")
     if !tpresp.keys.include?(np)
       puts "#{nimp}:#{nreg}: *** Presunto responsable sin homologacion '#{np}'"
     else
       rpra = {
-        id_presponsable: tpresp[np]
+        id_presponsable: tpresp[np],
       }
-      if tpresp[np] == 14 && np.upcase != 'PARAMILITARES'
+      if tpresp[np] == 14 && np.upcase != "PARAMILITARES"
         rpra[:bloque] = np
       else
         rpra[:otro] = np
@@ -780,9 +787,9 @@ impcsv.each do |r|
     end
   end
 
-  fr = r['FECHA REGISTRO']
+  fr = r["FECHA REGISTRO"]
   begin
-    fechareg = Date.strptime(fr, '%m/%d/%Y')
+    fechareg = Date.strptime(fr, "%m/%d/%Y")
   rescue Exception
     puts "#{nimp}:#{nreg}: *** Fecha de registro con formato desconocido "\
       "'#{fr}'"
@@ -790,91 +797,90 @@ impcsv.each do |r|
     pcaso << "Fecha del caso desconocida '#{fr}'. Asignando la del dia de la importación"
   end
 
-  codigofasol = r['CODIGO'] || ''
-  if (pcod = codigofasol.split('/')).count == 3
-    codigofasol = pcod[2] + '-' + pcod[0]
+  codigofasol = r["CODIGO"] || ""
+  if (pcod = codigofasol.split("/")).count == 3
+    codigofasol = pcod[2] + "-" + pcod[0]
   end
   rc = {
     fecha: fechad.to_s,
-    memo: r['OBSERVACIONES'] || 'Sin descripción',
-    marbetefasol: r['MARBETE'] || '',
+    memo: r["OBSERVACIONES"] || "Sin descripción",
+    marbetefasol: r["MARBETE"] || "",
     codigofasol: codigofasol,
-    ayudafasol: r['AYUDA DE FASOL'] || '',
-    observacionfasol: r['OBSERVACION'] || '',
-    created_at: fechareg
+    ayudafasol: r["AYUDA DE FASOL"] || "",
+    observacionfasol: r["OBSERVACION"] || "",
+    created_at: fechareg,
   }
   rv = {
-    anotaciones: r['NO PERSONAS'] || ''
+    anotaciones: r["NO PERSONAS"] || "",
   }
 
-  #REGIONAL
+  # REGIONAL
   rreg1 = nil
   rreg2 = nil
-  reg = r['REGIONAL']
+  reg = r["REGIONAL"]
   if reg
-    if !treg[reg] 
+    if !treg[reg]
       puts "#{nimp}:#{nreg}: *** Regional no homologable '#{reg}'"
     else
-      mreg = treg[reg] 
+      mreg = treg[reg]
       rreg1 = {
-        id_region: mreg[0]
+        id_region: mreg[0],
       }
-      if !mreg[1].nil?
+      unless mreg[1].nil?
         rreg2 = {
-          id_region: mreg[1]
+          id_region: mreg[1],
         }
       end
     end
   end
 
-  cargo = r['CARGO']
+  cargo = r["CARGO"]
   ce = cargo_entidad[cargo]
   if ce
-    rv['cargoestado_id']=ce[0]
-    rv['entidad_id']=ce[1]
+    rv["cargoestado_id"] = ce[0]
+    rv["entidad_id"] = ce[1]
   else
     puts "#{nimp}:#{nreg}: *** Cargo/Entidad del estado desconocidos '#{cargo}'"
     pcaso << "Caso sin cargo/entidad (#{cargo})"
   end
   rv[:detallevinculoestado] = cargo
-  
 
-  #CARPETAS
-  carp = r['CARPETAS']
+  # CARPETAS
+  carp = r["CARPETAS"]
   rfuente = {}
   if carp
     rfuente = {
       fuenteprensa_id: 30,
       ubicacionfisica: carp,
-      fecha: fechareg
+      fecha: fechareg,
     }
   end
 
   p = Msip::Persona.create!(rp)
 
-  #FAMILIAR
-  fam = r['FAMILIAR']
+  # FAMILIAR
+  fam = r["FAMILIAR"]
   rfam = {}
   if fam
-    menserror = ''
+    menserror = ""
     fa = Msip::ImportaHelper.separa_apellidos_nombres(fam, menserror)
-    if menserror != ''
+    if menserror != ""
       puts "#{nimp}:#{nreg}: *** Familiar. #{menserror}"
     else
       f = Msip::Persona.create!(
         nombres: fa[0],
         apellidos: fa[1],
-        sexo: 'S'
+        sexo: "S",
       )
       Msip::PersonaTrelacion.create!(
         persona1: p.id,
         persona2: f.id,
-        id_trelacion: 'SI'
+        id_trelacion: "SI",
       )
     end
   end
 
-  rc[:id] = nreg+1001
+  rc[:id] = nreg + 1001
   c = Sivel2Gen::Caso.create!(rc)
   rv[:id_caso] = c.id
   rv[:id_persona] = p.id
@@ -887,19 +893,19 @@ impcsv.each do |r|
     c.save!
   end
   polounico = nil
-  npolounico = ''
+  npolounico = ""
   rpr.each do |rpra|
     rpra[:id_caso] = c.id
-    polo = Sivel2Gen::CasoPresponsable.connection.execute("SELECT sivel2_gen_polo_id(#{rpra[:id_presponsable]})")[0]['sivel2_gen_polo_id']
-    if polounico == nil && polo.to_i > 0
+    polo = Sivel2Gen::CasoPresponsable.connection.execute("SELECT sivel2_gen_polo_id(#{rpra[:id_presponsable]})")[0]["sivel2_gen_polo_id"]
+    if polounico.nil? && polo.to_i > 0
       polounico = polo
       npolounico = Sivel2Gen::Presponsable.find(polounico).nombre
     elsif polounico != polo
-      polounico = 'NO'
+      polounico = "NO"
     end
   end
   if rpr == []
-    rpr << {id_presponsable: 35}
+    rpr << { id_presponsable: 35 }
   end
 
   if rreg1
@@ -914,39 +920,47 @@ impcsv.each do |r|
     rfuente[:id_caso] = c.id
     rfuente[:id] = nreg + 1001
     of = Sivel2Gen::CasoFuenteprensa.create(rfuente)
-    if !of.valid?
+    unless of.valid?
       debugger
     end
     of.save!
   end
-  
-  ractos = []
-  rcat = ''
-  ['Muerte', 'Tortura', 'Atentado', 'Amenaza', 'Desaparición', 'Detención',
-   'Exilio', 'Secuestro', 'Desplazamiento', 'Judicialización', 
-   'Otras Afectaciones'
-  ].each do |cat|
 
+  ractos = []
+  rcat = ""
+  [
+    "Muerte",
+    "Tortura",
+    "Atentado",
+    "Amenaza",
+    "Desaparición",
+    "Detención",
+    "Exilio",
+    "Secuestro",
+    "Desplazamiento",
+    "Judicialización",
+    "Otras Afectaciones",
+  ].each do |cat|
     racto = nil
-    if r[cat]
-      rcat << cat + " - " + r[cat] + ". "
-      racto = { }
-      scf = r[cat]
-      if tcat.keys.include?([cat, scf, polounico])
-        rc = tcat[[cat, scf, polounico]]
-        racto[:id_categoria] = rc[0]
-        if rc[1] != ''
-          puts "#{nimp}:#{nreg}: *** Polo #{npolounico} (#{polounico}). Categoria: #{cat} - #{scf}. #{rc[1]}"
-          pcaso << "Polo #{npolounico} (#{polounico}). Categoria: #{cat} - #{scf}. #{rc[1]}"
-        end
-        ractos << racto
-        if rc[0] >= 1000 && rc[0] <=1024
-          sin_presponsable(rpr)
-        end
-      else
-        puts "#{nimp}:#{nreg}: *** Categoria desconocida o no conciliable con polo del presunto responsable #{npolounico} (#{polounico}). #{cat} - #{scf}"
-        pcaso << "Categoria desconocida o no conciliable con polo del presunto responsable #{npolounico} (#{polounico}). #{cat} - #{scf}"
+    next unless r[cat]
+
+    rcat << cat + " - " + r[cat] + ". "
+    racto = {}
+    scf = r[cat]
+    if tcat.keys.include?([cat, scf, polounico])
+      rc = tcat[[cat, scf, polounico]]
+      racto[:id_categoria] = rc[0]
+      if rc[1] != ""
+        puts "#{nimp}:#{nreg}: *** Polo #{npolounico} (#{polounico}). Categoria: #{cat} - #{scf}. #{rc[1]}"
+        pcaso << "Polo #{npolounico} (#{polounico}). Categoria: #{cat} - #{scf}. #{rc[1]}"
       end
+      ractos << racto
+      if rc[0] >= 1000 && rc[0] <= 1024
+        sin_presponsable(rpr)
+      end
+    else
+      puts "#{nimp}:#{nreg}: *** Categoria desconocida o no conciliable con polo del presunto responsable #{npolounico} (#{polounico}). #{cat} - #{scf}"
+      pcaso << "Categoria desconocida o no conciliable con polo del presunto responsable #{npolounico} (#{polounico}). #{cat} - #{scf}"
     end
   end
 
@@ -959,10 +973,10 @@ impcsv.each do |r|
     racto[:id_persona] = p.id
     rpr.each do |rpra|
       if rpra[:id_presponsable].nil?
-        if racto[:id_categoria] >= 1000 && racto[:id_categoria] <= 1025
-          rpra[:id_responsable] = 50
+        rpra[:id_responsable] = if racto[:id_categoria] >= 1000 && racto[:id_categoria] <= 1025
+          50
         else
-          rpra[:id_responsable] = 35
+          35
         end
       end
       if Sivel2Gen::CasoPresponsable.where(rpra).count == 0
@@ -975,26 +989,26 @@ impcsv.each do |r|
     end
   end
 
-  if r['OBSERVACION'].to_s != ''
+  if r["OBSERVACION"].to_s != ""
     so = Msip::Solicitud.create!(
       id: nreg + 1001,
       usuario_id: 1,
       fecha: Date.today,
-      solicitud: r['OBSERVACION']
+      solicitud: r["OBSERVACION"],
     )
     Sivel2Gen::CasoSolicitud.create!(
       id: nreg + 1001,
       solicitud_id: so.id,
-      caso_id: c.id
+      caso_id: c.id,
     )
   end
 
   Msip::Bitacora.create!(
     fecha: fechareg,
     usuario_id: 1,
-    modelo: 'Sivel2Gen::Caso',
+    modelo: "Sivel2Gen::Caso",
     modelo_id: nreg + 1001,
-    operacion: 'iniciar'
+    operacion: "iniciar",
   )
 
   pcaso.each do |prob|
@@ -1003,12 +1017,12 @@ impcsv.each do |r|
       id_etiqueta: 4, # ERROR_IMPORTACIÓN
       id_usuario: 1,
       fecha: Date.today,
-      observaciones: prob
+      observaciones: prob,
     )
   end
 end
 
-Sivel2Gen::Acto.connection.execute <<-SQL
+Sivel2Gen::Acto.connection.execute(<<-SQL)
   SELECT setval('public.caso_etiqueta_seq', 3000);
   SELECT setval('public.msip_persona_id_seq', 3000);
   SELECT setval('public.sivel2_gen_caso_id_seq', 3000);
@@ -1022,4 +1036,3 @@ SQL
 
 STDERR.puts "#{nreg} registros leidos"
 STDERR.puts tpresp
-

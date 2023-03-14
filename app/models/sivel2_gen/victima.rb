@@ -1,16 +1,19 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/victima'
+require "sivel2_gen/concerns/models/victima"
 
 module Sivel2Gen
   class Victima < ActiveRecord::Base
     include Sivel2Gen::Concerns::Models::Victima
 
-    belongs_to :entidad, foreign_key: 'entidad_id',
-      validate: true, class_name: 'Msip::Orgsocial',
+    belongs_to :entidad,
+      validate: true,
+      class_name: "Msip::Orgsocial",
       optional: true
-    belongs_to :cargoestado, foreign_key: 'cargoestado_id',
-      validate: true, class_name: '::Cargoestado',
+    belongs_to :cargoestado,
+      validate: true,
+      class_name: "::Cargoestado",
       optional: true
-    validates :detallevinculoestado, length: {maximum: 512}
+    validates :detallevinculoestado, length: { maximum: 512 }
   end
 end

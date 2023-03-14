@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class OrganizacionesLs < ActiveRecord::Migration[7.0]
   def up
-    execute <<-SQL
+    execute(<<-SQL)
       INSERT INTO public.sip_grupoper (id, nombre, anotaciones, created_at, updated_at) VALUES (1, 'Estado Colombiano', '', '2022-05-11', '2022-05-11');
       INSERT INTO public.sip_orgsocial (id, grupoper_id, telefono, fax, direccion, pais_id, web, created_at, updated_at, fechadeshabilitacion, tipoorg_id, subde_id) VALUES (1, 1, '', '', '', 170, '', '2022-05-11', '2022-05-11', NULL, 3, NULL);
       INSERT INTO public.sip_grupoper (id, nombre, anotaciones, created_at, updated_at) VALUES (30, 'Organos Judiciales', '', '2022-05-11', '2022-05-11');
@@ -40,8 +42,9 @@ class OrganizacionesLs < ActiveRecord::Migration[7.0]
       SELECT setval('public.sip_orgsocial_id_seq', 1000);
     SQL
   end
+
   def down
-    execute <<-SQL
+    execute(<<-SQL)
       DELETE FROM public.sip_orgsocial WHERE id IN (311, 312);
       DELETE FROM public.sip_grupoper WHERE id IN (311, 312);
       DELETE FROM public.sip_orgsocial WHERE id IN (31, 32, 33, 34, 35, 36, 37,

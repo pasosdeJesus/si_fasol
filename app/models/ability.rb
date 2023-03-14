@@ -1,35 +1,34 @@
-class Ability  < Cor1440Gen::Ability
+# frozen_string_literal: true
 
-
+class Ability < Cor1440Gen::Ability
   GRUPO_DESAPARICION_CASOS = 25
 
-  BASICAS_PROPIAS = [
-  ]
+  BASICAS_PROPIAS = []
 
   def tablasbasicas
-    r = (Msip::Ability::BASICAS_PROPIAS - 
-         [['Msip', 'oficina']]
-        ) + 
-        Heb412Gen::Ability::BASICAS_PROPIAS +
-        Sivel2Gen::Ability::BASICAS_PROPIAS - [
-          ['Sivel2Gen', 'actividadoficio'],
-          ['Sivel2Gen', 'escolaridad'],
-          ['Sivel2Gen', 'estadocivil'],
-          ['Sivel2Gen', 'maternidad']
-        ] + [
-          ['', 'cargoestado']
-        ] + Cor1440Gen::Ability::BASICAS_PROPIAS - [
-          ['Cor1440Gen', 'actividadarea'],
-          ['Cor1440Gen', 'proyecto']
-        ] + 
-        BASICAS_PROPIAS
+    r = (Msip::Ability::BASICAS_PROPIAS -
+         [["Msip", "oficina"]]
+        ) +
+      Heb412Gen::Ability::BASICAS_PROPIAS +
+      Sivel2Gen::Ability::BASICAS_PROPIAS - [
+        ["Sivel2Gen", "actividadoficio"],
+        ["Sivel2Gen", "escolaridad"],
+        ["Sivel2Gen", "estadocivil"],
+        ["Sivel2Gen", "maternidad"],
+      ] + [
+        ["", "cargoestado"],
+      ] + Cor1440Gen::Ability::BASICAS_PROPIAS - [
+        ["Cor1440Gen", "actividadarea"],
+        ["Cor1440Gen", "proyecto"],
+      ] +
+      BASICAS_PROPIAS
 
-    return r
+    r
   end
 
   BASICAS_ID_NOAUTO = []
 
-  def basicas_id_noauto 
+  def basicas_id_noauto
     Msip::Ability::BASICAS_ID_NOAUTO +
       Heb412Gen::Ability::BASICAS_ID_NOAUTO +
       Cor1440Gen::Ability::BASICAS_ID_NOAUTO +
@@ -38,10 +37,10 @@ class Ability  < Cor1440Gen::Ability
   end
 
   NOBASICAS_INDSEQID = [
-    ['cor1440_gen', 'asistencia_opcioncaracterizacion']
+    ["cor1440_gen", "asistencia_opcioncaracterizacion"],
   ]
 
-  def nobasicas_indice_seq_con_id 
+  def nobasicas_indice_seq_con_id
     Msip::Ability::NOBASICAS_INDSEQID +
       Mr519Gen::Ability::NOBASICAS_INDSEQID +
       Heb412Gen::Ability::NOBASICAS_INDSEQID +
@@ -52,7 +51,7 @@ class Ability  < Cor1440Gen::Ability
 
   BASICAS_PRIO = []
 
-  def tablasbasicas_prio 
+  def tablasbasicas_prio
     Msip::Ability::BASICAS_PRIO +
       Heb412Gen::Ability::BASICAS_PRIO +
       Sivel2Gen::Ability::BASICAS_PRIO +
@@ -60,40 +59,44 @@ class Ability  < Cor1440Gen::Ability
       BASICAS_PRIO
   end
 
-  CAMPOS_PLANTILLAS_PROPIAS = {
-  }
+  CAMPOS_PLANTILLAS_PROPIAS = {}
 
   def campos_plantillas
-    Heb412Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone.
-      merge(Cor1440Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone).
-      merge(Sivel2Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone).
-      merge(CAMPOS_PLANTILLAS_PROPIAS.clone)
+    Heb412Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone
+      .merge(Cor1440Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone)
+      .merge(Sivel2Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone)
+      .merge(CAMPOS_PLANTILLAS_PROPIAS.clone)
   end
-
 
   # Establece autorizaciones con CanCanCan
   def initialize(usuario = nil)
     Sivel2Gen::Ability.initialize_sivel2_gen(self, usuario)
     Cor1440Gen::Ability.initialize_cor1440_gen(self, usuario)
 
-    can :contar, Sivel2Gen::Caso
-    can :numcasos, Sivel2Gen::Caso
-    can [:fasol_banco, :fasol_banco_regionales, :fasol_banco_detalle,
-         :fasol_banco_detreg], Sivel2Gen::Caso
+    can(:contar, Sivel2Gen::Caso)
+    can(:numcasos, Sivel2Gen::Caso)
+    can(
+      [
+        :fasol_banco,
+        :fasol_banco_regionales,
+        :fasol_banco_detalle,
+        :fasol_banco_detreg,
+      ],
+      Sivel2Gen::Caso,
+    )
 
-    if usuario && usuario.rol then
-      can [:read, :update], Mr519Gen::Encuestausuario
+    if usuario && usuario.rol
+      can([:read, :update], Mr519Gen::Encuestausuario)
       if usuario && usuario.grupo.pluck(:id).include?(
-          GRUPO_DESAPARICION_CASOS)
-        can :pestanadesaparicion, Sivel2Gen::Caso
-        cannot :solocambiaretiquetas, Sivel2Gen::Caso
+        GRUPO_DESAPARICION_CASOS,
+      )
+        can(:pestanadesaparicion, Sivel2Gen::Caso)
+        cannot(:solocambiaretiquetas, Sivel2Gen::Caso)
       end
       case usuario.rol
       when Ability::ROLADMIN
-        can :manage, Mr519Gen::Encuestausuario
+        can(:manage, Mr519Gen::Encuestausuario)
       end
     end
   end
-
 end
-

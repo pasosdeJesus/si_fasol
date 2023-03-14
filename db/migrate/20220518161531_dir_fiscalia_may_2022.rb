@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class DirFiscaliaMay2022 < ActiveRecord::Migration[7.0]
   def up
-    execute <<-SQL
+    execute(<<-SQL)
       INSERT INTO public.sip_grupoper (id, nombre, anotaciones, created_at, updated_at) VALUES (3001, 'Director Seccional Amazonas / Leticia', '', '2022-05-18','2022-05-18');
       INSERT INTO public.sip_orgsocial (id, grupoper_id, telefono, fax, direccion, pais_id, web, created_at, updated_at, fechadeshabilitacion, tipoorg_id, subde_id) VALUES (3001, 3001, ' ext. ', 'dirsec.amazonas@fiscalia.gov.co', 'Cll. 9 No. 86 - 1 / Leticia / Amazonas', 170, '', '2022-05-18','2022-05-18', NULL, 3, 318);
       INSERT INTO public.sip_grupoper (id, nombre, anotaciones, created_at, updated_at) VALUES (3002, 'Unidad Delegada ante el Tribunal de Antioquia / Medellín', '', '2022-05-18','2022-05-18');
@@ -4487,7 +4489,7 @@ class DirFiscaliaMay2022 < ActiveRecord::Migration[7.0]
   end
 
   def down
-    execute <<-SQL
+    execute(<<-SQL)
       DELETE FROM public.sip_orgsocial WHERE id>='3001' AND id<='5241';
     SQL
   end

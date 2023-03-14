@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
@@ -25,7 +27,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}",
     }
   else
     config.action_controller.perform_caching = false
@@ -69,6 +71,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.web_console.allowed_ips = ENV.fetch(
-    'WEB_CONSOLE_ALLOWED_IPS', '127.0.0.1').split(";")
-
+    "WEB_CONSOLE_ALLOWED_IPS", "127.0.0.1"
+  ).split(";")
 end

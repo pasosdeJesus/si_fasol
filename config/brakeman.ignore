@@ -1,0 +1,29 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "779207af29236ee32ff13069ce0bc776e57284d93ebc912885bca63065504dcc",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/conteos_controller.rb",
+      "line": 188,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.select_all(\"SELECT rotulo, rangoedad, sexo, count(*) FROM (#{\"SELECT DISTINCT caso.id AS caso_id,  per.id, per.sexo, re.nombre AS rangoedad,  id_categoria, cat.id_pconsolidado, p.nombre AS rotulo, (SELECT r.nombre FROM  sivel2_gen_caso_region AS cr   JOIN sivel2_gen_region AS r ON cr.id_region=r.id   WHERE cr.id_caso=caso.id LIMIT 1) AS region  FROM sivel2_gen_caso AS caso JOIN sivel2_gen_acto AS ac ON caso.id=ac.id_caso JOIN sivel2_gen_categoria AS cat   ON ac.id_categoria=cat.id  JOIN sivel2_gen_pconsolidado AS p   ON p.id=cat.id_pconsolidado  JOIN msip_persona AS per   ON per.id=ac.id_persona  JOIN sivel2_gen_victima AS vic   ON per.id=vic.id_persona AND caso.id=vic.id_caso  JOIN sivel2_gen_rangoedad AS re   ON vic.id_rangoedad=re.id \"}) AS sub  WHERE #{(\"region is NULL\" or \"sub.region = '#{preg}'\")} GROUP BY 1, 2, 3 ORDER BY 1,2,3\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::ConteosController",
+        "method": "Sivel2Gen::ConteosController.calcula_fasol_banco_detalle"
+      },
+      "user_input": "preg",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    }
+  ],
+  "updated": "2023-03-14 18:41:03 -0500",
+  "brakeman_version": "5.4.1"
+}

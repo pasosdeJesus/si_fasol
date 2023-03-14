@@ -1,7 +1,8 @@
-class TemaPredeterminado < ActiveRecord::Migration[7.0]
+# frozen_string_literal: true
 
-def up
-    execute <<-SQL
+class TemaPredeterminado < ActiveRecord::Migration[7.0]
+  def up
+    execute(<<-SQL)
       UPDATE sip_tema SET
         nombre='PREDETERMINADO FASOL',
         fondo = '#f2f2f2',
@@ -28,8 +29,9 @@ def up
       WHERE id=1;
     SQL
   end
+
   def down
-    execute <<-SQL
+    execute(<<-SQL)
       UPDATE sip_tema SET
         nombre='AZUL POR OMISIÓN',
         fondo = '#ffffff',
@@ -56,5 +58,4 @@ def up
       WHERE id=1;
     SQL
   end
-
 end

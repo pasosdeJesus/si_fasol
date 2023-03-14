@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class AgregaVenezuelaSiFalta < ActiveRecord::Migration[6.0]
   def up
-    if Sip::Departamento.where(id_pais: 862).count == 0 then
-      execute <<-SQL
+    if Sip::Departamento.where(id_pais: 862).count == 0
+      execute(<<-SQL)
         INSERT INTO public.sip_departamento (id, nombre, id_pais, id_deplocal, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (1, 'DISTRITO CAPITAL', 862, 1, 10.4686190000000003, -66.8058120000000031, '2014-03-03', NULL, NULL, NULL, NULL);
         INSERT INTO public.sip_departamento (id, nombre, id_pais, id_deplocal, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (10, 'BOLIVARIANO DE MIRANDA', 862, 15, 10.3394530000000007, -66.9907390000000049, '2014-03-03', NULL, NULL, NULL, NULL);
         INSERT INTO public.sip_departamento (id, nombre, id_pais, id_deplocal, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (12, 'MONAGAS', 862, 16, 9.75204500000000074, -63.1832640000000012, '2014-03-03', NULL, NULL, NULL, NULL);
@@ -27,7 +29,7 @@ class AgregaVenezuelaSiFalta < ActiveRecord::Migration[6.0]
         INSERT INTO public.sip_departamento (id, nombre, id_pais, id_deplocal, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (6, 'GUÁRICO', 862, 12, 9.97217799999999954, -67.3117929999999944, '2014-03-03', NULL, NULL, NULL, NULL);
         INSERT INTO public.sip_departamento (id, nombre, id_pais, id_deplocal, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (8, 'LARA', 862, 13, 10.058306, -69.3605440000000044, '2014-03-03', NULL, NULL, NULL, NULL);
         INSERT INTO public.sip_departamento (id, nombre, id_pais, id_deplocal, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (9, 'MÉRIDA', 862, 14, 8.60007200000000083, -71.1482340000000022, '2014-03-03', NULL, NULL, NULL, NULL);
-        
+
         INSERT INTO public.sip_municipio (id, nombre, id_departamento, id_munlocal, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (1, 'ACEVEDO', 10, 1, 10.3977050000000002, -66.289873, '2014-03-03', NULL, NULL, NULL, NULL);
         INSERT INTO public.sip_municipio (id, nombre, id_departamento, id_munlocal, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (10, 'ANACO', 30, 1, 9.43144700000000036, -64.4806480000000022, '2014-03-03', NULL, NULL, NULL, NULL);
         INSERT INTO public.sip_municipio (id, nombre, id_departamento, id_munlocal, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (100, 'SAN FELIPE', 23, 11, 10.3405670000000001, -68.7370990000000006, '2014-03-03', NULL, NULL, NULL, NULL);
@@ -364,7 +366,7 @@ class AgregaVenezuelaSiFalta < ActiveRecord::Migration[6.0]
         INSERT INTO public.sip_municipio (id, nombre, id_departamento, id_munlocal, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (997, 'ESCUQUE', 22, 6, 9.30542799999999914, -70.6696419999999961, '2014-03-03', NULL, NULL, NULL, NULL);
         INSERT INTO public.sip_municipio (id, nombre, id_departamento, id_munlocal, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (998, 'EZEQUIEL ZAMORA', 12, 6, 9.61596100000000042, -63.700961999999997, '2014-03-03', NULL, NULL, NULL, NULL);
         INSERT INTO public.sip_municipio (id, nombre, id_departamento, id_munlocal, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (999, 'FRANCISCO JAVIER PULGAR', 25, 6, 8.89118000000000031, -71.625624000000002, '2014-03-03', NULL, NULL, NULL, NULL);
-        
+
         INSERT INTO public.sip_clase (id, nombre, id_municipio, id_clalocal, id_tclase, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (10, 'LAS VEGAS DEL TUY', 394, 3, 'CP', NULL, NULL, '2014-03-03', NULL, NULL, NULL, NULL);
         INSERT INTO public.sip_clase (id, nombre, id_municipio, id_clalocal, id_tclase, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (101, 'ARAPUEY', 64, 0, 'CP', NULL, NULL, '2014-03-03', NULL, NULL, NULL, NULL);
         INSERT INTO public.sip_clase (id, nombre, id_municipio, id_clalocal, id_tclase, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (102, 'SAN JOSÉ DE PALMIRA', 64, 2, 'CP', NULL, NULL, '2014-03-03', NULL, NULL, NULL, NULL);
@@ -1386,6 +1388,7 @@ class AgregaVenezuelaSiFalta < ActiveRecord::Migration[6.0]
       SQL
     end
   end
+
   def down
   end
 end

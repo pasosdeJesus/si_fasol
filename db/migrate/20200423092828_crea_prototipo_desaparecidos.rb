@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CreaPrototipoDesaparecidos < ActiveRecord::Migration[6.0]
   def up
-    execute <<-EOF
+    execute(<<-EOF)
       INSERT INTO public.mr519_gen_formulario (id, nombre, nombreinterno)
         VALUES  (50, 'Desaparición', 'desaparicion');
 
@@ -21,10 +23,9 @@ class CreaPrototipoDesaparecidos < ActiveRecord::Migration[6.0]
   end
 
   def down
-    execute <<-SQL
+    execute(<<-SQL)
       DELETE FROM public.mr519_gen_campo WHERE id>='200' AND id<='210';
       DELETE FROM public.mr519_gen_formulario WHERE id='50';
     SQL
   end
-
 end
