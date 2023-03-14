@@ -1,4 +1,21 @@
 #!/bin/sh
 
-bin/cor
+export PUERTODES=3000 
+export IPDES=127.0.0.1 
+export RAILS_ENV=development
+
+if (test ! -f .env) then {
+  echo "Falta .env"
+  exit 1;
+} fi;
+. ./.env
+
+bin/detiene
+
+bin/rails assets:precompile
+
+R=f bin/corre &
+
+sleep 10;
+
 node test/puppeteer/Fasol-crear-actividad-p.js
