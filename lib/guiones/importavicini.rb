@@ -7,7 +7,7 @@
 # Dominio público de acuerdo a la legislación colombiana.
 # vtamara@pasosdeJesus.org 2022
 
-#u = Usuario.where(nusuario: "vtamara").take || Usuario.take
+# u = Usuario.where(nusuario: "vtamara").take || Usuario.take
 
 require "csv"
 
