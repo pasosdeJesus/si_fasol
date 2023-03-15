@@ -45,7 +45,6 @@ module Sivel2Gen
       end
       enctabla = et
 
-      i = 1
       cuerpotabla = []
       filas.each do |f|
         ft = [f]
@@ -156,7 +155,6 @@ module Sivel2Gen
           .where(nombre: preg)
         return if c.count == 0
 
-        reg = c.take
         condreg = "sub.region = '#{preg}'"
       end
       sub = "SELECT DISTINCT caso.id AS caso_id, "\

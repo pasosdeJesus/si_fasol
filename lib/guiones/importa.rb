@@ -860,7 +860,6 @@ impcsv.each do |r|
 
   # FAMILIAR
   fam = r["FAMILIAR"]
-  rfam = {}
   if fam
     menserror = ""
     fa = Msip::ImportaHelper.separa_apellidos_nombres(fam, menserror)
@@ -884,7 +883,7 @@ impcsv.each do |r|
   c = Sivel2Gen::Caso.create!(rc)
   rv[:id_caso] = c.id
   rv[:id_persona] = p.id
-  v = Sivel2Gen::Victima.create!(rv)
+  Sivel2Gen::Victima.create!(rv)
   if ru[:id_departamento]
     ru[:id_caso] = c.id
     ru[:id_pais] = 170

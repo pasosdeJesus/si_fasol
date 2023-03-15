@@ -76,7 +76,7 @@ module Heb412Gen
       sign_in current_usuario
       skip
       assert_difference "Heb412Gen::Plantillahcm.count" do
-        plan = Heb412Gen::Plantillahcm.create!(PRUEBA_PLANTILLAHCM)
+        Heb412Gen::Plantillahcm.create!(PRUEBA_PLANTILLAHCM)
       end
     end
     # Autenticado como operador con grupo Analista de Casos

@@ -7,7 +7,7 @@
 # Dominio público de acuerdo a la legislación colombiana.
 # vtamara@pasosdeJesus.org 2022
 
-u = Usuario.where(nusuario: "vtamara").take || Usuario.take
+#u = Usuario.where(nusuario: "vtamara").take || Usuario.take
 
 require "csv"
 
@@ -92,7 +92,6 @@ viccsv.each do |r|
     r["NOMBRE DEL SERVIDOR"], menserr
   )
   nombres = sep[0]
-  apellidos = sep[1]
   # puts "OJO nombres=#{nombres}, apellidos=#{apellidos}"
   if menserr != ""
     puts "#{nvic}:#{nreg}: *** #{menserr}"
@@ -120,7 +119,7 @@ viccsv.each do |r|
     numerodocumento: r["CEDULA"],
     sexo: sexo,
   )
-  v = Sivel2Gen::Victima.create(
+  Sivel2Gen::Victima.create(
     anotaciones: r["NO PERSONAS"],
     id_persona: p.id,
     id_caso: c.id,

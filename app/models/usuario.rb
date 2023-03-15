@@ -7,9 +7,9 @@ class Usuario < ActiveRecord::Base
   include Cor1440Gen::Concerns::Models::Usuario
 
   belongs_to :tdocumento, 
-class_name: "Msip::Tdocumento",, 
-validate: true, 
-optional: false
+    class_name: "Msip::Tdocumento",
+    validate: true, 
+    optional: false
 
   campofecha_localizado :fechanac
 
