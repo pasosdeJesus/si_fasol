@@ -3,6 +3,7 @@ es:
   attributes:
     fechadeshabilitacion: Fecha de deshabilitación
     fechacreacion: Fecha de creación
+    "Listado de aliados": Listado de aliados
   activerecord:
     attributes:
       "cargoestado":

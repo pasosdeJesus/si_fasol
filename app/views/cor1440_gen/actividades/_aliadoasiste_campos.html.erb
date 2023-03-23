@@ -1,0 +1,94 @@
+<tr class='nested-fields campos_aliadoasiste'>
+  <% if f.object.persona.nil? %>
+    <% f.object.persona = Msip::Persona.new %>
+  <% end %>
+
+  <%= f.simple_fields_for :persona do |p| %>
+    <td>
+      <%= p.input :nombres,
+        value_method: lambda {|t| '' if t.nombres == 'N'},
+        label: false %>
+    </td>
+    <td>
+      <%= p.input :apellidos, label: false %>
+    </td>
+    <td>
+      <%= p.input :tdocumento_id,
+        collection: Msip::Tdocumento.habilitados,
+        label_method: :sigla,
+        value_method: :id ,
+        label: false,
+        input_html: {
+          style: 'width: 5em',
+          "data-action": "change->msip--sindocaut#cambia_tdocumento"
+        }
+      %>
+    </td>
+    <td>
+      <%= p.input :id,
+        as: :hidden,
+        input_html: {
+          "data-msip--sindocaut-target": "id"
+        } %>
+      <% ph = 'N'
+      ac = {'data-autocompleta' => 'no'}
+      if (!p.object.numerodocumento || p.object.numerodocumento == 'N' || p.object.numerodocumento == '')
+        ph = 'Buscar'
+        ac =  { autocomplete:  'off',
+                list: 'fuente-aliadosasisten'
+        }
+      end %>
+      <%
+          if (p.object.tdocumento)
+            td = p.object.tdocumento.ayuda
+          else
+            td = "Si el tipo de documento es cédula de ciudadania teclee solo dígitos"
+          end
+        %>
+      <%= p.input :numerodocumento, placeholder: ph,
+        input_html: ac.merge!(
+          style: 'width: 6em',
+          "data-msip--sindocaut-target": "numerodocumento",
+          title: td),
+          label: false %>
+    </td>
+  <% end %>
+
+  <td>
+    <%= f.association :entidad,
+      collection: Msip::Orgsocial.all,
+      label_method: :presenta_nombre,
+      value_method: :id,
+      label: false,
+      input_html: { style: 'width: 6em' } %>
+  </td>
+  <td>
+    <%= f.association :cargoestado,
+      collection: Cargoestado.habilitados,
+      label_method: :nombre,
+      value_method: :id,
+      input_html: { style: 'width: 6em' },
+      label: false
+    %>
+  </td>
+  <td>
+    <%= f.input :telefono,
+      label: false %>
+  </td>
+  <td>
+    <%= f.input :correo,
+      label: false %>
+  </td>
+  <td>
+    <%= f.input :observaciones,
+      label: false %>
+  </td>
+  <td>
+    <%= f.input :id, as: :hidden %>
+    <%= link_to_remove_association t("Eliminar"), f,
+      class: "btn btn-sm btn-danger",
+      "data-existing": true
+    %>
+    <div><%= f.error_notification %></div>
+  </td>
+</tr>

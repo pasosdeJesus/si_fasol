@@ -94,11 +94,91 @@ module Cor1440Gen
       destroy_gen
     end
 
+
+    # Responde a requerimiento AJAX generado por cocoon creando una
+    # nueva persona como nuevo asistente para la actividad que recibe
+    # por parámetro  params[:actividad_id].
+    # Pone valores NN en los campos requeridos.
+    #
+    # Como crea personas que podrían ser remplazadas por otras por
+    # autocompletación. Los NN creados son eliminados
+    # en filtra_contenido_params
+    def nuevo_aliadoasiste
+      authorize!(:new, Msip::Persona)
+      if params[:actividad_id].nil?
+        resp_error("Falta parámetro actividad_id")
+        return
+      end
+      puts "** cuenta: #{Cor1440Gen::Actividad.where(id: params[:actividad_id].to_i).count}"
+      if Cor1440Gen::Actividad.where(id: params[:actividad_id].to_i).count == 0
+        reps_error("No se encontró actividad " +
+                   params[:actividad_id].to_i.to_s)
+        return
+      end
+      act = Cor1440Gen::Actividad.find(params[:actividad_id].to_i)
+      @persona = Msip::Persona.create(
+        nombres: "N",
+        apellidos: "N",
+        sexo: "S",
+        tdocumento_id: 11,
+        numerodocumento: "AAA",
+      )
+      @persona.save(validate: false)
+      @persona.numerodocumento = @persona.id
+      unless @persona.save
+        resp_error("No pudo crear persona")
+        return
+      end
+
+      @aliadoasiste = ::Aliadoasiste.create(
+        actividad_id: act.id,
+        persona_id: @persona.id,
+      )
+      debugger
+      unless @aliadoasiste.save
+        resp_error("No pudo crear aliado")
+        @persona.destroy
+        return
+      end
+      res = {
+        "aliadoasiste": @aliadoasiste.id.to_s,
+        "persona": @persona.id.to_s,
+      }.to_json
+      respond_to do |format|
+        format.js { render(text: res) }
+        format.json do
+          render(
+            json: res,
+            status: :created,
+          )
+        end
+        format.html { render(inline: res) }
+      end
+    end # def nuevo_aliadoasiste
+
+
     def lista_params
       l = lista_params_cor1440_gen
       l[-1][:asistencia_attributes][-1][:opcioncaracterizacion_ids] = []
       l[-1][:asistencia_attributes].insert(0, :numsesiones)
-      l
+      l + [
+        aliadoasiste_attributes: [
+          :id,
+          :cargoestado_id,
+          :correo,
+          :entidad_id,
+          :observaciones,
+          :telefono,
+          :_destroy,
+          persona_attributes: [
+            :id,
+            :apellidos,
+            :nombres,
+            :numerodocumento,
+            :tdocumento_id,
+          ]
+        ]
+      ]
     end
   end # class
 end # module

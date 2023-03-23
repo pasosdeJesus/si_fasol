@@ -35,6 +35,10 @@ Rails.application.routes.draw do
     end
     resources :usuarios, path_names: { new: "nuevo", edit: "edita" }
 
+
+    get "/aliadoasiste/nuevo" => "cor1440_gen/actividades#nuevo_aliadoasiste",
+      as: :nuevo_aliadoasiste
+
     get "/casos/mapaosm" => "sivel2_gen/casos#mapaosm"
 
     get "/casos/numcasos" => "sivel2_gen/casos#numcasos"

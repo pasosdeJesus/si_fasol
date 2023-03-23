@@ -1,0 +1,12 @@
+<div class="accordion" id="acordeon-listadoaliadosasisten">
+  <%= item_acordeon_bs(
+    'acordeon-listadoaliadosasisten', 'listadoaliadosasisten', 
+    t('Listado de aliados'), false, {
+      'estilo_accordion-header': 'text-align: center',
+      'clase_accordion-body': 'table-responsive',
+      'estilo_accordion-body': 'overflow-x:scroll'
+    }) do %>
+    <%= render 'listadoaliadosasisten_cuerpo_panel', f: f %>
+  <% end %>
+</div> <!-- accordion -->
+

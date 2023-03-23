@@ -2,7 +2,7 @@
 # Detiene servicio
 
 if (test -f ".env") then {
-  . .env
+  . ./.env
 } fi;
 if (test "$RC" = "") then {
   echo "Falta RC en .env"
@@ -19,7 +19,8 @@ if (test "$RAILS_ENV" = "production") then {
   # Intentando detener rails
   if (test -f tmp/pids/server.pid) then { 
     pp=`cat tmp/pids/server.pid`
-    ps -p $pp | grep "ruby: puma" > /dev/null
+    echo "pp=$pp"
+    ps -p $pp | grep "ruby " > /dev/null
     if (test "$?" = "0") then {
       # Proceso activo y con ruby y puma seguramente es el de este
       echo "Matando proceso con rails $pp"

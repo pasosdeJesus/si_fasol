@@ -4,7 +4,7 @@ echo "=== Pruebas de regresión al sistema con Javascript"
 
 export PUERTODES=33001 
 export IPDES=127.0.0.1 
-export RAILS_ENV=development
+export RAILS_ENV=test
 
 if (test ! -f .env) then {
   echo "Falta .env"

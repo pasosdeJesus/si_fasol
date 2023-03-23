@@ -1,0 +1,39 @@
+<turbo-frame id="marco-listadoaliadosasisten">
+  <div class='table-responsive'>
+    <table class="tablalistadoaliadosasisten table table-bordered table-sm ">
+      <datalist id='fuente-aliadosasisten'>
+      </datalist>
+      <thead class="thead-light">
+        <tr>
+          <th><%= t('Nombres') %></th>
+          <th><%= t('Apellidos') %></th>
+          <th colspan="2"><%= t('Identificación') %></th>
+          <th><%= t('Entidad') %></th>
+          <th><%= t('Cargo') %></th>
+          <th><%= t('Teléfono') %></th>
+          <th><%= t('Correo') %></th>
+          <th><%= t('Observaciones') %></th>
+        <th></th>
+        </tr>
+      </thead>
+      <tbody id="aliadosasisten">
+        <%= f.simple_fields_for :aliadoasiste do |a| %>
+          <%= render 'aliadoasiste_campos', f: a %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="links">
+    <%= link_to_add_association t('Añadir aliado'), f, 
+      :aliadoasiste,
+      :"data-association-insertion-node" => "tbody#aliadosasisten", 
+      :"data-association-insertion-method" => "append", 
+      partial: 'aliadoasiste_campos',
+      'data-ajax' => File.join(
+        Rails.configuration.relative_url_root, 'aliadoasiste/nuevo'
+      ),
+      'data-ajaxdata' => 'actividad_id',
+      :class => 'btn btn-sm btn-primary'
+    %>
+  </div>
+</turbo-frame>

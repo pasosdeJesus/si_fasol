@@ -634,8 +634,9 @@ CREATE TABLE public.aliadoasiste (
     actividad_id integer,
     entidad_id integer,
     cargoestado_id integer,
-    celular character varying(30),
+    telefono character varying(30),
     correo character varying(60),
+    observaciones character varying(5000),
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
