@@ -5,28 +5,28 @@ require_relative "../../test_helper"
 module Msip
   class OrgsocialPersonaTest < ActiveSupport::TestCase
     test "valido" do
-      grupoper = Msip::Grupoper.create(PRUEBA_GRUPOPER)
+      grupoper = Msip::Grupoper.create(PRUEBA_GRUPOPER.merge(id:nil))
 
       assert_predicate grupoper, :valid?
       grupoper.save!
 
-      tipoorg = Msip::Tipoorg.new(PRUEBA_TIPOORG)
+      tipoorg = Msip::Tipoorg.new(PRUEBA_TIPOORG.merge(id:nil))
 
       assert_predicate tipoorg, :valid?
 
-      orgsocial = Msip::Orgsocial.new(PRUEBA_ORGSOCIAL)
+      orgsocial = Msip::Orgsocial.new(PRUEBA_ORGSOCIAL.merge(id:nil))
       orgsocial.grupoper = grupoper
       orgsocial.tipoorg= tipoorg
 
       assert_predicate orgsocial, :valid?
       orgsocial.save!
 
-      persona = Msip::Persona.create(PRUEBA_PERSONA)
+      persona = Msip::Persona.create(PRUEBA_PERSONA.merge(id:nil))
 
       assert_predicate persona, :valid?
       persona.save!
 
-      perfilorgsocial = Msip::Perfilorgsocial.create(PRUEBA_PERFILORGSOCIAL)
+      perfilorgsocial = Msip::Perfilorgsocial.create(PRUEBA_PERFILORGSOCIAL.merge(id:nil))
 
       assert_predicate perfilorgsocial, :valid?
       perfilorgsocial.save!

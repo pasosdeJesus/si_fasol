@@ -39,7 +39,7 @@ require "test_helper"
         actividad_id: actividad.id,
         entidad_id: entidad.id,
         cargoestado_id: cargoestado.id,
-        celular: '123',
+        telefono: '123',
         correo: 'a123@localhost',
       )
 
