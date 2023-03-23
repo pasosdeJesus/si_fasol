@@ -625,6 +625,42 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: aliadoasiste; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.aliadoasiste (
+    id bigint NOT NULL,
+    persona_id integer,
+    actividad_id integer,
+    entidad_id integer,
+    cargoestado_id integer,
+    celular character varying(30),
+    correo character varying(60),
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: aliadoasiste_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.aliadoasiste_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: aliadoasiste_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.aliadoasiste_id_seq OWNED BY public.aliadoasiste.id;
+
+
+--
 -- Name: apo214_asisreconocimiento; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6412,6 +6448,13 @@ CREATE TABLE public.t (
 
 
 --
+-- Name: aliadoasiste id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aliadoasiste ALTER COLUMN id SET DEFAULT nextval('public.aliadoasiste_id_seq'::regclass);
+
+
+--
 -- Name: apo214_asisreconocimiento id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7139,6 +7182,14 @@ ALTER TABLE ONLY public.sivel2_gen_acto
 
 ALTER TABLE ONLY public.sivel2_gen_acto
     ADD CONSTRAINT acto_id_presponsable_id_categoria_id_persona_id_caso_key UNIQUE (id_presponsable, id_categoria, id_persona, id_caso);
+
+
+--
+-- Name: aliadoasiste aliadoasiste_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aliadoasiste
+    ADD CONSTRAINT aliadoasiste_pkey PRIMARY KEY (id);
 
 
 --
@@ -10573,6 +10624,14 @@ ALTER TABLE ONLY public.msip_solicitud
 
 
 --
+-- Name: aliadoasiste fk_rails_a75a686593; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aliadoasiste
+    ADD CONSTRAINT fk_rails_a75a686593 FOREIGN KEY (entidad_id) REFERENCES public.msip_orgsocial(id);
+
+
+--
 -- Name: cor1440_gen_actividad_proyectofinanciero fk_rails_a8489e0d62; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10877,6 +10936,14 @@ ALTER TABLE ONLY public.cor1440_gen_proyectofinanciero_usuario
 
 
 --
+-- Name: aliadoasiste fk_rails_deef62e3d5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aliadoasiste
+    ADD CONSTRAINT fk_rails_deef62e3d5 FOREIGN KEY (persona_id) REFERENCES public.msip_persona(id);
+
+
+--
 -- Name: sivel2_gen_otraorga_victima fk_rails_e023799a03; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10965,6 +11032,14 @@ ALTER TABLE ONLY public.heb412_gen_carpetaexclusiva
 
 
 --
+-- Name: aliadoasiste fk_rails_eb6463149c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aliadoasiste
+    ADD CONSTRAINT fk_rails_eb6463149c FOREIGN KEY (cargoestado_id) REFERENCES public.cargoestado(id);
+
+
+--
 -- Name: msip_ubicacionpre fk_rails_eba8cc9124; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11034,6 +11109,14 @@ ALTER TABLE ONLY public.apo214_lugarpreliminar
 
 ALTER TABLE ONLY public.sivel2_gen_combatiente
     ADD CONSTRAINT fk_rails_f77dda7a40 FOREIGN KEY (id_organizacion) REFERENCES public.sivel2_gen_organizacion(id);
+
+
+--
+-- Name: aliadoasiste fk_rails_f8e986b83d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aliadoasiste
+    ADD CONSTRAINT fk_rails_f8e986b83d FOREIGN KEY (actividad_id) REFERENCES public.cor1440_gen_actividad(id);
 
 
 --
@@ -12068,6 +12151,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230127123623'),
 ('20230301145222'),
 ('20230301212546'),
-('20230314103851');
+('20230314103851'),
+('20230323180051');
 
 

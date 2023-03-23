@@ -48,11 +48,26 @@ PRUEBA_USUARIO_AN = {
   fechadeshabilitacion: nil,
 }
 
-PRUEBA_PERSONA = {
-  nombres: "Luis Alejandro",
-  apellidos: "Cruz Ordoñez",
-  sexo: "M",
-  numerodocumento: "1061769227",
+
+# Otras tablas
+
+
+PRUEBA_ACTIVIDAD = {
+  nombre: "n",
+  fecha: "2017-03-02",
+  oficina_id: 1,
+  usuario_id: 1,
+}
+
+PRUEBA_CARGOESTADO = {
+  nombre: 'Cargo',
+  fechacreacion: '2023-03-23'
+}
+
+PRUEBA_CASO = {
+  titulo: "Caso de prueba",
+  fecha: "2021-09-11",
+  memo: "Una descripción del caso de prueba",
 }
 
 PRUEBA_GRUPOPER = {
@@ -63,8 +78,33 @@ PRUEBA_GRUPOPER = {
 PRUEBA_ORGSOCIAL = {
   id: 1,
   grupoper_id: 1,
+  tipoorg_id: 1,
   created_at: "2021-08-27",
   updated_at: "2021-08-27",
+}
+
+PRUEBA_PERFILORGSOCIAL = {
+  id: 1000,
+  nombre: "PERFILORGSOCIAL1",
+  fechacreacion: "2018-07-24",
+}
+
+
+PRUEBA_PERSONA = {
+  nombres: "Nombres",
+  apellidos: "Apellidos",
+
+  anionac: 1980,
+  mesnac: 2,
+  dianac: 2,
+  sexo: "M",
+  numerodocumento: "1061000000",
+}
+
+PRUEBA_TIPOORG = {
+  nombre: "Tipoorg",
+  fechacreacion: "2021-10-10",
+  created_at: "2021-10-10",
 }
 
 PRUEBA_UBICACIONPRE = {
@@ -126,9 +166,4 @@ PRUEBA_LUGARPRELIMINAR = {
   evaluacionlugar: "",
   riesgosdanios: "",
   archivokml_id: nil,
-}
-PRUEBA_CASO = {
-  titulo: "Caso de prueba",
-  fecha: "2021-09-11",
-  memo: "Una descripción del caso de prueba",
 }

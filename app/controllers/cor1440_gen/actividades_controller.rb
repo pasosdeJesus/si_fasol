@@ -27,6 +27,7 @@ module Cor1440Gen
         # :orgsocial,  -- por la cantidad de organizaicones hace muy lenta
         # la carga, cambiar por autocompletación
         :listadoasistencia,
+        :listadoaliadosasisten,
         :poblacion,
         :anexos,
       ]
