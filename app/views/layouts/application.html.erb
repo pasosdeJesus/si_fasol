@@ -144,6 +144,8 @@
           <%= opcion_menu "Formularios", mr519_gen.formularios_path,
             desplegable: true %>
         <% end %>
+        <%= opcion_menu "Ver Control de Acceso", 
+          msip.ayuda_controldeacceso_path, desplegable: true %>
       <% end %>
       <%= opcion_menu "Salir #{current_usuario.nusuario}", 
         main_app.terminar_sesion_path %>
