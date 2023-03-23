@@ -84,7 +84,7 @@ FileUtils.chdir RAIZ_AP do
     system! "RAILS_ENV=#{ENV['RAILS_ENV']} bin/rails assets:precompile --trace"
   end
 
-  if ENV['RAILS_ENV'] == "development"
+  if ENV['RAILS_ENV'] == "development" || ENV['RAILS_ENV'] == "test"
     puts "\n== Ejecutando en modo desarrollo  =="
 
     if File.exist?('Procfile') && ENV['R'] != 'f'
