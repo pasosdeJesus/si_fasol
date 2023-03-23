@@ -36,7 +36,7 @@ const puppeteer = require('puppeteer-core'); // v13.0.0 or later
         const targetPage = page;
         const promises = [];
         promises.push(targetPage.waitForNavigation());
-        await targetPage.goto('http://127.0.0.1:3000/fasol/si');
+        await targetPage.goto('http://127.0.0.1:33001/fasol/si');
         await Promise.all(promises);
     }
     {

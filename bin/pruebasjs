@@ -2,7 +2,7 @@
 
 echo "=== Pruebas de regresión al sistema con Javascript"
 
-export PUERTODES=3000 
+export PUERTODES=33001 
 export IPDES=127.0.0.1 
 export RAILS_ENV=development
 
