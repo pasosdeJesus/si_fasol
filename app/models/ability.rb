@@ -1,9 +1,27 @@
 # frozen_string_literal: true
 
 class Ability < Cor1440Gen::Ability
-  GRUPO_DESAPARICION_CASOS = 25
 
+  ROLES_CA = [
+    'Administrar casos. ' +
+    'Administrar actividades y proyectos. ' +
+    'Administrar usuarios. ' +
+    'Administrar documentos en nube. ' +
+    'Administrar tablas básicas. ', #ROLADMIN
+    '.',
+    'Lo mismo que el administrador. ', #ROLDIR
+    '.',
+    'Crear actividades, editar y borrar las que cree. ' +
+    'Si es del grupo Analista de caso administrar casos. ' +
+    'Administrar documentos en nube', #ROLOP
+    '.',
+    '.'
+  ]
+
+
+  GRUPO_DESAPARICION_CASOS = 25
   BASICAS_PROPIAS = []
+
 
   def tablasbasicas
     r = (Msip::Ability::BASICAS_PROPIAS -
