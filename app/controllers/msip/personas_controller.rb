@@ -14,6 +14,10 @@ module Msip
         [:proyectofinanciero_ids]
     end
 
+    def atributos_form
+      atributos_show_jos19 - [:proyectofinanciero_ids]
+    end
+
     def index_reordenar(c)
       c.reorder([:nombres, :apellidos])
     end
