@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: 3d7d8de18da781424b81c45df7adda6f8910d3e0
+  revision: d0a80446e5a8f363ad392a3003bc628b93bb39a2
   branch: main
   specs:
     cor1440_gen (2.2.0.beta1)
@@ -65,7 +65,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: e239bb3b56f1a253f478945b36c33f4227eacd21
+  revision: 4addd31d8762753879f16a9ca4c66a4e3f0da2ea
   branch: main
   specs:
     mr519_gen (2.2.0.beta1)
@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: ce832af4e98368bf7a71a2da09f8bb9bd3b6f7e6
+  revision: 2cb580a670c021f1961d0d77047a99550c1f39de
   branch: main
   specs:
     msip (2.2.0.beta1)
@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 4ec5023d3249dfe70bf83d6d05643fefa323fad1
+  revision: 6a6f2f728ec1d0a2f10f46ef2fc37fe0a22ba56e
   branch: main
   specs:
     sivel2_gen (2.2.0.beta1)
@@ -222,7 +222,7 @@ GEM
       capybara (~> 3.0)
       ferrum (~> 0.13.0)
     date (3.3.3)
-    debug (1.7.1)
+    debug (1.7.2)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     devise (4.9.0)
@@ -287,7 +287,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
-    msgpack (1.6.1)
+    msgpack (1.7.0)
     net-imap (0.3.4)
       date
       net-protocol
