@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: d0a80446e5a8f363ad392a3003bc628b93bb39a2
+  revision: 61c866dabc9a645d120fb8149c631513f6176be1
   branch: main
   specs:
     cor1440_gen (2.2.0.beta1)
@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 2cb580a670c021f1961d0d77047a99550c1f39de
+  revision: 08de0765fec0beb2fae0437937475a36447e0517
   branch: main
   specs:
     msip (2.2.0.beta1)
@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 6a6f2f728ec1d0a2f10f46ef2fc37fe0a22ba56e
+  revision: b23eed53909beb32b20f1c1e06bfeb938726aebf
   branch: main
   specs:
     sivel2_gen (2.2.0.beta1)
@@ -301,8 +301,6 @@ GEM
     nokogiri (1.14.2)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    nokogiri (1.14.2-x86_64-linux)
-      racc (~> 1.4)
     odf-report (0.7.3)
       mime-types
       nokogiri (>= 1.10.0)
@@ -469,7 +467,6 @@ GEM
     zeitwerk (2.6.7)
 
 PLATFORMS
-  x86_64-linux
   x86_64-openbsd
 
 DEPENDENCIES

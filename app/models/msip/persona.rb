@@ -6,6 +6,24 @@ module Msip
   class Persona < ActiveRecord::Base
     include Jos19::Concerns::Models::Persona
 
+    validates :numerodocumento, presence: true
+    validates :tdocumento_id, presence: true
+
+    validate :sindoc_estandar
+    def sindoc_estandar
+      if tdocumento_id == 11
+        if tdocumento_id == 11 && id && numerodocumento && 
+            numerodocumento.to_i != self.id && 
+            (numerodocumento[-1] < 'A' || numerodocumento[-1] > 'Z')
+          errors.add(:numerodocumento, "Número de documento #{numerodocumento} "\
+                     "con tipo SIN DOCUMENTO  debe ser el "\
+                     "número de la persona (i.e #{self.id}) o "\
+                     "un número seguido de letras (e.g 2190C)")
+        end
+      end
+    end
+
+
     # Registros msip_persona_trelacion en los que
     # esta persona aparece como persona2 y la
     # persona1 es víctima en un caso

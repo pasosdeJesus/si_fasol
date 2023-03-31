@@ -42,7 +42,9 @@ module Sivel2
     puts "config.x.origen_cors=#{config.x.origen_cors.inspect}"
 
     # msip
-    config.x.formato_fecha = ENV.fetch("FORMATO_FECHA", "dd/M/yyyy")
+    config.x.formato_fecha = ENV.fetch("MSIP_FORMATO_FECHA", "dd/M/yyyy")
+
+    config.x.msip_docid_obligatorio = true
 
     # heb412
     config.x.heb412_ruta = Pathname(
