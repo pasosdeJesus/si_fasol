@@ -16,6 +16,7 @@ module Msip
     def sindoc_estandar
       if tdocumento_id == 11
         if tdocumento_id == 11 && id && numerodocumento && 
+            numerodocumento.to_s != '' && 
             numerodocumento.to_i != self.id && 
             (numerodocumento[-1] < 'A' || numerodocumento[-1] > 'Z')
           errors.add(:numerodocumento, "Número de documento #{numerodocumento} "\

@@ -16,7 +16,7 @@ module Msip
 
     def atributos_form
       atributos_form_jos19 - 
-        [:proyectofinanciero_ids]
+        [:familiarvictima_ids, :proyectofinanciero_ids]
     end
 
     def index_reordenar(c)
