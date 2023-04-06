@@ -13,7 +13,7 @@ module Sivel2Gen
       validacion_estandar(
         casos,
         "Casos sin región",
-        "id NOT IN (SELECT id_caso FROM sivel2_gen_caso_region)",
+        "id NOT IN (SELECT caso_id FROM sivel2_gen_caso_region)",
       )
     end
 

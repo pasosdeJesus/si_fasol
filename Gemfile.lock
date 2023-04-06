@@ -33,10 +33,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: 61c866dabc9a645d120fb8149c631513f6176be1
-  branch: main
+  revision: c4575806725953c0d64591ba448d4d71b9b2824a
+  branch: conv2
   specs:
-    cor1440_gen (2.2.0.beta1)
+    cor1440_gen (2.2.0.beta2)
       devise
       heb412_gen
       kt-paperclip
@@ -46,10 +46,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 62c5c8f94e9edf167d27c3ee940361c0a644e320
-  branch: main
+  revision: 4face5f255e8cad917567cd2b1ae67f256958fe4
+  branch: conv2
   specs:
-    heb412_gen (2.2.0.beta1)
+    heb412_gen (2.2.0.beta2)
       mr519_gen
       msip
       redcarpet
@@ -57,27 +57,27 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/jos19.git
-  revision: 5659bbf0c2fd6ebc7f42f337b9be992953ce8778
-  branch: main
+  revision: f3452a6e5e2915e5a921f0bacdd45cc5605485ac
+  branch: conv2
   specs:
     jos19 (0.1.0)
       rails (>= 7.0.4)
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 4addd31d8762753879f16a9ca4c66a4e3f0da2ea
-  branch: main
+  revision: 081cddb10db3dfbb404483e3d3a86db26ef25141
+  branch: conv2
   specs:
-    mr519_gen (2.2.0.beta1)
+    mr519_gen (2.2.0.beta2)
       msip
       rails
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 08de0765fec0beb2fae0437937475a36447e0517
-  branch: main
+  revision: 3f038fea927f1d9bdeaa3d87d2d657e04a79438a
+  branch: conv2
   specs:
-    msip (2.2.0.beta1)
+    msip (2.2.0.beta2)
       cancancan (~> 3)
       devise (~> 4)
       devise-i18n (~> 1)
@@ -94,10 +94,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: b23eed53909beb32b20f1c1e06bfeb938726aebf
-  branch: main
+  revision: 5c4956fa0bf7f13d0db572e582d8513bab6a6f20
+  branch: conv2
   specs:
-    sivel2_gen (2.2.0.beta1)
+    sivel2_gen (2.2.0.beta2)
       color
       devise
       rails
@@ -172,7 +172,7 @@ GEM
       tzinfo (~> 2.0)
     acts_as_list (1.1.0)
       activerecord (>= 4.2)
-    addressable (2.8.1)
+    addressable (2.8.3)
       public_suffix (>= 2.0.2, < 6.0)
     andand (1.3.3)
     ansi (1.5.0)
@@ -192,7 +192,7 @@ GEM
       thor (~> 1.0)
     camertron-eprun (1.1.1)
     cancancan (3.5.0)
-    capybara (3.38.0)
+    capybara (3.39.0)
       addressable
       matrix
       mini_mime (>= 0.1.3)
@@ -225,7 +225,7 @@ GEM
     debug (1.7.2)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
-    devise (4.9.1)
+    devise (4.9.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -265,7 +265,7 @@ GEM
     json (2.6.3)
     kgio (2.11.4)
     libxml-ruby (4.0.0)
-    loofah (2.19.1)
+    loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.8.1)
@@ -297,7 +297,7 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    nio4r (2.5.8)
+    nio4r (2.5.9)
     nokogiri (1.14.2)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
@@ -307,7 +307,7 @@ GEM
       rubyzip (>= 1.3.0)
     orm_adapter (0.5.0)
     parallel (1.22.1)
-    parser (3.2.1.1)
+    parser (3.2.2.0)
       ast (~> 2.4.1)
     parslet (2.0.0)
     pdf-core (0.9.0)
@@ -379,14 +379,14 @@ GEM
     rspreadsheet (0.5.3)
       andand (>= 1.3)
       rubyzip (>= 1.3)
-    rubocop (1.48.1)
+    rubocop (1.49.0)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.2.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.26.0, < 2.0)
+      rubocop-ast (>= 1.28.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.28.0)

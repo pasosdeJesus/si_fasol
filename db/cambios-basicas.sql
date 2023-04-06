@@ -4623,7 +4623,7 @@ INSERT INTO public.sivel2_gen_tviolencia (id, nombre, nomcorto,
   ('N', 'NO VIOLENTA', 'NV', '2022-05-23', '2022-05-23', 
   '2022-05-23');
 INSERT INTO public.sivel2_gen_supracategoria (id, codigo, nombre, 
-  id_tviolencia, fechacreacion, created_at, updated_at) VALUES
+  tviolencia_id, fechacreacion, created_at, updated_at) VALUES
   (100, 1, 'NO VIOLENTA', 'N',
   '2022-05-23', '2022-05-23', '2022-05-23');
 INSERT INTO public.sivel2_gen_categoria (id, nombre, supracategoria_id,

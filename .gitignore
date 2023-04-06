@@ -51,3 +51,6 @@ public/fasol/si/csv/
 public/fasol/sipub
 ref
 app/javascript/controllers/msip
+cobertura-sistema/
+cobertura-unitarias/
+public/fasol/si/cobertura/

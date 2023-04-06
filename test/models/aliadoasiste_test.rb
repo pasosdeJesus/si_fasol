@@ -9,6 +9,7 @@ require "test_helper"
 
     test "valido" do
       persona = Msip::Persona.create(PRUEBA_PERSONA)
+      debugger
       assert persona.valid?
 
       actividad = Cor1440Gen::Actividad.create(PRUEBA_ACTIVIDAD)

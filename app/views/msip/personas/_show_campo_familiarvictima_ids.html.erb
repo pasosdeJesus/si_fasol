@@ -17,7 +17,7 @@
           <tr>
             <td>
               <% v = Sivel2Gen::Victima.find(pt.persona1) %>
-              <%= link_to v.id_caso, sivel2_gen.caso_path(v.id_caso), target: '_blank' %>
+              <%= link_to v.caso_id, sivel2_gen.caso_path(v.caso_id), target: '_blank' %>
             </td>
             <td>
               <%= v.persona.presenta_nombre %>

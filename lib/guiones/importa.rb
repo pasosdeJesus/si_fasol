@@ -18,12 +18,12 @@ end
 def sin_presponsable(rpr)
   if rpr.count == 0
     rpr << {
-      id_presponsable: 50,
+      presponsable_id: 50,
     }
   else
     rpr.each do |r|
-      if r[:id_presponsable] == 35
-        r[:id_presponsable] = 50
+      if r[:presponsable_id] == 35
+        r[:presponsable_id] = 50
       end
     end
   end
@@ -724,36 +724,36 @@ impcsv.each do |r|
   puts r["DEPARTAMENTO"]
   rd = r["DEPARTAMENTO"]
   if rd
-    pd = Msip::Departamento.where(id_pais: 170)
+    pd = Msip::Departamento.where(pais_id: 170)
       .where("unaccent(nombre) ILIKE '%' || unaccent(?) || '%'", rd)
     if pd.count == 1 || (pd.count > 1 && (pd = Msip::Departamento
-        .where(id_pais: 170)
+        .where(pais_id: 170)
         .where("upper(unaccent(nombre))=upper(unaccent(?))", rd)).count == 1)
       d = pd.take
       ru = {
-        id_departamento: d.id,
+        departamento_id: d.id,
       }
       pm = r["LUGAR DE LOS HECHOS"]
       if pm
         pindex = pm.index(".")
         nm = pindex ? pm[0, pindex - 1] : nil
-        m = Msip::Municipio.where(id_departamento: d.id)
+        m = Msip::Municipio.where(departamento_id: d.id)
           .where("unaccent(nombre) ILIKE '%' || unaccent(?) || '%'", pm)
         if m.count == 1
-          ru[:id_municipio] = m.take.id
+          ru[:municipio_id] = m.take.id
         elsif m.count > 1 && (m = Msip::Municipio
-            .where(id_departamento: d.id)
+            .where(departamento_id: d.id)
             .where("upper(unaccent(nombre))=upper(unaccent(?))",
               pm)).count == 1
-          ru[:id_municipio] = m.take.id
+          ru[:municipio_id] = m.take.id
         elsif nm && (m = Msip::Municipio
-              .where(id_departamento: d.id)
+              .where(departamento_id: d.id)
               .where("unaccent(nombre) ILIKE '%' || unaccent(?) || '%'",
                 nm)).count == 1
-          ru[:id_municipio] = m.take.id
+          ru[:municipio_id] = m.take.id
         elsif d.nombre == "Cundinamarca" && pm == "BOGOTA"
-          ru[:id_departamento] = 4
-          ru[:id_municipio] = 24
+          ru[:departamento_id] = 4
+          ru[:municipio_id] = 24
         else
           ru[:lugar] = pm
         end
@@ -776,7 +776,7 @@ impcsv.each do |r|
       puts "#{nimp}:#{nreg}: *** Presunto responsable sin homologacion '#{np}'"
     else
       rpra = {
-        id_presponsable: tpresp[np],
+        presponsable_id: tpresp[np],
       }
       if tpresp[np] == 14 && np.upcase != "PARAMILITARES"
         rpra[:bloque] = np
@@ -824,11 +824,11 @@ impcsv.each do |r|
     else
       mreg = treg[reg]
       rreg1 = {
-        id_region: mreg[0],
+        region_id: mreg[0],
       }
       unless mreg[1].nil?
         rreg2 = {
-          id_region: mreg[1],
+          region_id: mreg[1],
         }
       end
     end
@@ -874,19 +874,19 @@ impcsv.each do |r|
       Msip::PersonaTrelacion.create!(
         persona1: p.id,
         persona2: f.id,
-        id_trelacion: "SI",
+        trelacion_id: "SI",
       )
     end
   end
 
   rc[:id] = nreg + 1001
   c = Sivel2Gen::Caso.create!(rc)
-  rv[:id_caso] = c.id
-  rv[:id_persona] = p.id
+  rv[:caso_id] = c.id
+  rv[:persona_id] = p.id
   Sivel2Gen::Victima.create!(rv)
-  if ru[:id_departamento]
-    ru[:id_caso] = c.id
-    ru[:id_pais] = 170
+  if ru[:departamento_id]
+    ru[:caso_id] = c.id
+    ru[:pais_id] = 170
     u = Msip::Ubicacion.create!(ru)
     c.ubicacion_id = u.id
     c.save!
@@ -894,8 +894,8 @@ impcsv.each do |r|
   polounico = nil
   npolounico = ""
   rpr.each do |rpra|
-    rpra[:id_caso] = c.id
-    polo = Sivel2Gen::CasoPresponsable.connection.execute("SELECT sivel2_gen_polo_id(#{rpra[:id_presponsable]})")[0]["sivel2_gen_polo_id"]
+    rpra[:caso_id] = c.id
+    polo = Sivel2Gen::CasoPresponsable.connection.execute("SELECT sivel2_gen_polo_id(#{rpra[:presponsable_id]})")[0]["sivel2_gen_polo_id"]
     if polounico.nil? && polo.to_i > 0
       polounico = polo
       npolounico = Sivel2Gen::Presponsable.find(polounico).nombre
@@ -904,19 +904,19 @@ impcsv.each do |r|
     end
   end
   if rpr == []
-    rpr << { id_presponsable: 35 }
+    rpr << { presponsable_id: 35 }
   end
 
   if rreg1
-    rreg1[:id_caso] = c.id
+    rreg1[:caso_id] = c.id
     Sivel2Gen::CasoRegion.create!(rreg1)
   end
   if rreg2
-    rreg2[:id_caso] = c.id
+    rreg2[:caso_id] = c.id
     Sivel2Gen::CasoRegion.create!(rreg2)
   end
   if rfuente && rfuente[:fecha]
-    rfuente[:id_caso] = c.id
+    rfuente[:caso_id] = c.id
     rfuente[:id] = nreg + 1001
     of = Sivel2Gen::CasoFuenteprensa.create(rfuente)
     unless of.valid?
@@ -948,7 +948,7 @@ impcsv.each do |r|
     scf = r[cat]
     if tcat.keys.include?([cat, scf, polounico])
       rc = tcat[[cat, scf, polounico]]
-      racto[:id_categoria] = rc[0]
+      racto[:categoria_id] = rc[0]
       if rc[1] != ""
         puts "#{nimp}:#{nreg}: *** Polo #{npolounico} (#{polounico}). Categoria: #{cat} - #{scf}. #{rc[1]}"
         pcaso << "Polo #{npolounico} (#{polounico}). Categoria: #{cat} - #{scf}. #{rc[1]}"
@@ -964,15 +964,15 @@ impcsv.each do |r|
   end
 
   rpr.each do |rpra|
-    rpra[:id_caso] = c.id
+    rpra[:caso_id] = c.id
   end
 
   ractos.each do |racto|
-    racto[:id_caso] = c.id
-    racto[:id_persona] = p.id
+    racto[:caso_id] = c.id
+    racto[:persona_id] = p.id
     rpr.each do |rpra|
-      if rpra[:id_presponsable].nil?
-        rpra[:id_responsable] = if racto[:id_categoria] >= 1000 && racto[:id_categoria] <= 1025
+      if rpra[:presponsable_id].nil?
+        rpra[:id_responsable] = if racto[:categoria_id] >= 1000 && racto[:categoria_id] <= 1025
           50
         else
           35
@@ -981,7 +981,7 @@ impcsv.each do |r|
       if Sivel2Gen::CasoPresponsable.where(rpra).count == 0
         Sivel2Gen::CasoPresponsable.create!(rpra)
       end
-      racto[:id_presponsable] = rpra[:id_presponsable]
+      racto[:presponsable_id] = rpra[:presponsable_id]
       if Sivel2Gen::Acto.where(racto).count == 0
         Sivel2Gen::Acto.create!(racto)
       end
@@ -1012,9 +1012,9 @@ impcsv.each do |r|
 
   pcaso.each do |prob|
     Sivel2Gen::CasoEtiqueta.create!(
-      id_caso: c.id,
-      id_etiqueta: 4, # ERROR_IMPORTACIÓN
-      id_usuario: 1,
+      caso_id: c.id,
+      etiqueta_id: 4, # ERROR_IMPORTACIÓN
+      usuario_id: 1,
       fecha: Date.today,
       observaciones: prob,
     )

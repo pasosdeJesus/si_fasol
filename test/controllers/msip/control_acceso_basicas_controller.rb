@@ -52,11 +52,11 @@ module Msip
         when "pais"
           modelo.create!(MODELO_PARAMS.merge({ id: 1000, nombreiso: "iso" }))
         when "departamento"
-          modelo.create!(MODELO_PARAMS.merge({ id_pais: 170 }))
+          modelo.create!(MODELO_PARAMS.merge({ pais_id: 170 }))
         when "municipio"
-          modelo.create!(MODELO_PARAMS.merge({ id_departamento: 17 }))
+          modelo.create!(MODELO_PARAMS.merge({ departamento_id: 17 }))
         when "clase"
-          modelo.create!(MODELO_PARAMS.merge({ id_municipio: 1360 }))
+          modelo.create!(MODELO_PARAMS.merge({ municipio_id: 1360 }))
         else
           modelo.create!(MODELO_PARAMS)
         end

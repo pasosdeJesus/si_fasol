@@ -24,7 +24,7 @@ module Msip
     end
 
     def destroy
-      if Sivel2Gen::Victima.where(id_persona: @registro.id).count == 0
+      if Sivel2Gen::Victima.where(persona_id: @registro.id).count == 0
         Msip::PersonaTrelacion.where(persona1: @registro.id).delete_all
         Msip::PersonaTrelacion.where(persona2: @registro.id).delete_all
       end

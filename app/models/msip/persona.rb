@@ -34,7 +34,7 @@ module Msip
     def como_familiar_de_victima
       persona_trelacion2.where(
         "msip_persona_trelacion.persona1 IN "\
-          "(SELECT id_persona FROM sivel2_gen_victima)",
+          "(SELECT persona_id FROM sivel2_gen_victima)",
       ).order(
         :persona1,
       )

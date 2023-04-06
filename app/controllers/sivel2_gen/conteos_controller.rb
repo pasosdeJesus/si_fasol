@@ -10,17 +10,17 @@ module Sivel2Gen
 
     def fasol_banco
       sub = "SELECT DISTINCT caso.id AS caso_id, "\
-        " id_categoria, ac.id_persona, cat.id_pconsolidado, "\
+        " categoria_id, ac.persona_id, cat.pconsolidado_id, "\
         " p.nombre AS rotulo "\
         " FROM sivel2_gen_caso AS caso"\
-        " JOIN sivel2_gen_acto AS ac ON caso.id=ac.id_caso"\
+        " JOIN sivel2_gen_acto AS ac ON caso.id=ac.caso_id"\
         " JOIN sivel2_gen_categoria AS cat "\
-        "  ON ac.id_categoria=cat.id "\
+        "  ON ac.categoria_id=cat.id "\
         " JOIN sivel2_gen_pconsolidado AS p "\
-        "  ON p.id=cat.id_pconsolidado "
+        "  ON p.id=cat.pconsolidado_id "
 
       r1 = ActiveRecord::Base.connection.select_all(
-        "SELECT COUNT(DISTINCT id_persona) FROM (#{sub}) AS sub",
+        "SELECT COUNT(DISTINCT persona_id) FROM (#{sub}) AS sub",
       )
       @numpersonas = r1[0]["count"]
 
@@ -65,17 +65,17 @@ module Sivel2Gen
 
     def fasol_banco_regionales
       sub = "SELECT DISTINCT caso.id AS caso_id, "\
-        " id_categoria, ac.id_persona, cat.id_pconsolidado, "\
+        " categoria_id, ac.persona_id, cat.pconsolidado_id, "\
         " p.nombre AS rotulo, "\
         "(SELECT r.nombre FROM  sivel2_gen_caso_region AS cr "\
-        "  JOIN sivel2_gen_region AS r ON cr.id_region=r.id "\
-        "  WHERE cr.id_caso=caso.id LIMIT 1) AS region "\
+        "  JOIN sivel2_gen_region AS r ON cr.region_id=r.id "\
+        "  WHERE cr.caso_id=caso.id LIMIT 1) AS region "\
         " FROM sivel2_gen_caso AS caso"\
-        " JOIN sivel2_gen_acto AS ac ON caso.id=ac.id_caso"\
+        " JOIN sivel2_gen_acto AS ac ON caso.id=ac.caso_id"\
         " JOIN sivel2_gen_categoria AS cat "\
-        "  ON ac.id_categoria=cat.id "\
+        "  ON ac.categoria_id=cat.id "\
         " JOIN sivel2_gen_pconsolidado AS p "\
-        "  ON p.id=cat.id_pconsolidado "
+        "  ON p.id=cat.pconsolidado_id "
 
       q4 = "SELECT rotulo, region, count(*) FROM (#{sub}) AS sub "\
         " GROUP BY 1, 2 ORDER BY 1,2"
@@ -159,22 +159,22 @@ module Sivel2Gen
       end
       sub = "SELECT DISTINCT caso.id AS caso_id, "\
         " per.id, per.sexo, re.nombre AS rangoedad, "\
-        " id_categoria, cat.id_pconsolidado, p.nombre AS rotulo, "\
+        " categoria_id, cat.pconsolidado_id, p.nombre AS rotulo, "\
         "(SELECT r.nombre FROM  sivel2_gen_caso_region AS cr "\
-        "  JOIN sivel2_gen_region AS r ON cr.id_region=r.id "\
-        "  WHERE cr.id_caso=caso.id LIMIT 1) AS region "\
+        "  JOIN sivel2_gen_region AS r ON cr.region_id=r.id "\
+        "  WHERE cr.caso_id=caso.id LIMIT 1) AS region "\
         " FROM sivel2_gen_caso AS caso"\
-        " JOIN sivel2_gen_acto AS ac ON caso.id=ac.id_caso"\
+        " JOIN sivel2_gen_acto AS ac ON caso.id=ac.caso_id"\
         " JOIN sivel2_gen_categoria AS cat "\
-        "  ON ac.id_categoria=cat.id "\
+        "  ON ac.categoria_id=cat.id "\
         " JOIN sivel2_gen_pconsolidado AS p "\
-        "  ON p.id=cat.id_pconsolidado "\
+        "  ON p.id=cat.pconsolidado_id "\
         " JOIN msip_persona AS per "\
-        "  ON per.id=ac.id_persona "\
+        "  ON per.id=ac.persona_id "\
         " JOIN sivel2_gen_victima AS vic "\
-        "  ON per.id=vic.id_persona AND caso.id=vic.id_caso "\
+        "  ON per.id=vic.persona_id AND caso.id=vic.caso_id "\
         " JOIN sivel2_gen_rangoedad AS re "\
-        "  ON vic.id_rangoedad=re.id "
+        "  ON vic.rangoedad_id=re.id "
 
       q4 = "SELECT rotulo, rangoedad, sexo, count(*) FROM (#{sub}) AS sub "\
         " WHERE #{condreg}"\

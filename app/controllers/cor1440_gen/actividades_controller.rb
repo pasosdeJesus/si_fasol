@@ -35,7 +35,7 @@ module Cor1440Gen
 
     def otros_impedimentos_para_borrar_persona_ex_asistente(a)
       # Estar como víctima en un caso es impedimento
-      if Sivel2Gen::Victima.where(id_persona: a.persona_id).count > 0
+      if Sivel2Gen::Victima.where(persona_id: a.persona_id).count > 0
         return true
       end
 

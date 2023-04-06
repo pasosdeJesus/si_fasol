@@ -121,8 +121,8 @@ viccsv.each do |r|
   )
   Sivel2Gen::Victima.create(
     anotaciones: r["NO PERSONAS"],
-    id_persona: p.id,
-    id_caso: c.id,
+    persona_id: p.id,
+    caso_id: c.id,
   )
 
   #      puts "Registro creado"
