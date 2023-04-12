@@ -134,7 +134,6 @@ module Cor1440Gen
         actividad_id: act.id,
         persona_id: @persona.id,
       )
-      debugger
       unless @aliadoasiste.save
         resp_error("No pudo crear aliado")
         @persona.destroy

@@ -75,9 +75,6 @@
         <%= opcion_menu 'Proyectos', 
           cor1440_gen.proyectosfinancieros_path, 
           desplegable: true %>
-        <%= opcion_menu 'Población vinculada', 
-          msip.personas_path, 
-          desplegable: true %>
         <%= opcion_menu "Conteo por actividades de proyecto", 
           cor1440_gen.contar_actividades_path, desplegable: true %>
         <%= opcion_menu "Conteo por beneficiario y actividad de proyecto", 
@@ -86,7 +83,13 @@
         <%= opcion_menu 'Medición de indicadores', 
           cor1440_gen.mindicadorespf_path, desplegable: true %>
       <% end %>
-
+      <%= despliega_abajo 'Población vinculada' do %>
+        <%= opcion_menu 'Listado', 
+          msip.personas_path, desplegable: true %>
+        <%= opcion_menu 'Reporte de nombres repetidos', 
+          main_app.personas_nombresrepetidos_path, desplegable: true %>
+      <% end %>
+ 
     <% end %>
   <% end %>
   <%= grupo_menus :pull => :right do %>

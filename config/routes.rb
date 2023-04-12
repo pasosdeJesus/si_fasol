@@ -39,6 +39,9 @@ Rails.application.routes.draw do
     get "/aliadoasiste/nuevo" => "cor1440_gen/actividades#nuevo_aliadoasiste",
       as: :nuevo_aliadoasiste
 
+    get '/personas/nombresrepetidos' => 'msip/personas#nombresrepetidos',
+      as: :personas_nombresrepetidos
+
     get "/casos/mapaosm" => "sivel2_gen/casos#mapaosm"
 
     get "/casos/numcasos" => "sivel2_gen/casos#numcasos"

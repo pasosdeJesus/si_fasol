@@ -1,0 +1,6 @@
+<% @validaciones.try(:each) do |tabla| %>
+  <%= render partial: 'resultado_tabla', locals: {tabla: tabla} %>
+<% end %>
+
+
+

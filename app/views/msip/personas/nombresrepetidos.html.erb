@@ -1,0 +1,135 @@
+<div class="page-header">
+  <h1>Población vinculada con nombres repetidos</h1>
+</div>
+
+<%= simple_form_for Msip::Nombrerepetido.new, 
+  :url => main_app.personas_nombresrepetidos_path,
+  :html => { :class => 'form-horizontal' } do |f| 
+%>
+  <div data-role="content" class="form-inputs">
+    <div id="errores">
+      <% if f.object.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-error">
+            El formulario tiene 
+            <%= pluralize(f.object.errors.count, "error") %>.
+          </div>
+          <ul>
+            <% f.object.errors.full_messages.each do |msg| %>
+              <li>* <%= msg %></li>
+            <% end %>
+          </ul>
+        </div> <!-- error-explanation -->
+      <% end %>
+      <%= f.error_notification %>
+    </div> <!-- errores -->
+    <div class="container">
+      <div class="row filtro-fila">
+        <div class="offset-sm-0 col-sm-4">
+          <% fpred = Msip::FormatoFechaHelper.inicio_semestre(Date.today) %>
+          <%= f.input :fechaini,
+            maxlength: 10, 
+            size: 10,
+            label: false,
+            placeholder: 'Inicial',
+            input_html: {
+              "data-behaviour" => "datepicker",
+              value: (params[:nombrerepetido] ? 
+                      params[:nombrerepetido][:fechaini] :
+                      Msip::FormatoFechaHelper.fecha_estandar_local(fpred)
+                     )
+            }
+          %>
+        </div>
+        <div class="offset-sm-0 col-sm-4">
+          <%= f.input :fechafin,
+            maxlength: 10, 
+            size: 10,
+            label: false,
+            placeholder: 'Final',
+            input_html: {
+              "data-behaviour" => "datepicker",
+              value: params[:nombrerepetido] ? 
+                params[:nombrerepetido][:fechafin] : ''
+            }
+          %>
+        </div>
+        <div class="offset-sm-0 col-sm-4">
+        <%  ih = { style: 'margin-left: 15px' } %>
+        <% ih[:checked]='checked' if params[:nombrerepetido] && 
+          params[:nombrerepetido][:deduplicables_autom].to_i == 1 %>
+          <%= f.input :deduplicables_autom,
+            as: :boolean,
+            label: 'Presentar deduplicables automaticamente (demorado)',
+            boolean_style: :nested,
+            input_html: ih %>
+        </div>
+      </div> <!-- row -->
+ 
+      <!--%= render 'restofiltro', {f: f} %-->
+
+      <div class="row filtro-fila">
+        <div class="offset-md-5 col-md-2">
+          <%= f.button :submit, 'Filtrar', class: 'btn btn-default',
+            'data-turbo' => false %>
+        </div>
+      </div> <!-- class: row -->
+
+    </div>  <!-- class:container -->
+  </div> <!-- class:form-inputs -->
+<% end %>
+
+<h3>Pares de personas con nombres similares: <%= @idrep.count %></h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id 1</th>
+      <th>Tipo Doc. 1</th>
+      <th>Núm. Doc. 1</th>
+      <th>Nombres 1</th>
+      <th>Apellidos 1</th>
+      <th>Id 2</th>
+      <th>Tipo Doc. 2</th>
+      <th>Núm. Doc. 2</th>
+      <th>Nombres 2</th>
+      <th>Apellidos 2</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @idrep.try(:each) do |fila| %>
+      <tr>
+        <td>
+          <%= link_to(
+            fila["id1"].to_i, 
+            msip.persona_path(fila["id1"].to_i)) %>
+        </td>
+        <td> <%= fila["sigla1"] %> </td>
+        <td> <%= fila["numerodocumento1"] %> </td>
+        <td><%= fila["nombres1"] %></td>
+        <td><%= fila["apellidos1"] %></td>
+        <td>
+          <%= link_to(
+            fila["id2"].to_i, 
+            msip.persona_path(fila["id2"].to_i)) %>
+        </td>
+        <td> <%= fila["sigla2"] %> </td>
+        <td> <%= fila["numerodocumento2"] %> </td>
+        <td><%= fila["nombres2"] %></td>
+        <td><%= fila["apellidos2"] %></td>
+        <!--td-->
+          <!--%= link_to(
+            'Unificar',
+            main_app.beneficiarios_unificar_get_path + '?id1=' + 
+            fila['id1'].to_s + '&id2=' + fila['id2'].to_s,
+            target: '_blank',
+            class: 'btn btn-sm'
+          ) %-->
+        <!--/td-->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
