@@ -33,8 +33,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: c4575806725953c0d64591ba448d4d71b9b2824a
-  branch: conv2
+  revision: d900a52f69d87684a0bad1948b69f5812a7e7fa7
+  branch: main
   specs:
     cor1440_gen (2.2.0.beta2)
       devise
@@ -46,8 +46,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 4face5f255e8cad917567cd2b1ae67f256958fe4
-  branch: conv2
+  revision: fb3b8c2f810a93bd17655d1db04946cb8e8a55dd
+  branch: main
   specs:
     heb412_gen (2.2.0.beta2)
       mr519_gen
@@ -57,16 +57,16 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/jos19.git
-  revision: f3452a6e5e2915e5a921f0bacdd45cc5605485ac
-  branch: conv2
+  revision: 5659bbf0c2fd6ebc7f42f337b9be992953ce8778
+  branch: main
   specs:
     jos19 (0.1.0)
       rails (>= 7.0.4)
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 081cddb10db3dfbb404483e3d3a86db26ef25141
-  branch: conv2
+  revision: 3ebb0575f23781bb53f1942b2ef70f7ff4719365
+  branch: main
   specs:
     mr519_gen (2.2.0.beta2)
       msip
@@ -74,8 +74,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: c8b9c00366680f18a164d7136f3d89954b30f9dc
-  branch: conv2
+  revision: fe87198e3c81056cda121f744f5f96694fda2e3f
+  branch: main
   specs:
     msip (2.2.0.beta2)
       cancancan (~> 3)
@@ -94,8 +94,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 9f6c64206af1d1a54b83082dbbab7ffde15905c9
-  branch: conv2
+  revision: c116df66d46937370cf72b0d931f368c3c9f743a
+  branch: main
   specs:
     sivel2_gen (2.2.0.beta2)
       color
@@ -391,9 +391,9 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.28.0)
       parser (>= 3.2.1.0)
-    rubocop-minitest (0.29.0)
+    rubocop-minitest (0.30.0)
       rubocop (>= 1.39, < 2.0)
-    rubocop-rails (2.18.0)
+    rubocop-rails (2.19.0)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
@@ -537,4 +537,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.10
+   2.4.12
