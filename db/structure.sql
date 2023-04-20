@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: es_co_utf_8; Type: COLLATION; Schema: public; Owner: -
 --
 
@@ -3318,7 +3325,7 @@ CREATE VIEW public.cvt1 AS
     categoria.nombre AS categoria,
     ubicacion.departamento_id AS id_departamento,
     departamento.deplocal_cod AS departamento_divipola,
-    initcap((departamento.nombre)::text) AS departamento_nombre
+    departamento.nombre AS departamento_nombre
    FROM (((((((public.sivel2_gen_acto acto
      JOIN public.sivel2_gen_caso caso ON ((acto.caso_id = caso.id)))
      JOIN public.sivel2_gen_categoria categoria ON ((acto.categoria_id = categoria.id)))
@@ -3327,7 +3334,7 @@ CREATE VIEW public.cvt1 AS
      JOIN public.msip_persona persona ON ((persona.id = acto.persona_id)))
      LEFT JOIN public.msip_ubicacion ubicacion ON ((caso.ubicacion_id = ubicacion.id)))
      LEFT JOIN public.msip_departamento departamento ON ((ubicacion.departamento_id = departamento.id)))
-  WHERE ((caso.fecha >= '2020-01-01'::date) AND (categoria.id = ANY (ARRAY[527, 297, 397, 197, 777, 427, 776, 526, 426, 296, 396, 196, 1025, 1023, 1070, 35, 55, 45, 73, 25, 15, 65, 92, 40, 50, 67, 801, 90, 37, 26, 46, 16, 57, 80, 85, 66, 64, 703, 28, 38, 706, 18, 49, 59, 501, 401, 904, 502, 17, 231, 331, 402, 705, 62, 906, 104, 713, 1021, 101, 302, 76, 11, 21, 34, 903, 902, 27, 102, 1060, 1050, 301, 24, 14, 10, 30, 20, 392, 522, 772, 422, 292, 192, 63, 93, 1024, 295, 775, 525, 395, 425, 195, 714, 78, 524, 294, 194, 774, 394, 424, 89, 1030, 1040, 905, 86, 701, 68, 341, 241, 141, 1080, 715, 704, 702, 33, 13, 23, 53, 43, 1010, 88, 98, 84, 709, 711, 707, 708, 710, 1003, 1005, 1000, 1001, 1002, 87, 97, 717, 917, 716, 916, 91, 95, 718, 523, 293, 773, 423, 393, 193, 58, 48, 75, 69, 41, 1004, 74, 12, 36, 22, 72, 47, 56, 1020, 191, 291, 391, 521, 421, 771, 19, 420, 77, 39, 29, 520, 712])));
+  WHERE (categoria.id = ANY (ARRAY[527, 297, 397, 197, 777, 427, 776, 526, 426, 296, 396, 196, 1025, 1023, 1070, 35, 55, 45, 73, 25, 15, 65, 92, 40, 50, 67, 801, 90, 37, 26, 46, 16, 57, 80, 85, 66, 64, 703, 28, 38, 706, 18, 49, 59, 501, 401, 904, 502, 17, 231, 331, 402, 705, 62, 906, 104, 713, 1021, 101, 302, 76, 11, 21, 34, 903, 902, 27, 102, 1060, 1050, 301, 24, 14, 10, 30, 20, 392, 522, 772, 422, 292, 192, 63, 93, 1024, 295, 775, 525, 395, 425, 195, 714, 78, 524, 294, 194, 774, 394, 424, 89, 1030, 1040, 905, 86, 701, 68, 341, 241, 141, 1080, 715, 704, 702, 33, 13, 23, 53, 43, 1010, 88, 98, 84, 709, 711, 707, 708, 710, 1003, 1005, 1000, 1001, 1002, 87, 97, 717, 917, 716, 916, 91, 95, 718, 523, 293, 773, 423, 393, 193, 58, 48, 75, 69, 41, 1004, 74, 12, 36, 22, 72, 47, 56, 1020, 191, 291, 391, 521, 421, 771, 19, 420, 77, 39, 29, 520, 712]));
 
 
 --
