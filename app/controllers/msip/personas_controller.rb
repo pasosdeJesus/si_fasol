@@ -106,7 +106,6 @@ module Msip
 
 
     def nombresrepetidos
-      debugger
       @validaciones = []
       personas = Msip::Persona.all
       puts "OJO 1 personas.count=#{personas.count}"
