@@ -215,18 +215,21 @@ module Sivel2Gen
       filas.each do |f|
         ft = [f]
         et.each do |e|
-          fem = if inter[f] && inter[f][e] && inter[f][e]["F"]
-            inter[f][e]["F"]
+          fem = if inter[f] && inter[f][e] && 
+                    inter[f][e][Msip::Persona::convencion_sexo[:sexo_femenino]]
+            inter[f][e][Msip::Persona::convencion_sexo[:sexo_femenino]]
           else
             0
           end
-          mas = if inter[f] && inter[f][e] && inter[f][e]["M"]
-            inter[f][e]["M"]
+          mas = if inter[f] && inter[f][e] && 
+                    inter[f][e][Msip::Persona::convencion_sexo[:sexo_masculino]]
+            inter[f][e][Msip::Persona::convencion_sexo[:sexo_masculino]]
           else
             0
           end
-          sin = if inter[f] && inter[f][e] && inter[f][e]["S"]
-            inter[f][e]["S"]
+          sin = if inter[f] && inter[f][e] && 
+                    inter[f][e][Msip::Persona::convencion_sexo[:sexo_sininformacion]]
+            inter[f][e][Msip::Persona::convencion_sexo[:sexo_sininformacion]]
           else
             0
           end
