@@ -22,7 +22,6 @@ class Ability < Cor1440Gen::Ability
   GRUPO_DESAPARICION_CASOS = 25
   BASICAS_PROPIAS = []
 
-
   def tablasbasicas
     r = (Msip::Ability::BASICAS_PROPIAS -
          [["Msip", "oficina"]]
@@ -105,6 +104,7 @@ class Ability < Cor1440Gen::Ability
 
     if usuario && usuario.rol
       can([:read, :update], Mr519Gen::Encuestausuario)
+      can([:read], Msip::Homonimo)
       if usuario && usuario.grupo.pluck(:id).include?(
         GRUPO_DESAPARICION_CASOS,
       )
@@ -114,6 +114,7 @@ class Ability < Cor1440Gen::Ability
       case usuario.rol
       when Ability::ROLADMIN
         can(:manage, Mr519Gen::Encuestausuario)
+        can(:manage, Msip::Homonimo)
       end
     end
   end

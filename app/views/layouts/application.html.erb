@@ -82,6 +82,8 @@
       <%= despliega_abajo 'Población vinculada' do %>
         <%= opcion_menu 'Listado', 
           msip.personas_path, desplegable: true %>
+        <%= opcion_menu 'Homonimos', 
+          main_app.homonimos_path, desplegable: true %>
         <%= opcion_menu 'Reporte de nombres repetidos', 
           main_app.personas_nombresrepetidos_path, desplegable: true %>
       <% end %>
