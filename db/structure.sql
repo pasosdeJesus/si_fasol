@@ -4135,6 +4135,39 @@ CREATE TABLE public.msip_grupoper (
 
 
 --
+-- Name: msip_homonimo; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.msip_homonimo (
+    id bigint NOT NULL,
+    persona1_id integer,
+    persona2_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    CONSTRAINT primera_menor CHECK ((persona1_id < persona2_id))
+);
+
+
+--
+-- Name: msip_homonimo_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.msip_homonimo_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: msip_homonimo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.msip_homonimo_id_seq OWNED BY public.msip_homonimo.id;
+
+
+--
 -- Name: msip_mundep_sinorden; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -6857,6 +6890,13 @@ ALTER TABLE ONLY public.msip_grupo ALTER COLUMN id SET DEFAULT nextval('public.m
 
 
 --
+-- Name: msip_homonimo id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.msip_homonimo ALTER COLUMN id SET DEFAULT nextval('public.msip_homonimo_id_seq'::regclass);
+
+
+--
 -- Name: msip_municipio_histvigencia id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7839,6 +7879,14 @@ ALTER TABLE ONLY public.msip_grupo
 
 ALTER TABLE ONLY public.msip_grupoper
     ADD CONSTRAINT msip_grupoper_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: msip_homonimo msip_homonimo_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.msip_homonimo
+    ADD CONSTRAINT msip_homonimo_pkey PRIMARY KEY (id);
 
 
 --
@@ -8964,6 +9012,13 @@ CREATE INDEX msip_persona_sexo_ind ON public.msip_persona USING btree (sexo);
 
 
 --
+-- Name: sinrepetidos; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX sinrepetidos ON public.msip_homonimo USING btree (persona1_id, persona2_id);
+
+
+--
 -- Name: sivel2_gen_caso_anio_mes; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10057,6 +10112,14 @@ ALTER TABLE ONLY public.cor1440_gen_indicadorpf
 
 
 --
+-- Name: msip_homonimo fk_rails_4d3192853c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.msip_homonimo
+    ADD CONSTRAINT fk_rails_4d3192853c FOREIGN KEY (persona2_id) REFERENCES public.msip_persona(id);
+
+
+--
 -- Name: msip_ubicacion fk_rails_4dd7a7f238; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10374,6 +10437,14 @@ ALTER TABLE ONLY public.sivel2_gen_caso
 
 ALTER TABLE ONLY public.apo214_asisreconocimiento
     ADD CONSTRAINT fk_rails_883533cb81 FOREIGN KEY (lugarpreliminar_id) REFERENCES public.apo214_lugarpreliminar(id);
+
+
+--
+-- Name: msip_homonimo fk_rails_88e6ab0c85; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.msip_homonimo
+    ADD CONSTRAINT fk_rails_88e6ab0c85 FOREIGN KEY (persona1_id) REFERENCES public.msip_persona(id);
 
 
 --
@@ -12048,6 +12119,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230405032350'),
 ('20230405141724'),
 ('20230406021624'),
-('20230418194845');
+('20230418194845'),
+('20230425114939');
 
 

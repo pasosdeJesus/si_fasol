@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     end
     resources :usuarios, path_names: { new: "nuevo", edit: "edita" }
 
+    resources :homonimos, path_names: { new: "nuevo", edit: "edita" },
+      controller: "msip/homonimos"
 
     get "/aliadoasiste/nuevo" => "cor1440_gen/actividades#nuevo_aliadoasiste",
       as: :nuevo_aliadoasiste

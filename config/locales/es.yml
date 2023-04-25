@@ -12,6 +12,11 @@ es:
       "cor1440_gen/opcioncaracterizacion":
         Opcioncaracterizacion: Opción para caracterización en listado de asistencia
         Opcionescaracterizacion: Opciones para caracterización en listado de asistencia
+      "msip/homonimo":
+        personauno: Primera persona
+        personados: Segunda persona
+        persona1_id: Primera persona
+        persona2_id: Segunda persona
       "msip/orgsocial":
         tipoorg: Tipo de organización
         tipoorg_id: Tipo de organización
