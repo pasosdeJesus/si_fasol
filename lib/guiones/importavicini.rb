@@ -110,7 +110,7 @@ viccsv.each do |r|
     puts "#{nvic}:#{nreg}: *** Genero desconocido: '#{sexo}'"
   end
   if sexo == ""
-    sexo = "S"
+    sexo = Msip::Persona:convencion_sexo[:sexo_sininformacion]
   end
 
   p = Msip::Persona.create(
