@@ -85,4 +85,5 @@ Rails.application.routes.draw do
   mount Heb412Gen::Engine, at: rutarel, as: "heb412_gen"
   mount Sivel2Gen::Engine, at: rutarel, as: "sivel2_gen"
   mount Cor1440Gen::Engine, at: rutarel, as: "cor1440_gen"
+  mount Jos19::Engine, at: rutarel, as: "jos19"
 end

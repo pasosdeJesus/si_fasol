@@ -117,19 +117,60 @@
         <td> <%= fila["numerodocumento2"] %> </td>
         <td><%= fila["nombres2"] %></td>
         <td><%= fila["apellidos2"] %></td>
-        <!--td-->
-          <!--%= link_to(
+        <td>
+          <%= link_to(
             'Unificar',
-            main_app.beneficiarios_unificar_get_path + '?id1=' + 
+            jos19.personas_unificar_get_path + '?id1=' + 
             fila['id1'].to_s + '&id2=' + fila['id2'].to_s,
             target: '_blank',
             class: 'btn btn-sm'
-          ) %-->
-        <!--/td-->
+          ) %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+
+
+<h2>Unificar dos personas por identificaciones en el sistema</h2>
+
+<%= simple_form_for Msip::Unificarpersonas.new, 
+  :url => msip.personas_unificar_path,
+  :html => { :class => 'form-horizontal' } do |f| 
+%>
+  <div data-role="content" class="form-inputs">
+    <div class="container">
+      <div class="row filtro-fila">
+        <div class="offset-sm-1 col-sm-3">
+          <%= f.input :id1,
+            maxlength: 10, 
+            size: 10,
+            label: false,
+            placeholder: 'Id. de la primera persona'
+          %>
+        </div>
+        <div class="offset-sm-1 col-sm-3">
+          <%= f.input :id2,
+            maxlength: 10, 
+            size: 10,
+            label: false,
+            placeholder: 'Id. de la segunda beneficario'
+          %>
+        </div>
+        <div class="offset-md-1 col-md-3">
+          <%= f.button :submit, 'Unificar', class: 'btn btn-default',
+            'data-turbo' => false %>
+        </div>
+      </div> <!-- class: row -->
+      <div>Advertencia: al unificar dos personas se completará
+        la información del que tenga código menor (con los datos
+        de la otra persona) y se eliminará la persona con
+        código mayor.
+      </div>
+
+    </div>  <!-- class:container -->
+  </div> <!-- class:form-inputs -->
+<% end %>
 
 
