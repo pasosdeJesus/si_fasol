@@ -78,5 +78,7 @@ module Sivel2
 
     config.x.cor1440_pf_calidad =
       ENV.fetch("COR1440_PF_CALIDAD", 0).to_i
+
+    config.x.jos19_etiquetaunificadas = 'PERSONAS UNIFICADAS'
   end
 end

@@ -16,7 +16,7 @@
         <% @registro.como_familiar_de_victima.each do |pt| %>
           <tr>
             <td>
-              <% v = Sivel2Gen::Victima.find(pt.persona1) %>
+              <% v = Sivel2Gen::Victima.where(persona_id: pt.persona1).take %>
               <%= link_to v.caso_id, sivel2_gen.caso_path(v.caso_id), target: '_blank' %>
             </td>
             <td>

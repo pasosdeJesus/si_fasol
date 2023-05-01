@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: 1d6429d0d6b533e3e28bfac25cdacdf838e116a1
+  revision: a88dc54a43545cc2242a1a79d2b5be2637415bac
   branch: main
   specs:
     cor1440_gen (2.2.0.beta2)
@@ -57,7 +57,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/jos19.git
-  revision: 0454567b5816776ee6fe91e2bf1ac83d0c9657b1
+  revision: 7e9e4cfaa8e88fcec01eb839d965d44080f55d05
   branch: main
   specs:
     jos19 (2.2.0.beta2)
@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 5d49766316bc0d85b7d9c23e7c0a21fb051d88f1
+  revision: 268429573c801e6c07f652fcdac3caaab3fddb9b
   branch: main
   specs:
     msip (2.2.0.beta2)
@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 7758a3871468c69ea4d11ddc0631856b20011dbe
+  revision: 24f282f9a8b02ab06bcdd66f776468c58e4b36bd
   branch: main
   specs:
     sivel2_gen (2.2.0.beta2)
@@ -264,7 +264,7 @@ GEM
       railties (>= 6.0.0)
     json (2.6.3)
     kgio (2.11.4)
-    libxml-ruby (4.0.0)
+    libxml-ruby (4.1.0)
     loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -280,7 +280,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2023.0218.1)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.1)
+    mini_portile2 (2.8.2)
     minitest (5.18.0)
     minitest-reporters (1.6.0)
       ansi
@@ -311,7 +311,7 @@ GEM
       ast (~> 2.4.1)
     parslet (2.0.0)
     pdf-core (0.9.0)
-    pg (1.5.2)
+    pg (1.5.3)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
       ttfunk (~> 1.7)
@@ -464,7 +464,7 @@ GEM
     will_paginate (3.3.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.7)
+    zeitwerk (2.6.8)
 
 PLATFORMS
   x86_64-openbsd

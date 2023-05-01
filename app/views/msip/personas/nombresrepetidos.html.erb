@@ -58,11 +58,11 @@
         <%  ih = { style: 'margin-left: 15px' } %>
         <% ih[:checked]='checked' if params[:nombrerepetido] && 
           params[:nombrerepetido][:deduplicables_autom].to_i == 1 %>
-          <%= f.input :deduplicables_autom,
+          <!--%= f.input :deduplicables_autom,
             as: :boolean,
             label: 'Presentar deduplicables automaticamente (demorado)',
             boolean_style: :nested,
-            input_html: ih %>
+            input_html: ih %-->
         </div>
       </div> <!-- row -->
  
