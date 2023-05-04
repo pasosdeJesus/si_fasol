@@ -56,14 +56,6 @@ GIT
       rspreadsheet
 
 GIT
-  remote: https://gitlab.com/pasosdeJesus/jos19.git
-  revision: 91f3ad4b5af8eb9792380a2ab8e389df177bfe33
-  branch: main
-  specs:
-    jos19 (2.2.0.beta2)
-      rails (>= 7.0.4)
-
-GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
   revision: b6438a6790dea0d7422a5d310b3c71feee42e586
   branch: main
@@ -73,9 +65,23 @@ GIT
       rails
 
 GIT
-  remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: f7091a3a9c61c0a5c0e11f5f562c693222cd0659
+  remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
+  revision: 0b154eacb25abc82c901e24c51e8fc294e886109
   branch: main
+  specs:
+    sivel2_gen (2.2.0.beta2)
+      color
+      devise
+      rails
+
+PATH
+  remote: ../jos19
+  specs:
+    jos19 (2.2.0.beta2)
+      rails (>= 7.0.4)
+
+PATH
+  remote: ../msip
   specs:
     msip (2.2.0.beta2)
       cancancan (~> 3)
@@ -91,16 +97,6 @@ GIT
       stimulus-rails (~> 1)
       twitter_cldr (~> 6)
       will_paginate (~> 3)
-
-GIT
-  remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 0b154eacb25abc82c901e24c51e8fc294e886109
-  branch: main
-  specs:
-    sivel2_gen (2.2.0.beta2)
-      color
-      devise
-      rails
 
 GEM
   remote: https://rubygems.org/
