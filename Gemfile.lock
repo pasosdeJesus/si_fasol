@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: a88dc54a43545cc2242a1a79d2b5be2637415bac
+  revision: d1f05eea5d2f94a7676065d3544a4de735747d0b
   branch: main
   specs:
     cor1440_gen (2.2.0.beta2)
@@ -46,7 +46,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 89e25cf36edde558a982849a6ff87ee510ff10b3
+  revision: a8cd5c24476c4a8ff0917b117ca13fe4b2c3915c
   branch: main
   specs:
     heb412_gen (2.2.0.beta2)
@@ -65,7 +65,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: dc219cc315057122dd8a1d480eabcd3f4c377e1c
+  revision: b6438a6790dea0d7422a5d310b3c71feee42e586
   branch: main
   specs:
     mr519_gen (2.2.0.beta2)
@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 268429573c801e6c07f652fcdac3caaab3fddb9b
+  revision: f7091a3a9c61c0a5c0e11f5f562c693222cd0659
   branch: main
   specs:
     msip (2.2.0.beta2)
@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 24f282f9a8b02ab06bcdd66f776468c58e4b36bd
+  revision: 0b154eacb25abc82c901e24c51e8fc294e886109
   branch: main
   specs:
     sivel2_gen (2.2.0.beta2)
@@ -264,7 +264,7 @@ GEM
       railties (>= 6.0.0)
     json (2.6.3)
     kgio (2.11.4)
-    libxml-ruby (4.1.0)
+    libxml-ruby (4.1.1)
     loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -389,7 +389,7 @@ GEM
       rubocop-ast (>= 1.28.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.28.0)
+    rubocop-ast (1.28.1)
       parser (>= 3.2.1.0)
     rubocop-minitest (0.30.0)
       rubocop (>= 1.39, < 2.0)
