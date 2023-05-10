@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: 11abf222dc31bff71160a1d138b445214f434b2b
+  revision: 4f45bd4c6b7d54ae3c88eede3d033542769c1f63
   specs:
     kt-paperclip (7.1.1)
       activemodel (>= 4.2.0)
@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: d1f05eea5d2f94a7676065d3544a4de735747d0b
+  revision: b3a68d3cb11d1e31c8b7df3e57ba87824979f7fb
   branch: main
   specs:
     cor1440_gen (2.2.0.beta2)
@@ -46,7 +46,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 74ca34cb94c35d94423c14b776456798e3fd1313
+  revision: 885fef3c8586102fd89d21478105afa4185e6912
   branch: main
   specs:
     heb412_gen (2.2.0.beta2)
@@ -56,8 +56,16 @@ GIT
       rspreadsheet
 
 GIT
+  remote: https://gitlab.com/pasosdeJesus/jos19.git
+  revision: 3b5d6de05cfbbbe0ad49a1993cd19ecbf1e4695c
+  branch: main
+  specs:
+    jos19 (2.2.0.beta2)
+      rails (>= 7.0.4)
+
+GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: b6438a6790dea0d7422a5d310b3c71feee42e586
+  revision: b1ff75d0f38c9b4357bb5d28b92271ed76d0acd3
   branch: main
   specs:
     mr519_gen (2.2.0.beta2)
@@ -65,23 +73,9 @@ GIT
       rails
 
 GIT
-  remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 0b154eacb25abc82c901e24c51e8fc294e886109
+  remote: https://gitlab.com/pasosdeJesus/msip.git
+  revision: af68d0964842815da6c35cbe57d8ab184e20b05c
   branch: main
-  specs:
-    sivel2_gen (2.2.0.beta2)
-      color
-      devise
-      rails
-
-PATH
-  remote: ../jos19
-  specs:
-    jos19 (2.2.0.beta2)
-      rails (>= 7.0.4)
-
-PATH
-  remote: ../msip
   specs:
     msip (2.2.0.beta2)
       cancancan (~> 3)
@@ -97,6 +91,16 @@ PATH
       stimulus-rails (~> 1)
       twitter_cldr (~> 6)
       will_paginate (~> 3)
+
+GIT
+  remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
+  revision: afa45f62244c4691dcbef9b7779f7f66ba196126
+  branch: main
+  specs:
+    sivel2_gen (2.2.0.beta2)
+      color
+      devise
+      rails
 
 GEM
   remote: https://rubygems.org/
@@ -218,7 +222,7 @@ GEM
       capybara (~> 3.0)
       ferrum (~> 0.13.0)
     date (3.3.3)
-    debug (1.7.2)
+    debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     devise (4.9.2)
@@ -261,7 +265,7 @@ GEM
     json (2.6.3)
     kgio (2.11.4)
     libxml-ruby (4.1.1)
-    loofah (2.20.0)
+    loofah (2.21.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.8.1)
@@ -387,7 +391,7 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.28.1)
       parser (>= 3.2.1.0)
-    rubocop-minitest (0.30.0)
+    rubocop-minitest (0.31.0)
       rubocop (>= 1.39, < 2.0)
     rubocop-rails (2.19.1)
       activesupport (>= 4.2.0)
@@ -533,4 +537,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.12
+   2.4.13
