@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: es_co_utf_8; Type: COLLATION; Schema: public; Owner: -
 --
 
@@ -12190,6 +12197,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230418194845'),
 ('20230425114939'),
 ('20230426173200'),
-('20230504084246');
+('20230504084246'),
+('20230524163409');
 
 
