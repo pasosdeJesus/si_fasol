@@ -21,20 +21,16 @@ module Sivel2Gen
       elsif current_usuario && can?(:update, Sivel2Gen::Caso)
         [
           { titulo: "Datos Básicos", parcial: "basicos" },
+          { titulo: "Víctimas", parcial: "victimas" },
           { titulo: "Ubicación", parcial: "ubicaciones" },
-          { titulo: "Fuentes Frecuentes", parcial: "fuentesprensa" },
-          { titulo: "Otras Fuentes", parcial: "fotras" },
+          { titulo: "Fuentes", parcial: "fotras" },
           { titulo: "Contexto", parcial: "contextos" },
           { titulo: "Presuntos Responsables", parcial: "presponsables" },
-          { titulo: "Víctimas", parcial: "victimas" },
-          { titulo: "Víctimas Colectivas", parcial: "victimascolectivas" },
-          { titulo: "Combatientes", parcial: "combatientes" },
           { titulo: "Actos", parcial: "actos" },
           { titulo: "Descripción", parcial: "memo" },
           { titulo: "Anexos", parcial: "sivel2_gen/casos/anexos" },
           { titulo: "Respuesta", parcial: "respuesta" },
           { titulo: "Etiquetas", parcial: "etiquetas_sin_sol" },
-          { titulo: "Evaluación", parcial: "evaluacion" },
         ]
       else
         []
