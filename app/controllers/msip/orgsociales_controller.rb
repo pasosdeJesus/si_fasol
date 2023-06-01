@@ -14,8 +14,6 @@ module Msip
         :id,
         :grupoper_id,
         :tipoorg_id,
-        :subde_id,
-        { sectororgsocial_ids: [] },
         { orgsocial_persona: [] },
         :web,
         :habilitado,
@@ -28,8 +26,6 @@ module Msip
         :id,
         :grupoper_id,
         :tipoorg_id,
-        :subde_id,
-        { sectororgsocial_ids: [] },
         { orgsocial_persona: [] },
         :web,
         :pais_id,
@@ -41,17 +37,5 @@ module Msip
       ]
     end
 
-    def arma_jerarquia(subde_id, nombre_papa)
-      hijos = Msip::Orgsocial.habilitados.where(subde_id: subde_id)
-      hijosa = hijos.map do |h|
-        arma_jerarquia(h.id, h.grupoper.nombre)
-      end
-      { id: subde_id, nombre: nombre_papa, hijos: hijosa }
-    end
-
-    def jerarquia
-      @jerarquiaorgsociales = arma_jerarquia(nil, "")
-      render("jerarquia", layout: "application")
-    end
   end
 end
