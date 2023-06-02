@@ -92,8 +92,10 @@ GIT
       twitter_cldr (~> 6)
       will_paginate (~> 3)
 
-PATH
-  remote: ../sivel2_gen
+GIT
+  remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
+  revision: c7f366776c519d633cacb0d09dd5edf637cae6bb
+  branch: main
   specs:
     sivel2_gen (2.2.0.beta2)
       color
