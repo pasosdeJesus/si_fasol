@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: 6dd3c3100f66d09503ae7856ab83f26abd653fad
+  revision: 14a306042dcb1ac9c3453d5280cb9e003dfd8d99
   branch: main
   specs:
     cor1440_gen (2.2.0.beta2)
@@ -46,7 +46,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 059d39e61e225e812e9ae48437b82b813409b0c9
+  revision: 396b375b3bcf4f6e9a8be6bde82c10347f204a0b
   branch: main
   specs:
     heb412_gen (2.2.0.beta2)
@@ -57,7 +57,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/jos19.git
-  revision: 725ea0fd9abbe2b86c3e98e6b4f9a62b080c043c
+  revision: 7bfc8ab3a01e5183095f97ebadb814f656035392
   branch: main
   specs:
     jos19 (2.2.0.beta2)
@@ -65,7 +65,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: f4dc81d01a09c241baf4573a7590b52f9ec31a83
+  revision: fbc3fcbb42c5dd5ddc02279ca88abb54c8d777ae
   branch: main
   specs:
     mr519_gen (2.2.0.beta2)
@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 4b337148f544220894d53fc2d27a4d681a50ca1b
+  revision: 03156c52e3f8d0e06793979401a0071ad0260b35
   branch: main
   specs:
     msip (2.2.0.beta2)
@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 6a7069db97d45eb250dac9407abea2bcd78592aa
+  revision: 35de2fe9ac86414f3d7f37a1bbc7fbb9bfb09022
   branch: main
   specs:
     sivel2_gen (2.2.0.beta2)
@@ -252,7 +252,7 @@ GEM
       rails (>= 6.0.0)
       stimulus-rails
       turbo-rails
-    i18n (1.13.0)
+    i18n (1.14.0)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
     irb (1.6.4)
@@ -380,7 +380,7 @@ GEM
     rspreadsheet (0.5.3)
       andand (>= 1.3)
       rubyzip (>= 1.3)
-    rubocop (1.51.0)
+    rubocop (1.52.0)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.2.0.0)
@@ -390,7 +390,7 @@ GEM
       rubocop-ast (>= 1.28.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.28.1)
+    rubocop-ast (1.29.0)
       parser (>= 3.2.1.0)
     rubocop-minitest (0.31.0)
       rubocop (>= 1.39, < 2.0)
