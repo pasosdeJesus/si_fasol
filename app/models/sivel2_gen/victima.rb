@@ -15,12 +15,15 @@ module Sivel2Gen
       validate: true,
       class_name: "::Cargoestado",
       optional: true
+
+    validates :entidad_id, numericality: true
+
     validates :detallevinculoestado, length: { maximum: 512 }
 
     attr_accessor :entidad_nombre
 
     def entidad_nombre
-      if entidad_id
+      if entidad && entidad.grupoper
         entidad.grupoper.nombre
       else
         ''
