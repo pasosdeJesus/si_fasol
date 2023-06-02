@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-require "msip/concerns/controllers/orgsociales_controller"
+require 'msip/concerns/controllers/orgsociales_controller'
 
 module Msip
   class OrgsocialesController < Msip::ModelosController
@@ -10,31 +8,44 @@ module Msip
     include Msip::Concerns::Controllers::OrgsocialesController
 
     def atributos_index
-      [
-        :id,
+      [ :id, 
         :grupoper_id,
         :tipoorg_id,
-        { orgsocial_persona: [] },
+        :subde_id,
+        { :orgsocial_persona => [] },
         :web,
         :habilitado,
-        :created_at_localizada,
+        :created_at_localizada
       ]
     end
 
     def atributos_show
-      [
-        :id,
+      [ :id, 
         :grupoper_id,
         :tipoorg_id,
-        { orgsocial_persona: [] },
+        :subde_id,
+        { :orgsocial_persona =>  [] },
         :web,
         :pais_id,
         :direccion,
         :telefono,
         :fax,
         :created_at_localizada,
-        :fechadeshabilitacion_localizada,
+        :fechadeshabilitacion_localizada
       ]
+    end
+
+    def arma_jerarquia(subde_id, nombre_papa)
+      hijos = Msip::Orgsocial.habilitados.where(subde_id: subde_id)
+      hijosa = hijos.map do |h|
+        arma_jerarquia(h.id, h.grupoper.nombre)
+      end
+      return {id: subde_id, nombre: nombre_papa, hijos: hijosa}
+    end
+
+    def jerarquia
+      @jerarquiaorgsociales = arma_jerarquia(nil, '')
+      render 'jerarquia', layout: 'application'
     end
 
   end
