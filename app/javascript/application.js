@@ -37,6 +37,9 @@ import plotly_serietiempo_actos from './plotly_actos'
 import {AutocompletaAjaxExpreg} from '@pasosdejesus/autocompleta_ajax'
 window.AutocompletaAjaxExpreg = AutocompletaAjaxExpreg
 
+import AutocompletaAjaxEntidad from './AutocompletaAjaxEntidad'
+window.AutocompletaAjaxEntidad = AutocompletaAjaxEntidad
+
 console.log('Paquetes inicializados')
 
 let esperarRecursosSprocketsYDocumento = function (resolver) {
@@ -77,6 +80,8 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   if (p2ult == 'graficar/actos_individuales') {
     plotly_serietiempo_actos() 
   }
+
+  window.AutocompletaAjaxEntidad.iniciar()
 
 
 })

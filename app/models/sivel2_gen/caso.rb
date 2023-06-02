@@ -20,6 +20,7 @@ module Sivel2Gen
       allow_destroy: true,
       reject_if: :all_blank
 
+
     validates :ayudafasol, length: { maximum: 1024 }
     validates :codigofasol, length: { maximum: 32 }
     validates :marbetefasol, length: { maximum: 256 }

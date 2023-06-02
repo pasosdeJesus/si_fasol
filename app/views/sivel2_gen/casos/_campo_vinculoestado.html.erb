@@ -1,7 +1,21 @@
-<% col = Msip::ModeloHelper.opciones_tabla_basica(
+<div class='grupo-entidad'>
+  <div>
+    <%= f.input :entidad_id, as: :string,
+      placeholder: "Buscar entidad por nombre o por código",
+      input_html: { list: 'fuente-entidades' } %>
+  </div>
+  <div>
+    <%= f.input :entidad_nombre, 
+      label: false,
+      input_html: {
+        readonly: "readonly"
+      } %>
+  </div>
+</div>
+<!--% col = Msip::ModeloHelper.opciones_tabla_basica(
   Msip::Orgsocial.joins(:grupoper).where(tipoorg_id: 3).reorder(:nombre), 
-  f, :entidad) %>
-<%= f.association :entidad,
+  f, :entidad) %-->
+<!--%= f.association :entidad,
   collection: col,
   include_blank: true,
   label_method: :presenta_nombre, 
@@ -10,4 +24,4 @@
     class: 'chosen-select',
     "data-toggle" => 'tooltip',
     "title" => 'Registre entidad del estado donde laboraba en el momento del hecho'
-  } %>
+  } %-->
