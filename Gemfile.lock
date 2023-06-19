@@ -57,7 +57,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/jos19.git
-  revision: e3db83794c5cc2867e9e602aacd66b8607018512
+  revision: a09687498a551418b43052baba9c48429dde8274
   branch: main
   specs:
     jos19 (2.2.0.beta2)
@@ -94,10 +94,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 0ba59b5700133a9b32c5d90f9aee80a602b6939d
+  revision: 57ee63e9b3fdccb7148b3b2d9c13c356a0233174
   branch: main
   specs:
-    sivel2_gen (2.2.0.beta2)
+    sivel2_gen (2.2.0.beta3)
       color
       devise
       rails
@@ -214,7 +214,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     color (1.8)
-    colorize (0.8.1)
+    colorize (1.0.0)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -395,7 +395,7 @@ GEM
       parser (>= 3.2.1.0)
     rubocop-minitest (0.31.0)
       rubocop (>= 1.39, < 2.0)
-    rubocop-rails (2.20.1)
+    rubocop-rails (2.20.2)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
