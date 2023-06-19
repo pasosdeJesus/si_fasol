@@ -27,6 +27,8 @@ es:
         Orgsocial: Entidad
         Orgsociales: Entidades
       "msip/persona":
+        personas: Población vinculada
+        Personas: Población vinculada
         caso_ids: Casos en los que es Vic. Directa
         familiarvictima_ids: Casos en los que es Vic. Indirecta
       "msip/solicitud":
