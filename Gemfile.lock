@@ -65,7 +65,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 02f6eef517fdf27d11e854d1b6538d908ae04032
+  revision: 13ab9a3e7762c6e893debb504b0983a97d25b27d
   branch: main
   specs:
     mr519_gen (2.2.0.beta4)
@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: c832165fa1e103ed52eba7afd39ab9be2f2e708f
+  revision: b3813de4742a5a907c89232806c8df484f1f8948
   branch: main
   specs:
     msip (2.2.0.beta4)
@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 37726354666635391f007f60f9394ce992c476b2
+  revision: c19cc6c0a0eb36e5943c2518f54ebfc820b83f91
   branch: main
   specs:
     sivel2_gen (2.2.0.beta4)

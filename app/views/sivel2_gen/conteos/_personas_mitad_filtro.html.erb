@@ -1,0 +1,12 @@
+<div class="col-sm-3">
+  <% col = Msip::Orgsocial.joins(:grupoper).order('msip_grupoper.nombre') %>
+  <%= f.input :entidadsup_id,
+    collection: col,
+    label_method: :presenta_nombre,
+    label: false,
+    include_blank: "-- Subordinado a --",
+    input_html: {
+      'data-contarautomatico-post' => ''
+    }
+  %>
+</div>

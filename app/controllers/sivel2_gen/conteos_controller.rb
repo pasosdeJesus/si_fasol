@@ -8,6 +8,24 @@ module Sivel2Gen
     include Sivel2Gen::Concerns::Controllers::ConteosController
     load_and_authorize_resource class: Sivel2Gen::Caso
 
+    def personas_arma_filtros
+      f = personas_arma_filtros_sivel2_gen
+      f.delete('VÍNCULO CON EL ESTADO')
+      return f
+    end
+
+    def personas_procesa_filtros(
+      que1, tablas1, where1, que3, tablas3, where3)
+      ret = personas_procesa_filtros_sivel2_gen(
+        que1, tablas1, where1, que3, tablas3, where3
+      )
+      if params[:filtro] && params[:filtro][:entidadsup_id] &&
+          params[:filtro][:entidadsup_id].to_i > 0
+        ret[2] += " AND #{params[:filtro][:entidadsup_id].to_i} IN "\
+          "(SELECT entidadessup(victima.entidad_id))"
+      end
+      return ret
+    end
     def fasol_banco
       sub = "SELECT DISTINCT caso.id AS caso_id, "\
         " categoria_id, ac.persona_id, cat.pconsolidado_id, "\

@@ -271,6 +271,26 @@ END;$$;
 
 
 --
+-- Name: entidadessup(numeric); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.entidadessup(entidad_id numeric) RETURNS SETOF numeric
+    LANGUAGE sql
+    AS $$
+        WITH RECURSIVE supjer AS (
+          SELECT o1.id, g1.nombre, o1.subde_id 
+            FROM msip_orgsocial AS o1 
+            JOIN msip_grupoper AS g1 ON g1.id=o1.grupoper_id 
+            WHERE o1.id=entidad_id
+          UNION SELECT o2.id, g2.nombre, o2.subde_id
+            FROM msip_orgsocial AS o2 
+            JOIN msip_grupoper AS g2 ON g2.id=o2.grupoper_id 
+            INNER JOIN supjer AS s ON s.subde_id=o2.id) 
+          SELECT id FROM supjer;
+      $$;
+
+
+--
 -- Name: f_unaccent(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -12385,6 +12405,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230613111532'),
 ('20230616203948'),
 ('20230617121812'),
-('20230619182430');
+('20230619182430'),
+('20230620173429');
 
 
