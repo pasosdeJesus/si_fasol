@@ -41,6 +41,25 @@ module Sivel2Gen
       render(json: Conscaso.count, status: :ok)
     end
 
+    def campos_filtro1
+      if current_usuario
+        [:departamento_id, :municipio_id, :clase_id,
+         :fechaini, :fechafin, :presponsable_id, :categoria_id,
+         :nombres, :apellidos, :victimacol, :sexo, :rangoedad_id,
+         :organizacion_id, :profesion_id, :filiacion_id, :descripcion,
+         :usuario_id, :fechaingini, :fechaingfin, :contexto_id, 
+         :contextovictima_id, :codigo, :orientacionsexual,
+         :sectorsocial_id, :tdocumento_id, :numerodocumento
+        ]
+      else
+        [:departamento_id, :municipio_id, :clase_id,
+         :fechaini, :fechafin, :presponsable_id, :categoria_id,
+         :nombres, :apellidos, :sexo, :rangoedad_id, :descripcion, 
+         :sectorsocial_id 
+        ]
+      end
+    end
+
     def campoord_inicial
       "fecha"
     end

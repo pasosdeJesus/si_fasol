@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: es_co_utf_8; Type: COLLATION; Schema: public; Owner: -
 --
 
@@ -3412,19 +3419,14 @@ CREATE VIEW public.cvt1 AS
     acto.persona_id,
     acto.categoria_id,
     supracategoria.tviolencia_id,
-    categoria.nombre AS categoria,
-    ubicacion.departamento_id,
-    departamento.deplocal_cod AS departamento_divipola,
-    departamento.nombre AS departamento_nombre
-   FROM (((((((public.sivel2_gen_acto acto
+    categoria.nombre AS categoria
+   FROM (((((public.sivel2_gen_acto acto
      JOIN public.sivel2_gen_caso caso ON ((acto.caso_id = caso.id)))
      JOIN public.sivel2_gen_categoria categoria ON ((acto.categoria_id = categoria.id)))
      JOIN public.sivel2_gen_supracategoria supracategoria ON ((categoria.supracategoria_id = supracategoria.id)))
      JOIN public.sivel2_gen_victima victima ON (((victima.persona_id = acto.persona_id) AND (victima.caso_id = caso.id))))
      JOIN public.msip_persona persona ON ((persona.id = acto.persona_id)))
-     LEFT JOIN public.msip_ubicacion ubicacion ON ((caso.ubicacion_id = ubicacion.id)))
-     LEFT JOIN public.msip_departamento departamento ON ((ubicacion.departamento_id = departamento.id)))
-  WHERE (categoria.id = ANY (ARRAY[527, 297, 397, 197, 777, 427, 776, 526, 426, 296, 396, 196, 1025, 1023, 1070, 35, 55, 45, 73, 25, 15, 65, 92, 40, 50, 67, 801, 90, 37, 26, 46, 16, 57, 80, 85, 66, 64, 703, 28, 38, 706, 18, 49, 59, 501, 401, 904, 502, 17, 231, 331, 402, 705, 62, 906, 104, 713, 1021, 101, 302, 76, 11, 21, 34, 903, 902, 27, 102, 1060, 1050, 301, 24, 14, 10, 30, 20, 392, 522, 772, 422, 292, 192, 63, 93, 1024, 295, 775, 525, 395, 425, 195, 714, 78, 524, 294, 194, 774, 394, 424, 89, 1030, 1040, 905, 86, 701, 68, 341, 241, 141, 1080, 715, 704, 702, 33, 13, 23, 53, 43, 1010, 88, 98, 84, 709, 711, 707, 708, 710, 1003, 1005, 1000, 1001, 1002, 87, 97, 717, 917, 716, 916, 91, 95, 718, 523, 293, 773, 423, 393, 193, 58, 48, 75, 69, 41, 1004, 74, 12, 36, 22, 72, 47, 56, 1020, 191, 291, 391, 521, 421, 771, 19, 420, 77, 39, 29, 520, 712]));
+  WHERE (categoria.id = '-1'::integer);
 
 
 --
@@ -5649,10 +5651,11 @@ CREATE VIEW public.sivel2_gen_conscaso1 AS
              LEFT JOIN public.msip_departamento departamento ON ((ubicacion.departamento_id = departamento.id)))
              LEFT JOIN public.msip_municipio municipio ON ((ubicacion.municipio_id = municipio.id)))
           WHERE (ubicacion.caso_id = caso.id)), ', '::text) AS ubicaciones,
-    array_to_string(ARRAY( SELECT (((persona.nombres)::text || ' '::text) || (persona.apellidos)::text)
-           FROM public.msip_persona persona,
-            public.sivel2_gen_victima victima
-          WHERE ((persona.id = victima.persona_id) AND (victima.caso_id = caso.id))), ', '::text) AS victimas,
+    array_to_string(ARRAY( SELECT (((((((persona.nombres)::text || ' '::text) || (persona.apellidos)::text) || ' - '::text) || (tdocumento.sigla)::text) || ' '::text) || (persona.numerodocumento)::text)
+           FROM ((public.msip_persona persona
+             JOIN public.sivel2_gen_victima victima ON ((persona.id = victima.persona_id)))
+             JOIN public.msip_tdocumento tdocumento ON ((tdocumento.id = persona.tdocumento_id)))
+          WHERE (victima.caso_id = caso.id)), ', '::text) AS victimas,
     array_to_string(ARRAY( SELECT presponsable.nombre
            FROM public.sivel2_gen_presponsable presponsable,
             public.sivel2_gen_caso_presponsable caso_presponsable
@@ -5680,48 +5683,6 @@ CREATE MATERIALIZED VIEW public.sivel2_gen_conscaso AS
     now() AS ultimo_refresco,
     to_tsvector('spanish'::regconfig, public.unaccent(((((((((((((sivel2_gen_conscaso1.caso_id || ' '::text) || replace(((sivel2_gen_conscaso1.fecha)::character varying)::text, '-'::text, ' '::text)) || ' '::text) || sivel2_gen_conscaso1.memo) || ' '::text) || sivel2_gen_conscaso1.ubicaciones) || ' '::text) || sivel2_gen_conscaso1.victimas) || ' '::text) || sivel2_gen_conscaso1.presponsables) || ' '::text) || sivel2_gen_conscaso1.tipificacion))) AS q
    FROM public.sivel2_gen_conscaso1
-  WITH NO DATA;
-
-
---
--- Name: sivel2_gen_consexpcaso; Type: MATERIALIZED VIEW; Schema: public; Owner: -
---
-
-CREATE MATERIALIZED VIEW public.sivel2_gen_consexpcaso AS
- SELECT conscaso.caso_id,
-    conscaso.fecha,
-    conscaso.memo,
-    conscaso.ubicaciones,
-    conscaso.victimas,
-    conscaso.presponsables,
-    conscaso.tipificacion,
-    conscaso.ultimo_refresco,
-    conscaso.q,
-    caso.titulo,
-    caso.hora,
-    caso.duracion,
-    caso.grconfiabilidad,
-    caso.gresclarecimiento,
-    caso.grimpunidad,
-    caso.grinformacion,
-    caso.bienes,
-    caso.intervalo_id,
-    caso.created_at,
-    caso.updated_at
-   FROM (public.sivel2_gen_conscaso conscaso
-     JOIN public.sivel2_gen_caso caso ON ((caso.id = conscaso.caso_id)))
-  WHERE (conscaso.caso_id IN ( SELECT sivel2_gen_conscaso.caso_id
-           FROM public.sivel2_gen_conscaso
-          WHERE ((sivel2_gen_conscaso.caso_id IN ( SELECT sivel2_gen_caso.id
-                   FROM public.sivel2_gen_caso)) AND (sivel2_gen_conscaso.caso_id IN ( SELECT msip_ubicacion.caso_id
-                   FROM public.msip_ubicacion
-                  WHERE (msip_ubicacion.departamento_id = 4))) AND (sivel2_gen_conscaso.caso_id IN ( SELECT msip_ubicacion.caso_id
-                   FROM public.msip_ubicacion
-                  WHERE (msip_ubicacion.municipio_id = 24))) AND (sivel2_gen_conscaso.caso_id IN ( SELECT msip_ubicacion.caso_id
-                   FROM public.msip_ubicacion
-                  WHERE (msip_ubicacion.clase_id = 238))) AND (sivel2_gen_conscaso.fecha >= '1980-01-01'::date) AND (sivel2_gen_conscaso.fecha <= '2023-04-26'::date))
-          ORDER BY sivel2_gen_conscaso.fecha, sivel2_gen_conscaso.caso_id))
-  ORDER BY conscaso.fecha, conscaso.caso_id
   WITH NO DATA;
 
 
@@ -12399,6 +12360,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230616203948'),
 ('20230617121812'),
 ('20230619182430'),
-('20230620173429');
+('20230620173429'),
+('20230621020213');
 
 

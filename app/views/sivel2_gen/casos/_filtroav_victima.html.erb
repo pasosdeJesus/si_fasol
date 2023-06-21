@@ -1,0 +1,23 @@
+<div class="row filtro-fila">
+  <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
+    Documento de identidad
+  </div>
+  <div class="offset-sm-0 col-sm-3 col-md-3">
+    <%= f.input :tdocumento_id,
+      collection: Msip::ModeloHelper.opciones_tabla_basica(
+        Msip::Tdocumento, f, :tdocumento_id
+      ),
+      label_method: :nombre,
+      value_method: :id,
+      label: false,
+      include_blank: "-- Tipo de documento"
+    %>
+  </div>
+  <div class="col-5">
+    <%= f.input :numerodocumento,
+      label: false,
+      placeholder: 'Número de documento'
+    %>
+  </div>
+  </div>
+</div>
