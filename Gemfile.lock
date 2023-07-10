@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 72d787508d8294d3bff8325eab143c2158997004
+  revision: 2b6628310e18cf6a8d1268e08a70d1139363e427
   branch: main
   specs:
     msip (2.2.0.beta4)
@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: e5b20c27e5d92c8bd8ea2fcc1b26f83b2352845f
+  revision: 8859df950c424d3ffad51636637277c6fbece224
   branch: main
   specs:
     sivel2_gen (2.2.0.beta4)
@@ -542,4 +542,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.15
+   2.4.16
