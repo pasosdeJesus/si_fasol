@@ -10,8 +10,8 @@ function eval_con_eco {
 
 v=$1
 if (test "$v" = "-reciente") then {
-	v1=`ls -lat ${SIP_RUTA_VOLCADOS} | grep "fasol_prod-todo.*sql.gz" | head -n 1 | sed -e "s/.* fasol_prod/fasol_prod/g"`
-  v2="${SIP_RUTA_VOLCADOS}/$v1"
+	v1=`ls -lat ${MSIP_RUTA_VOLCADOS} | grep "fasol_prod-todo.*sql.gz" | head -n 1 | sed -e "s/.* fasol_prod/fasol_prod/g"`
+  v2="${MSIP_RUTA_VOLCADOS}/$v1"
   echo "Volcado más reciente es $v2"
   cp $v2 /tmp/$v1
   eval_con_eco "gunzip -q /tmp/$v1"
