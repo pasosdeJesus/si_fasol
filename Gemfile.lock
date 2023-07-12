@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: cfb01936156db6ac7bb2b59c9df4d72577ca84a9
+  revision: aca7d292848237cceb238edf0e4bc9bc42346e4c
   branch: main
   specs:
     cor1440_gen (2.2.0.beta4)
@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: aa8171e516bae5048fcac19076da3e44325e5407
+  revision: c402b3d1ddf0d045adb5a641bc4c553ae7005558
   branch: main
   specs:
     sivel2_gen (2.2.0.beta4)
@@ -255,8 +255,8 @@ GEM
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.7.1)
-      reline (>= 0.3.0)
+    irb (1.7.2)
+      reline (>= 0.3.6)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
