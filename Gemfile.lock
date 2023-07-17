@@ -56,14 +56,6 @@ GIT
       rspreadsheet
 
 GIT
-  remote: https://gitlab.com/pasosdeJesus/jos19.git
-  revision: ce2fb7b27497a04b640baee8aefc26fdae43f853
-  branch: main
-  specs:
-    jos19 (2.2.0.beta4)
-      rails (>= 7.0.4)
-
-GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
   revision: 0714aa1298dcbd912260450dd10e6f106e5fe5a8
   branch: main
@@ -101,6 +93,12 @@ GIT
       color
       devise
       rails
+
+PATH
+  remote: ../jos19
+  specs:
+    jos19 (2.2.0.beta4)
+      rails (>= 7.0.4)
 
 GEM
   remote: https://rubygems.org/

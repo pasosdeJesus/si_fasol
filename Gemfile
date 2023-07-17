@@ -112,8 +112,8 @@ gem "cor1440_gen",
   #path: '../cor1440_gen'
 
 gem "jos19",
-  git: "https://gitlab.com/pasosdeJesus/jos19.git", branch: 'main'
-  #path: '../jos19'
+  #git: "https://gitlab.com/pasosdeJesus/jos19.git", branch: 'main'
+  path: '../jos19'
 
 group :development, :test do
   gem "brakeman"

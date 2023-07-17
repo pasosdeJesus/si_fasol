@@ -105,6 +105,8 @@ class Ability < Cor1440Gen::Ability
     if usuario && usuario.rol
       can([:read, :update], Mr519Gen::Encuestausuario)
       can([:read], Msip::Homonimo)
+      can :manage, Sivel2Gen::Acto
+
       if usuario && usuario.grupo.pluck(:id).include?(
         GRUPO_DESAPARICION_CASOS,
       )

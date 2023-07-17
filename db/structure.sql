@@ -3348,7 +3348,8 @@ CREATE TABLE public.sivel2_gen_acto (
     caso_id integer NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id integer DEFAULT nextval('public.sivel2_gen_acto_id_seq'::regclass) NOT NULL
+    id integer DEFAULT nextval('public.sivel2_gen_acto_id_seq'::regclass) NOT NULL,
+    fecha date NOT NULL
 );
 
 
@@ -12363,6 +12364,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230621020213'),
 ('20230622205529'),
 ('20230622205530'),
-('20230712163859');
+('20230712163859'),
+('20230713102431');
 
 
