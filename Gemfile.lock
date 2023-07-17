@@ -57,7 +57,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/jos19.git
-  revision: e303156dcf0e532f53718f51129e97eed7e7e00e
+  revision: 901b80b0994f4d402c9ec41fa59671129832d112
   branch: main
   specs:
     jos19 (2.2.0.beta4)
@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: e2391fadd3fabfbb73041a3bedf23ba99fcb91a7
+  revision: 7b33437de555def9a3e6929207d84a9b78c9036f
   branch: main
   specs:
     msip (2.2.0.beta4)
