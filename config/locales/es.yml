@@ -40,6 +40,8 @@ es:
       "sivel2_gen/caso":
         ayudafasol: Ayuda de FASOL
         codigofasol: Código FASOL
+        fecha: Fecha de victimización emblemática
+        fecha_localizada: Fecha de victimización emblemática
         marbetefasol: Marbete FASOL
         region: Regional
       "sivel2_gen/victima":
