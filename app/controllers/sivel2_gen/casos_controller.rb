@@ -73,6 +73,7 @@ module Sivel2Gen
       l.unshift(:ayudafasol)
       l.unshift(:codigofasol)
       l.unshift(:marbetefasol)
+      l[l.count - 1][:acto_attributes].unshift(:fecha)
 
       l
     end

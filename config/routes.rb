@@ -33,10 +33,20 @@ Rails.application.routes.draw do
       put "usuarios/:id" => "devise/registrations#update",
         :as => "registro_usuario"
     end
-    resources :usuarios, path_names: { new: "nuevo", edit: "edita" }
+
+    resources :acto, only: [], param: :index do 
+      member do
+        delete '(:id)', to: "sivel2_gen/actos#destroy", as: "eliminar"
+        post '/' => "sivel2_gen/actos#create", as: "crear"
+      end
+    end
 
     resources :homonimos, path_names: { new: "nuevo", edit: "edita" },
       controller: "msip/homonimos"
+
+    resources :usuarios, path_names: { new: "nuevo", edit: "edita" }
+
+
 
     get "/aliadoasiste/nuevo" => "cor1440_gen/actividades#nuevo_aliadoasiste",
       as: :nuevo_aliadoasiste
@@ -80,8 +90,8 @@ Rails.application.routes.draw do
     root "sivel2_gen/hogar#index"
   end # scope
 
-  mount Sivel2Gen::Engine, at: rutarel, as: "sivel2_gen"
   mount Jos19::Engine, at: rutarel, as: "jos19"
+  mount Sivel2Gen::Engine, at: rutarel, as: "sivel2_gen"
   mount Cor1440Gen::Engine, at: rutarel, as: "cor1440_gen"
   mount Heb412Gen::Engine, at: rutarel, as: "heb412_gen"
   mount Mr519Gen::Engine, at: rutarel, as: "mr519_gen"

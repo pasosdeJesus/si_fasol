@@ -57,7 +57,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/jos19.git
-  revision: df13451210992ceb927e57cb5a843de7304938ab
+  revision: e303156dcf0e532f53718f51129e97eed7e7e00e
   branch: main
   specs:
     jos19 (2.2.0.beta4)
@@ -255,7 +255,7 @@ GEM
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.7.3)
+    irb (1.7.4)
       reline (>= 0.3.6)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
@@ -542,4 +542,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.16
+   2.4.17
