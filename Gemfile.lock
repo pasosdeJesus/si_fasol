@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: 4f773009e38613585c5bdc145c6f97da5866c4f2
+  revision: f336cb6a0785a03bf8b9f9b119efed87b1c79693
   branch: main
   specs:
     cor1440_gen (2.2.0.beta4)
@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: eaf381e964c133858f72117ec85f700bd03126f9
+  revision: 36598ae9becee58ee4d270abab72db44b10c6ff7
   branch: main
   specs:
     msip (2.2.0.beta4)
