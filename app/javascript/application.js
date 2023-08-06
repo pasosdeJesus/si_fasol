@@ -3,7 +3,9 @@
 console.log('Hola Mundo desde ESM')
 
 import Rails from "@rails/ujs";
-import "@hotwired/turbo-rails";
+import {Turbo} from "@hotwired/turbo-rails";
+// no hacer "Turbo.session.drive = false " porque dejan de operar
+// operaciones con turbo como añadir familiar
 Rails.start();
 window.Rails = Rails
 

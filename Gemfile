@@ -104,8 +104,8 @@ gem "heb412_gen", # Motor de nube y llenado de plantillas
   #path: '../heb412_gen'
 
 gem "sivel2_gen", # Motor para manejo de casos
-  git: "https://gitlab.com/pasosdeJesus/sivel2_gen.git", branch: 'main'
-  #path: '../sivel2_gen'
+  git: "https://gitlab.com/pasosdeJesus/sivel2_gen.git", branch: 'turbovic'
+  #path: '../sivel2_gen-turbovic'
 
 gem "cor1440_gen",
   git: "https://gitlab.com/pasosdeJesus/cor1440_gen.git", branch: 'main'
