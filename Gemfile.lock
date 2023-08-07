@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: cf89139609802142019ae64d23424018b8a54650
+  revision: 290d1cafe223335ddc01483a000af4044b135901
   branch: main
   specs:
     cor1440_gen (2.2.0.beta4)
@@ -46,7 +46,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 8d2e1ba1f7cefeb75f8c5107f7643f6fa976a30a
+  revision: 4fe9701ce11ee712c35e0203ca1a055169f10500
   branch: main
   specs:
     heb412_gen (2.2.0.beta4)
@@ -57,7 +57,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/jos19.git
-  revision: 522bd8b981351e5eef67d80fc72ad67bd8233646
+  revision: ecd5babeb70ee19c770bb5f2b76cdc6bbc9ce190
   branch: main
   specs:
     jos19 (2.2.0.beta4)
@@ -65,7 +65,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: b8accce0f71d45e6e4cef74f180851d5f5cc15c4
+  revision: cd3026848646061158e7edd559fef9cca882383f
   branch: main
   specs:
     mr519_gen (2.2.0.beta4)
@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: deb5fc4520b790d3eba7317281f74bedcef0f20f
+  revision: b4357e4c46f7e164e393b6139466a63c9ed90747
   branch: main
   specs:
     msip (2.2.0.beta4)
@@ -94,8 +94,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 7e06de8a1e59b0648eae0aa7edbaf8e5aac2de57
-  branch: turbovic
+  revision: 59165294259202819e47c955470ed22907e785d9
+  branch: main
   specs:
     sivel2_gen (2.2.0.beta4)
       color
@@ -277,7 +277,7 @@ GEM
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
-    mime-types (3.4.1)
+    mime-types (3.5.0)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2023.0218.1)
     mini_mime (1.1.2)
@@ -433,7 +433,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    stimulus-rails (1.2.1)
+    stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)

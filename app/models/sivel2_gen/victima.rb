@@ -16,7 +16,7 @@ module Sivel2Gen
       class_name: "::Cargoestado",
       optional: true
 
-    validates :entidad_id, numericality: true
+    validates :entidad_id, numericality: true, allow_nil: true
 
     validates :detallevinculoestado, length: { maximum: 512 }
 
