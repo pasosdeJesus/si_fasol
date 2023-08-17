@@ -65,12 +65,22 @@ async function loadUrl(page, url, timeout) {
   [browser, page] = await preparar(timeout);
 
   let manija = await fs.open('raspa2.csv', 'w');
-  let numreg = 18100
+  let grupos = [ 
+	  [13751,13760]
+  ];
+
+  let numgrupo = 0;
+  let numreg = grupos[numgrupo][0];
   let targetPage = page;
   let datos2 = [];
   let ids1 = [];
   do {
+    if (numreg > grupos[numgrupo][1]) {
+      numgrupo++;
+      numreg = grupos[numgrupo][0];
+    }
     datos2 = [];
+    console.log("numgrupo=",numgrupo,", numreg=", numreg);
     let url = "https://www.minjusticia.gov.co/programas-co/LegalApp/Paginas/Instituciones.aspx#k=#s=" + numreg + "#l=9226";
     loadUrl(targetPage, url, timeout);
     console.log("tras loadUrl");
@@ -126,7 +136,7 @@ async function loadUrl(page, url, timeout) {
       await new Promise(r => setTimeout(r, 2*1000));
       console.log("espera 2 seg más");
     }
-  } while (datos2.length > 0);
+  } while (numgrupo < grupos.length);
   manija.close();
 
   await browser.close();
