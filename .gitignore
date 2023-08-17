@@ -54,3 +54,5 @@ app/javascript/controllers/msip
 cobertura-sistema/
 cobertura-unitarias/
 public/fasol/si/cobertura/
+node_modules
+raspadores/minjusticia_legalapp/*.csv
