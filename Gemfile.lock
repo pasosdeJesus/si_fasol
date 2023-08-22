@@ -32,6 +32,19 @@ GIT
     cocoon (1.2.11)
 
 GIT
+  remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
+  revision: 686547ff558c6569975c668a6ffee933260fd886
+  branch: main
+  specs:
+    cor1440_gen (2.2.0.beta4)
+      devise
+      heb412_gen
+      kt-paperclip
+      mr519_gen
+      msip
+      rails
+
+GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
   revision: 47902df88c9d3e5cfce8a4e06c0a6f37115fd7f1
   branch: main
@@ -87,17 +100,6 @@ GIT
     sivel2_gen (2.2.0.beta4)
       color
       devise
-      rails
-
-PATH
-  remote: ../cor1440_gen
-  specs:
-    cor1440_gen (2.2.0.beta4)
-      devise
-      heb412_gen
-      kt-paperclip
-      mr519_gen
-      msip
       rails
 
 GEM
