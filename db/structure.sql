@@ -513,15 +513,6 @@ $_$;
 
 
 --
--- Name: rand(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.rand() RETURNS double precision
-    LANGUAGE sql
-    AS $$SELECT random();$$;
-
-
---
 -- Name: sivel2_gen_polo_id(integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -695,15 +686,6 @@ CREATE FUNCTION public.soundexespm(entrada text) RETURNS text
       	RETURN soundex;	
       END;	
       $$;
-
-
---
--- Name: substring_index(text, text, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.substring_index(text, text, integer) RETURNS text
-    LANGUAGE sql
-    AS $_$SELECT array_to_string((string_to_array($1, $2)) [1:$3], $2);$_$;
 
 
 --
@@ -1423,8 +1405,8 @@ ALTER SEQUENCE public.apo214_tipotestigo_id_seq OWNED BY public.apo214_tipotesti
 CREATE TABLE public.ar_internal_metadata (
     key character varying NOT NULL,
     value character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -1578,7 +1560,7 @@ CREATE TABLE public.sivel2_gen_victima (
     entidad_id integer,
     detallevinculoestado character varying(512),
     CONSTRAINT victima_hijos_check CHECK (((hijos IS NULL) OR ((hijos >= 0) AND (hijos <= 100)))),
-    CONSTRAINT victima_orientacionsexual_check CHECK (((orientacionsexual = 'L'::bpchar) OR (orientacionsexual = 'G'::bpchar) OR (orientacionsexual = 'B'::bpchar) OR (orientacionsexual = 'T'::bpchar) OR (orientacionsexual = 'O'::bpchar) OR (orientacionsexual = 'H'::bpchar) OR (orientacionsexual = 'S'::bpchar)))
+    CONSTRAINT victima_orientacionsexual_check CHECK (((orientacionsexual = 'B'::bpchar) OR (orientacionsexual = 'G'::bpchar) OR (orientacionsexual = 'H'::bpchar) OR (orientacionsexual = 'I'::bpchar) OR (orientacionsexual = 'L'::bpchar) OR (orientacionsexual = 'O'::bpchar) OR (orientacionsexual = 'S'::bpchar) OR (orientacionsexual = 'T'::bpchar)))
 );
 
 
@@ -1587,19 +1569,19 @@ CREATE TABLE public.sivel2_gen_victima (
 --
 
 CREATE VIEW public.cben1 AS
- SELECT caso.id AS id_caso,
-    subv.id_victima,
-    subv.id_persona,
+ SELECT caso.id AS caso_id,
+    subv.victima_id,
+    subv.persona_id,
     1 AS npersona,
     'total'::text AS total
    FROM public.sivel2_gen_caso caso,
     public.sivel2_gen_victima victima,
-    ( SELECT sivel2_gen_victima.persona_id AS id_persona,
-            max(sivel2_gen_victima.id) AS id_victima
+    ( SELECT sivel2_gen_victima.persona_id,
+            max(sivel2_gen_victima.id) AS victima_id
            FROM public.sivel2_gen_victima
           GROUP BY sivel2_gen_victima.persona_id) subv,
     public.msip_persona persona
-  WHERE ((subv.id_victima = victima.id) AND (caso.id = victima.caso_id) AND (persona.id = victima.persona_id));
+  WHERE ((subv.victima_id = victima.id) AND (caso.id = victima.caso_id) AND ((persona.anionac IS NULL) OR (persona.anionac = ANY (ARRAY[1922, 1931, 1933, 1935, 1937, 1938, 1939, 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947, 1948, 1949, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1993, 2000]))) AND (victima.etnia_id = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109])) AND (victima.filiacion_id = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])) AND ((((EXTRACT(year FROM caso.fecha))::text || '-'::text) || lpad((EXTRACT(month FROM caso.fecha))::text, 2, '0'::text)) = ANY (ARRAY['1983-04'::text, '1983-09'::text, '1985-04'::text, '1985-06'::text, '1985-07'::text, '1985-08'::text, '1985-11'::text, '1986-10'::text, '1987-08'::text, '1987-10'::text, '1987-11'::text, '1987-12'::text, '1988-02'::text, '1988-05'::text, '1988-09'::text, '1988-11'::text, '1989-01'::text, '1989-03'::text, '1989-04'::text, '1989-05'::text, '1989-06'::text, '1989-07'::text, '1989-08'::text, '1989-10'::text, '1989-11'::text, '1990-01'::text, '1990-04'::text, '1990-05'::text, '1990-06'::text, '1990-07'::text, '1990-08'::text, '1990-10'::text, '1991-01'::text, '1991-04'::text, '1991-09'::text, '1991-10'::text, '1991-11'::text, '1991-12'::text, '1992-01'::text, '1992-02'::text, '1992-03'::text, '1992-04'::text, '1992-05'::text, '1992-06'::text, '1992-07'::text, '1992-09'::text, '1992-10'::text, '1992-11'::text, '1992-12'::text, '1993-01'::text, '1993-02'::text, '1993-03'::text, '1993-04'::text, '1993-07'::text, '1993-09'::text, '1993-11'::text, '1993-12'::text, '1994-01'::text, '1994-03'::text, '1994-04'::text, '1994-05'::text, '1994-06'::text, '1994-07'::text, '1994-09'::text, '1994-10'::text, '1994-11'::text, '1995-01'::text, '1995-05'::text, '1995-06'::text, '1995-07'::text, '1995-08'::text, '1995-09'::text, '1995-10'::text, '1995-11'::text, '1995-12'::text, '1996-02'::text, '1996-03'::text, '1996-04'::text, '1996-05'::text, '1996-06'::text, '1996-07'::text, '1996-08'::text, '1996-09'::text, '1996-10'::text, '1996-12'::text, '1997-01'::text, '1997-02'::text, '1997-03'::text, '1997-04'::text, '1997-05'::text, '1997-06'::text, '1997-07'::text, '1997-08'::text, '1997-09'::text, '1997-10'::text, '1997-11'::text, '1997-12'::text, '1998-01'::text, '1998-02'::text, '1998-03'::text, '1998-04'::text, '1998-05'::text, '1998-06'::text, '1998-07'::text, '1998-08'::text, '1998-09'::text, '1998-10'::text, '1998-11'::text, '1998-12'::text, '1999-01'::text, '1999-02'::text, '1999-03'::text, '1999-04'::text, '1999-05'::text, '1999-06'::text, '1999-07'::text, '1999-08'::text, '1999-09'::text, '1999-10'::text, '1999-11'::text, '1999-12'::text, '2000-01'::text, '2000-02'::text, '2000-03'::text, '2000-04'::text, '2000-05'::text, '2000-06'::text, '2000-07'::text, '2000-08'::text, '2000-09'::text, '2000-11'::text, '2000-12'::text, '2001-01'::text, '2001-02'::text, '2001-03'::text, '2001-04'::text, '2001-05'::text, '2001-06'::text, '2001-07'::text, '2001-08'::text, '2001-09'::text, '2001-10'::text, '2001-11'::text, '2002-01'::text, '2002-02'::text, '2002-03'::text, '2002-04'::text, '2002-05'::text, '2002-06'::text, '2002-07'::text, '2002-08'::text, '2002-09'::text, '2002-10'::text, '2002-11'::text, '2002-12'::text, '2003-01'::text, '2003-02'::text, '2003-03'::text, '2003-04'::text, '2003-05'::text, '2003-06'::text, '2003-07'::text, '2003-08'::text, '2003-10'::text, '2003-11'::text, '2003-12'::text, '2004-01'::text, '2004-02'::text, '2004-03'::text, '2004-04'::text, '2004-05'::text, '2004-06'::text, '2004-07'::text, '2004-09'::text, '2004-10'::text, '2004-11'::text, '2004-12'::text, '2005-01'::text, '2005-02'::text, '2005-03'::text, '2005-04'::text, '2005-05'::text, '2005-06'::text, '2005-07'::text, '2005-08'::text, '2005-09'::text, '2005-10'::text, '2005-11'::text, '2005-12'::text, '2006-01'::text, '2006-02'::text, '2006-03'::text, '2006-04'::text, '2006-05'::text, '2006-06'::text, '2006-07'::text, '2006-08'::text, '2006-09'::text, '2006-10'::text, '2006-11'::text, '2006-12'::text, '2007-01'::text, '2007-02'::text, '2007-03'::text, '2007-04'::text, '2007-05'::text, '2007-06'::text, '2007-07'::text, '2007-08'::text, '2007-09'::text, '2007-10'::text, '2007-11'::text, '2007-12'::text, '2008-01'::text, '2008-02'::text, '2008-03'::text, '2008-04'::text, '2008-05'::text, '2008-07'::text, '2008-08'::text, '2008-09'::text, '2008-10'::text, '2008-11'::text, '2009-01'::text, '2009-02'::text, '2009-03'::text, '2009-04'::text, '2009-05'::text, '2009-06'::text, '2009-07'::text, '2009-08'::text, '2009-10'::text, '2009-11'::text, '2009-12'::text, '2010-01'::text, '2010-02'::text, '2010-03'::text, '2010-04'::text, '2010-06'::text, '2010-07'::text, '2010-08'::text, '2010-09'::text, '2010-10'::text, '2010-11'::text, '2010-12'::text, '2011-01'::text, '2011-02'::text, '2011-03'::text, '2011-04'::text, '2011-05'::text, '2011-06'::text, '2011-07'::text, '2011-08'::text, '2011-09'::text, '2011-10'::text, '2011-11'::text, '2011-12'::text, '2012-01'::text, '2012-02'::text, '2012-03'::text, '2012-04'::text, '2012-05'::text, '2012-06'::text, '2012-07'::text, '2012-08'::text, '2012-09'::text, '2012-11'::text, '2012-12'::text, '2013-01'::text, '2013-02'::text, '2013-04'::text, '2013-05'::text, '2013-06'::text, '2013-07'::text, '2013-08'::text, '2013-09'::text, '2013-10'::text, '2013-11'::text, '2013-12'::text, '2014-01'::text, '2014-02'::text, '2014-03'::text, '2014-04'::text, '2014-05'::text, '2014-06'::text, '2014-07'::text, '2014-08'::text, '2014-12'::text, '2015-01'::text, '2015-02'::text, '2015-04'::text, '2015-05'::text, '2015-06'::text, '2015-07'::text, '2015-09'::text, '2015-10'::text, '2015-11'::text, '2016-05'::text, '2016-09'::text, '2016-11'::text, '2017-01'::text, '2017-03'::text, '2017-08'::text, '2017-11'::text, '2018-04'::text, '2018-05'::text, '2018-06'::text, '2018-07'::text, '2018-09'::text, '2018-10'::text, '2018-11'::text, '2019-03'::text, '2019-05'::text, '2019-11'::text, '2019-12'::text, '2020-02'::text, '2020-05'::text, '2020-10'::text, '2021-01'::text, '2021-03'::text, '2021-09'::text, '2022-03'::text, '2022-05'::text, '2022-06'::text, '2022-07'::text, '2022-12'::text, '2023-05'::text, '2023-06'::text])) AND (victima.organizacion_id = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17])) AND (victima.profesion_id = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 101])) AND (victima.rangoedad_id = ANY (ARRAY[1, 2, 3, 4, 5, 6])) AND (victima.sectorsocial_id = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])) AND (persona.sexo = ANY (ARRAY['F'::bpchar, 'M'::bpchar, 'S'::bpchar])) AND ((60)::numeric IN ( SELECT public.entidadessup((victima.entidad_id)::numeric) AS entidadessup)) AND (persona.id = victima.persona_id));
 
 
 --
@@ -1769,27 +1751,27 @@ CREATE TABLE public.msip_ubicacion (
 --
 
 CREATE VIEW public.cben2 AS
- SELECT cben1.id_caso,
-    cben1.id_victima,
-    cben1.id_persona,
+ SELECT cben1.caso_id,
+    cben1.victima_id,
+    cben1.persona_id,
     cben1.npersona,
     cben1.total,
-    ubicacion.departamento_id AS id_departamento,
+    ubicacion.departamento_id,
     departamento.deplocal_cod AS departamento_divipola,
     departamento.nombre AS departamento_nombre,
-    ubicacion.municipio_id AS id_municipio,
-    municipio.munlocal_cod AS municipio_divipola,
+    ubicacion.municipio_id,
+    ((departamento.deplocal_cod * 1000) + municipio.munlocal_cod) AS municipio_divipola,
     municipio.nombre AS municipio_nombre,
-    ubicacion.clase_id AS id_clase,
+    ubicacion.clase_id,
     clase.clalocal_cod AS clase_divipola,
     clase.nombre AS clase_nombre
    FROM (((((public.cben1
-     JOIN public.sivel2_gen_caso caso ON ((cben1.id_caso = caso.id)))
+     JOIN public.sivel2_gen_caso caso ON ((cben1.caso_id = caso.id)))
      LEFT JOIN public.msip_ubicacion ubicacion ON ((caso.ubicacion_id = ubicacion.id)))
      LEFT JOIN public.msip_departamento departamento ON ((ubicacion.departamento_id = departamento.id)))
      LEFT JOIN public.msip_municipio municipio ON ((ubicacion.municipio_id = municipio.id)))
      LEFT JOIN public.msip_clase clase ON ((ubicacion.clase_id = clase.id)))
-  GROUP BY cben1.id_caso, cben1.id_victima, cben1.id_persona, cben1.npersona, cben1.total, ubicacion.departamento_id, departamento.deplocal_cod, departamento.nombre, ubicacion.municipio_id, municipio.munlocal_cod, municipio.nombre, ubicacion.clase_id, clase.clalocal_cod, clase.nombre;
+  GROUP BY cben1.caso_id, cben1.victima_id, cben1.persona_id, cben1.npersona, cben1.total, ubicacion.departamento_id, departamento.deplocal_cod, departamento.nombre, ubicacion.municipio_id, ((departamento.deplocal_cod * 1000) + municipio.munlocal_cod), municipio.nombre, ubicacion.clase_id, clase.clalocal_cod, clase.nombre;
 
 
 --
@@ -3344,19 +3326,107 @@ ALTER SEQUENCE public.cor1440_gen_valorcampotind_id_seq OWNED BY public.cor1440_
 
 
 --
--- Name: dirfis; Type: TABLE; Schema: public; Owner: -
+-- Name: sivel2_gen_acto_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.dirfis (
-    unidad character varying(128),
-    dependencia character varying(254),
-    direccion character varying(1024),
-    telefonos character varying(256),
-    extension character varying(128),
-    correos character varying(1024),
-    dirseccional character varying(32),
-    tipo character varying(64)
+CREATE SEQUENCE public.sivel2_gen_acto_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_acto; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_acto (
+    presponsable_id integer NOT NULL,
+    categoria_id integer NOT NULL,
+    persona_id integer NOT NULL,
+    caso_id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    id integer DEFAULT nextval('public.sivel2_gen_acto_id_seq'::regclass) NOT NULL,
+    fecha date NOT NULL
 );
+
+
+--
+-- Name: sivel2_gen_categoria; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_categoria (
+    id integer NOT NULL,
+    fechacreacion date DEFAULT CURRENT_DATE NOT NULL,
+    fechadeshabilitacion date,
+    pconsolidado_id integer,
+    contadaen integer,
+    tipocat character(1) DEFAULT 'I'::bpchar,
+    nombre character varying(500) COLLATE public.es_co_utf_8,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    observaciones character varying(5000),
+    supracategoria_id integer,
+    CONSTRAINT "$3" CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
+    CONSTRAINT categoria_tipocat_check CHECK (((tipocat = 'I'::bpchar) OR (tipocat = 'C'::bpchar) OR (tipocat = 'O'::bpchar)))
+);
+
+
+--
+-- Name: sivel2_gen_supracategoria_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_supracategoria_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_supracategoria; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_supracategoria (
+    codigo integer,
+    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
+    fechacreacion date NOT NULL,
+    fechadeshabilitacion date,
+    tviolencia_id character varying(1) NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    observaciones character varying(5000),
+    id integer DEFAULT nextval('public.sivel2_gen_supracategoria_id_seq'::regclass) NOT NULL,
+    CONSTRAINT supracategoria_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
+);
+
+
+--
+-- Name: cvt1; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.cvt1 AS
+ SELECT DISTINCT acto.caso_id,
+    acto.persona_id,
+    acto.categoria_id,
+    supracategoria.tviolencia_id,
+    categoria.nombre AS categoria,
+    ((supracategoria.tviolencia_id)::text || (categoria.id)::text) AS nomcategoria,
+    departamento.nombre AS departamento_nombre,
+    departamento.deplocal_cod AS departamento_divipola,
+    'total'::text AS total
+   FROM (((((((public.sivel2_gen_acto acto
+     JOIN public.sivel2_gen_caso caso ON ((acto.caso_id = caso.id)))
+     JOIN public.sivel2_gen_categoria categoria ON ((acto.categoria_id = categoria.id)))
+     JOIN public.sivel2_gen_supracategoria supracategoria ON ((categoria.supracategoria_id = supracategoria.id)))
+     JOIN public.sivel2_gen_victima victima ON (((victima.persona_id = acto.persona_id) AND (victima.caso_id = caso.id))))
+     JOIN public.msip_persona persona ON ((persona.id = acto.persona_id)))
+     JOIN public.msip_ubicacion ubicacion ON ((ubicacion.id = caso.ubicacion_id)))
+     LEFT JOIN public.msip_departamento departamento ON ((departamento.id = ubicacion.departamento_id)))
+  WHERE ((caso.fecha >= '1983-04-19'::date) AND (caso.fecha <= '2023-06-19'::date) AND (categoria.id = ANY (ARRAY[527, 297, 397, 197, 777, 427, 776, 526, 426, 296, 396, 196, 1025, 1023, 1070, 35, 55, 45, 73, 25, 15, 65, 92, 40, 50, 67, 801, 90, 37, 26, 46, 16, 57, 80, 85, 66, 64, 703, 28, 38, 706, 18, 49, 59, 501, 401, 904, 502, 17, 231, 331, 402, 705, 62, 906, 104, 713, 1021, 101, 302, 76, 11, 21, 34, 903, 902, 27, 102, 1060, 1050, 301, 24, 14, 10, 30, 20, 392, 522, 772, 422, 292, 192, 63, 93, 1024, 295, 775, 525, 395, 425, 195, 714, 78, 524, 294, 194, 774, 394, 424, 89, 1030, 1040, 905, 86, 701, 68, 341, 241, 141, 1080, 715, 704, 702, 33, 13, 23, 53, 43, 1010, 88, 98, 84, 709, 711, 707, 708, 710, 1003, 1005, 1000, 1001, 1002, 87, 97, 717, 917, 716, 916, 91, 95, 718, 523, 293, 773, 423, 393, 193, 58, 48, 75, 69, 41, 1004, 74, 12, 36, 22, 72, 47, 56, 1020, 191, 291, 391, 521, 421, 771, 19, 420, 77, 39, 29, 520, 712])) AND (departamento.id = ANY (ARRAY[4, 7, 11, 13, 15, 17, 20, 24, 27, 29, 32, 33, 34, 35, 37, 38, 39, 41, 42, 43, 45, 46, 47, 48, 50, 51, 52, 53, 55, 56, 57, 58, 59])) AND (persona.sexo = ANY (ARRAY['F'::bpchar, 'M'::bpchar, 'S'::bpchar])));
 
 
 --
@@ -3675,19 +3745,6 @@ CREATE SEQUENCE public.heb412_gen_plantillahcr_id_seq
 --
 
 ALTER SEQUENCE public.heb412_gen_plantillahcr_id_seq OWNED BY public.heb412_gen_plantillahcr.id;
-
-
---
--- Name: mjlegalapp; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.mjlegalapp (
-    num integer,
-    nombre character varying(500),
-    idfuente integer,
-    direccion character varying(500),
-    horario character varying(500)
-);
 
 
 --
@@ -4720,9 +4777,9 @@ CREATE TABLE public.msip_solicitud (
     usuario_id integer NOT NULL,
     fecha date NOT NULL,
     solicitud character varying(5000),
-    estadosol_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    estadosol_id integer
 );
 
 
@@ -5159,34 +5216,6 @@ ALTER SEQUENCE public.sivel2_gen_actividadoficio_id_seq OWNED BY public.sivel2_g
 
 
 --
--- Name: sivel2_gen_acto_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_acto_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_acto; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_acto (
-    presponsable_id integer NOT NULL,
-    categoria_id integer NOT NULL,
-    persona_id integer NOT NULL,
-    caso_id integer NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    id integer DEFAULT nextval('public.sivel2_gen_acto_id_seq'::regclass) NOT NULL,
-    fecha date NOT NULL
-);
-
-
---
 -- Name: sivel2_gen_actocolectivo_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -5540,27 +5569,6 @@ CREATE TABLE public.sivel2_gen_caso_usuario (
 
 
 --
--- Name: sivel2_gen_categoria; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_categoria (
-    id integer NOT NULL,
-    fechacreacion date DEFAULT CURRENT_DATE NOT NULL,
-    fechadeshabilitacion date,
-    pconsolidado_id integer,
-    contadaen integer,
-    tipocat character(1) DEFAULT 'I'::bpchar,
-    nombre character varying(500) COLLATE public.es_co_utf_8,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    observaciones character varying(5000),
-    supracategoria_id integer,
-    CONSTRAINT "$3" CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
-    CONSTRAINT categoria_tipocat_check CHECK (((tipocat = 'I'::bpchar) OR (tipocat = 'C'::bpchar) OR (tipocat = 'O'::bpchar)))
-);
-
-
---
 -- Name: sivel2_gen_combatiente; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5602,6 +5610,83 @@ CREATE SEQUENCE public.sivel2_gen_combatiente_id_seq
 --
 
 ALTER SEQUENCE public.sivel2_gen_combatiente_id_seq OWNED BY public.sivel2_gen_combatiente.id;
+
+
+--
+-- Name: sivel2_gen_presponsable_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_presponsable_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_presponsable; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_presponsable (
+    id integer DEFAULT nextval('public.sivel2_gen_presponsable_id_seq'::regclass) NOT NULL,
+    fechacreacion date DEFAULT CURRENT_DATE NOT NULL,
+    fechadeshabilitacion date,
+    papa_id integer,
+    nombre character varying(500) COLLATE public.es_co_utf_8,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    observaciones character varying(5000),
+    CONSTRAINT presuntos_responsables_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
+);
+
+
+--
+-- Name: sivel2_gen_conscaso1; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.sivel2_gen_conscaso1 AS
+ SELECT caso.id AS caso_id,
+    caso.fecha,
+    caso.memo,
+    array_to_string(ARRAY( SELECT (((COALESCE(departamento.nombre, ''::character varying))::text || ' / '::text) || (COALESCE(municipio.nombre, ''::character varying))::text)
+           FROM ((public.msip_ubicacion ubicacion
+             LEFT JOIN public.msip_departamento departamento ON ((ubicacion.departamento_id = departamento.id)))
+             LEFT JOIN public.msip_municipio municipio ON ((ubicacion.municipio_id = municipio.id)))
+          WHERE (ubicacion.caso_id = caso.id)), ', '::text) AS ubicaciones,
+    array_to_string(ARRAY( SELECT (((((((persona.nombres)::text || ' '::text) || (persona.apellidos)::text) || ' - '::text) || (tdocumento.sigla)::text) || ' '::text) || (persona.numerodocumento)::text)
+           FROM ((public.msip_persona persona
+             JOIN public.sivel2_gen_victima victima ON ((persona.id = victima.persona_id)))
+             JOIN public.msip_tdocumento tdocumento ON ((tdocumento.id = persona.tdocumento_id)))
+          WHERE (victima.caso_id = caso.id)), ', '::text) AS victimas,
+    array_to_string(ARRAY( SELECT presponsable.nombre
+           FROM public.sivel2_gen_presponsable presponsable,
+            public.sivel2_gen_caso_presponsable caso_presponsable
+          WHERE ((presponsable.id = caso_presponsable.presponsable_id) AND (caso_presponsable.caso_id = caso.id))), ', '::text) AS presponsables,
+    array_to_string(ARRAY( SELECT (((((((supracategoria.tviolencia_id)::text || ':'::text) || categoria.supracategoria_id) || ':'::text) || categoria.id) || ' '::text) || (categoria.nombre)::text)
+           FROM public.sivel2_gen_categoria categoria,
+            public.sivel2_gen_supracategoria supracategoria,
+            public.sivel2_gen_acto acto
+          WHERE ((categoria.id = acto.categoria_id) AND (supracategoria.id = categoria.supracategoria_id) AND (acto.caso_id = caso.id))), ', '::text) AS tipificacion
+   FROM public.sivel2_gen_caso caso;
+
+
+--
+-- Name: sivel2_gen_conscaso; Type: MATERIALIZED VIEW; Schema: public; Owner: -
+--
+
+CREATE MATERIALIZED VIEW public.sivel2_gen_conscaso AS
+ SELECT sivel2_gen_conscaso1.caso_id,
+    sivel2_gen_conscaso1.fecha,
+    sivel2_gen_conscaso1.memo,
+    sivel2_gen_conscaso1.ubicaciones,
+    sivel2_gen_conscaso1.victimas,
+    sivel2_gen_conscaso1.presponsables,
+    sivel2_gen_conscaso1.tipificacion,
+    now() AS ultimo_refresco,
+    to_tsvector('spanish'::regconfig, public.unaccent(((((((((((((sivel2_gen_conscaso1.caso_id || ' '::text) || replace(((sivel2_gen_conscaso1.fecha)::character varying)::text, '-'::text, ' '::text)) || ' '::text) || sivel2_gen_conscaso1.memo) || ' '::text) || sivel2_gen_conscaso1.ubicaciones) || ' '::text) || sivel2_gen_conscaso1.victimas) || ' '::text) || sivel2_gen_conscaso1.presponsables) || ' '::text) || sivel2_gen_conscaso1.tipificacion))) AS q
+   FROM public.sivel2_gen_conscaso1
+  WITH NO DATA;
 
 
 --
@@ -5913,6 +5998,84 @@ CREATE TABLE public.sivel2_gen_iglesia (
 
 
 --
+-- Name: usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.usuario_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: usuario; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.usuario (
+    nusuario character varying(15) NOT NULL,
+    nombre character varying(50) COLLATE public.es_co_utf_8,
+    descripcion character varying(50),
+    rol integer DEFAULT 4,
+    password character varying(64) DEFAULT ''::character varying,
+    idioma character varying(6) DEFAULT 'es_CO'::character varying NOT NULL,
+    id integer DEFAULT nextval('public.usuario_id_seq'::regclass) NOT NULL,
+    fechacreacion date DEFAULT CURRENT_DATE NOT NULL,
+    fechadeshabilitacion date,
+    email character varying(255) DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    failed_attempts integer,
+    unlock_token character varying(64),
+    locked_at timestamp without time zone,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying,
+    last_sign_in_ip character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    oficina_id integer,
+    tema_id integer,
+    observadorffechaini date,
+    observadorffechafin date,
+    tdocumento_id integer,
+    numerodocumento character varying(128),
+    fechanac date,
+    sexonac character varying(128),
+    CONSTRAINT usuario_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
+    CONSTRAINT usuario_rol_check CHECK ((rol >= 1))
+);
+
+
+--
+-- Name: sivel2_gen_iniciador; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.sivel2_gen_iniciador AS
+ SELECT s3.caso_id,
+    s3.fechainicio,
+    s3.usuario_id,
+    usuario.nusuario
+   FROM public.usuario,
+    ( SELECT s2.caso_id,
+            s2.fechainicio,
+            min(s2.usuario_id) AS usuario_id
+           FROM public.sivel2_gen_caso_usuario s2,
+            ( SELECT f1.caso_id,
+                    min(f1.fechainicio) AS m
+                   FROM public.sivel2_gen_caso_usuario f1
+                  GROUP BY f1.caso_id) c
+          WHERE ((s2.caso_id = c.caso_id) AND (s2.fechainicio = c.m))
+          GROUP BY s2.caso_id, s2.fechainicio
+          ORDER BY s2.caso_id, s2.fechainicio) s3
+  WHERE (usuario.id = s3.usuario_id);
+
+
+--
 -- Name: sivel2_gen_intervalo_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -6071,35 +6234,6 @@ CREATE TABLE public.sivel2_gen_pconsolidado (
     updated_at timestamp without time zone,
     observaciones character varying(500),
     CONSTRAINT parametros_reporte_consolidado_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
-);
-
-
---
--- Name: sivel2_gen_presponsable_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_presponsable_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_presponsable; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_presponsable (
-    id integer DEFAULT nextval('public.sivel2_gen_presponsable_id_seq'::regclass) NOT NULL,
-    fechacreacion date DEFAULT CURRENT_DATE NOT NULL,
-    fechadeshabilitacion date,
-    papa_id integer,
-    nombre character varying(500) COLLATE public.es_co_utf_8,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    observaciones character varying(5000),
-    CONSTRAINT presuntos_responsables_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
 
@@ -6293,36 +6427,6 @@ CREATE TABLE public.sivel2_gen_sectorsocialsec_victima (
 
 
 --
--- Name: sivel2_gen_supracategoria_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_supracategoria_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_supracategoria; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_supracategoria (
-    codigo integer,
-    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
-    fechacreacion date NOT NULL,
-    fechadeshabilitacion date,
-    tviolencia_id character varying(1) NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    observaciones character varying(5000),
-    id integer DEFAULT nextval('public.sivel2_gen_supracategoria_id_seq'::regclass) NOT NULL,
-    CONSTRAINT supracategoria_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
-);
-
-
---
 -- Name: sivel2_gen_tviolencia; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6401,69 +6505,6 @@ CREATE TABLE public.sivel2_gen_vinculoestado (
     updated_at timestamp without time zone,
     observaciones character varying(5000),
     CONSTRAINT vinculo_estado_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
-);
-
-
---
--- Name: t; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.t (
-    ident integer
-);
-
-
---
--- Name: usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.usuario_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: usuario; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.usuario (
-    nusuario character varying(15) NOT NULL,
-    nombre character varying(50) COLLATE public.es_co_utf_8,
-    descripcion character varying(50),
-    rol integer DEFAULT 4,
-    password character varying(64) DEFAULT ''::character varying,
-    idioma character varying(6) DEFAULT 'es_CO'::character varying NOT NULL,
-    id integer DEFAULT nextval('public.usuario_id_seq'::regclass) NOT NULL,
-    fechacreacion date DEFAULT CURRENT_DATE NOT NULL,
-    fechadeshabilitacion date,
-    email character varying(255) DEFAULT ''::character varying NOT NULL,
-    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
-    sign_in_count integer DEFAULT 0 NOT NULL,
-    failed_attempts integer,
-    unlock_token character varying(64),
-    locked_at timestamp without time zone,
-    reset_password_token character varying,
-    reset_password_sent_at timestamp without time zone,
-    remember_created_at timestamp without time zone,
-    current_sign_in_at timestamp without time zone,
-    last_sign_in_at timestamp without time zone,
-    current_sign_in_ip character varying,
-    last_sign_in_ip character varying,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    oficina_id integer,
-    tema_id integer,
-    observadorffechaini date,
-    observadorffechafin date,
-    tdocumento_id integer,
-    numerodocumento character varying(128),
-    fechanac date,
-    sexonac character varying(128),
-    CONSTRAINT usuario_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
-    CONSTRAINT usuario_rol_check CHECK ((rol >= 1))
 );
 
 
@@ -7763,6 +7804,14 @@ ALTER TABLE ONLY public.sivel2_gen_caso_frontera
 
 
 --
+-- Name: sivel2_gen_caso_usuario funcionario_caso_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_caso_usuario
+    ADD CONSTRAINT funcionario_caso_pkey PRIMARY KEY (usuario_id, caso_id);
+
+
+--
 -- Name: heb412_gen_campohc heb412_gen_campohc_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8779,6 +8828,13 @@ ALTER TABLE ONLY public.sivel2_gen_victima
 
 
 --
+-- Name: busca_sivel2_gen_conscaso; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX busca_sivel2_gen_conscaso ON public.sivel2_gen_conscaso USING gin (q);
+
+
+--
 -- Name: caso_fecha_idx; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9328,6 +9384,14 @@ ALTER TABLE ONLY public.sivel2_gen_caso
 
 
 --
+-- Name: sivel2_gen_caso_presponsable $1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
+    ADD CONSTRAINT "$1" FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
+
+
+--
 -- Name: sivel2_gen_caso_frontera $1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9365,6 +9429,14 @@ ALTER TABLE ONLY public.sivel2_gen_caso_fotra
 
 ALTER TABLE ONLY public.msip_clase
     ADD CONSTRAINT "$1" FOREIGN KEY (tclase_id) REFERENCES public.msip_tclase(id);
+
+
+--
+-- Name: sivel2_gen_caso_presponsable $2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
+    ADD CONSTRAINT "$2" FOREIGN KEY (presponsable_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -9552,19 +9624,19 @@ ALTER TABLE ONLY public.sivel2_gen_anexo_caso
 
 
 --
--- Name: sivel2_gen_antecedente_caso antecedente_caso_id_antecedente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sivel2_gen_antecedente_caso antecedente_caso_id_antecedente_fkey1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.sivel2_gen_antecedente_caso
-    ADD CONSTRAINT antecedente_caso_id_antecedente_fkey FOREIGN KEY (antecedente_id) REFERENCES public.sivel2_gen_antecedente(id);
+    ADD CONSTRAINT antecedente_caso_id_antecedente_fkey1 FOREIGN KEY (antecedente_id) REFERENCES public.sivel2_gen_antecedente(id);
 
 
 --
--- Name: sivel2_gen_antecedente_caso antecedente_caso_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sivel2_gen_antecedente_caso antecedente_caso_id_caso_fkey1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.sivel2_gen_antecedente_caso
-    ADD CONSTRAINT antecedente_caso_id_caso_fkey FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT antecedente_caso_id_caso_fkey1 FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -9640,6 +9712,14 @@ ALTER TABLE ONLY public.sivel2_gen_caso_contexto
 
 
 --
+-- Name: sivel2_gen_caso_etiqueta caso_etiqueta_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_caso_etiqueta
+    ADD CONSTRAINT caso_etiqueta_id_usuario_fkey FOREIGN KEY (usuario_id) REFERENCES public.usuario(id);
+
+
+--
 -- Name: sivel2_gen_caso caso_id_intervalo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9677,6 +9757,14 @@ ALTER TABLE ONLY public.sivel2_gen_caso_respuestafor
 
 ALTER TABLE ONLY public.sivel2_gen_caso_respuestafor
     ADD CONSTRAINT caso_respuestafor_respuestafor_id_fkey1 FOREIGN KEY (respuestafor_id) REFERENCES public.mr519_gen_respuestafor(id);
+
+
+--
+-- Name: sivel2_gen_caso_usuario caso_usuario_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_caso_usuario
+    ADD CONSTRAINT caso_usuario_id_usuario_fkey FOREIGN KEY (usuario_id) REFERENCES public.usuario(id);
 
 
 --
@@ -9845,14 +9933,6 @@ ALTER TABLE ONLY public.cor1440_gen_mindicadorpf
 
 ALTER TABLE ONLY public.cor1440_gen_resultadopf
     ADD CONSTRAINT fk_rails_06ba24bd54 FOREIGN KEY (objetivopf_id) REFERENCES public.cor1440_gen_objetivopf(id);
-
-
---
--- Name: sivel2_gen_caso_solicitud fk_rails_06deb84185; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_caso_solicitud
-    ADD CONSTRAINT fk_rails_06deb84185 FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -10056,6 +10136,14 @@ ALTER TABLE ONLY public.apo214_listadepositados
 
 
 --
+-- Name: sivel2_gen_caso_solicitud fk_rails_26cf51b19c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_caso_solicitud
+    ADD CONSTRAINT fk_rails_26cf51b19c FOREIGN KEY (solicitud_id) REFERENCES public.msip_solicitud(id);
+
+
+--
 -- Name: cor1440_gen_anexo_proyectofinanciero fk_rails_26e56f96f9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10208,14 +10296,6 @@ ALTER TABLE ONLY public.apo214_lugarpreliminar
 
 
 --
--- Name: sivel2_gen_caso_solicitud fk_rails_435e539f61; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_caso_solicitud
-    ADD CONSTRAINT fk_rails_435e539f61 FOREIGN KEY (solicitud_id) REFERENCES public.msip_solicitud(id);
-
-
---
 -- Name: cor1440_gen_actividad fk_rails_4426fc905e; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10365,6 +10445,14 @@ ALTER TABLE ONLY public.cor1440_gen_asistencia_opcioncaracterizacion
 
 ALTER TABLE ONLY public.apo214_lugarpreliminar
     ADD CONSTRAINT fk_rails_5dc41e5b2c FOREIGN KEY (id_persona) REFERENCES public.msip_persona(id);
+
+
+--
+-- Name: msip_solicitud fk_rails_5eac714b59; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.msip_solicitud
+    ADD CONSTRAINT fk_rails_5eac714b59 FOREIGN KEY (usuario_id) REFERENCES public.usuario(id);
 
 
 --
@@ -10720,14 +10808,6 @@ ALTER TABLE ONLY public.apo214_listasuelo
 
 
 --
--- Name: msip_solicitud fk_rails_a670d661ef; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.msip_solicitud
-    ADD CONSTRAINT fk_rails_a670d661ef FOREIGN KEY (usuario_id) REFERENCES public.usuario(id);
-
-
---
 -- Name: aliadoasiste fk_rails_a75a686593; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10741,6 +10821,14 @@ ALTER TABLE ONLY public.aliadoasiste
 
 ALTER TABLE ONLY public.cor1440_gen_actividad_proyectofinanciero
     ADD CONSTRAINT fk_rails_a8489e0d62 FOREIGN KEY (actividad_id) REFERENCES public.cor1440_gen_actividad(id);
+
+
+--
+-- Name: sivel2_gen_caso_solicitud fk_rails_a952d537bf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_caso_solicitud
+    ADD CONSTRAINT fk_rails_a952d537bf FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -11293,14 +11381,6 @@ ALTER TABLE ONLY public.apo214_lugarpreliminar
 
 ALTER TABLE ONLY public.cor1440_gen_anexo_proyectofinanciero
     ADD CONSTRAINT fk_rails_fd94296801 FOREIGN KEY (anexo_id) REFERENCES public.msip_anexo(id);
-
-
---
--- Name: msip_solicitud fk_rails_ffa31a0de6; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.msip_solicitud
-    ADD CONSTRAINT fk_rails_ffa31a0de6 FOREIGN KEY (estadosol_id) REFERENCES public.msip_estadosol(id);
 
 
 --

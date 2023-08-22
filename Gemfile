@@ -108,8 +108,8 @@ gem "sivel2_gen", # Motor para manejo de casos
   #path: '../sivel2_gen'
 
 gem "cor1440_gen",
-  git: "https://gitlab.com/pasosdeJesus/cor1440_gen.git", branch: 'main'
-  #path: '../cor1440_gen'
+  #git: "https://gitlab.com/pasosdeJesus/cor1440_gen.git", branch: 'main'
+  path: '../cor1440_gen'
 
 gem "jos19",
   git: "https://gitlab.com/pasosdeJesus/jos19.git", branch: 'main'
