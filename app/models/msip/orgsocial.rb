@@ -10,5 +10,10 @@ module Msip
       class_name: "Msip::Orgsocial",
       validate: false,
       optional: true
+
+    scope :filtro_subde_id, lambda {|id|
+      where(subde_id: id)
+    }
+
   end
 end
