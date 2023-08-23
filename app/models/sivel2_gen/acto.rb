@@ -7,5 +7,7 @@ module Sivel2Gen
 
     campofecha_localizado :fecha
 
+    validates :fecha, presence: true
+
   end
 end
