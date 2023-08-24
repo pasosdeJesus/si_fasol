@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: 686547ff558c6569975c668a6ffee933260fd886
+  revision: 9767fab0319265bcc2c1a188d587511913caae9b
   branch: main
   specs:
     cor1440_gen (2.2.0.beta4)
@@ -46,7 +46,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 47902df88c9d3e5cfce8a4e06c0a6f37115fd7f1
+  revision: 5814d4c3cceef84c4de15ec9b953dbba03166e8b
   branch: main
   specs:
     heb412_gen (2.2.0.beta4)
@@ -65,7 +65,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: aa43fad0240dcde5c49f850fc6d68c8fcf15c26c
+  revision: 76343e324635cd44ef064ecf45287871a8daabe1
   branch: main
   specs:
     mr519_gen (2.2.0.beta4)
@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: f2901ab10f0063a1724ad2a787069b17f8bcb3ab
+  revision: a74ec0bf8af2c711c43dbe0defb5b906cceb6aab
   branch: main
   specs:
     msip (2.2.0.beta4)
@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 22d4f911af8d5bc35f1165c07c608b49b9e38eaf
+  revision: 3823b2248986ba664ed5be0056ed9ade452561f2
   branch: main
   specs:
     sivel2_gen (2.2.0.beta4)
