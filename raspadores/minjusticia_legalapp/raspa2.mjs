@@ -1,3 +1,9 @@
+// Raspador de
+// https://www.minjusticia.gov.co/programas-co/LegalApp/Paginas/Instituciones.aspx
+// Dominio Público de acuerdo a Legislación Colombiana. Sin garantías.
+// 2020 vtamara@pasosdeJesus.org	
+// http://www.pasosdejesus.org/dominio_publico_colombia.html
+
 import puppeteer from "puppeteer-core"
 import {
   changeSelectElement,
@@ -16,8 +22,6 @@ import {
 } from "@pasosdeJesus/pruebas_puppeteer";
 
 import fs from 'fs/promises'
-
-
 
 async function preparar(timeout = 5000) {
   let sincabeza = false;
