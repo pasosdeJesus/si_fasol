@@ -18,6 +18,7 @@
 # end
 
 ActiveSupport::Inflector.inflections do |inflect|
-  inflect.irregular("cargoestado", "cargosestado")
   inflect.irregular("aliadoasiste", "aliadosasisten")
+  inflect.irregular("cargoestado", "cargosestado")
+  inflect.irregular("regionpago", "regionespago")
 end

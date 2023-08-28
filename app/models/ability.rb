@@ -20,7 +20,10 @@ class Ability < Cor1440Gen::Ability
 
 
   GRUPO_DESAPARICION_CASOS = 25
-  BASICAS_PROPIAS = []
+  BASICAS_PROPIAS = [
+    ['', 'cargoestado'],
+    ['', 'regionpago'],
+  ]
 
   def tablasbasicas
     r = (Msip::Ability::BASICAS_PROPIAS -
@@ -32,8 +35,6 @@ class Ability < Cor1440Gen::Ability
         ["Sivel2Gen", "escolaridad"],
         ["Sivel2Gen", "estadocivil"],
         ["Sivel2Gen", "maternidad"],
-      ] + [
-        ["", "cargoestado"],
       ] + Cor1440Gen::Ability::BASICAS_PROPIAS - [
         ["Cor1440Gen", "actividadarea"],
         ["Cor1440Gen", "proyecto"],

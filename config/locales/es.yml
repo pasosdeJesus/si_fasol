@@ -37,6 +37,9 @@ es:
       "msip/tipoorg": 
         Tipoorg: Tipo de organización
         Tiposorg: Tipos de organización
+      "regionpago":
+        Regionpago: Región para pagos
+        Regionpago: Regiones para pagos
       "sivel2_gen/caso":
         ayudafasol: Ayuda de FASOL
         codigofasol: Código FASOL
