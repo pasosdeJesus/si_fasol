@@ -53,6 +53,10 @@ class CreateRegionpago < ActiveRecord::Migration[7.0]
       INSERT INTO regionpago (id, nombre, 
         fechacreacion, created_at, updated_at) VALUES (
         14, 'EJE CAFETERO - CALDAS', '2020-08-05', '2020-08-05', '2020-08-05');
+
+      INSERT INTO regionpago (id, nombre, 
+        fechacreacion, created_at, updated_at) VALUES (
+        15, 'ANTIOQUIA', '2020-08-05', '2020-08-05', '2020-08-05');
       INSERT INTO regionpago (id, nombre, 
         fechacreacion, created_at, updated_at) VALUES (
         16, 'EJE CAFETERO - CHOCO', '2020-08-05', '2020-08-05', '2020-08-05');
