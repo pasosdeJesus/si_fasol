@@ -9,14 +9,66 @@ module Msip
     include Jos19::Concerns::Controllers::PersonasController
 
     def atributos_show
-      atributos_show_jos19 +
-        [:familiarvictima_ids] -
-        [:proyectofinanciero_ids]
+      [
+        :id,
+        :nombres,
+        :apellidos,
+        :tdocumento_id,
+        :numerodocumento,
+        :anionac,
+        :mesnac,
+        :dianac,
+        :sexo,
+        :pais,
+        :departamento,
+        :municipio,
+        :clase,
+        :nacionalde,
+        :familiares,
+        :ultimo_departamento_trabajo_id,
+        :ultima_regionpago_id,
+        :ultimo_correo_trabajo,
+        :ultimo_celular_trabajo,
+        :ultima_entidad_id,
+        :ultimo_cargoestado_id,
+        :actividad_ids,
+        :caso_ids,
+        :familiarvictima_ids,
+        :etiqueta_ids,
+      ]
     end
 
     def atributos_form
-      atributos_form_jos19 - 
-        [:familiarvictima_ids, :proyectofinanciero_ids]
+      a = atributos_show  - [
+        :actividad_ids,
+        :caso_ids,
+        :familiarvictima_ids,
+      ]
+      a[a.index(:familiares)] = :persona_trelacion1
+      return a
+    end 
+
+    def atributos_index
+      [
+        :id,
+        :nombres,
+        :apellidos,
+        :tdocumento_id,
+        :numerodocumento,
+        :anionac,
+        :mesnac,
+        :dianac,
+        :sexo,
+        :pais,
+        :departamento,
+        :municipio,
+        :clase,
+        :nacionalde,
+        :etiqueta_ids,
+        :actividad_ids,
+        :caso_ids,
+        :familiarvictima_ids,
+      ]
     end
 
     def index_reordenar(c)
