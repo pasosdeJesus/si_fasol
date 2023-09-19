@@ -143,10 +143,12 @@
           <%= opcion_menu "Formularios", mr519_gen.formularios_path,
             desplegable: true %>
         <% end %>
+        <% if can? :manage, Msip::Bitacora %>
+          <%= opcion_menu "Ver bitácoras", 
+            msip.bitacoras_path, desplegable: true %>
+        <% end %>
         <%= opcion_menu "Espacio usado", 
           msip.espacio_path, desplegable: true %>
-        <%= opcion_menu "Ver bitácoras", 
-          msip.bitacoras_path, desplegable: true %>
         <%= opcion_menu "Ayuda sobre control de acceso", 
           msip.ayuda_controldeacceso_path, desplegable: true %>
       <% end %>
