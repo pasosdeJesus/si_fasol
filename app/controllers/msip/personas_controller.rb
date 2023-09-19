@@ -85,6 +85,10 @@ module Msip
       destroy_gen
     end
 
+    def registrar_en_bitacora
+      true
+    end
+
     def lista_params
       atributos_form - [
         :aportes
