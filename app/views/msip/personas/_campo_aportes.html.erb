@@ -1,0 +1,49 @@
+<div class="accordion" id="acordeonapo-<%= f.object.id %>">
+  <%= item_acordeon_bs(
+    'acordeonapo', "colapsaapo-#{f.object.id}", 
+    'Aportes', false, {
+      'estilo_accordion-header': 'text-align: center',
+      'clase_accordion-body': 'table-responsive',
+      'estilo_accordion-body': 'overflow-x:scroll'
+    }) do %>
+    <% if f.object.id.nil? %>
+      Una vez guarde este registro y vuelva a editar podrá agregar aportes
+    <% else %>
+      <div id="aportes" class="panel-body table-responsive" >
+        <div class="div-tabla"> 
+          <div id="aportes_marco" class="div-tabla-cuerpo">
+            <div class="div-tabla-fila"> 
+              <div class="div-tabla-celda">Año</div>
+              <div class="div-tabla-celda">Mes</div>
+              <div class="div-tabla-celda">Valor</div>
+              <div class="div-tabla-celda">Acciones</div>
+            </div>
+            <%= f.simple_fields_for :aporte,
+              f.object.aporte.order([:anio,:mes]),
+              child_index: params[:index] do |apo| %>
+              <%= render partial: "aporte_campos",
+                locals: {f: apo}
+              %>
+            <% end %>
+          </div>
+        </div>
+        <div class="enlace-agregar-aporte">
+          <%= f.submit "Agregar Aporte",
+            formaction: main_app.crear_aporte_path(
+              index: @persona.aporte.size
+            ),
+            formmethod: :post,
+            formnovalidate: true,
+            class: 'btn btn-sm btn-primary',
+            name: "agregar-aporte",
+            id: "agregar-aporte", 
+            data:  {
+              disable_with: false
+            } %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+

@@ -19,10 +19,10 @@ module Msip
         :mesnac,
         :dianac,
         :sexo,
-        :pais,
-        :departamento,
-        :municipio,
-        :clase,
+        :pais_id,
+        :departamento_id,
+        :municipio_id,
+        :clase_id,
         :nacionalde,
         :familiares,
         :ultimo_departamento_trabajo_id,
@@ -85,5 +85,22 @@ module Msip
       destroy_gen
     end
 
+    def lista_params
+      atributos_form - [
+        :aportes
+      ] + [
+        :aporte_attributes => [
+          :anio,
+          :id,
+          :mes,
+          :valor,
+          :_destroy
+        ]
+      ]
+    end
+
+    def caso_params
+      params.require(:persona).permit(lista_params)
+    end
   end
 end

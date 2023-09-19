@@ -76,6 +76,13 @@ Rails.application.routes.draw do
     get "/orgsociales/jerarquia" => "msip/orgsociales#jerarquia",
       as: :jerarquia_orgsociales
 
+    resources :aporte, only: [], param: :index do 
+      member do
+        delete '(:id)', to: "aportes#destroy", as: "eliminar"
+        post '/' => "aportes#create", as: "crear"
+      end
+    end
+
     namespace :admin do
       ab = Ability.new
       ab.tablasbasicas.each do |t|

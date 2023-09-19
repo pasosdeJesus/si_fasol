@@ -9,7 +9,11 @@ module Msip
     has_many :aporte,
       foreign_key: "persona_id", 
       validate: true,
+      dependent: :destroy,
       class_name: "::Aporte"
+    accepts_nested_attributes_for :aporte,
+      allow_destroy: true, 
+      reject_if: :all_blank
 
     validates :tdocumento_id, presence: true, allow_blank: false
     validates :numerodocumento, presence: true, allow_blank: false,
