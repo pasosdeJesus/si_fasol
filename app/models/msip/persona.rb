@@ -6,6 +6,11 @@ module Msip
   class Persona < ActiveRecord::Base
     include Jos19::Concerns::Models::Persona
 
+    has_many :aporte,
+      foreign_key: "persona_id", 
+      validate: true,
+      class_name: "::Aporte"
+
     validates :tdocumento_id, presence: true, allow_blank: false
     validates :numerodocumento, presence: true, allow_blank: false,
       uniqueness: { scope: :tdocumento,

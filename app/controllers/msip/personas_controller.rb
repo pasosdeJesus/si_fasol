@@ -34,6 +34,7 @@ module Msip
         :actividad_ids,
         :caso_ids,
         :familiarvictima_ids,
+        :aportes,
         :etiqueta_ids,
       ]
     end
@@ -68,6 +69,7 @@ module Msip
         :actividad_ids,
         :caso_ids,
         :familiarvictima_ids,
+        :aportes,
       ]
     end
 

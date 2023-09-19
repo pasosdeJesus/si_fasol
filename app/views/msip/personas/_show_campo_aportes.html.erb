@@ -1,0 +1,55 @@
+<div class="accordion" id="acordeon_caids">
+  <%= item_acordeon_bs(
+    'acordeon_aportes', 'acaportes', 
+    'Expandir / Colapsar Aportes', false, {
+      'estilo_accordion-header': 'text-align: center',
+      'clase_accordion-body': 'table-responsive',
+      'estilo_accordion-body': 'overflow-x:scroll'
+    }) do %>
+    <table class='table table-bordered table-sm'>
+      <thead class='thead-light'>
+        <tr>
+          <th>Año \ Mes</th>
+          <% Msip::FormatoFechaHelper::MESES[1..12].each do |m| %>
+            <th><%= m %></th>
+          <% end %>
+        </tr>
+      </thead class='thead-light'>
+      <tbody>
+        <% ultanio = nil %>
+        <% ultmes = 0 %>
+        <% @registro.aporte.order([:anio, :mes]).each do |a| %>
+          <% if ultanio != a.anio %>
+            <% if ultanio != nil %>
+              <% (ultmes+1..12).each do |mesac| %>
+                <td>0</td>
+              <% end %>
+              </tr>
+              <% (ultanio+1..a.anio-1).each do |anioac| %>
+                <tr><td><%= anioac %></td>
+                  <% (1..12).each do |mesac| %>
+                    <td>0</td>
+                  <% end %>
+                </tr>
+              <% end %>
+            <% end %>
+            <tr><td><%= a.anio %></td>
+             <% ultanio = a.anio %>
+             <% ultmes = 0 %>
+          <% end %>
+          <% (ultmes+1..a.mes-1).each do |mesac| %>
+            <td>0</td>
+          <% end %>
+          <td><%= a.valor %></td>
+          <% ultmes = a.mes %>
+        <% end %>
+        <% if ultanio != nil %>
+          <% (ultmes+1..12).each do |mesac| %>
+            <td>0</td>
+          <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
