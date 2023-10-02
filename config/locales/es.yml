@@ -32,11 +32,15 @@ es:
         caso_ids: Casos en los que es Vic. Directa
         familiarvictima_ids: Casos en los que es Vic. Indirecta
         ultimo_cargoestado_id: Cargo con el estado más reciente
+        ultimo_cargoestado: Cargo con el estado más reciente
         ultima_entidad_id: Entidad estatal más reciente
+        ultima_entidad: Entidad estatal más reciente
         ultimo_celular_trabajo: Celular del trabajo más reciente
         ultimo_correo_trabajo: Correo del trabajo más reciente
         ultima_regionpago_id: Regional de pago más reciente
+        ultima_regionpago: Regional de pago más reciente
         ultimo_departamento_trabajo_id: Departamento de trabajo más reciente
+        ultimo_departamento_trabajo: Departamento de trabajo más reciente
       "msip/solicitud":
         Solicitud: Observacion
         Solicitudes: Observaciones

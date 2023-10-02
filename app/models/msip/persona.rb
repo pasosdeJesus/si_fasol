@@ -15,6 +15,30 @@ module Msip
       allow_destroy: true, 
       reject_if: :all_blank
 
+    belongs_to :ultimo_departamento_trabajo,
+      validate: true,
+      class_name: "Msip::Departamento",
+      foreign_key: "ultimo_departamento_trabajo_id",
+      optional: true
+
+    belongs_to :ultima_regionpago,
+      validate: true,
+      class_name: "::Regionpago",
+      foreign_key: "ultima_regionpago_id",
+      optional: true
+
+    belongs_to :ultimo_cargoestado,
+      validate: true,
+      class_name: "::Cargoestado",
+      foreign_key: "ultimo_cargoestado_id",
+      optional: true
+
+    belongs_to :ultima_entidad,
+      validate: true,
+      class_name: "Msip::Orgsocial",
+      foreign_key: "ultima_entidad_id",
+      optional: true
+
     validates :tdocumento_id, presence: true, allow_blank: false
     validates :numerodocumento, presence: true, allow_blank: false,
       uniqueness: { scope: :tdocumento,
