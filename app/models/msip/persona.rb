@@ -60,6 +60,22 @@ module Msip
       end
     end
 
+    validate :sin_aportes_tras_desafiliacion
+    def sin_aportes_tras_desafiliacion
+      if !self.fecha_desafiliacion_aportante
+        return
+      end
+      aporte.each do |a|
+        if (a.anio && a.mes && 
+            a.anio > self.fecha_desafiliacion_aportante.year ||
+            (a.anio == self.fecha_desafiliacion_aportante.year &&
+             a.mes > self.fecha_desafiliacion_aportante.month))
+          errors.add(:fecha_desafiliacion_aportante, 
+                     "No puede haber aportes posteriores a la "\
+                     "fecha de deshabilitación como #{a.mes}/#{a.anio}")
+        end
+      end
+    end
 
     # Registros msip_persona_trelacion en los que
     # esta persona aparece como persona2 y la
@@ -71,6 +87,18 @@ module Msip
       ).order(
         :persona1,
       )
+    end
+
+    def proximo_aporte
+      if self.fecha_desafiliacion_aportante
+        return "Desafiliado"
+      end
+      if aporte.where("valor > 0").count == 0
+        return "No aportante"
+      end
+      ultimo = aporte.where("valor > 0").
+        order(["anio desc", "mes desc"]).first
+      return ultimo.valor.a_decimal_localizado
     end
 
   end

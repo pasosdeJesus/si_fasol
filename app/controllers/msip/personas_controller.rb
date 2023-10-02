@@ -34,7 +34,9 @@ module Msip
         :actividad_ids,
         :caso_ids,
         :familiarvictima_ids,
+        :proximo_aporte,
         :aportes,
+        :fecha_desafiliacion_aportante,
         :etiqueta_ids,
       ]
     end
@@ -44,6 +46,7 @@ module Msip
         :actividad_ids,
         :caso_ids,
         :familiarvictima_ids,
+        :proximo_aporte
       ]
       a[a.index(:familiares)] = :persona_trelacion1
       return a
@@ -69,6 +72,7 @@ module Msip
         :actividad_ids,
         :caso_ids,
         :familiarvictima_ids,
+        :proximo_aporte,
         :aportes,
       ]
     end
