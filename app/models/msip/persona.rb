@@ -77,6 +77,16 @@ module Msip
       end
     end
 
+    def nombres=(valc)
+      self[:nombres] = valc.to_s.upcase.
+        sub(/  */, ' ').sub(/^  */, '').sub(/  *$/, '')
+    end
+
+    def apellidos=(valc)
+      self[:apellidos] = valc.to_s.upcase.
+        sub(/  */, ' ').sub(/^  */, '').sub(/  *$/, '')
+    end
+
     # Registros msip_persona_trelacion en los que
     # esta persona aparece como persona2 y la
     # persona1 es víctima en un caso
