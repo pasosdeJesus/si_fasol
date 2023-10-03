@@ -41,6 +41,13 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :aporte, only: [], param: :index do 
+      member do
+        delete '(:id)', to: "aportes#destroy", as: "eliminar"
+        post '/' => "aportes#create", as: "crear"
+      end
+    end
+
     resources :homonimos, path_names: { new: "nuevo", edit: "edita" },
       controller: "msip/homonimos"
 
@@ -51,8 +58,10 @@ Rails.application.routes.draw do
     get "/aliadoasiste/nuevo" => "cor1440_gen/actividades#nuevo_aliadoasiste",
       as: :nuevo_aliadoasiste
 
-    get '/personas/nombresrepetidos' => 'msip/personas#nombresrepetidos',
-      as: :personas_nombresrepetidos
+    get "/consaportante/:id" => "persona#show",
+      as: :consaportante
+    get "/consaportantes" => "consaportantes#index",
+      as: :consaportantes
 
     get "/casos/mapaosm" => "sivel2_gen/casos#mapaosm"
 
@@ -76,12 +85,8 @@ Rails.application.routes.draw do
     get "/orgsociales/jerarquia" => "msip/orgsociales#jerarquia",
       as: :jerarquia_orgsociales
 
-    resources :aporte, only: [], param: :index do 
-      member do
-        delete '(:id)', to: "aportes#destroy", as: "eliminar"
-        post '/' => "aportes#create", as: "crear"
-      end
-    end
+    get '/personas/nombresrepetidos' => 'msip/personas#nombresrepetidos',
+      as: :personas_nombresrepetidos
 
     namespace :admin do
       ab = Ability.new

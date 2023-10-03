@@ -1,0 +1,12 @@
+<% col = Msip::Tdocumento.habilitados.order(:sigla) %>
+<%= f.input :bustdocumento_sigla,
+  collection: col,
+  include_blank: true,
+  label_method: :sigla,
+  value_method: :id,
+  label: false,
+  selected: Msip::ModeloHelper.poromision(params, :bustdocumento_sigla),
+  input_html: {
+    "data-enviarautomatico": ""
+  }
+%>

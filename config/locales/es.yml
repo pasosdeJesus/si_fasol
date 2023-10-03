@@ -9,6 +9,11 @@ es:
       "cargoestado":
         Cargoestado: Cargo con el Estado
         Cargosestado: Cargos con el Estado
+      "consaportante":
+        Consaportantes: Consulta de aportantes
+        tdocumento_sigla: Tipo de documento
+        numerodocumento: Número de documento
+
       "cor1440_gen/opcioncaracterizacion":
         Opcioncaracterizacion: Opción para caracterización en listado de asistencia
         Opcionescaracterizacion: Opciones para caracterización en listado de asistencia

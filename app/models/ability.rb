@@ -108,6 +108,7 @@ class Ability < Cor1440Gen::Ability
       can([:read], Msip::Homonimo)
       can :manage, Sivel2Gen::Acto
       can :manage, ::Aporte
+      can :read, ::Consaportante
 
       if usuario && usuario.grupo.pluck(:id).include?(
         GRUPO_DESAPARICION_CASOS,

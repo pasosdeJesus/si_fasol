@@ -11,7 +11,7 @@
         <% if can?(:new, Sivel2Gen::Caso) %>
           <%= opcion_menu "Nuevo Caso", sivel2_gen.new_caso_path,
             desplegable: true %>
-          <!--%= opcion_menu "Refrescar Listado de Casos", 
+          <!--%= opcion_menu "Refrescar Listado de Casos",
             sivel2_gen.casos_refresca_path,
             desplegable: true %-->
           <%= opcion_menu "Reporte de validación de casos", sivel2_gen.validarcasos_path,
@@ -19,19 +19,19 @@
           <%= opcion_menu "Reporte de casos repetidos", sivel2_gen.buscarrepetidos_path,
             desplegable: true %>
         <% end %>
-        <%= opcion_menu "Conteo por demografía víctimas", 
+        <%= opcion_menu "Conteo por demografía víctimas",
           sivel2_gen.conteos_personas_path,
           desplegable: true %>
-        <%= opcion_menu "Listado de víctimas y casos", 
+        <%= opcion_menu "Listado de víctimas y casos",
           sivel2_gen.victimas_path,
           desplegable: true %>
-        <%= opcion_menu "Conteo de victimizaciones individuales", 
+        <%= opcion_menu "Conteo de victimizaciones individuales",
           sivel2_gen.conteos_victimizaciones_path,
           desplegable: true %>
-        <%= opcion_menu "Conteo general de víctimizaciones", 
+        <%= opcion_menu "Conteo general de víctimizaciones",
           sivel2_gen.conteos_genvic_path,
           desplegable: true %>
-        <%= opcion_menu "Graficar victimizaciones individuales", 
+        <%= opcion_menu "Graficar victimizaciones individuales",
           sivel2_gen.graficar_victimizaciones_individuales_path,
           'data-turbo' => false,
           desplegable: true %>
@@ -48,9 +48,9 @@
           'data-turbo' => false,
           desplegable: true %>
 
-        <%= opcion_menu "Casos sobre OpenStreetMap", 
+        <%= opcion_menu "Casos sobre OpenStreetMap",
           sivel2_gen.casos_mapaosm_path, desplegable: true %>
-        <%= opcion_menu 'Mapa de victimizaciones individuales por departamento', 
+        <%= opcion_menu 'Mapa de victimizaciones individuales por departamento',
           sivel2_gen.mapadepvic_path,
           'data-turbo' => false,
           desplegable: true %>
@@ -66,33 +66,35 @@
       <%= despliega_abajo 'Proyectos y Actividades' do %>
         <%= opcion_menu 'Actividades', cor1440_gen.actividades_path,
           desplegable: true %>
-        <%= opcion_menu 'Proyectos', 
-          cor1440_gen.proyectosfinancieros_path, 
+        <%= opcion_menu 'Proyectos',
+          cor1440_gen.proyectosfinancieros_path,
           desplegable: true %>
-        <%= opcion_menu "Contar actividades por actividad de marco lógico", 
+        <%= opcion_menu "Contar actividades por actividad de marco lógico",
           cor1440_gen.contar_actividades_path, desplegable: true %>
-        <%= opcion_menu "Contar actividades por beneficiario y actividad de marco lógico", 
-          cor1440_gen.contar_actividades_beneficiarios_path, 
+        <%= opcion_menu "Contar actividades por beneficiario y actividad de marco lógico",
+          cor1440_gen.contar_actividades_beneficiarios_path,
           desplegable: true %>
-        <%= opcion_menu 'Medición de indicadores', 
+        <%= opcion_menu 'Medición de indicadores',
           cor1440_gen.mindicadorespf_path, desplegable: true %>
       <% end %>
       <%= despliega_abajo 'Población vinculada' do %>
-        <%= opcion_menu 'Listado', 
+        <%= opcion_menu 'Listado',
           msip.personas_path, desplegable: true %>
-        <%= opcion_menu 'Homonimos', 
+        <%= opcion_menu 'Homonimos',
           main_app.homonimos_path, desplegable: true %>
-        <%= opcion_menu 'Reporte de nombres repetidos', 
+        <%= opcion_menu 'Reporte de posibles nombres repetidos',
           main_app.personas_nombresrepetidos_path, desplegable: true %>
+        <%= opcion_menu 'Reporte de aportes',
+          main_app.consaportantes_path, desplegable: true %>
       <% end %>
- 
+
     <% end %>
   <% end %>
   <%= grupo_menus :pull => :right do %>
     <% if !current_usuario.nil? %>
       <%= despliega_abajo "Documentos" do %>
-        <%= opcion_menu "Manual", 
-          'https://docs.google.com/document/d/1uBGmeAopNSa_eNN8egyjiDYiogKh0AuIAg5l2ewZZNo/edit?usp=sharing', 
+        <%= opcion_menu "Manual",
+          'https://docs.google.com/document/d/1uBGmeAopNSa_eNN8egyjiDYiogKh0AuIAg5l2ewZZNo/edit?usp=sharing',
           target: '_blank', desplegable: true %>
         <%= opcion_menu "Nube", heb412_gen.sisini_path,
           desplegable: true %>
@@ -111,12 +113,12 @@
         <%= opcion_menu "Clave y Tema del usuario", main_app.editar_registro_usuario_path,
           desplegable: true %>
         <% if session[:capturacaso_acordeon] %>
-          <%= opcion_menu 'Ficha caso vertical ✓', 
+          <%= opcion_menu 'Ficha caso vertical ✓',
             sivel2_gen.fichacasovertical_path,
-            desplegable: true, id: 'fichacasovertical' 
+            desplegable: true, id: 'fichacasovertical'
           %>
         <% else %>
-          <%= opcion_menu 'Ficha caso vertical', 
+          <%= opcion_menu 'Ficha caso vertical',
             sivel2_gen.fichacasovertical_path,
             desplegable: true, id: 'fichacasovertical' %>
         <% end %>
@@ -144,29 +146,29 @@
             desplegable: true %>
         <% end %>
         <% if can? :manage, Msip::Bitacora %>
-          <%= opcion_menu "Ver bitácoras", 
+          <%= opcion_menu "Ver bitácoras",
             msip.bitacoras_path, desplegable: true %>
         <% end %>
-        <%= opcion_menu "Espacio usado", 
+        <%= opcion_menu "Espacio usado",
           msip.espacio_path, desplegable: true %>
-        <%= opcion_menu "Ayuda sobre control de acceso", 
+        <%= opcion_menu "Ayuda sobre control de acceso",
           msip.ayuda_controldeacceso_path, desplegable: true %>
       <% end %>
-      <%= opcion_menu "Salir #{current_usuario.nusuario}", 
+      <%= opcion_menu "Salir #{current_usuario.nusuario}",
         main_app.terminar_sesion_path %>
     <% else %>
       <%= opcion_menu "Acerca de", sivel2_gen.acercade_path %>
-      <%= opcion_menu "Iniciar sesión", main_app.iniciar_sesion_path %> 
+      <%= opcion_menu "Iniciar sesión", main_app.iniciar_sesion_path %>
     <% end %>
   <% end %>
 <% end %>
 
 <% content_for :piedepagina do %>
   <span style='font-size: 0.8rem; text-align: left'>
-    <%= Rails.configuration.x.sivel2_consweb_pie ? 
+    <%= Rails.configuration.x.sivel2_consweb_pie ?
       Rails.configuration.x.sivel2_consweb_pie.html_safe : '' %>
     <hr>
-    <div align="right"> 
+    <div align="right">
       Sistema de información de <a href="https://gitlab.com/pasosdeJesus/si_fasol">código abierto</a> desarrollado por <a href="https://www.pasosdeJesus.org" target="_blank">Pasos de Jesús</a>. 2023.
 
     </div>
