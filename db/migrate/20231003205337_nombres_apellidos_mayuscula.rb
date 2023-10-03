@@ -11,6 +11,6 @@ class NombresApellidosMayuscula < ActiveRecord::Migration[7.0]
   end
 
   def down
-    raise IrreversibleMigration
+    raise ActiveRecord::IrreversibleMigration
   end
 end

@@ -1821,6 +1821,54 @@ CREATE VIEW public.cben2 AS
 
 
 --
+-- Name: msip_grupoper_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.msip_grupoper_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: msip_grupoper; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.msip_grupoper (
+    id integer DEFAULT nextval('public.msip_grupoper_id_seq'::regclass) NOT NULL,
+    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
+    anotaciones character varying(1000),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: msip_orgsocial; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.msip_orgsocial (
+    id bigint NOT NULL,
+    grupoper_id integer NOT NULL,
+    telefono character varying(500),
+    fax character varying(500),
+    direccion character varying(500),
+    pais_id integer,
+    web character varying(500),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    fechadeshabilitacion date,
+    tipoorg_id integer DEFAULT 2 NOT NULL,
+    subde_id integer,
+    numminjusticia integer,
+    idminjusticia integer,
+    horario character varying(255)
+);
+
+
+--
 -- Name: msip_tdocumento; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1854,6 +1902,7 @@ CREATE MATERIALIZED VIEW public.consaportante AS
     msip_persona.ultimo_correo_trabajo,
     msip_persona.ultimo_celular_trabajo,
     msip_persona.ultima_entidad_id,
+    msip_grupoper.nombre AS ultima_entidad_nombre,
     msip_persona.ultimo_cargoestado_id,
     ( SELECT a.valor
            FROM public.aporte a
@@ -2047,8 +2096,10 @@ CREATE MATERIALIZED VIEW public.consaportante AS
            FROM public.aporte a
           WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2023) AND (a.mes = 12))
          LIMIT 1) AS m2023_12
-   FROM (public.msip_persona
+   FROM (((public.msip_persona
      JOIN public.msip_tdocumento ON ((msip_tdocumento.id = msip_persona.tdocumento_id)))
+     LEFT JOIN public.msip_orgsocial ON ((msip_orgsocial.id = msip_persona.ultima_entidad_id)))
+     LEFT JOIN public.msip_grupoper ON ((msip_grupoper.id = msip_orgsocial.grupoper_id)))
   WHERE (msip_persona.id IN ( SELECT aporte.persona_id
            FROM public.aporte
           WHERE (aporte.valor > 0)))
@@ -4619,31 +4670,6 @@ CREATE TABLE public.msip_grupo_usuario (
 
 
 --
--- Name: msip_grupoper_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.msip_grupoper_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: msip_grupoper; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.msip_grupoper (
-    id integer DEFAULT nextval('public.msip_grupoper_id_seq'::regclass) NOT NULL,
-    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
-    anotaciones character varying(1000),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
 -- Name: msip_homonimo; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4774,29 +4800,6 @@ CREATE SEQUENCE public.msip_oficina_id_seq
 --
 
 ALTER SEQUENCE public.msip_oficina_id_seq OWNED BY public.msip_oficina.id;
-
-
---
--- Name: msip_orgsocial; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.msip_orgsocial (
-    id bigint NOT NULL,
-    grupoper_id integer NOT NULL,
-    telefono character varying(500),
-    fax character varying(500),
-    direccion character varying(500),
-    pais_id integer,
-    web character varying(500),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    fechadeshabilitacion date,
-    tipoorg_id integer DEFAULT 2 NOT NULL,
-    subde_id integer,
-    numminjusticia integer,
-    idminjusticia integer,
-    horario character varying(255)
-);
 
 
 --
@@ -12790,6 +12793,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230927001422'),
 ('20231002183939'),
 ('20231003083056'),
-('20231003205337');
+('20231003205337'),
+('20231003222709');
 
 
