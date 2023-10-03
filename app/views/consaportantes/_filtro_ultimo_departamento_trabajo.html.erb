@@ -1,0 +1,15 @@
+<% col = Msip::Departamento.habilitados.where(pais_id: 170).order(:nombre) %>
+<%= f.input :busultimo_departamento_trabajo,
+  collection: col,
+  include_blank: true,
+  label_method: :nombre,
+  value_method: :id,
+  label: false,
+  selected: Msip::ModeloHelper.poromision(
+    params, 
+    :busultimo_departamento_trabajo
+  ),
+  input_html: {
+    "data-enviarautomatico": ""
+  }
+%>

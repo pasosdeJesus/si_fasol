@@ -58,7 +58,7 @@ Rails.application.routes.draw do
     get "/aliadoasiste/nuevo" => "cor1440_gen/actividades#nuevo_aliadoasiste",
       as: :nuevo_aliadoasiste
 
-    get "/consaportante/:id" => "persona#show",
+    get "/consaportante/:id" => "msip/personas#show",
       as: :consaportante
     get "/consaportantes" => "consaportantes#index",
       as: :consaportantes

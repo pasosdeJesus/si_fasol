@@ -1,0 +1,15 @@
+<% col = ::Regionpago.habilitados.order(:nombre) %>
+<%= f.input :busultima_regionpago,
+  collection: col,
+  include_blank: true,
+  label_method: :nombre,
+  value_method: :id,
+  label: false,
+  selected: Msip::ModeloHelper.poromision(
+    params, 
+    :busultima_regionpago
+  ),
+  input_html: {
+    "data-enviarautomatico": ""
+  }
+%>

@@ -1821,6 +1821,241 @@ CREATE VIEW public.cben2 AS
 
 
 --
+-- Name: msip_tdocumento; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.msip_tdocumento (
+    id integer NOT NULL,
+    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
+    sigla character varying(500) NOT NULL,
+    formatoregex character varying(500),
+    fechacreacion date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    observaciones character varying(5000) COLLATE public.es_co_utf_8,
+    ayuda character varying(1000)
+);
+
+
+--
+-- Name: consaportante; Type: MATERIALIZED VIEW; Schema: public; Owner: -
+--
+
+CREATE MATERIALIZED VIEW public.consaportante AS
+ SELECT msip_persona.id,
+    msip_persona.nombres,
+    msip_persona.apellidos,
+    msip_persona.tdocumento_id,
+    msip_tdocumento.sigla AS tdocumento_sigla,
+    msip_persona.numerodocumento,
+    msip_persona.ultimo_departamento_trabajo_id,
+    msip_persona.ultima_regionpago_id,
+    msip_persona.ultimo_correo_trabajo,
+    msip_persona.ultimo_celular_trabajo,
+    msip_persona.ultima_entidad_id,
+    msip_persona.ultimo_cargoestado_id,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2020) AND (a.mes = 1))
+         LIMIT 1) AS m2020_1,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2020) AND (a.mes = 2))
+         LIMIT 1) AS m2020_2,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2020) AND (a.mes = 3))
+         LIMIT 1) AS m2020_3,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2020) AND (a.mes = 4))
+         LIMIT 1) AS m2020_4,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2020) AND (a.mes = 5))
+         LIMIT 1) AS m2020_5,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2020) AND (a.mes = 6))
+         LIMIT 1) AS m2020_6,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2020) AND (a.mes = 7))
+         LIMIT 1) AS m2020_7,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2020) AND (a.mes = 8))
+         LIMIT 1) AS m2020_8,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2020) AND (a.mes = 9))
+         LIMIT 1) AS m2020_9,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2020) AND (a.mes = 10))
+         LIMIT 1) AS m2020_10,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2020) AND (a.mes = 11))
+         LIMIT 1) AS m2020_11,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2020) AND (a.mes = 12))
+         LIMIT 1) AS m2020_12,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2021) AND (a.mes = 1))
+         LIMIT 1) AS m2021_1,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2021) AND (a.mes = 2))
+         LIMIT 1) AS m2021_2,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2021) AND (a.mes = 3))
+         LIMIT 1) AS m2021_3,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2021) AND (a.mes = 4))
+         LIMIT 1) AS m2021_4,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2021) AND (a.mes = 5))
+         LIMIT 1) AS m2021_5,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2021) AND (a.mes = 6))
+         LIMIT 1) AS m2021_6,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2021) AND (a.mes = 7))
+         LIMIT 1) AS m2021_7,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2021) AND (a.mes = 8))
+         LIMIT 1) AS m2021_8,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2021) AND (a.mes = 9))
+         LIMIT 1) AS m2021_9,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2021) AND (a.mes = 10))
+         LIMIT 1) AS m2021_10,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2021) AND (a.mes = 11))
+         LIMIT 1) AS m2021_11,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2021) AND (a.mes = 12))
+         LIMIT 1) AS m2021_12,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2022) AND (a.mes = 1))
+         LIMIT 1) AS m2022_1,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2022) AND (a.mes = 2))
+         LIMIT 1) AS m2022_2,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2022) AND (a.mes = 3))
+         LIMIT 1) AS m2022_3,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2022) AND (a.mes = 4))
+         LIMIT 1) AS m2022_4,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2022) AND (a.mes = 5))
+         LIMIT 1) AS m2022_5,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2022) AND (a.mes = 6))
+         LIMIT 1) AS m2022_6,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2022) AND (a.mes = 7))
+         LIMIT 1) AS m2022_7,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2022) AND (a.mes = 8))
+         LIMIT 1) AS m2022_8,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2022) AND (a.mes = 9))
+         LIMIT 1) AS m2022_9,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2022) AND (a.mes = 10))
+         LIMIT 1) AS m2022_10,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2022) AND (a.mes = 11))
+         LIMIT 1) AS m2022_11,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2022) AND (a.mes = 12))
+         LIMIT 1) AS m2022_12,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2023) AND (a.mes = 1))
+         LIMIT 1) AS m2023_1,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2023) AND (a.mes = 2))
+         LIMIT 1) AS m2023_2,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2023) AND (a.mes = 3))
+         LIMIT 1) AS m2023_3,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2023) AND (a.mes = 4))
+         LIMIT 1) AS m2023_4,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2023) AND (a.mes = 5))
+         LIMIT 1) AS m2023_5,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2023) AND (a.mes = 6))
+         LIMIT 1) AS m2023_6,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2023) AND (a.mes = 7))
+         LIMIT 1) AS m2023_7,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2023) AND (a.mes = 8))
+         LIMIT 1) AS m2023_8,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2023) AND (a.mes = 9))
+         LIMIT 1) AS m2023_9,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2023) AND (a.mes = 10))
+         LIMIT 1) AS m2023_10,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2023) AND (a.mes = 11))
+         LIMIT 1) AS m2023_11,
+    ( SELECT a.valor
+           FROM public.aporte a
+          WHERE ((a.persona_id = msip_persona.id) AND (a.anio = 2023) AND (a.mes = 12))
+         LIMIT 1) AS m2023_12
+   FROM (public.msip_persona
+     JOIN public.msip_tdocumento ON ((msip_tdocumento.id = msip_persona.tdocumento_id)))
+  WHERE (msip_persona.id IN ( SELECT aporte.persona_id
+           FROM public.aporte
+          WHERE (aporte.valor > 0)))
+  WITH NO DATA;
+
+
+--
 -- Name: cor1440_gen_actividad; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4870,24 +5105,6 @@ CREATE TABLE public.msip_tclase (
     updated_at timestamp without time zone,
     observaciones character varying(5000) COLLATE public.es_co_utf_8,
     CONSTRAINT tipo_clase_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
-);
-
-
---
--- Name: msip_tdocumento; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.msip_tdocumento (
-    id integer NOT NULL,
-    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
-    sigla character varying(500) NOT NULL,
-    formatoregex character varying(500),
-    fechacreacion date NOT NULL,
-    fechadeshabilitacion date,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    observaciones character varying(5000) COLLATE public.es_co_utf_8,
-    ayuda character varying(1000)
 );
 
 
@@ -8958,6 +9175,13 @@ CREATE INDEX caso_fecha_idx1 ON public.sivel2_gen_caso USING btree (fecha);
 
 
 --
+-- Name: consaportante_id_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX consaportante_id_idx ON public.consaportante USING btree (id);
+
+
+--
 -- Name: cor1440_gen_actividad_id_actividadpf_id_idx; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12565,6 +12789,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230915210643'),
 ('20230927001422'),
 ('20231002183939'),
-('20231003083056');
+('20231003083056'),
+('20231003205337');
 
 

@@ -5,17 +5,49 @@ class Consaportante < ActiveRecord::Base
 
   belongs_to :persona,
     class_name: 'Msip::Persona', 
-    foreign_key: 'id', optional: false
+    foreign_key: 'id', 
+    optional: false
 
 
-  # Retorna el del primer proyecto y de la primera actividad o nil 
-  def busca_indicador_aportante
-    if actividadpf
-      actividadpf.indicadoraportante_id
-    else
-      nil
-    end
-  end
+  scope :filtro_apellidos, lambda { |apellidos|
+    where("unaccent(apellidos) ILIKE '%' || unaccent(?) || '%'", apellidos)
+  }
+
+  scope :filtro_nombres, lambda { |nombres|
+    where("unaccent(nombres) ILIKE '%' || unaccent(?) || '%'", nombres)
+  }
+
+  scope :filtro_numerodocumento, lambda { |nid|
+    where("unaccent(numerodocumento) ILIKE '%' || unaccent(?) || '%'", 
+          nid)
+  }
+  scope :filtro_tdocumento_sigla, lambda { |tid|
+    where(tdocumento_id: tid)
+  }
+
+  scope :filtro_ultimo_departamento_trabajo, lambda { |did|
+    where(ultimo_departamento_trabajo_id: did)
+  }
+
+  scope :filtro_ultima_regionpago, lambda { |rid|
+    where(ultima_regionpago_id: rid)
+  }
+
+  scope :filtro_ultimo_correo_trabajo, lambda { |c|
+    where("unaccent(ultimo_correo_trabajo) ILIKE '%' || unaccent(?) || '%'", c)
+  }
+
+  scope :filtro_ultimo_celular_trabajo, lambda { |c|
+    where("unaccent(ultimo_celular_trabajo) ILIKE '%' || unaccent(?) || '%'", c)
+  }
+
+  scope :filtro_ultima_entidad_nombre, lambda { |e|
+    where("unaccent(ultima_entidad_nombre) ILIKE '%' || unaccent(?) || '%'", e)
+  }
+
+  scope :filtro_ultimo_cargoestado, lambda { |cid|
+    where(ultimo_cargoestado_id: cid)
+  }
 
 
   def proximo_aporte
@@ -29,30 +61,9 @@ class Consaportante < ActiveRecord::Base
       return send("#{atr.to_s.parameterize}")
     end
 
-    self.persona.presenta(atr)
+    persona.presenta(atr)
   end # presenta
 
-  scope :filtro_nombres, lambda { |nombres|
-    where("unaccent(nombres) ILIKE '%' || unaccent(?) || '%'", nombres)
-  }
-
-  scope :filtro_apellidos, lambda { |apellidos|
-    where("unaccent(apellidos) ILIKE '%' || unaccent(?) || '%'", apellidos)
-  }
-
-  scope :filtro_tdocumento_sigla, lambda { |tid|
-    where(tdocumento_id: tid)
-  }
-
-  scope :filtro_numerodocumento, lambda { |nid|
-    where("unaccent(numerodocumento) ILIKE '%' || unaccent(?) || '%'", 
-          nid)
-  }
-
-
-  scope :filtro_departamento_aportante, lambda { |d|
-    where(departamento_aportante: d)
-  }
 
   CONSULTA='consaportante'
 
@@ -76,7 +87,15 @@ class Consaportante < ActiveRecord::Base
       "msip_persona.apellidos,"\
       "msip_persona.tdocumento_id,"\
       "msip_tdocumento.sigla AS tdocumento_sigla,"\
-      "msip_persona.numerodocumento"
+      "msip_persona.numerodocumento,"\
+      "msip_persona.ultimo_departamento_trabajo_id,"\
+      "msip_persona.ultima_regionpago_id,"\
+      "msip_persona.ultimo_correo_trabajo,"\
+      "msip_persona.ultimo_celular_trabajo,"\
+      "msip_persona.ultima_entidad_id,"\
+      "msip_grupoper.nombre AS ultima_entidad_nombre,"\
+      "msip_persona.ultimo_cargoestado_id"
+
     (2020..Date.today.year).each do |anio|
       (1..12).each do |mes|
         cons += ", (SELECT valor FROM aporte AS a "\
@@ -86,6 +105,8 @@ class Consaportante < ActiveRecord::Base
     end
     cons += " FROM msip_persona "\
       "JOIN msip_tdocumento ON msip_tdocumento.id=tdocumento_id "\
+      "LEFT JOIN msip_orgsocial ON msip_orgsocial.id=ultima_entidad_id "\
+      "LEFT JOIN msip_grupoper ON msip_grupoper.id=msip_orgsocial.grupoper_id "\
       "WHERE msip_persona.id IN (SELECT persona_id FROM aporte WHERE valor>0)"
     #      puts cons
     return cons

@@ -26,6 +26,12 @@ class ConsaportantesController < Heb412Gen::ModelosController
       :apellidos,
       :tdocumento_sigla,
       :numerodocumento,
+      :ultimo_departamento_trabajo,
+      :ultima_regionpago,
+      :ultimo_correo_trabajo,
+      :ultimo_celular_trabajo,
+      :ultima_entidad_nombre,
+      :ultimo_cargoestado,
       :proximo_aporte
     ]
     (2020..Date.today.year).each do |a|

@@ -11,8 +11,17 @@ es:
         Cargosestado: Cargos con el Estado
       "consaportante":
         Consaportantes: Consulta de aportantes
-        tdocumento_sigla: Tipo de documento
         numerodocumento: Número de documento
+        ultimo_cargoestado_id: Cargo con el estado
+        ultima_entidad_id: Entidad estatal
+        ultima_entidad: Entidad estatal
+        ultimo_celular_trabajo: Celular del trabajo
+        ultimo_correo_trabajo: Correo del trabajo
+        ultima_regionpago_id: Regional de pago
+        ultima_regionpago: Regional de pago
+        ultimo_departamento_trabajo_id: Departamento de trabajo
+        ultimo_departamento_trabajo: Departamento de trabajo
+        tdocumento_sigla: Tipo de documento
 
       "cor1440_gen/opcioncaracterizacion":
         Opcioncaracterizacion: Opción para caracterización en listado de asistencia
