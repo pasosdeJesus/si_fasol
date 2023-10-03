@@ -506,17 +506,17 @@ end #csvprob
 puts prob
 
 STDERR.puts "Registros con problemas #{numerr}"
-  exit 0
+exit 0
 
-  Sivel2Gen::Acto.connection.execute(<<-SQL)
-  SELECT setval('public.caso_etiqueta_seq', 3000);
-  SELECT setval('public.msip_persona_id_seq', 3000);
-  SELECT setval('public.sivel2_gen_caso_id_seq', 3000);
-  SELECT setval('public.caso_presponsable_seq', 3000);
-  SELECT setval('public.sivel2_gen_caso_fuenteprensa_seq', 3000);
-  SELECT setval('public.msip_ubicacion_id_seq', 3000);
-  SELECT setval('public.victima_seq', 3000);
-  SELECT setval('public.msip_persona_id_seq', 3000);
-  SELECT setval('public.msip_persona_trelacion_id_seq', 3000);
-  SQL
-
+##  Sivel2Gen::Acto.connection.execute(<<-SQL)
+##  SELECT setval('public.caso_etiqueta_seq', 3000);
+##  SELECT setval('public.msip_persona_id_seq', 3000);
+##  SELECT setval('public.sivel2_gen_caso_id_seq', 3000);
+##  SELECT setval('public.caso_presponsable_seq', 3000);
+##  SELECT setval('public.sivel2_gen_caso_fuenteprensa_seq', 3000);
+##  SELECT setval('public.msip_ubicacion_id_seq', 3000);
+##  SELECT setval('public.victima_seq', 3000);
+##  SELECT setval('public.msip_persona_id_seq', 3000);
+##  SELECT setval('public.msip_persona_trelacion_id_seq', 3000);
+##  SQL
+##
