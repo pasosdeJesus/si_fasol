@@ -9007,6 +9007,41 @@ CREATE UNIQUE INDEX cor1440_gen_datointermedioti_pmindicadorpf_llaves_idx ON pub
 
 
 --
+-- Name: i_aporte_anio; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX i_aporte_anio ON public.aporte USING btree (anio);
+
+
+--
+-- Name: i_aporte_anio_mes; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX i_aporte_anio_mes ON public.aporte USING btree (anio, mes);
+
+
+--
+-- Name: i_aporte_anio_mes_persona; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX i_aporte_anio_mes_persona ON public.aporte USING btree (anio, mes, persona_id);
+
+
+--
+-- Name: i_aporte_mes; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX i_aporte_mes ON public.aporte USING btree (mes);
+
+
+--
+-- Name: i_aporte_persona; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX i_aporte_persona ON public.aporte USING btree (persona_id);
+
+
+--
 -- Name: index_cor1440_gen_actividad_anexo_on_anexo_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12528,6 +12563,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230828100458'),
 ('20230828144015'),
 ('20230915210643'),
-('20231002183939');
+('20231002183939'),
+('20231003083056');
 
 
