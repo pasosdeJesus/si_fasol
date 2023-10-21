@@ -15,7 +15,7 @@ gem "bcrypt"
 
 gem "best_in_place", git: "https://github.com/mmotherwell/best_in_place"
 
-gem "bootsnap", ">=1.1.0", require: false
+gem "bootsnap", require: false
 
 gem "cancancan"
 
@@ -44,7 +44,7 @@ gem "libxml-ruby"
 
 gem "odf-report" # Genera ODT
 
-gem "nokogiri", ">=1.11.1"
+gem "nokogiri"
 
 gem "parslet"
 
@@ -60,7 +60,7 @@ gem "rack"
 
 gem "rack-cors"
 
-gem "rails", ">= 7.0", "< 7.1"
+gem "rails", "~> 7.1"
 # git: "https://github.com/rails/rails.git", branch: "6-1-stable"
 
 gem "rails-i18n"
@@ -69,7 +69,7 @@ gem "redcarpet" # Markdown
 
 gem "rspreadsheet" # Genera ODS
 
-gem "rubyzip", ">= 2.0"
+gem "rubyzip"
 
 gem "sassc-rails" # Hojas de estilo con SCSS
 
@@ -79,7 +79,7 @@ gem "sprockets-rails"
 
 gem "stimulus-rails"
 
-gem "turbo-rails", "~> 1.0"
+gem "turbo-rails"
 
 gem "twitter_cldr" # ICU con CLDR
 
@@ -92,27 +92,27 @@ gem "will_paginate" # Listados en páginas
 # estas ponerse en orden de apilamiento lógico y no alfabético).
 
 gem "msip", # Motor generico
-  git: "https://gitlab.com/pasosdeJesus/msip.git", branch: "main"
+  git: "https://gitlab.com/pasosdeJesus/msip.git", branch: "rails7.1"
   #path: "../msip"
 
 gem "mr519_gen", # Motor de gestion de formularios y encuestas
-  git: "https://gitlab.com/pasosdeJesus/mr519_gen.git", branch: "main"
+  git: "https://gitlab.com/pasosdeJesus/mr519_gen.git", branch: "rails7.1"
   #path: "../mr519_gen"
 
 gem "heb412_gen", # Motor de nube y llenado de plantillas
-  git: "https://gitlab.com/pasosdeJesus/heb412_gen.git", branch: "main"
+  git: "https://gitlab.com/pasosdeJesus/heb412_gen.git", branch: "rails7.1"
   #path: "../heb412_gen"
 
 gem "sivel2_gen", # Motor para manejo de casos
-  git: "https://gitlab.com/pasosdeJesus/sivel2_gen.git", branch: "main"
+  git: "https://gitlab.com/pasosdeJesus/sivel2_gen.git", branch: "rails7.1"
   #path: "../sivel2_gen"
 
 gem "cor1440_gen",
-  git: "https://gitlab.com/pasosdeJesus/cor1440_gen.git", branch: "main"
+  git: "https://gitlab.com/pasosdeJesus/cor1440_gen.git", branch: "rails7.1"
   #path: "../cor1440_gen"
 
 gem "jos19",
-  git: "https://gitlab.com/pasosdeJesus/jos19.git", branch: "main"
+  git: "https://gitlab.com/pasosdeJesus/jos19.git", branch: "rails7.1"
   #path: "../jos19"
 
 group :development, :test do
@@ -148,7 +148,7 @@ group :test do
 
   gem "cuprite"
 
-  gem "minitest", "~> 5.16"
+  gem "minitest"
 
   gem "minitest-reporters"
 
