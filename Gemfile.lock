@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 45f850355663cb585c09ab930fb09f9477acd7de
+  revision: e3834c2e2377fd8cbf1371e9f1bf06407d959c8c
   branch: main
   specs:
     msip (2.2.0.beta4)
@@ -256,7 +256,7 @@ GEM
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.8.1)
+    irb (1.8.3)
       rdoc
       reline (>= 0.3.8)
     jbuilder (2.11.5)
@@ -291,7 +291,7 @@ GEM
       minitest (>= 5.0)
       ruby-progressbar
     msgpack (1.7.2)
-    net-imap (0.4.1)
+    net-imap (0.4.2)
       date
       net-protocol
     net-pop (0.1.2)
@@ -324,7 +324,7 @@ GEM
     prawnto_2 (0.3.1)
       prawn (>= 1.0.0)
       rails (>= 3.2)
-    psych (5.1.1)
+    psych (5.1.1.1)
       stringio
     public_suffix (5.0.3)
     racc (1.7.1)
@@ -389,7 +389,7 @@ GEM
     rspreadsheet (0.5.3)
       andand (>= 1.3)
       rubyzip (>= 1.3)
-    rubocop (1.57.0)
+    rubocop (1.57.1)
       base64 (~> 0.1.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -403,7 +403,7 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.29.0)
       parser (>= 3.2.1.0)
-    rubocop-minitest (0.32.2)
+    rubocop-minitest (0.33.0)
       rubocop (>= 1.39, < 2.0)
     rubocop-rails (2.21.2)
       activesupport (>= 4.2.0)
@@ -445,7 +445,7 @@ GEM
     stringio (3.0.8)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
-    thor (1.2.2)
+    thor (1.3.0)
     tilt (2.3.0)
     timeout (0.4.0)
     ttfunk (1.7.0)
@@ -550,4 +550,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.20
+   2.4.21
