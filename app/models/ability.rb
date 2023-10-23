@@ -77,13 +77,56 @@ class Ability < Cor1440Gen::Ability
       BASICAS_PRIO
   end
 
-  CAMPOS_PLANTILLAS_PROPIAS = {}
+  CAMPOS_PLANTILLAS_PROPIAS = {
+    "Persona" => {
+      campos: [
+        "actualizado_en",
+        "apellidos",
+        "anioactual",
+        "anionac",
+        "aporte_enero_anioactual",
+        "aporte_febrero_anioactual",
+        "aporte_marzo_anioactual",
+        "aporte_abril_anioactual",
+        "aporte_mayo_anioactual",
+        "aporte_junio_anioactual",
+        "aporte_julio_anioactual",
+        "aporte_agosto_anioactual",
+        "aporte_septiembre_anioactual",
+        "aporte_octubre_anioactual",
+        "aporte_noviembre_anioactual",
+        "aporte_diciembre_anioactual",
+        "aporte_total_anioactual",
+        "centro_poblado",
+        "creado_en",
+        "departamento",
+        "dianac",
+        "fechaactual",
+        "fechanac_localizada",
+        "fechanac",
+        "id",
+        "mesnac",
+        "municipio",
+        "nacionalde",
+        "numerodocumento",
+        "nombres",
+        "nombres_y_apellidos",
+        "pais",
+        "sexo",
+        "tdoc",
+        "tdocumento",
+      ],
+      controlador: "Msip::PersonasController",
+      ruta: "/personas",
+    }
+  }
 
-  def campos_plantillas
-    Heb412Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone
+  def self.campos_plantillas
+    c=Heb412Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone
       .merge(Cor1440Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone)
       .merge(Sivel2Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone)
       .merge(CAMPOS_PLANTILLAS_PROPIAS.clone)
+    return c
   end
 
   # Establece autorizaciones con CanCanCan

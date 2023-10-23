@@ -84,5 +84,10 @@ module Sivel2
 
     config.x.jos19_etiquetaunificadas = 'PERSONAS UNIFICADAS'
 
+    config.railties_order = [:main_app, Jos19::Engine, 
+                             Cor1440Gen::Engine, Sivel2Gen::Engine,
+                             Heb412Gen::Engine, Mr519Gen::Engine, 
+                             Msip::Engine, :all]
+
   end
 end

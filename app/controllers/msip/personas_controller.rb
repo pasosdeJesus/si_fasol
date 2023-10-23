@@ -3,7 +3,7 @@
 require "jos19/concerns/controllers/personas_controller"
 
 module Msip
-  class PersonasController < Msip::ModelosController
+  class PersonasController < Heb412Gen::ModelosController
     load_and_authorize_resource class: Msip::Persona
 
     include Jos19::Concerns::Controllers::PersonasController
@@ -79,6 +79,10 @@ module Msip
 
     def index_reordenar(c)
       c.reorder([:nombres, :apellidos])
+    end
+
+    def vistas_manejadas
+      ['Persona']
     end
 
     def destroy
