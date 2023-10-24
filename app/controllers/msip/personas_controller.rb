@@ -139,7 +139,7 @@ module Msip
 
       msg = "Se agregaron #{res.cmd_tuples} aportes"
       if acid > ultid
-        msg += "con ids entre #{ultid+1} y #{acid}"
+        msg += " con ids entre #{ultid+1} y #{acid}"
       end
       msg += ". "
 
