@@ -34,7 +34,7 @@ module Msip
         :actividad_ids,
         :caso_ids,
         :familiarvictima_ids,
-        :proximo_aporte,
+        :ultimo_aporte,
         :aportes,
         :fecha_desafiliacion_aportante,
         :etiqueta_ids,
@@ -46,7 +46,7 @@ module Msip
         :actividad_ids,
         :caso_ids,
         :familiarvictima_ids,
-        :proximo_aporte
+        :ultimo_aporte
       ]
       a[a.index(:familiares)] = :persona_trelacion1
       return a
@@ -72,7 +72,7 @@ module Msip
         :actividad_ids,
         :caso_ids,
         :familiarvictima_ids,
-        :proximo_aporte,
+        :ultimo_aporte,
         :aportes,
       ]
     end
@@ -97,9 +97,65 @@ module Msip
       true
     end
 
+    def actualizacion_masiva
+      render layout: 'application'
+    end
+
+    def hacer_actualizacion_masiva
+      if !params || !params[:persona] || !params[:persona][:am_año] ||
+          params[:persona][:am_año].to_i < 2020  ||
+          params[:persona][:am_año].to_i > Date.today.year
+        return
+      end
+      if !params[:persona][:am_mes] ||
+          params[:persona][:am_mes].to_i < 0  ||
+          params[:persona][:am_mes].to_i > 11
+        return
+      end
+      am_año = params[:persona][:am_año].to_i
+      am_mes = 1 + params[:persona][:am_mes].to_i
+
+      añoa = am_mes == 1 ? am_año - 1 : am_año
+      mesa = am_mes == 1 ? 12 : am_mes - 1
+      cons = "SELECT persona_id, #{am_año}, #{am_mes}, valor FROM aporte "\
+        "WHERE anio=#{añoa} AND mes=#{mesa} AND valor>0 "\
+        "AND persona_id NOT IN (SELECT id FROM msip_persona "\
+        "  WHERE fecha_desafiliacion_aportante < '#{añoa}-#{mesa}-01')"\
+        "AND persona_id NOT IN (SELECT persona_id FROM aporte"\
+        "  WHERE anio=#{am_año} AND mes=#{am_mes})"
+      ins = "INSERT INTO aporte (persona_id, anio, mes, valor) (#{cons});"
+      puts ins
+      c_ultid = Aporte.connection.execute <<-SQL
+        SELECT last_value FROM aporte_id_seq;
+      SQL
+      ultid = c_ultid[0]["last_value"]
+      res = Aporte.connection.execute <<-SQL
+        #{ins}
+      SQL
+      c_acid = Aporte.connection.execute <<-SQL
+        SELECT last_value FROM aporte_id_seq;
+      SQL
+      acid = c_acid[0]["last_value"]
+
+      msg = "Se agregaron #{res.cmd_tuples} aportes"
+      if acid > ultid
+        msg += "con ids entre #{ultid+1} y #{acid}"
+      end
+      msg += ". "
+
+      napo = Aporte.where("id > ?", ultid).where("id <= ?", acid).
+        pluck(:persona_id)
+
+      flash[:notice] = msg
+      redirect_to main_app.consaportantes_path(busid: napo)
+    end
+
     def lista_params
       atributos_form - [
         :aportes
+      ] + [
+        :am_año, 
+        :am_mes
       ] + [
         :aporte_attributes => [
           :anio,

@@ -8,7 +8,8 @@ Rails.application.routes.draw do
       get "salir" => "devise/sessions#destroy",
         as: :terminar_sesion
 
-      post "usuarios/iniciar_sesion", to: "devise/sessions#create"
+      post "usuarios/iniciar_sesion",
+        to: "devise/sessions#create"
       get "usuarios/iniciar_sesion",
         to: "devise/sessions#new",
         as: :iniciar_sesion
@@ -34,19 +35,26 @@ Rails.application.routes.draw do
         :as => "registro_usuario"
     end
 
-    resources :acto, only: [], param: :index do 
+    resources :acto, only: [], param: :index do
       member do
         delete '(:id)', to: "sivel2_gen/actos#destroy", as: "eliminar"
-        post '/' => "sivel2_gen/actos#create", as: "crear"
+        post '/', to: "sivel2_gen/actos#create", as: "crear"
       end
     end
 
-    resources :aporte, only: [], param: :index do 
+    resources :aporte, only: [], param: :index do
       member do
         delete '(:id)', to: "aportes#destroy", as: "eliminar"
-        post '/' => "aportes#create", as: "crear"
+        post '/', to: "aportes#create", as: "crear"
       end
     end
+
+    get "aportes/actualizacion_masiva",
+      to:"msip/personas#actualizacion_masiva",
+      as: :aportes_actualizacion_masiva
+    patch "aportes/actualizacion_masiva",
+      to: "msip/personas#hacer_actualizacion_masiva",
+      as: :aportes_hacer_actualizacion_masiva
 
     resources :homonimos, path_names: { new: "nuevo", edit: "edita" },
       controller: "msip/homonimos"
@@ -58,8 +66,8 @@ Rails.application.routes.draw do
     get "/aliadoasiste/nuevo" => "cor1440_gen/actividades#nuevo_aliadoasiste",
       as: :nuevo_aliadoasiste
 
-    get "/consaportante/:id" => "msip/personas#show",
-      as: :consaportante
+    #get "/consaportante/:id" => "msip/personas#show",
+    #  as: :consaportante
     get "/consaportantes" => "consaportantes#index",
       as: :consaportantes
 
