@@ -147,7 +147,7 @@ module Msip
         pluck(:persona_id)
 
       flash[:notice] = msg
-      redirect_to main_app.consaportantes_path(busid: napo)
+      redirect_to main_app.consaportantes_path
     end
 
     def lista_params
