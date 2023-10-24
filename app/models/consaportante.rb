@@ -50,8 +50,8 @@ class Consaportante < ActiveRecord::Base
   }
 
 
-  def proximo_aporte
-    self.persona.proximo_aporte
+  def ultimo_aporte
+    self.persona.ultimo_aporte
   end
 
   def presenta(atr)

@@ -39,6 +39,8 @@ module Msip
       foreign_key: "ultima_entidad_id",
       optional: true
 
+    attr_accessor :am_año, :am_mes  # Para actualizacion masiva
+
     validates :tdocumento_id, presence: true, allow_blank: false
     validates :numerodocumento, presence: true, allow_blank: false,
       uniqueness: { scope: :tdocumento,
@@ -99,7 +101,7 @@ module Msip
       )
     end
 
-    def proximo_aporte
+    def ultimo_aporte
       if self.fecha_desafiliacion_aportante
         return "Desafiliado"
       end

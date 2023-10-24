@@ -32,7 +32,7 @@ class ConsaportantesController < Heb412Gen::ModelosController
       :ultimo_celular_trabajo,
       :ultima_entidad_nombre,
       :ultimo_cargoestado,
-      :proximo_aporte
+      :ultimo_aporte
     ]
     (2020..Date.today.year).each do |a|
       (1..12).each do |m|
