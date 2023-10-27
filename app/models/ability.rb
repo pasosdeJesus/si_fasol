@@ -121,7 +121,7 @@ class Ability < Cor1440Gen::Ability
     }
   }
 
-  def self.campos_plantillas
+  def campos_plantillas
     c=Heb412Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone
       .merge(Cor1440Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone)
       .merge(Sivel2Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone)

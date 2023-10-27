@@ -95,7 +95,7 @@ GIT
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
   revision: 7f4448f16811cc58c2633bba7866d99d4aac54e6
-  branch: main
+  branch: sinturbovic
   specs:
     sivel2_gen (2.2.0.beta4)
       color
