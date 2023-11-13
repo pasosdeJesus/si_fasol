@@ -2,22 +2,46 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-# Importa base general de aportantes de fiscalía de un CSV
+# Importa base general de aportantes de fiscalía / rama de un CSV
 
 d = Date.today.day
 
 require "csv"
 
-if ARGV.length != 1
+if ARGV.length != 2
   STDERR.puts "Primer argumento debe ser CSV por importar"
+  STDERR.puts "Segundo si se importa datos de [F]iscalía o de Rama [J]udicial"
+  exit 1
+end
+
+importade=ARGV[1]
+if importade != "F"  && importade != "J"
+  STDERR.puts "Segundo argumento debe ser F o J"
   exit 1
 end
 
 region_region = {
-  "RISARALDA" => "EJE CAFETERO - RISARALDA"
+  "ARMENIA" => "EJE CAFETERO",
+  "BARRANQUILLA" => "ATLÁNTICO",
+  "BUCARAMANGA" => "SANTANDER",
+  "EJE CAFETERO - RISARALDA" => "EJE CAFETERO",
+  "MANIZALES CALDAS" => "EJE CAFETERO",
+  "MEDELLIN ANTIOQUIA" => "ANTIOQUIA",
+  "NORTE DE SANTANDER Y ARAUCA" => "NORTE DE SANTANDER",
+  "NEIVA" => "HUILA", 
+  "PACIFICO" => "VALLE DEL CAUCA",
+  "PASTO" => "NARIÑO",
+  "PEREIRA RISARALDA" => "EJE CAFETERO",
+  "RISARALDA" => "EJE CAFETERO",
+  "SANTA MARTA" => "MAGDALENA",
+  "SANTANDER Y MAGDALENA MEDIO" => "SANTANDER",
+  "TUNJA" => "BOYACA",
+  "VALLEDUPAR CESAR" => "CESAR",
+  "VILLAVICENCIO" => "CESAR",
 }
 
 region_depto = {
+  "ANTIOQUIA CHOCO" => "ANTIOQUIA",
   "ARMENIA" => "QUINDÍO",
   "BOGOTÁ" => "BOGOTÁ, D.C.",
   "CARTAGENA" => "BOLIVAR",
@@ -26,6 +50,7 @@ region_depto = {
   "EJE CAFETERO - CHOCO" => "CHOCO",
   "EJE CAFETERO - QUINDIO" => "QUINDÍO",
   "EJE CAFETERO - RISARALDA" => "RISARALDA",
+  "HULA Y CAQUETA" => "HUILA",
   "MEDELLIN ANTIOQUIA" => "ANTIOQUIA",
   "PASTO NARIÑO" => "NARIÑO",
   "POPAYAN" => "CAUCA",
@@ -318,6 +343,7 @@ cargo_entidad = {
   "VIDA -PALOQUEMAO" => [33, 31],
 }
 
+
 trmes = {
   "ene" => 1,
   "feb" => 2,
@@ -338,38 +364,21 @@ STDERR.puts "Leyendo donantes de #{nimp}"
 impcsv = CSV.read(nimp, headers: true)
 encimp = impcsv[0].headers
 STDERR.puts "Se leyeron #{impcsv.count} registros de #{nimp}"
-if encimp.count != 29 ||
-    !encimp.include?("#") ||
-    !encimp.include?("Cedula") ||
-    !encimp.include?("Apellidos") ||
-    !encimp.include?("Nombres") ||
-    !encimp.include?("abr-20") ||
-    !encimp.include?("jun-20") ||
-    !encimp.include?("jul-20") ||
-    !encimp.include?("ago-20") ||
-    !encimp.include?("sept-20") ||
-    !encimp.include?("oct-20") ||
-    !encimp.include?("nov-20") || 
-    !encimp.include?("dic-20") ||
-    !encimp.include?("ene-21") ||
-    !encimp.include?("feb-21") ||
-    !encimp.include?("mar-21") ||
-    !encimp.include?("abr-21") ||
-    !encimp.include?("may-21") ||
-    !encimp.include?("jun-21") ||
-    !encimp.include?("jul-21") ||
-    !encimp.include?("ago-21") ||
-    !encimp.include?("sept-21") ||
-    !encimp.include?("oct-21") ||
-    !encimp.include?("nov-21") ||
-    !encimp.include?("dic-21") ||
-    !encimp.include?("DEPARTAMENTO ") ||
-    !encimp.include?("mail") ||
-    !encimp.include?("celular") ||
-    !encimp.include?("Cargo") ||
-    !encimp.include?("Seccional")
-  puts "El CSV #{nimp} no tiene los encabezados esperados"
-  exit 1
+puts encimp.count
+colesp = ["#", "Cedula", "Nombres", "Apellidos", "abr-20", "may-20", "jun-20",
+          "jul-20", "ago-20", "sep-20", "oct-20", "nov-20", "dic-20",
+          "ene-21", "feb-21", "mar-21", "abr-21", "may-21", "jun-21", 
+          "jul-21", "ago-21", "sep-21", "oct-21", "nov-21", "dic-21", 
+          "CIUDAD", "Departamento", "mail", "celular", "Despacho", "Cargo"]
+if encimp.count != colesp.count
+  puts "El CSV #{nimp} tiene #{encimp.count} columnas pero se esperaban #{coles.count}"
+    exit 1
+end
+colesp.each do |c|
+  if !encimp.include?(c)
+    puts "El CSV #{nimp} no tiene columna #{c}"
+    exit 1
+  end
 end
 
 idrep = 0
@@ -377,7 +386,7 @@ nomrep = 0
 nreg = 0
 numerr = 0
 prob = CSV.generate do |csvprob|
-  csvprob << ["#", "Cedula", "Apellidos", "Nombres", "abr-20", "jun-20", "jul-20", "ago-20", "sept-20", "oct-20", "nov-20", "dic-20", "ene-21", "feb-21", "mar-21", "abr-21", "may-21", "jun-21", "jul-21", "ago-21", "sept-21", "oct-21", "nov-21", "dic-21", "DEPARTAMENTO ", "mail", "celular", "Cargo", "Seccional", "Error"]
+  csvprob << colesp
   impcsv.each do |r|
     nreg += 1
     STDERR.puts nreg
@@ -409,10 +418,14 @@ prob = CSV.generate do |csvprob|
       menserror << "Nombre repetido con persona #{pnomrep.id} - #{pnomrep.nombres} #{pnomrep.apellidos} (#{pnomrep.tdocumento.sigla} #{pnomrep.numerodocumento}). "
     end
 
-    if region_depto[r["DEPARTAMENTO "]]
-      rds = region_depto[r["DEPARTAMENTO "]].split("-")
+    if region_depto[r["Departamento"]]
+      rds = region_depto[r["Departamento"]].split("-")
     else
-      rds = r["DEPARTAMENTO "].split("-")
+      if !r["Departamento"].nil?
+        rds = r["Departamento"].split("-")
+      else
+        rds = ["", ""]
+      end
     end
     rd = rds[0].strip
     pd = Msip::Departamento.where(pais_id: 170)
@@ -428,7 +441,7 @@ prob = CSV.generate do |csvprob|
         rp["ultimo_departamento_trabajo_id"] = d.id
       end
     end
-    if rds.count == 1 || (rds.count == 2 && rd[1] = " correo laura ")
+    if rds.count == 1 || (rds.count == 2 && rd[1] == " correo laura ")
       rd = rds[0].strip
     else
       rd = rds[0].strip + " - " + rds[1].strip
@@ -439,7 +452,8 @@ prob = CSV.generate do |csvprob|
     end
     pr = Regionpago.where('unaccent(nombre) ILIKE unaccent(?)', rd)
     if pr.count == 0
-      debugger
+      #debugger
+      rp["ultima_regionpago_id"] = nil
     else
       rp["ultima_regionpago_id"] = pr.take.id
     end
@@ -455,8 +469,20 @@ prob = CSV.generate do |csvprob|
     ce = cargo_entidad[r["Cargo"]]
     if ce
       rp["ultimo_cargoestado_id"] = ce[0]
-      rp["ultima_entidad_id"] = ce[1]
-    else
+      if importade == "F"
+        rp["ultima_entidad_id"] = ce[1]
+      else
+        rp["ultima_entidad_id"] = 60 # Rama judicial
+      end
+    else # En algunos registros el cargo está en la columna despacho
+      if importade == "J"
+        ce = cargo_entidad[r["Despacho"]]
+        if ce
+          rp["ultimo_cargoestado_id"] = ce[0]
+          rp["ultima_entidad_id"] = 60 # Rama judicial
+        end
+      end
+
       preg << "Persona sin cargo/entidad (#{cargo})"
     end
 
@@ -469,7 +495,7 @@ prob = CSV.generate do |csvprob|
         # Máxima id iba en 1907
       end
 
-      ["abr-20","jun-20","jul-20","ago-20","sept-20","oct-20","nov-20","dic-20","ene-21","feb-21","mar-21","abr-21","may-21","jun-21","jul-21","ago-21","sept-21","oct-21","nov-21","dic-21"].each do |ma|
+      ["abr-20","may-20","jun-20","jul-20","ago-20","sept-20","oct-20","nov-20","dic-20","ene-21","feb-21","mar-21","abr-21","may-21","jun-21","jul-21","ago-21","sept-21","oct-21","nov-21","dic-21"].each do |ma|
         mad = ma.split("-")
         mes = trmes[mad[0]]
         anio = mad[1].to_i + 2000
@@ -488,15 +514,13 @@ prob = CSV.generate do |csvprob|
 
     else
 
-      csvprob << [ 
-        r["#"],r["Cedula"],r["Apellidos"],r["Nombres"],
-        r["abr-20"],r["jun-20"],r["jul-20"],r["ago-20"],r["sept-20"],
-        r["oct-20"],r["nov-20"],r["dic-20"],r["ene-21"],r["feb-21"],
-        r["mar-21"],r["abr-21"],r["may-21"],r["jun-21"],r["jul-21"],
-        r["ago-21"],r["sept-21"],r["oct-21"],r["nov-21"],r["dic-21"],
-        r["DEPARTAMENTO "],r["mail"],r["celular"],r["Cargo"],
-        r["Seccional"],menserror
-      ]
+      nlin = []
+      colesp.each do |c|
+        nlin << r[c]
+      end
+      nlin << menserror
+
+      csvprob << nlin
       numerr += 1
 
     end
