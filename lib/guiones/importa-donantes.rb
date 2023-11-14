@@ -366,9 +366,9 @@ encimp = impcsv[0].headers
 STDERR.puts "Se leyeron #{impcsv.count} registros de #{nimp}"
 puts encimp.count
 colesp = ["#", "Cedula", "Nombres", "Apellidos", "abr-20", "may-20", "jun-20",
-          "jul-20", "ago-20", "sep-20", "oct-20", "nov-20", "dic-20",
+          "jul-20", "ago-20", "sept-20", "oct-20", "nov-20", "dic-20",
           "ene-21", "feb-21", "mar-21", "abr-21", "may-21", "jun-21", 
-          "jul-21", "ago-21", "sep-21", "oct-21", "nov-21", "dic-21", 
+          "jul-21", "ago-21", "sept-21", "oct-21", "nov-21", "dic-21", 
           "CIUDAD", "Departamento", "mail", "celular", "Despacho", "Cargo"]
 if encimp.count != colesp.count
   puts "El CSV #{nimp} tiene #{encimp.count} columnas pero se esperaban #{coles.count}"
@@ -465,21 +465,24 @@ prob = CSV.generate do |csvprob|
       rp["ultimo_celular_trabajo"] = r["celular"]
     end
 
+    
     cargo = r["Cargo"]
     ce = cargo_entidad[r["Cargo"]]
+    if importade == "J"
+      rp["ultima_entidad_id"] = 60 # Rama judicial
+    else
+      rp["ultima_entidad_id"] = 31 # Fiscalia General
+    end
     if ce
       rp["ultimo_cargoestado_id"] = ce[0]
       if importade == "F"
         rp["ultima_entidad_id"] = ce[1]
-      else
-        rp["ultima_entidad_id"] = 60 # Rama judicial
       end
     else # En algunos registros el cargo está en la columna despacho
       if importade == "J"
         ce = cargo_entidad[r["Despacho"]]
         if ce
           rp["ultimo_cargoestado_id"] = ce[0]
-          rp["ultima_entidad_id"] = 60 # Rama judicial
         end
       end
 
