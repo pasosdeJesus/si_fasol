@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: f55d01eae7a0b3cf366fd42dfd728ae759cce1d1
+  revision: fc376c795558391796c9194fb33514499452320b
   branch: main
   specs:
     cor1440_gen (2.2.0.beta4)
