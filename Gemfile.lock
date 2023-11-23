@@ -33,8 +33,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: fc376c795558391796c9194fb33514499452320b
-  branch: main
+  revision: 24f0c80b3776c1e70724e9f438ea1b8bc07b7857
+  branch: renclase
   specs:
     cor1440_gen (2.2.0.beta4)
       devise
@@ -46,8 +46,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 9d323f8019603a9cbe9929d9a9431955b0109d38
-  branch: main
+  revision: a044ff731677281d6c5f85d2d1e5a812fe330e28
+  branch: renclase
   specs:
     heb412_gen (2.2.0.beta4)
       mr519_gen
@@ -57,16 +57,16 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/jos19.git
-  revision: 68b5a28a7cfab4a40e176adc39fbefdb443b919e
-  branch: main
+  revision: 8c13f45048145ff0d2530c8f2cd2e92f9f64a073
+  branch: renclase
   specs:
     jos19 (2.2.0.beta4)
       rails (>= 7.0.4)
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: ef2c0c30e6febb851dec6e7e0a699155309e959e
-  branch: main
+  revision: 2ba047bdc09de9e808cc66f1f77e4f7add3c6b08
+  branch: renclase
   specs:
     mr519_gen (2.2.0.beta4)
       msip
@@ -74,8 +74,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 2455fc9e8a04611b747dc1f99473f051d4af83cd
-  branch: main
+  revision: 2aa8302570f55447d741cb20b90f02a1f7e96712
+  branch: renclase
   specs:
     msip (2.2.0.beta4)
       cancancan (~> 3)
@@ -94,8 +94,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 7f4448f16811cc58c2633bba7866d99d4aac54e6
-  branch: sinturbovic
+  revision: e98249c8fbdfb8276b4a6df42e4fdb4e690905aa
+  branch: renclase
   specs:
     sivel2_gen (2.2.0.beta4)
       color
@@ -181,7 +181,7 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
-    bcrypt (3.1.19)
+    bcrypt (3.1.20)
     bindex (0.8.1)
     bootsnap (1.17.0)
       msgpack (~> 1.2)
@@ -255,7 +255,7 @@ GEM
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.9.0)
+    irb (1.9.1)
       rdoc
       reline (>= 0.3.8)
     jbuilder (2.11.5)
@@ -290,7 +290,7 @@ GEM
       minitest (>= 5.0)
       ruby-progressbar
     msgpack (1.7.2)
-    net-imap (0.4.5)
+    net-imap (0.4.6)
       date
       net-protocol
     net-pop (0.1.2)
@@ -299,8 +299,8 @@ GEM
       timeout
     net-smtp (0.4.0)
       net-protocol
-    nio4r (2.5.9)
-    nokogiri (1.15.4)
+    nio4r (2.6.1)
+    nokogiri (1.15.5)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     odf-report (0.7.3)
@@ -325,7 +325,7 @@ GEM
       rails (>= 3.2)
     psych (5.1.1.1)
       stringio
-    public_suffix (5.0.3)
+    public_suffix (5.0.4)
     racc (1.7.3)
     rack (2.2.8)
     rack-cors (2.0.1)
@@ -403,10 +403,11 @@ GEM
       parser (>= 3.2.1.0)
     rubocop-minitest (0.33.0)
       rubocop (>= 1.39, < 2.0)
-    rubocop-rails (2.22.1)
+    rubocop-rails (2.22.2)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
     rubocop-shopify (2.14.0)
       rubocop (~> 1.51)
     ruby-graphviz (1.2.5)
