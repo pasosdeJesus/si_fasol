@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: es_co_utf_8; Type: COLLATION; Schema: public; Owner: -
 --
 
@@ -261,6 +268,26 @@ BEGIN
 	RETURN na;
 
 END;$$;
+
+
+--
+-- Name: entidadessubde(numeric); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.entidadessubde(entidad_id numeric) RETURNS SETOF numeric
+    LANGUAGE sql
+    AS $$
+          WITH RECURSIVE supjer AS (
+            SELECT o1.id, g1.nombre, o1.subde_id
+              FROM msip_orgsocial AS o1
+              JOIN msip_grupoper AS g1 ON g1.id=o1.grupoper_id
+              WHERE o1.id=entidad_id
+            UNION SELECT o2.id, g2.nombre, o2.subde_id
+              FROM msip_orgsocial AS o2
+              JOIN msip_grupoper AS g2 ON g2.id=o2.grupoper_id
+              INNER JOIN supjer AS s ON o2.subde_id=s.id)
+            SELECT id FROM supjer;
+        $$;
 
 
 --
@@ -13044,6 +13071,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20231205202418'),
 ('20231205205549'),
 ('20231205205600'),
-('20231208162022');
+('20231208162022'),
+('20231208203424');
 
 

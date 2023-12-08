@@ -41,8 +41,13 @@ class Consaportante < ActiveRecord::Base
     where("unaccent(ultimo_celular_trabajo) ILIKE '%' || unaccent(?) || '%'", c)
   }
 
-  scope :filtro_ultima_entidad_nombre, lambda { |e|
-    where("unaccent(ultima_entidad_nombre) ILIKE '%' || unaccent(?) || '%'", e)
+  #scope :filtro_ultima_entidad_nombre, lambda { |e|
+  #  where("unaccent(ultima_entidad_nombre) ILIKE '%' || unaccent(?) || '%'", e)
+  #}
+
+  scope :filtro_ultima_entidad_nombre, lambda { |id|
+    where("ultima_entidad_id IN "\
+          "(select entidadessubde(?))", id)
   }
 
   scope :filtro_ultimo_cargoestado, lambda { |cid|

@@ -1,8 +1,15 @@
-<%= f.input :busultima_entidad_nombre, 
-  label: false, 
+<%= f.input :busultima_entidad_nombre,
+  collection: Msip::Orgsocial.where(
+    "id IN (SELECT DISTINCT subde_id FROM msip_orgsocial "\
+    "       WHERE subde_id IS NOT NULL)"
+  ),
+  label: false,
+  include_blank: true,
+  label_method: :presenta_nombre,
+  value_method: :id,
+  selected: Msip::ModeloHelper.poromision(params, :busultima_entidad_nombre),
   input_html: {
-    value: Msip::ModeloHelper::poromision(params, :busultima_entidad_nombre),
-    style: "min-width: 4em",
-    "data-enviarautomatico": ""
+    class: 'chosen-select',
+    'data-enviarautomatico' => ''
   }
 %>
