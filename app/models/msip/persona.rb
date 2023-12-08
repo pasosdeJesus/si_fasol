@@ -89,6 +89,36 @@ module Msip
         sub(/  */, ' ').sub(/^  */, '').sub(/  *$/, '')
     end
 
+
+    scope :filtro_familiarvictima_ids, lambda {|o| 
+      if o.upcase.strip == "SI"
+        where(
+          "id in (SELECT persona2 "\
+          "  FROM msip_persona_trelacion "\
+          "  WHERE persona1 IN (SELECT persona_id FROM sivel2_gen_victima))"
+        )
+      elsif o.upcase.strip == "NO"
+        where.not(
+          "id in (SELECT persona2 "\
+          "  FROM msip_persona_trelacion "\
+          "  WHERE persona1 IN (SELECT persona_id FROM sivel2_gen_victima))"
+        )
+      end
+    }
+
+    scope :filtro_caso_ids, lambda {|o| 
+      if o.upcase.strip == "SI"
+        where(
+          "id in (SELECT persona_id FROM sivel2_gen_victima)"
+        )
+      elsif o.upcase.strip == "NO"
+        where.not(
+          "id in (SELECT persona_id FROM sivel2_gen_victima)"
+        )
+      end
+    }
+
+
     # Registros msip_persona_trelacion en los que
     # esta persona aparece como persona2 y la
     # persona1 es víctima en un caso
