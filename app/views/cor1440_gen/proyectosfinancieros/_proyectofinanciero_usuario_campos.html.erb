@@ -14,7 +14,7 @@
   </td>
   <td data-usuario-con-grupo-target='grupo'>
     <%= f.object.usuario ? 
-      f.object.usuario.msip_grupo.map(&:nombre).join('; ') : '' %>
+      f.object.usuario.grupo.map(&:nombre).join('; ') : '' %>
   </td>
   <td>
     <%= f.input :id, as: :hidden %>
