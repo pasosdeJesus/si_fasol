@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: a6d60dc65595a0f4fa4a4377445e30939af816d9
+  revision: 7f1a427cbfadd652daf613ce04e180bd32b3031a
   branch: main
   specs:
     cor1440_gen (2.2.0.beta4)
@@ -46,7 +46,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 7cd8b4b7de0898ab2a3b049217e4a0e9d3c2cc81
+  revision: d16368180b147c367b273cfe39aa14135c79caee
   branch: main
   specs:
     heb412_gen (2.2.0.beta4)
@@ -57,7 +57,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/jos19.git
-  revision: 1c44e06db2b3374d3b50ca278666bd184be9b5da
+  revision: 3bc8ffe16d342a59b4066b9ad02fb4fe0b9d8b88
   branch: main
   specs:
     jos19 (2.2.0.beta4)
@@ -65,7 +65,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 8ac5cf474570620c29569b5ddfe31327113063c8
+  revision: 83d881fe06ce88ff6dd8454346659d7a4baab651
   branch: main
   specs:
     mr519_gen (2.2.0.beta4)
@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 932966920f125f0f47e37ace5574ec80ca7a8366
+  revision: 644057d0215763dc0eb062798768ca63e6156807
   branch: main
   specs:
     msip (2.2.0.beta4)
@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 9e0c2c69f7832aede185bfd0062530ff3f97b565
+  revision: 674d760be3f76118507f77bd0360f79c9db03c7c
   branch: main
   specs:
     sivel2_gen (2.2.0.beta4)
@@ -185,7 +185,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.17.0)
       msgpack (~> 1.2)
-    brakeman (6.0.1)
+    brakeman (6.1.0)
     builder (3.2.4)
     bundler-audit (0.9.1)
       bundler (>= 1.2.0, < 3)
@@ -255,7 +255,7 @@ GEM
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.9.1)
+    irb (1.10.1)
       rdoc
       reline (>= 0.3.8)
     jbuilder (2.11.5)
@@ -263,7 +263,7 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.2.1)
       railties (>= 6.0.0)
-    json (2.6.3)
+    json (2.7.1)
     kgio (2.11.4)
     language_server-protocol (3.17.0.3)
     libxml-ruby (4.1.2)
@@ -280,7 +280,7 @@ GEM
     method_source (1.0.0)
     mime-types (3.5.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2023.1003)
+    mime-types-data (3.2023.1205)
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
     minitest (5.20.0)
@@ -290,7 +290,7 @@ GEM
       minitest (>= 5.0)
       ruby-progressbar
     msgpack (1.7.2)
-    net-imap (0.4.6)
+    net-imap (0.4.7)
       date
       net-protocol
     net-pop (0.1.2)
@@ -299,7 +299,7 @@ GEM
       timeout
     net-smtp (0.4.0)
       net-protocol
-    nio4r (2.6.1)
+    nio4r (2.7.0)
     nokogiri (1.15.5)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -375,11 +375,11 @@ GEM
     rainbow (3.1.1)
     raindrops (0.20.1)
     rake (13.1.0)
-    rdoc (6.6.0)
+    rdoc (6.6.1)
       psych (>= 4.0.0)
     redcarpet (3.6.0)
-    regexp_parser (2.8.2)
-    reline (0.4.0)
+    regexp_parser (2.8.3)
+    reline (0.4.1)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
@@ -388,7 +388,7 @@ GEM
     rspreadsheet (0.5.3)
       andand (>= 1.3)
       rubyzip (>= 1.3)
-    rubocop (1.57.2)
+    rubocop (1.58.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -396,7 +396,7 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.28.1, < 2.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.30.0)
@@ -441,7 +441,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.3.0)
       railties (>= 6.0.0)
-    stringio (3.0.9)
+    stringio (3.1.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.3.0)

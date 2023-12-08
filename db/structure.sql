@@ -425,6 +425,94 @@ CREATE FUNCTION public.msip_eliminar_familiar_inverso() RETURNS trigger
 
 
 --
+-- Name: msip_nombre_vereda(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_nombre_vereda() RETURNS character varying
+    LANGUAGE sql
+    AS $$
+        SELECT 'Vereda '
+      $$;
+
+
+--
+-- Name: msip_ubicacionpre_dpa_nomenclatura(character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_dpa_nomenclatura(pais character varying, departamento character varying, municipio character varying, vereda character varying, centropoblado character varying) RETURNS text[]
+    LANGUAGE sql
+    AS $$
+        SELECT CASE
+        WHEN pais IS NULL OR pais = '' THEN
+          array[NULL, NULL]
+        WHEN departamento IS NULL OR departamento = '' THEN
+          array[pais, NULL]
+        WHEN municipio IS NULL OR municipio = '' THEN
+          array[departamento || ' / ' || pais, departamento]
+        WHEN (vereda IS NULL OR vereda = '') AND
+        (centropoblado IS NULL OR centropoblado = '') THEN
+          array[
+            municipio || ' / ' || departamento || ' / ' || pais,
+            municipio || ' / ' || departamento ]
+        WHEN vereda IS NOT NULL THEN
+          array[
+            msip_nombre_vereda() || vereda || ' / ' ||
+            municipio || ' / ' || departamento || ' / ' || pais,
+            msip_nombre_vereda() || vereda || ' / ' ||
+            municipio || ' / ' || departamento ]
+        ELSE
+          array[
+            centropoblado || ' / ' ||
+            municipio || ' / ' || departamento || ' / ' || pais,
+            centropoblado || ' / ' ||
+            municipio || ' / ' || departamento ]
+         END
+      $$;
+
+
+--
+-- Name: msip_ubicacionpre_id_rtablabasica(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_id_rtablabasica() RETURNS integer
+    LANGUAGE sql
+    AS $$
+        SELECT max(id+1) FROM msip_ubicacionpre WHERE 
+          (id+1) NOT IN (SELECT id FROM msip_ubicacionpre) AND 
+          id<10000000
+      $$;
+
+
+--
+-- Name: msip_ubicacionpre_nomenclatura(character varying, character varying, character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_nomenclatura(pais character varying, departamento character varying, municipio character varying, vereda character varying, centropoblado character varying, lugar character varying, sitio character varying) RETURNS text[]
+    LANGUAGE sql
+    AS $$
+        SELECT CASE
+        WHEN (lugar IS NULL OR lugar = '') THEN
+          msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
+          municipio, vereda, centropoblado)
+        WHEN (sitio IS NULL OR sitio= '') THEN
+          array[lugar || ' / ' || 
+            (msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
+              municipio, vereda, centropoblado))[0],
+          lugar || ' / ' || 
+            (msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
+              municipio, vereda, centropoblado))[1] ]
+        ELSE
+          array[sitio || ' / ' || lugar || ' / ' || 
+            (msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
+              municipio, vereda, centropoblado))[0],
+          sitio || ' / ' || lugar || ' / ' || 
+            (msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
+              municipio, vereda, centropoblado))[1] ]
+        END
+      $$;
+
+
+--
 -- Name: probapellido(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -1612,7 +1700,7 @@ CREATE VIEW public.cben1 AS
     subv.victima_id,
     subv.persona_id,
     1 AS npersona,
-    'total'::text AS total
+    ((EXTRACT(year FROM caso.fecha) || '-'::text) || lpad((EXTRACT(month FROM caso.fecha))::text, 2, '0'::text)) AS mes
    FROM public.sivel2_gen_caso caso,
     public.sivel2_gen_victima victima,
     ( SELECT sivel2_gen_victima.persona_id,
@@ -1620,7 +1708,7 @@ CREATE VIEW public.cben1 AS
            FROM public.sivel2_gen_victima
           GROUP BY sivel2_gen_victima.persona_id) subv,
     public.msip_persona persona
-  WHERE ((subv.victima_id = victima.id) AND (caso.id = victima.caso_id) AND (persona.id = victima.persona_id));
+  WHERE ((subv.victima_id = victima.id) AND (caso.id = victima.caso_id) AND ((persona.anionac IS NULL) OR (persona.anionac = ANY (ARRAY[1922, 1931, 1933, 1935, 1937, 1938, 1939, 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947, 1948, 1949, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1993, 2000]))) AND (victima.etnia_id = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110])) AND (victima.filiacion_id = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 101])) AND ((((EXTRACT(year FROM caso.fecha))::text || '-'::text) || lpad((EXTRACT(month FROM caso.fecha))::text, 2, '0'::text)) = ANY (ARRAY['1983-04'::text, '1983-09'::text, '1985-04'::text, '1985-06'::text, '1985-07'::text, '1985-08'::text, '1985-11'::text, '1986-10'::text, '1987-08'::text, '1987-10'::text, '1987-11'::text, '1987-12'::text, '1988-02'::text, '1988-05'::text, '1988-09'::text, '1988-11'::text, '1989-01'::text, '1989-03'::text, '1989-04'::text, '1989-05'::text, '1989-06'::text, '1989-07'::text, '1989-08'::text, '1989-10'::text, '1989-11'::text, '1990-01'::text, '1990-04'::text, '1990-05'::text, '1990-06'::text, '1990-07'::text, '1990-08'::text, '1990-10'::text, '1991-01'::text, '1991-04'::text, '1991-09'::text, '1991-10'::text, '1991-11'::text, '1991-12'::text, '1992-01'::text, '1992-02'::text, '1992-03'::text, '1992-04'::text, '1992-05'::text, '1992-06'::text, '1992-07'::text, '1992-09'::text, '1992-10'::text, '1992-11'::text, '1992-12'::text, '1993-01'::text, '1993-02'::text, '1993-03'::text, '1993-04'::text, '1993-07'::text, '1993-09'::text, '1993-11'::text, '1993-12'::text, '1994-01'::text, '1994-03'::text, '1994-04'::text, '1994-05'::text, '1994-06'::text, '1994-07'::text, '1994-09'::text, '1994-10'::text, '1994-11'::text, '1995-01'::text, '1995-05'::text, '1995-06'::text, '1995-07'::text, '1995-08'::text, '1995-09'::text, '1995-10'::text, '1995-11'::text, '1995-12'::text, '1996-02'::text, '1996-03'::text, '1996-04'::text, '1996-05'::text, '1996-06'::text, '1996-07'::text, '1996-08'::text, '1996-09'::text, '1996-10'::text, '1996-12'::text, '1997-01'::text, '1997-02'::text, '1997-03'::text, '1997-04'::text, '1997-05'::text, '1997-06'::text, '1997-07'::text, '1997-08'::text, '1997-09'::text, '1997-10'::text, '1997-11'::text, '1997-12'::text, '1998-01'::text, '1998-02'::text, '1998-03'::text, '1998-04'::text, '1998-05'::text, '1998-06'::text, '1998-07'::text, '1998-08'::text, '1998-09'::text, '1998-10'::text, '1998-11'::text, '1998-12'::text, '1999-01'::text, '1999-02'::text, '1999-03'::text, '1999-04'::text, '1999-05'::text, '1999-06'::text, '1999-07'::text, '1999-08'::text, '1999-09'::text, '1999-10'::text, '1999-11'::text, '1999-12'::text, '2000-01'::text, '2000-02'::text, '2000-03'::text, '2000-04'::text, '2000-05'::text, '2000-06'::text, '2000-07'::text, '2000-08'::text, '2000-09'::text, '2000-11'::text, '2000-12'::text, '2001-01'::text, '2001-02'::text, '2001-03'::text, '2001-04'::text, '2001-05'::text, '2001-06'::text, '2001-07'::text, '2001-08'::text, '2001-09'::text, '2001-10'::text, '2001-11'::text, '2002-01'::text, '2002-02'::text, '2002-03'::text, '2002-04'::text, '2002-05'::text, '2002-06'::text, '2002-07'::text, '2002-08'::text, '2002-09'::text, '2002-10'::text, '2002-11'::text, '2002-12'::text, '2003-01'::text, '2003-02'::text, '2003-03'::text, '2003-04'::text, '2003-05'::text, '2003-06'::text, '2003-07'::text, '2003-08'::text, '2003-10'::text, '2003-11'::text, '2003-12'::text, '2004-01'::text, '2004-02'::text, '2004-03'::text, '2004-04'::text, '2004-05'::text, '2004-06'::text, '2004-07'::text, '2004-09'::text, '2004-10'::text, '2004-11'::text, '2004-12'::text, '2005-01'::text, '2005-02'::text, '2005-03'::text, '2005-04'::text, '2005-05'::text, '2005-06'::text, '2005-07'::text, '2005-08'::text, '2005-09'::text, '2005-10'::text, '2005-11'::text, '2005-12'::text, '2006-01'::text, '2006-02'::text, '2006-03'::text, '2006-04'::text, '2006-05'::text, '2006-06'::text, '2006-07'::text, '2006-08'::text, '2006-09'::text, '2006-10'::text, '2006-11'::text, '2006-12'::text, '2007-01'::text, '2007-02'::text, '2007-03'::text, '2007-04'::text, '2007-05'::text, '2007-06'::text, '2007-07'::text, '2007-08'::text, '2007-09'::text, '2007-10'::text, '2007-11'::text, '2007-12'::text, '2008-01'::text, '2008-02'::text, '2008-03'::text, '2008-04'::text, '2008-05'::text, '2008-07'::text, '2008-08'::text, '2008-09'::text, '2008-10'::text, '2008-11'::text, '2009-01'::text, '2009-02'::text, '2009-03'::text, '2009-04'::text, '2009-05'::text, '2009-06'::text, '2009-07'::text, '2009-08'::text, '2009-10'::text, '2009-11'::text, '2009-12'::text, '2010-01'::text, '2010-02'::text, '2010-03'::text, '2010-04'::text, '2010-06'::text, '2010-07'::text, '2010-08'::text, '2010-09'::text, '2010-10'::text, '2010-11'::text, '2010-12'::text, '2011-01'::text, '2011-02'::text, '2011-03'::text, '2011-04'::text, '2011-05'::text, '2011-06'::text, '2011-07'::text, '2011-08'::text, '2011-09'::text, '2011-10'::text, '2011-11'::text, '2011-12'::text, '2012-01'::text, '2012-02'::text, '2012-03'::text, '2012-04'::text, '2012-05'::text, '2012-06'::text, '2012-07'::text, '2012-08'::text, '2012-09'::text, '2012-11'::text, '2012-12'::text, '2013-01'::text, '2013-02'::text, '2013-04'::text, '2013-05'::text, '2013-06'::text, '2013-07'::text, '2013-08'::text, '2013-09'::text, '2013-10'::text, '2013-11'::text, '2013-12'::text, '2014-01'::text, '2014-02'::text, '2014-03'::text, '2014-04'::text, '2014-05'::text, '2014-06'::text, '2014-07'::text, '2014-08'::text, '2014-12'::text, '2015-01'::text, '2015-02'::text, '2015-04'::text, '2015-05'::text, '2015-06'::text, '2015-07'::text, '2015-09'::text, '2015-10'::text, '2015-11'::text, '2016-05'::text, '2016-09'::text, '2016-11'::text, '2017-01'::text, '2017-03'::text, '2017-08'::text, '2017-11'::text, '2018-04'::text, '2018-05'::text, '2018-06'::text, '2018-07'::text, '2018-09'::text, '2018-10'::text, '2018-11'::text, '2019-03'::text, '2019-05'::text, '2019-11'::text, '2019-12'::text, '2020-02'::text, '2020-05'::text, '2020-10'::text, '2021-01'::text, '2021-03'::text, '2021-09'::text, '2022-03'::text, '2022-05'::text, '2022-06'::text, '2022-07'::text, '2022-12'::text, '2023-05'::text])) AND (victima.organizacion_id = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 101])) AND (victima.profesion_id = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 101, 102])) AND (victima.rangoedad_id = ANY (ARRAY[1, 2, 3, 4, 5, 6])) AND (victima.sectorsocial_id = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])) AND (persona.sexo = ANY (ARRAY['F'::bpchar, 'M'::bpchar, 'S'::bpchar])) AND (persona.id = victima.persona_id));
 
 
 --
@@ -1794,23 +1882,23 @@ CREATE VIEW public.cben2 AS
     cben1.victima_id,
     cben1.persona_id,
     cben1.npersona,
-    cben1.total,
+    cben1.mes,
     ubicacion.departamento_id,
     departamento.deplocal_cod AS departamento_divipola,
     departamento.nombre AS departamento_nombre,
     ubicacion.municipio_id,
     ((departamento.deplocal_cod * 1000) + municipio.munlocal_cod) AS municipio_divipola,
     municipio.nombre AS municipio_nombre,
-    ubicacion.centropoblado_id AS clase_id,
-    clase.cplocal_cod AS clase_divipola,
-    clase.nombre AS clase_nombre
+    ubicacion.centropoblado_id,
+    centropoblado.cplocal_cod AS centropoblado_divipola,
+    centropoblado.nombre AS centropoblado_nombre
    FROM (((((public.cben1
      JOIN public.sivel2_gen_caso caso ON ((cben1.caso_id = caso.id)))
      LEFT JOIN public.msip_ubicacion ubicacion ON ((caso.ubicacion_id = ubicacion.id)))
      LEFT JOIN public.msip_departamento departamento ON ((ubicacion.departamento_id = departamento.id)))
      LEFT JOIN public.msip_municipio municipio ON ((ubicacion.municipio_id = municipio.id)))
-     LEFT JOIN public.msip_centropoblado clase ON ((ubicacion.centropoblado_id = clase.id)))
-  GROUP BY cben1.caso_id, cben1.victima_id, cben1.persona_id, cben1.npersona, cben1.total, ubicacion.departamento_id, departamento.deplocal_cod, departamento.nombre, ubicacion.municipio_id, ((departamento.deplocal_cod * 1000) + municipio.munlocal_cod), municipio.nombre, ubicacion.centropoblado_id, clase.cplocal_cod, clase.nombre;
+     LEFT JOIN public.msip_centropoblado centropoblado ON ((ubicacion.centropoblado_id = centropoblado.id)))
+  GROUP BY cben1.caso_id, cben1.victima_id, cben1.persona_id, cben1.npersona, cben1.mes, ubicacion.departamento_id, departamento.deplocal_cod, departamento.nombre, ubicacion.municipio_id, ((departamento.deplocal_cod * 1000) + municipio.munlocal_cod), municipio.nombre, ubicacion.centropoblado_id, centropoblado.cplocal_cod, centropoblado.nombre;
 
 
 --
@@ -5299,7 +5387,7 @@ CREATE TABLE public.msip_tsitio (
 CREATE TABLE public.msip_ubicacionpre (
     id bigint NOT NULL,
     nombre character varying(2000) NOT NULL COLLATE public.es_co_utf_8,
-    pais_id integer,
+    pais_id integer NOT NULL,
     departamento_id integer,
     municipio_id integer,
     centropoblado_id integer,
@@ -5310,7 +5398,11 @@ CREATE TABLE public.msip_ubicacionpre (
     longitud double precision,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    nombre_sin_pais character varying(500)
+    nombre_sin_pais character varying(500),
+    vereda_id integer,
+    observaciones character varying(5000),
+    fechacreacion date DEFAULT now() NOT NULL,
+    fechadeshabilitacion date
 );
 
 
@@ -8302,6 +8394,14 @@ ALTER TABLE ONLY public.msip_centropoblado
 
 
 --
+-- Name: msip_centropoblado msip_centropoblado_municipio_id_id_unico; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.msip_centropoblado
+    ADD CONSTRAINT msip_centropoblado_municipio_id_id_unico UNIQUE (municipio_id, id);
+
+
+--
 -- Name: msip_centropoblado msip_centropoblado_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8331,6 +8431,14 @@ ALTER TABLE ONLY public.msip_departamento
 
 ALTER TABLE ONLY public.msip_departamento
     ADD CONSTRAINT msip_departamento_id_pais_id_deplocal_unico UNIQUE (pais_id, deplocal_cod);
+
+
+--
+-- Name: msip_departamento msip_departamento_pais_id_id_unico; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.msip_departamento
+    ADD CONSTRAINT msip_departamento_pais_id_id_unico UNIQUE (pais_id, id);
 
 
 --
@@ -8395,6 +8503,14 @@ ALTER TABLE ONLY public.msip_grupoper
 
 ALTER TABLE ONLY public.msip_homonimo
     ADD CONSTRAINT msip_homonimo_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: msip_municipio msip_municipio_departamento_id_id_unico; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.msip_municipio
+    ADD CONSTRAINT msip_municipio_departamento_id_id_unico UNIQUE (departamento_id, id);
 
 
 --
@@ -8595,6 +8711,14 @@ ALTER TABLE ONLY public.msip_ubicacion
 
 ALTER TABLE ONLY public.msip_ubicacionpre
     ADD CONSTRAINT msip_ubicacionpre_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: msip_vereda msip_vereda_municipio_id_id_unico; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.msip_vereda
+    ADD CONSTRAINT msip_vereda_municipio_id_id_unico UNIQUE (municipio_id, id);
 
 
 --
@@ -9364,6 +9488,13 @@ CREATE INDEX index_msip_ubicacion_on_municipio_id ON public.msip_ubicacion USING
 --
 
 CREATE INDEX index_msip_ubicacion_on_pais_id ON public.msip_ubicacion USING btree (pais_id);
+
+
+--
+-- Name: index_msip_ubicacionpre_on_vereda_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_msip_ubicacionpre_on_vereda_id ON public.msip_ubicacionpre USING btree (vereda_id);
 
 
 --
@@ -10756,6 +10887,14 @@ ALTER TABLE ONLY public.mr519_gen_encuestapersona
 
 
 --
+-- Name: msip_ubicacionpre fk_rails_558c98f353; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.msip_ubicacionpre
+    ADD CONSTRAINT fk_rails_558c98f353 FOREIGN KEY (vereda_id) REFERENCES public.msip_vereda(id);
+
+
+--
 -- Name: msip_etiqueta_municipio fk_rails_5672729520; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11788,6 +11927,38 @@ ALTER TABLE ONLY public.cor1440_gen_anexo_proyectofinanciero
 
 
 --
+-- Name: msip_ubicacionpre fk_ubicacionpre_departamento_municipio; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.msip_ubicacionpre
+    ADD CONSTRAINT fk_ubicacionpre_departamento_municipio FOREIGN KEY (departamento_id, municipio_id) REFERENCES public.msip_municipio(departamento_id, id);
+
+
+--
+-- Name: msip_ubicacionpre fk_ubicacionpre_municipio_centropoblado; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.msip_ubicacionpre
+    ADD CONSTRAINT fk_ubicacionpre_municipio_centropoblado FOREIGN KEY (municipio_id, centropoblado_id) REFERENCES public.msip_centropoblado(municipio_id, id);
+
+
+--
+-- Name: msip_ubicacionpre fk_ubicacionpre_municipio_vereda; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.msip_ubicacionpre
+    ADD CONSTRAINT fk_ubicacionpre_municipio_vereda FOREIGN KEY (municipio_id, vereda_id) REFERENCES public.msip_vereda(municipio_id, id);
+
+
+--
+-- Name: msip_ubicacionpre fk_ubicacionpre_pais_departamento; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.msip_ubicacionpre
+    ADD CONSTRAINT fk_ubicacionpre_pais_departamento FOREIGN KEY (pais_id, departamento_id) REFERENCES public.msip_departamento(pais_id, id);
+
+
+--
 -- Name: cor1440_gen_proyectofinanciero lf_proyectofinanciero_responsable; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12795,6 +12966,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20231120094041'),
 ('20231120175125'),
 ('20231121135551'),
-('20231121203443');
+('20231121203443'),
+('20231124200056'),
+('20231125152802'),
+('20231125152810'),
+('20231125230000'),
+('20231205202418'),
+('20231205205549'),
+('20231205205600');
 
 
