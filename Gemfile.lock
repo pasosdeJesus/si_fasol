@@ -33,8 +33,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: c499e6057fc4c887e5d2865f37a32b0d6e555902
-  branch: main
+  revision: 8ee9945b219b0d309d5c76517cca30d0d477cdf4
+  branch: rails7.0fin
   specs:
     cor1440_gen (2.2.0.beta4)
       devise
@@ -46,8 +46,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 1fb4ec862836e856151504f4084fb4701c1b990d
-  branch: main
+  revision: 48e3315154e96603871a5b8554f1f8d05291669a
+  branch: rails7.0fin
   specs:
     heb412_gen (2.2.0.beta4)
       mr519_gen
@@ -57,16 +57,16 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/jos19.git
-  revision: 38015e33ba24878df137b0136cca115154a28344
-  branch: main
+  revision: c3ffcec7ee68c244a2714bd7f8666e3b49a3899b
+  branch: rails7.0fin
   specs:
     jos19 (2.2.0.beta4)
       rails (>= 7.0.4)
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: abf5d908f6dc000193ed45b1845ea9d4ca06b9b8
-  branch: main
+  revision: b874b659b07c76638147e803d5a4084f9bc3edea
+  branch: rails7.0fin
   specs:
     mr519_gen (2.2.0.beta4)
       msip
@@ -74,8 +74,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: b79ff74ad67f355c35b98a8c9993119a10997514
-  branch: main
+  revision: 89a073192a6f27559237d1966c044aeaee7c8837
+  branch: rails7.0fin
   specs:
     msip (2.2.0.beta4)
       cancancan (~> 3)
@@ -94,8 +94,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: c200712b6c0e5fe5df80f8699ea0d6acefc285ac
-  branch: main
+  revision: d19d8d713c3fab08343364a7bbeda7c9c7f8a163
+  branch: rails7.0fin
   specs:
     sivel2_gen (2.2.0.beta4)
       color
