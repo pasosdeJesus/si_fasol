@@ -234,23 +234,23 @@ module Sivel2Gen
         ft = [f]
         et.each do |e|
           fem = if inter[f] && inter[f][e] && 
-                    inter[f][e][Msip::Persona::convencion_sexo[:sexo_femenino]]
-            inter[f][e][Msip::Persona::convencion_sexo[:sexo_femenino]]
-          else
-            0
-          end
+                    inter[f][e][Msip::Persona::convencion_sexo[:sexo_femenino].to_s]
+                  inter[f][e][Msip::Persona::convencion_sexo[:sexo_femenino].to_s]
+                else
+                  0
+                end
           mas = if inter[f] && inter[f][e] && 
-                    inter[f][e][Msip::Persona::convencion_sexo[:sexo_masculino]]
-            inter[f][e][Msip::Persona::convencion_sexo[:sexo_masculino]]
-          else
-            0
-          end
+                    inter[f][e][Msip::Persona::convencion_sexo[:sexo_masculino].to_s]
+                  inter[f][e][Msip::Persona::convencion_sexo[:sexo_masculino].to_s]
+                else
+                  0
+                end
           sin = if inter[f] && inter[f][e] && 
-                    inter[f][e][Msip::Persona::convencion_sexo[:sexo_sininformacion]]
-            inter[f][e][Msip::Persona::convencion_sexo[:sexo_sininformacion]]
-          else
-            0
-          end
+                    inter[f][e][Msip::Persona::convencion_sexo[:sexo_sininformacion].to_s]
+                  inter[f][e][Msip::Persona::convencion_sexo[:sexo_sininformacion].to_s]
+                else
+                  0
+                end
           ft << [fem, mas, sin]
         end
         cuerpotabla << ft
