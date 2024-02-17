@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: es_co_utf_8; Type: COLLATION; Schema: public; Owner: -
 --
 
@@ -4825,11 +4832,11 @@ UNION
 --
 
 CREATE MATERIALIZED VIEW public.msip_mundep AS
- SELECT msip_mundep_sinorden.idlocal,
-    msip_mundep_sinorden.nombre,
-    to_tsvector('spanish'::regconfig, public.unaccent(msip_mundep_sinorden.nombre)) AS mundep
+ SELECT idlocal,
+    nombre,
+    to_tsvector('spanish'::regconfig, public.unaccent(nombre)) AS mundep
    FROM public.msip_mundep_sinorden
-  ORDER BY (msip_mundep_sinorden.nombre COLLATE public.es_co_utf_8)
+  ORDER BY (nombre COLLATE public.es_co_utf_8)
   WITH NO DATA;
 
 
@@ -5488,13 +5495,13 @@ ALTER SEQUENCE public.msip_vereda_id_seq OWNED BY public.msip_vereda.id;
 --
 
 CREATE MATERIALIZED VIEW public.napellidos AS
- SELECT s.apellido,
+ SELECT apellido,
     count(*) AS frec
    FROM ( SELECT public.divarr(string_to_array(btrim((msip_persona.apellidos)::text), ' '::text)) AS apellido
            FROM public.msip_persona,
             public.sivel2_gen_victima
           WHERE (sivel2_gen_victima.persona_id = msip_persona.id)) s
-  GROUP BY s.apellido
+  GROUP BY apellido
   ORDER BY (count(*))
   WITH NO DATA;
 
@@ -5504,13 +5511,13 @@ CREATE MATERIALIZED VIEW public.napellidos AS
 --
 
 CREATE MATERIALIZED VIEW public.nhombres AS
- SELECT s.nombre,
+ SELECT nombre,
     count(*) AS frec
    FROM ( SELECT public.divarr(string_to_array(btrim((msip_persona.nombres)::text), ' '::text)) AS nombre
            FROM public.msip_persona,
             public.sivel2_gen_victima
           WHERE ((sivel2_gen_victima.persona_id = msip_persona.id) AND (msip_persona.sexo = 'M'::bpchar))) s
-  GROUP BY s.nombre
+  GROUP BY nombre
   ORDER BY (count(*))
   WITH NO DATA;
 
@@ -5520,13 +5527,13 @@ CREATE MATERIALIZED VIEW public.nhombres AS
 --
 
 CREATE MATERIALIZED VIEW public.nmujeres AS
- SELECT s.nombre,
+ SELECT nombre,
     count(*) AS frec
    FROM ( SELECT public.divarr(string_to_array(btrim((msip_persona.nombres)::text), ' '::text)) AS nombre
            FROM public.msip_persona,
             public.sivel2_gen_victima
           WHERE ((sivel2_gen_victima.persona_id = msip_persona.id) AND (msip_persona.sexo = 'F'::bpchar))) s
-  GROUP BY s.nombre
+  GROUP BY nombre
   ORDER BY (count(*))
   WITH NO DATA;
 
@@ -5536,8 +5543,8 @@ CREATE MATERIALIZED VIEW public.nmujeres AS
 --
 
 CREATE MATERIALIZED VIEW public.persona_nomap AS
- SELECT msip_persona.id,
-    upper(btrim(((btrim((msip_persona.nombres)::text) || ' '::text) || btrim((msip_persona.apellidos)::text)))) AS nomap
+ SELECT id,
+    upper(btrim(((btrim((nombres)::text) || ' '::text) || btrim((apellidos)::text)))) AS nomap
    FROM public.msip_persona
   WITH NO DATA;
 
@@ -6050,9 +6057,9 @@ CREATE TABLE public.sivel2_gen_presponsable (
 --
 
 CREATE VIEW public.sivel2_gen_conscaso1 AS
- SELECT caso.id AS caso_id,
-    caso.fecha,
-    caso.memo,
+ SELECT id AS caso_id,
+    fecha,
+    memo,
     array_to_string(ARRAY( SELECT (((COALESCE(departamento.nombre, ''::character varying))::text || ' / '::text) || (COALESCE(municipio.nombre, ''::character varying))::text)
            FROM ((public.msip_ubicacion ubicacion
              LEFT JOIN public.msip_departamento departamento ON ((ubicacion.departamento_id = departamento.id)))
@@ -6080,15 +6087,15 @@ CREATE VIEW public.sivel2_gen_conscaso1 AS
 --
 
 CREATE MATERIALIZED VIEW public.sivel2_gen_conscaso AS
- SELECT sivel2_gen_conscaso1.caso_id,
-    sivel2_gen_conscaso1.fecha,
-    sivel2_gen_conscaso1.memo,
-    sivel2_gen_conscaso1.ubicaciones,
-    sivel2_gen_conscaso1.victimas,
-    sivel2_gen_conscaso1.presponsables,
-    sivel2_gen_conscaso1.tipificacion,
+ SELECT caso_id,
+    fecha,
+    memo,
+    ubicaciones,
+    victimas,
+    presponsables,
+    tipificacion,
     now() AS ultimo_refresco,
-    to_tsvector('spanish'::regconfig, public.unaccent(((((((((((((sivel2_gen_conscaso1.caso_id || ' '::text) || replace(((sivel2_gen_conscaso1.fecha)::character varying)::text, '-'::text, ' '::text)) || ' '::text) || sivel2_gen_conscaso1.memo) || ' '::text) || sivel2_gen_conscaso1.ubicaciones) || ' '::text) || sivel2_gen_conscaso1.victimas) || ' '::text) || sivel2_gen_conscaso1.presponsables) || ' '::text) || sivel2_gen_conscaso1.tipificacion))) AS q
+    to_tsvector('spanish'::regconfig, public.unaccent(((((((((((((caso_id || ' '::text) || replace(((fecha)::character varying)::text, '-'::text, ' '::text)) || ' '::text) || memo) || ' '::text) || ubicaciones) || ' '::text) || victimas) || ' '::text) || presponsables) || ' '::text) || tipificacion))) AS q
    FROM public.sivel2_gen_conscaso1
   WITH NO DATA;
 
