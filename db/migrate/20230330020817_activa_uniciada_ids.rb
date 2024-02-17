@@ -1,7 +1,8 @@
 class ActivaUniciadaIds < ActiveRecord::Migration[7.0]
   def up
     execute <<-SQL
-      UPDATE msip_persona SET tdocumento_id=11 WHERE tdocumento_id IS NULL;
+      UPDATE msip_persona SET tdocumento_id=11, numerodocumento=id 
+        WHERE tdocumento_id IS NULL;
       ALTER TABLE msip_persona ADD CONSTRAINT 
         tipoynumdoc_unicos UNIQUE (tdocumento_id, numerodocumento);
     SQL
