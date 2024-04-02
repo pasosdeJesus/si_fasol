@@ -163,7 +163,15 @@ module Msip
           :mes,
           :valor,
           :_destroy
-        ]
+        ],
+        etiqueta_persona_attributes:  [
+          :etiqueta_id, 
+          :fecha_localizada,
+          :id,
+          :observaciones,
+          :usuario_id,
+          :_destroy
+        ],
       ]
     end
 
