@@ -3,11 +3,13 @@
 console.log('Hola Mundo desde ESM')
 
 import Rails from "@rails/ujs";
+if (typeof window.Rails == 'undefined') {
+  Rails.start();
+  window.Rails = Rails;
+}
 import {Turbo} from "@hotwired/turbo-rails";
 // no hacer "Turbo.session.drive = false " porque dejan de operar
 // operaciones con turbo como añadir familiar
-Rails.start();
-window.Rails = Rails
 
 import './jquery'
 import '../../vendor/assets/javascripts/jquery-ui.js'

@@ -1,4 +1,4 @@
-class ActivaUniciadaIds < ActiveRecord::Migration[7.0]
+class ActivaUnicidadIds < ActiveRecord::Migration[7.0]
   def up
     execute <<-SQL
       UPDATE msip_persona SET tdocumento_id=11, numerodocumento=id 
