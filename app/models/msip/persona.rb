@@ -10,7 +10,9 @@ module Msip
       foreign_key: "persona_id",
       validate: true,
       dependent: :destroy,
-      class_name: "::Aporte"
+      class_name: "::Aporte",
+      inverse_of: :persona
+
     accepts_nested_attributes_for :aporte,
       allow_destroy: true,
       reject_if: :all_blank

@@ -33,6 +33,10 @@ module Cor1440Gen
       ]
     end
 
+    def registrar_en_bitacora
+      true
+    end
+
     def otros_impedimentos_para_borrar_persona_ex_asistente(a)
       # Estar como víctima en un caso es impedimento
       if Sivel2Gen::Victima.where(persona_id: a.persona_id).count > 0

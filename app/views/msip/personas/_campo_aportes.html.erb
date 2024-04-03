@@ -21,9 +21,8 @@
             <%= f.simple_fields_for :aporte,
               f.object.aporte.order([:anio,:mes]),
               child_index: params[:index] do |apo| %>
-              <%= render partial: "aporte_campos",
-                locals: {f: apo}
-              %>
+              x
+              <!--%= render partial: "aporte_campos", locals: {f: apo} %-->
             <% end %>
           </div>
         </div>
