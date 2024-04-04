@@ -19,6 +19,7 @@ module Msip
         :mesnac,
         :dianac,
         :sexo,
+        :etnia,
         :pais_id,
         :departamento_id,
         :municipio_id,
@@ -155,7 +156,8 @@ module Msip
         :aportes
       ] + [
         :am_año, 
-        :am_mes
+        :am_mes,
+        :etnia_id,
       ] + [
         :aporte_attributes => [
           :anio,
