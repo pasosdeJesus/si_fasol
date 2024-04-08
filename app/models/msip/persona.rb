@@ -17,6 +17,12 @@ module Msip
       allow_destroy: true,
       reject_if: :all_blank
 
+    belongs_to :tipoaliado,
+      validate: true,
+      class_name: "::Tipoaliado",
+      foreign_key: "tipoaliado_id",
+      optional: true
+
     belongs_to :ultimo_departamento_trabajo,
       validate: true,
       class_name: "Msip::Departamento",
@@ -42,6 +48,8 @@ module Msip
       optional: true
 
     attr_accessor :am_año, :am_mes  # Para actualizacion masiva
+
+    validates :detallealiado, length: { maximum: 1000 }
 
     validates :tdocumento_id, presence: true, allow_blank: false
     validates :numerodocumento, presence: true, allow_blank: false,
@@ -120,6 +128,9 @@ module Msip
       end
     }
 
+    scope :filtro_tipoaliado_id, lambda {|tid|
+      where(tipoaliado_id: tid.to_i)
+    }
 
     # Registros msip_persona_trelacion en los que
     # esta persona aparece como persona2 y la

@@ -35,6 +35,8 @@ module Msip
         :actividad_ids,
         :caso_ids,
         :familiarvictima_ids,
+        :tipoaliado_id,
+        :detallealiado,
         :ultimo_aporte,
         :aportes,
         :fecha_desafiliacion_aportante,
@@ -73,6 +75,7 @@ module Msip
         :actividad_ids,
         :caso_ids,
         :familiarvictima_ids,
+        :tipoaliado_id,
         :ultimo_aporte,
         :aportes,
       ]

@@ -47,8 +47,11 @@ es:
         personas: Población vinculada
         Personas: Población vinculada
         caso_ids: Casos en los que es Vic. Directa
+        detallealiado: Detalle de aliado
         familiarvictima_ids: Casos en los que es Vic. Indirecta
         fecha_deshabilitacion_aportante: Fecha de desafiliación como aportante
+        tipoaliado: Tipo de aliado
+        tipoaliado_id: Tipo de aliado
         ultimo_cargoestado_id: Cargo con el estado más reciente
         ultimo_cargoestado: Cargo con el estado más reciente
         ultima_entidad_id: Entidad estatal más reciente
