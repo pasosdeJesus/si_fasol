@@ -23,4 +23,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular("cargoestado", "cargosestado")
   inflect.irregular("consaportante", "consaportantes")
   inflect.irregular("regionpago", "regionespago")
+  inflect.irregular("tipoaliado", "tiposaliado")
 end

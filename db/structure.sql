@@ -6891,6 +6891,40 @@ CREATE TABLE public.sivel2_gen_vinculoestado (
 
 
 --
+-- Name: tipoaliado; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.tipoaliado (
+    id bigint NOT NULL,
+    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
+    observaciones character varying(5000),
+    fechacreacion date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: tipoaliado_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.tipoaliado_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: tipoaliado_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.tipoaliado_id_seq OWNED BY public.tipoaliado.id;
+
+
+--
 -- Name: aliadoasiste id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7644,6 +7678,13 @@ ALTER TABLE ONLY public.sivel2_gen_maternidad ALTER COLUMN id SET DEFAULT nextva
 --
 
 ALTER TABLE ONLY public.sivel2_gen_resagresion ALTER COLUMN id SET DEFAULT nextval('public.sivel2_gen_resagresion_id_seq'::regclass);
+
+
+--
+-- Name: tipoaliado id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.tipoaliado ALTER COLUMN id SET DEFAULT nextval('public.tipoaliado_id_seq'::regclass);
 
 
 --
@@ -9244,6 +9285,14 @@ ALTER TABLE ONLY public.msip_trelacion
 
 ALTER TABLE ONLY public.sivel2_gen_tviolencia
     ADD CONSTRAINT tipo_violencia_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tipoaliado tipoaliado_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.tipoaliado
+    ADD CONSTRAINT tipoaliado_pkey PRIMARY KEY (id);
 
 
 --
@@ -12480,6 +12529,7 @@ ALTER TABLE ONLY public.sivel2_gen_victimacolectiva_vinculoestado
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240408174920'),
 ('20240319141612'),
 ('20240312182320'),
 ('20240305165644'),

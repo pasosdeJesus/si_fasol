@@ -79,6 +79,9 @@ es:
         entidad_id: Entidad del Estado
         cargoestado: Cargo con el Estado
         detallevinculoestado: Detalle de la entidad/cargo con el Estado
+      "tipoaliado":
+        Tipoaliado: Tipo de aliado
+        Tiposaliado: Tipos de aliado
       "usuario":
         fechanac: Fecha de nacimiento
         sexonac: Sexo de nacimiento

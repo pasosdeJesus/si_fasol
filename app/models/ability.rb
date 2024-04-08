@@ -23,6 +23,7 @@ class Ability < Cor1440Gen::Ability
   BASICAS_PROPIAS = [
     ['', 'cargoestado'],
     ['', 'regionpago'],
+    ['', 'tipoaliado'],
   ]
 
   def tablasbasicas
