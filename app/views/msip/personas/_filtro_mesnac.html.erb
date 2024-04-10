@@ -1,0 +1,26 @@
+<%= f.input :busmesnac,
+  collection: [
+    ['Todos', 0],
+    ['Enero', 1],
+    ['Febrero', 2],
+    ['Marzo', 3],
+    ['Abril', 4],
+    ['Mayo', 5],
+    ['Junio', 6],
+    ['Julio', 7],
+    ['Agosto', 8],
+    ['Septiembre', 9],
+    ['Octubre', 10],
+    ['Noviembre', 11],
+    ['Diciembre', 12],
+  ],
+  label: false,
+  selected: Msip::ModeloHelper.poromision(params, :busmesnac),
+  input_html: {
+    class: 'chosen-select',
+    'data-enviarautomatico' => '',
+    value: params && params[:filtro] && params[:filtro][:busmesnac] ? 
+      params[:filtro][:busmesnac] : 'Todos'
+  },
+  include_blank: false
+%>

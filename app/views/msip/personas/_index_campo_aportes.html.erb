@@ -1,2 +1,2 @@
 <% s = ::Aporte.where(persona_id: registro.id).sum(:valor) %>
-<%= s %>
+<%= s.a_decimal_localizado %>

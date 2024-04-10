@@ -1,0 +1,14 @@
+<% ultimo_aporte = params && params[:filtro] && 
+  params[:filtro][:busultimo_aporte] ? 
+  params[:filtro][:busultimo_aporte].to_i : '' %>
+<%= f.input :busultimo_aporte,
+  collection: ['Desafiliado', 'No aportante'] + ::Aporte.where('valor > 0').distinct.pluck(:valor).sort,
+  label: false,
+  selected: Msip::ModeloHelper.poromision(params, :busultimo_aporte),
+  input_html: {
+    'data-enviarautomatico' => '',
+    class: 'tom-select',
+    value: ultimo_aporte
+  },
+  include_blank: true
+%>

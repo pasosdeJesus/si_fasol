@@ -1,0 +1,23 @@
+<% departamento_id = params && params[:filtro] && 
+  params[:filtro][:busdepartamento] ? 
+  params[:filtro][:busdepartamento].to_i : 0 %>
+<% municipio_id = params && params[:filtro] && 
+  params[:filtro][:busmunicipio] ? params[:filtro][:busmunicipio].to_i : 0 %>
+<%= f.input :busmunicipio,
+  collection: Msip::Municipio.habilitados.where(
+    departamento_id: departamento_id
+  ),
+  label: false,
+  label_method: :nombre,
+  valud_method: :id,
+  selected: Msip::ModeloHelper.poromision(params, :busmunicipio),
+  input_html: {
+    class: 'tom-select',
+    data: {
+      "action": "change->msip--geodep#cambiar_municipio",
+      "msip--geodep-target": "municipio"
+    },
+    value: municipio_id
+  },
+  include_blank: true
+%>

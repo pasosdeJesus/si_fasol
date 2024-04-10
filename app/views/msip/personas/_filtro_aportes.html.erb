@@ -1,0 +1,14 @@
+<% aportes = params && params[:filtro] && 
+  params[:filtro][:buaportes] ? 
+  params[:filtro][:busaportes].to_i : '' %>
+<%= f.input :busaportes,
+  collection: ::Aporte.group(:persona_id).sum(:valor).values.sort.uniq,
+  label: false,
+  selected: Msip::ModeloHelper.poromision(params, :busaportes),
+  input_html: {
+    'data-enviarautomatico' => '',
+    class: 'tom-select',
+    value: aportes
+  },
+  include_blank: true
+%>

@@ -1,0 +1,21 @@
+<% pais_id = params && params[:filtro] && params[:filtro][:buspais] ? 
+  params[:filtro][:buspais].to_i : 0 %>
+<% departamento_id = params && params[:filtro] && 
+  params[:filtro][:busdepartamento] ? 
+  params[:filtro][:busdepartamento].to_i : 0 %>
+<%= f.input :busdepartamento,
+  collection: Msip::Departamento.habilitados.where(pais_id: pais_id),
+  label: false,
+  label_method: :nombre,
+  valud_method: :id,
+  selected: Msip::ModeloHelper.poromision(params, :busdepartamento),
+  input_html: {
+    class: 'tom-select',
+    data: {
+      "action": "change->msip--geodep#cambiar_departamento",
+      "msip--geodep-target": "departamento"
+    },
+    value: departamento_id
+  },
+  include_blank: true
+%>
