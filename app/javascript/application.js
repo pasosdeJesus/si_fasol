@@ -17,6 +17,8 @@ import '../../vendor/assets/javascripts/jquery-ui.js'
 import 'popper.js'              // Dialogos emergentes usados por bootstrap
 import * as bootstrap from 'bootstrap'              // Maquetacion y elementos de diseño
 import 'chosen-js/chosen.jquery';       // Cuadros de seleccion potenciados
+import TomSelect from 'tom-select';
+window.TomSelect = TomSelect
 import 'bootstrap-datepicker'
 import 'bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js'
 
@@ -84,7 +86,13 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   if (p2ult == 'graficar/actos_individuales') {
     plotly_serietiempo_actos() 
   }
-
+  new TomSelect('.tom-select', {
+    create: true,
+    sortField: {
+      field: "text",
+      direction: "asc"
+    }
+  })
   window.AutocompletaAjaxEntidad.iniciar()
 
 
