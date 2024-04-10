@@ -82,6 +82,7 @@ module Msip
     end
 
     def index_reordenar(c)
+      @filtro_controladores = "msip--geodep"
       c.reorder([:nombres, :apellidos])
     end
 
