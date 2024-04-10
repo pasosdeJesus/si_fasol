@@ -99,7 +99,26 @@ module Msip
         sub(/  */, ' ').sub(/^  */, '').sub(/  *$/, '')
     end
 
+    scope :filtro_actividad_ids, lambda {|o| 
+      if o.upcase.strip == "SI"
+        where(
+          "id in (SELECT persona_id FROM cor1440_gen_asistencia)"
+        )
+      elsif o.upcase.strip == "NO"
+        where.not(
+          "id in (SELECT persona_id FROM cor1440_gen_asistencia)"
+        )
+      end
+    }
 
+    scope :filtro_aportes , lambda {|a|
+        where(
+          "id in (SELECT persona_id FROM (
+                SELECT persona_id, SUM(valor) AS aportes FROM aporte
+                  GROUP BY 1 ORDER BY 1
+              ) AS s WHERE s.aportes = ?)", a)
+    }
+ 
     scope :filtro_familiarvictima_ids, lambda {|o| 
       if o.upcase.strip == "SI"
         where(
@@ -132,6 +151,26 @@ module Msip
       where(tipoaliado_id: tid.to_i)
     }
 
+    scope :filtro_ultimo_aporte, lambda {|uap|
+      if uap == "Desafiliado"
+        where("fecha_desafiliacion_aportante IS NOT NULL")
+      elsif uap == "No aportante"
+        where("id NOT IN (SELECT persona_id FROM aporte WHERE valor>0)")
+      elsif uap != ""
+        where(
+          "id IN (SELECT persona_id FROM aporte 
+            WHERE valor=? AND 
+            (persona_id, anio, mes) IN (
+              SELECT persona_id, anio as maxanio, max(mes) AS maxmes 
+                FROM aporte WHERE valor>0 AND (persona_id, anio) IN (
+                  SELECT persona_id, MAX(anio) FROM aporte WHERE valor>0 
+                    GROUP BY 1 ORDER BY 1) 
+                  GROUP BY 1,2 ORDER by 1,2
+              )
+            )", uap.to_i)
+      end
+    }
+
     # Registros msip_persona_trelacion en los que
     # esta persona aparece como persona2 y la
     # persona1 es víctima en un caso
@@ -153,7 +192,8 @@ module Msip
       end
       ultimo = aporte.where("valor > 0").
         order(["anio desc", "mes desc"]).first
-      return ultimo.valor.a_decimal_localizado
+      return ultimo.valor.a_decimal_localizado + " en " + 
+        ultimo.anio.to_s + "-" + ultimo.mes.to_s.rjust(2, '0')
     end
 
     def nombres_y_apellidos
