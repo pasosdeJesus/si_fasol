@@ -184,6 +184,7 @@ module Msip
       )
 
       assert_predicate persona1, :valid?
+
       persona2 = Msip::Persona.create(
         id: 2,
         nombres: "nombre2",
@@ -203,10 +204,12 @@ module Msip
             id: nil
           }})
       end
+      debugger
 
       assert_redirected_to dedup_ruta(homonimo_path(
         assigns(:homonimo)
       ))
+      debugger
       idr = response.body.gsub(%r{.*homonimos/}, "").gsub(/">.*/, "").to_i
 
       homonimo = Msip::Homonimo.all.take
@@ -226,6 +229,7 @@ module Msip
       assert_template :edit
 
       sign_in @current_usuario
+      debugger
       assert_difference("Homonimo.count", -1) do
         delete dedup_ruta(homonimo_path(Homonimo.find(idr)))
       end

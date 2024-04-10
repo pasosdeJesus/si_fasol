@@ -1,4 +1,4 @@
-require 'test_helper'
+require_relative '../test_helper'
 
 # Esta prueba supone que en la tabla básica hay un registro con id 1
 # Si no lo hay agregar skip a pruebas que lo suponen o crear registro
@@ -6,15 +6,6 @@ require 'test_helper'
 
 module Admin
   class RegionespagoControllerTest < ActionDispatch::IntegrationTest
-    REGIONPAGO_NUEVA = {
-      nombre: 'X',
-      observaciones: 'y',
-      fechacreacion: '2023-08-27',
-      fechadeshabilitacion: nil,
-      created_at: '2023-08-27',
-      updated_at: '2023-08-27',
-    }
-
     IDEX = 10
 
     include Rails.application.routes.url_helpers
@@ -51,7 +42,7 @@ module Admin
     test "debe crear nueva" do
       assert_difference('Regionpago.count') do
         post admin_regionespago_path, params: { 
-          regionpago: REGIONPAGO_NUEVA
+          regionpago: PRUEBA_REGIONPAGO
         }
       end
 
@@ -68,7 +59,7 @@ module Admin
     end
 
     test "debe eliminar" do
-      r = Regionpago.create!(REGIONPAGO_NUEVO)
+      r = Regionpago.create!(PRUEBA_REGIONPAGO)
       assert_difference('Regionpago.count', -1) do
         delete admin_regionpago_url(Regionpago.find(r.id))
       end

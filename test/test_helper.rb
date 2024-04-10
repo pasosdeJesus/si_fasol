@@ -116,6 +116,15 @@ PRUEBA_PERSONA = {
   tdocumento_id: 11
 }
 
+PRUEBA_REGIONPAGO = {
+  nombre: 'X',
+  observaciones: 'y',
+  fechacreacion: '2023-08-27',
+  fechadeshabilitacion: nil,
+  created_at: '2023-08-27',
+  updated_at: '2023-08-27',
+}
+
 PRUEBA_TIPOORG = {
   nombre: "Tipoorg",
   fechacreacion: "2021-10-10",
