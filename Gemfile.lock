@@ -94,7 +94,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 8a5cae6a65470725cd6021f2dd0491e443a495a4
+  revision: d804e97ffcf970bc41c924e028af6a1b1773719c
   branch: v2.2
   specs:
     sivel2_gen (2.2.0.beta4)
@@ -406,12 +406,12 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     raindrops (0.20.1)
-    rake (13.2.0)
+    rake (13.2.1)
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
     redcarpet (3.6.0)
     regexp_parser (2.9.0)
-    reline (0.5.0)
+    reline (0.5.1)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
@@ -420,7 +420,7 @@ GEM
     rspreadsheet (0.5.3)
       andand (>= 1.3)
       rubyzip (>= 1.3)
-    rubocop (1.62.1)
+    rubocop (1.63.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
