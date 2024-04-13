@@ -7,6 +7,7 @@
   valud_method: :id,
   selected: Msip::ModeloHelper.poromision(params, :buspais),
   input_html: {
+    'data-enviarautomatico' => '',
     class: 'tom-select',
     data: {
       "action": "change->msip--geodep#cambiar_pais"

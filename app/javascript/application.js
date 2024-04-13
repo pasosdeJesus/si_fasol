@@ -17,8 +17,21 @@ import '../../vendor/assets/javascripts/jquery-ui.js'
 import 'popper.js'              // Dialogos emergentes usados por bootstrap
 import * as bootstrap from 'bootstrap'              // Maquetacion y elementos de diseño
 import 'chosen-js/chosen.jquery';       // Cuadros de seleccion potenciados
+
 import TomSelect from 'tom-select';
 window.TomSelect = TomSelect
+window.configuracionTomSelect = {
+  create: false,
+  diacritics: true, //no sensitivo a acentos --falla que muestra error
+  sortField: {
+    field: "text",
+    direction: "asc"
+  }
+}
+
+import Msip__Motor from './controllers/msip/motor.js'
+window.Msip__Motor = Msip__Motor
+
 import 'bootstrap-datepicker'
 import 'bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js'
 
@@ -86,12 +99,9 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   if (p2ult == 'graficar/actos_individuales') {
     plotly_serietiempo_actos() 
   }
-  new TomSelect('.tom-select', {
-    create: true,
-    sortField: {
-      field: "text",
-      direction: "asc"
-    }
+
+  document.querySelectorAll('.tom-select').forEach((el)=>{
+    new TomSelect(el, window.configuracionTomSelect)
   })
   window.AutocompletaAjaxEntidad.iniciar()
 

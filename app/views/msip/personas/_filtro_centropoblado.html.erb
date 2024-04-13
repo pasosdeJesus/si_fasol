@@ -1,7 +1,10 @@
-<% municipio_id = params && params[:filtro] && 
-  params[:filtro][:busmunicipio] ? params[:filtro][:busmunicipio].to_i : 0 %>
-<% centropoblado_id = params && params[:filtro] && 
-  params[:filtro][:buscentropoblado] ? 
+<% pais_id = params && params[:filtro] && params[:filtro][:buspais] ?
+  params[:filtro][:buspais].to_i : 0 %>
+<% departamento_id = pais_id > 0 && params[:filtro][:busdepartamento] ?
+  params[:filtro][:busdepartamento].to_i : 0 %>
+<% municipio_id = departamento_id > 0 && params[:filtro][:busmunicipio] ?
+  params[:filtro][:busmunicipio].to_i : 0 %>
+<% centropoblado_id = municipio_id > 0 && params[:filtro][:buscentropoblado] ?
   params[:filtro][:buscentropoblado].to_i : 0 %>
 <%= f.input :buscentropoblado,
   collection: Msip::Centropoblado.habilitados.where(
@@ -12,6 +15,7 @@
   valud_method: :id,
   selected: Msip::ModeloHelper.poromision(params, :buscentropoblado),
   input_html: {
+    'data-enviarautomatico' => '',
     class: 'tom-select',
     data: {
       "action": "change->msip--geodep#cambiar_centropoblado",
