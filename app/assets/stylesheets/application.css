@@ -11,13 +11,6 @@
  * file per style scope.
  *
  *= require sivel2_gen/application.css
- */
-
-root {
-  --ts-pr-caret: .75rem,
-}
-/*
- *
  *= require tom-select/dist/css/tom-select.bootstrap5.min.css
  *= require_tree .
  *= require_self
