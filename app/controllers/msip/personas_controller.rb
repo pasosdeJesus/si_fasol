@@ -95,6 +95,7 @@ module Msip
         Msip::PersonaTrelacion.where(persona1: @registro.id).delete_all
         Msip::PersonaTrelacion.where(persona2: @registro.id).delete_all
       end
+      Aporte.where(persona_id: @registro.id).delete_all
       destroy_gen
     end
 
