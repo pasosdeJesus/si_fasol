@@ -84,6 +84,7 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   var root = window;
 
   msip_prepara_eventos_comunes(root, null, false);
+  window.Msip__Motor.prepararEventosComunes(root, null, false);
   heb412_gen_prepara_eventos_comunes(root);
   mr519_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_comunes(root);

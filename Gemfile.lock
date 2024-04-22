@@ -33,10 +33,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: e5d9cdb4da1e91496fb5723f746dcce224f4231c
+  revision: 90ed979dc70b697ed79f807a3263036e10568aa2
   branch: v2.2
   specs:
-    cor1440_gen (2.2.0.beta4)
+    cor1440_gen (2.2.0.beta5)
       devise
       heb412_gen
       kt-paperclip
@@ -46,10 +46,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: a3baaf388bacfb32a41b1b19827162ea58fc5814
+  revision: 57b9b4a334b1d0f1c87ed650f9bfb5e204f92905
   branch: v2.2
   specs:
-    heb412_gen (2.2.0.beta4)
+    heb412_gen (2.2.0.beta5)
       mr519_gen
       msip
       redcarpet
@@ -57,24 +57,24 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/jos19.git
-  revision: 85a02662ee4288fe7527095e430b0c5285f014de
+  revision: 49352be348a7f484c28e511d5d5fbb0326bb3ce0
   branch: v2.2
   specs:
-    jos19 (2.2.0.beta4)
+    jos19 (2.2.0.beta5)
       rails (>= 7.0.4)
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: d8313cfeb2f5a63be2fd6ad9b9ca3116b9d7be93
+  revision: 0a40f10e2759671366764a3244a3b26ae6ec063d
   branch: v2.2
   specs:
-    mr519_gen (2.2.0.beta4)
+    mr519_gen (2.2.0.beta5)
       msip
       rails
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 89594aaf2613cc4c6dde69c1a7954941b59b0d75
+  revision: 2ce56a21d680e8fdf17622de626bc10b10677b6f
   branch: v2.2
   specs:
     msip (2.2.0.beta5)
@@ -94,10 +94,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 7076171410bf3bf0c55d4d91deeed7db31ca095d
+  revision: 3b86b69cb48d7a7f01ebd0f5d1dae3333c1dd064
   branch: v2.2
   specs:
-    sivel2_gen (2.2.0.beta4)
+    sivel2_gen (2.2.0.beta5)
       color
       devise
       rails
@@ -294,7 +294,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2024.0305)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.5)
+    mini_portile2 (2.8.6)
     minitest (5.22.3)
     minitest-reporters (1.6.1)
       ansi
@@ -411,7 +411,7 @@ GEM
       psych (>= 4.0.0)
     redcarpet (3.6.0)
     regexp_parser (2.9.0)
-    reline (0.5.1)
+    reline (0.5.2)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
@@ -420,7 +420,7 @@ GEM
     rspreadsheet (0.5.3)
       andand (>= 1.3)
       rubyzip (>= 1.3)
-    rubocop (1.63.1)
+    rubocop (1.63.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
