@@ -40,7 +40,7 @@
           <% (ultmes+1..a.mes-1).each do |mesac| %>
             <td>0</td>
           <% end %>
-          <td><%= a.valor %></td>
+          <td><%= a.valor.a_decimal_localizado %></td>
           <% ultmes = a.mes %>
         <% end %>
         <% if ultanio != nil %>
