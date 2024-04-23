@@ -201,73 +201,72 @@ module Msip
       r.strip
     end
 
-    def anioactual
-      return Date.today.year
+    def añoanterior
+      return Date.today.year-1
     end
 
-
-    def aporte_enero_anioactual
-      v = self.aporte.where(anio: Date.today.year).where(mes: 1).take
+    def aporte_enero_añoanterior
+      v = self.aporte.where(anio: añoanterior).where(mes: 1).take
       return v ? v.valor : nil;
     end
 
-    def aporte_febrero_anioactual
-      v = self.aporte.where(anio: Date.today.year).where(mes: 2).take
+    def aporte_febrero_añoanterior
+      v = self.aporte.where(anio: añoanterior).where(mes: 2).take
       return v ? v.valor : nil;
     end
 
-    def aporte_marzo_anioactual
-      v = self.aporte.where(anio: Date.today.year).where(mes: 3).take
+    def aporte_marzo_añoanterior
+      v = self.aporte.where(anio: añoanterior).where(mes: 3).take
       return v ? v.valor : nil;
     end
 
-    def aporte_abril_anioactual
-      v = self.aporte.where(anio: Date.today.year).where(mes: 4).take
+    def aporte_abril_añoanterior
+      v = self.aporte.where(anio: añoanterior).where(mes: 4).take
       return v ? v.valor : nil;
     end
 
-    def aporte_mayo_anioactual
-      v = self.aporte.where(anio: Date.today.year).where(mes: 5).take
+    def aporte_mayo_añoanterior
+      v = self.aporte.where(anio: añoanterior).where(mes: 5).take
       return v ? v.valor : nil;
     end
 
-    def aporte_junio_anioactual
-      v = self.aporte.where(anio: Date.today.year).where(mes: 6).take
+    def aporte_junio_añoanterior
+      v = self.aporte.where(anio: añoanterior).where(mes: 6).take
       return v ? v.valor : nil;
     end
 
-    def aporte_julio_anioactual
-      v = self.aporte.where(anio: Date.today.year).where(mes: 7).take
+    def aporte_julio_añoanterior
+      v = self.aporte.where(anio: añoanterior).where(mes: 7).take
       return v ? v.valor : nil;
     end
 
-    def aporte_agosto_anioactual
-      v = self.aporte.where(anio: Date.today.year).where(mes: 8).take
+    def aporte_agosto_añoanterior
+      v = self.aporte.where(anio: añoanterior).where(mes: 8).take
       return v ? v.valor : nil;
     end
 
-    def aporte_septiembre_anioactual
-      v = self.aporte.where(anio: Date.today.year).where(mes: 9).take
+    def aporte_septiembre_añoanterior
+      v = self.aporte.where(anio: añoanterior).where(mes: 9).take
       return v ? v.valor : nil;
     end
 
-    def aporte_octubre_anioactual
-      v = self.aporte.where(anio: Date.today.year).where(mes: 10).take
+    def aporte_octubre_añoanterior
+      v = self.aporte.where(anio: añoanterior).where(mes: 10).take
       return v ? v.valor : nil;
     end
 
-    def aporte_noviembre_anioactual
-      v = self.aporte.where(anio: Date.today.year).where(mes: 11).take
+    def aporte_noviembre_añoanterior
+      v = self.aporte.where(anio: añoanterior).where(mes: 11).take
       return v ? v.valor : nil;
     end
 
-    def aporte_diciembre_anioactual
-      v = self.aporte.where(anio: Date.today.year).where(mes: 12).take
+    def aporte_diciembre_añoanterior
+      v = self.aporte.where(anio: añoanterior).where(mes: 12).take
       return v ? v.valor : nil;
     end
 
-    def aporte_total_anioactual
-      v = self.aporte.where(anio: Date.today.year).sum(:valor)
+    def aporte_total_añoanterior
+      v = self.aporte.where(anio: añoanterior).sum(:valor)
       return v
     end
 
