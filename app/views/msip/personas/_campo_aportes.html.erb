@@ -21,12 +21,11 @@
             <%= f.simple_fields_for :aporte,
               f.object.aporte.order([:anio,:mes]),
               child_index: params[:index] do |apo| %>
-              x
-              <!--%= render partial: "aporte_campos", locals: {f: apo} %-->
+              <%= render partial: "aporte_campos", locals: {f: apo} %>
             <% end %>
           </div>
         </div>
-        <div class="enlace-agregar-aporte">
+        <div class="div-agregar-aporte">
           <%= f.submit "Agregar Aporte",
             formaction: main_app.crear_aporte_path(
               index: @persona.aporte.size
