@@ -1,2 +1,2 @@
-<% s = ::Aporte.where(persona_id: registro.id).sum(:valor) %>
-<%= s.a_decimal_localizado %>
+<--% s = ::Aporte.where(persona_id: registro.id).sum(:valor) %-->
+<%= registro.aportes.a_decimal_localizado %>

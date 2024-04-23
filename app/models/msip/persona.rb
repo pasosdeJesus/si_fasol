@@ -171,36 +171,6 @@ module Msip
       end
     }
 
-    # Registros msip_persona_trelacion en los que
-    # esta persona aparece como persona2 y la
-    # persona1 es víctima en un caso
-    def como_familiar_de_victima
-      persona_trelacion2.where(
-        "msip_persona_trelacion.persona1 IN "\
-          "(SELECT persona_id FROM sivel2_gen_victima)",
-      ).order(
-        :persona1,
-      )
-    end
-
-    def ultimo_aporte
-      if self.fecha_desafiliacion_aportante
-        return "Desafiliado"
-      end
-      if aporte.where("valor > 0").count == 0
-        return "No aportante"
-      end
-      ultimo = aporte.where("valor > 0").
-        order(["anio desc", "mes desc"]).first
-      return ultimo.valor.a_decimal_localizado + " en " + 
-        ultimo.anio.to_s + "-" + ultimo.mes.to_s.rjust(2, '0')
-    end
-
-    def nombres_y_apellidos
-      r = nombres.strip + " " + apellidos.strip
-      r.strip
-    end
-
     def añoanterior
       return Date.today.year-1
     end
@@ -270,8 +240,61 @@ module Msip
       return v
     end
 
+    def aportes
+      s = ::Aporte.where(persona_id: self.id).sum(:valor)
+    end
+
+
+    # Registros msip_persona_trelacion en los que
+    # esta persona aparece como persona2 y la
+    # persona1 es víctima en un caso
+    def como_familiar_de_victima
+      persona_trelacion2.where(
+        "msip_persona_trelacion.persona1 IN "\
+          "(SELECT persona_id FROM sivel2_gen_victima)",
+      ).order(
+        :persona1,
+      )
+    end
+
+    def cuenta_actividades
+      actividad_ids.count
+    end
+
+    def cuenta_casos
+      caso_ids.count
+    end
+
+    def cuenta_familiar_victima
+      como_familiar_de_victima.count
+    end
+
+    def etiquetas
+      etiqueta.pluck(:nombre).join(". ")
+    end
+
+    def nombres_y_apellidos
+      r = nombres.strip + " " + apellidos.strip
+      r.strip
+    end
+
     def fechaactual
       return Date.today.to_s
     end
+
+    def ultimo_aporte
+      if self.fecha_desafiliacion_aportante
+        return "Desafiliado"
+      end
+      if aporte.where("valor > 0").count == 0
+        return "No aportante"
+      end
+      ultimo = aporte.where("valor > 0").
+        order(["anio desc", "mes desc"]).first
+      return ultimo.valor.a_decimal_localizado + " en " + 
+        ultimo.anio.to_s + "-" + ultimo.mes.to_s.rjust(2, '0')
+    end
+
+
   end
 end
