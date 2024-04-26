@@ -46,6 +46,8 @@ es:
       "msip/persona":
         personas: Población vinculada
         Personas: Población vinculada
+        persona: Persona vinculada
+        Persona: Persona vinculada
         caso_ids: Casos en los que es Vic. Directa
         detallealiado: Detalle de aliado
         familiarvictima_ids: Casos en los que es Vic. Indirecta
