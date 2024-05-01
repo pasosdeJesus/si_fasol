@@ -18,7 +18,7 @@ export default class AutocompletaAjaxEntidad {
     console.log("claseEnvoltura=", this.claseEnvoltura)
     let url = window.puntomontaje + '/orgsociales.json'
     var aeEntidades = new window.AutocompletaAjaxExpreg(
-      [ new RegExp("^" + this.prefijo + "_attributes_[0-9]*_entidad_nombre$") ],
+      [ new RegExp("^" + this.prefijo + "[attributes_0-9]*_entidad_nombre$") ],
       url,
       this.idDatalist,
       this.operarElegida
@@ -55,18 +55,6 @@ export default class AutocompletaAjaxEntidad {
     }
     elemIdEntidad.value = id;
     elemNombreEntidad.value = cadgrupo.substr(0,cadgrupo.length-(id.length + 1));
-  }
-
-  static iniciar() {
-    console.log("AutocompletaAjaxEntidad")
-    let url = window.puntomontaje + '/orgsociales.json'
-    var aeEntidades = new window.AutocompletaAjaxExpreg(
-      [ /^caso_victima_attributes_[0-9]*_entidad_nombre$/],
-      url,
-      AutocompletaAjaxEntidad.idDatalist,
-      AutocompletaAjaxEntidad.operarElegida
-    )
-    aeEntidades.iniciar()
   }
 
 }
