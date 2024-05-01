@@ -35,7 +35,7 @@ export default class AutocompletaAjaxEntidad {
     console.log("AutocompletaAjaxEntidad")
       let url = window.puntomontaje + '/orgsociales.json'
       var aeEntidades = new window.AutocompletaAjaxExpreg(
-          [ /^caso_victima_attributes_[0-9]*_entidad_id$/],
+          [ /^caso_victima_attributes_[0-9]*_entidad_nombre$/],
           url,
           AutocompletaAjaxEntidad.idDatalist,
           AutocompletaAjaxEntidad.operarElegida
