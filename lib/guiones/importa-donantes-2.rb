@@ -531,7 +531,7 @@ prob = CSV.generate do |csvprob|
         anio = mad[1].to_i + 2000
         valor = 0
         if r[ma]
-          valor = r[ma].gsub(/[^0-9]/, '')
+          valor = r[ma].gsub(/[^0-9.]/, '')
         end
         #debugger
        
@@ -542,8 +542,12 @@ prob = CSV.generate do |csvprob|
           valor: valor.to_i
         }
         if Aporte.where(ra).count == 0
-          if Aporte.where(ra.select {|l,v| l != :valor}).count > 0
-            preg << "Exisitía aporte para el mes #{anio}-#{mes} por valor diferente #{valor.to_i} --manteniendolo"
+          bo = Aporte.where(ra.select {|l,v| l != :valor})
+          if bo.count > 0
+            aporte = bo.take
+            preg << "Exisitía aporte para el mes #{anio}-#{mes} por valor #{aporte.valor} diferente al del csv #{valor.to_i} --reemplazando"
+            aporte.valor = valor.to_i
+            aporte.save
           else
             aporte = Aporte.create(ra)
             numap += 1
@@ -565,6 +569,8 @@ prob = CSV.generate do |csvprob|
       numerr += 1
 
     end
+
+    STDERR.puts preg
   end
 end #csvprob
 
