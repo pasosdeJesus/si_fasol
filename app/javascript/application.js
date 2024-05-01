@@ -104,8 +104,9 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   document.querySelectorAll('.tom-select').forEach((el)=>{
     new TomSelect(el, window.configuracionTomSelect)
   })
-  window.AutocompletaAjaxEntidad.iniciar()
-
+  window.autocompletaVictimaEntidad = new AutocompletaAjaxEntidad(
+    "caso_victima", "nested-fields", "fuente-entidades"
+  )
 
 })
 
