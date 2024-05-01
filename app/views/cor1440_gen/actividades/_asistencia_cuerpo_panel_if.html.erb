@@ -1,10 +1,13 @@
 <% if @registro.actividadpf_ids.include?(35) %>
-  <th>
+  <div class="div-tabla-celda" style="width: 6em;">
     Caracterización
-  </th>
+  </div>
 <% end %>
 <% if (@registro.actividadpf_ids & [33, 35]) != [] %>
-  <th>
+  <div class="div-tabla-celda" style="width: 6em;">
     Número de sesiones
-  </th>
+  </div>
 <% end %>
+<div class="div-tabla-celda" style="width: 6em;">
+  Tipo de aliado
+</div>

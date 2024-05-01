@@ -27,7 +27,6 @@ module Cor1440Gen
         # :orgsocial,  -- por la cantidad de organizaicones hace muy lenta
         # la carga, cambiar por autocompletación
         :listadoasistencia,
-        :listadoaliadosasisten,
         :poblacion,
         :anexos,
       ]
@@ -164,24 +163,10 @@ module Cor1440Gen
       l = lista_params_cor1440_gen
       l[-1][:asistencia_attributes][-1][:opcioncaracterizacion_ids] = []
       l[-1][:asistencia_attributes].insert(0, :numsesiones)
-      l + [
-        aliadoasiste_attributes: [
-          :id,
-          :cargoestado_id,
-          :correo,
-          :entidad_id,
-          :observaciones,
-          :telefono,
-          :_destroy,
-          persona_attributes: [
-            :id,
-            :apellidos,
-            :nombres,
-            :numerodocumento,
-            :tdocumento_id,
-          ]
-        ]
-      ]
+      l[-1][:asistencia_attributes][-1][:persona_attributes].insert(
+        0, :tipoaliado_id
+      )
+      l 
     end
   end # class
 end # module

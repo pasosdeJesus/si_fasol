@@ -1,5 +1,5 @@
 <% if @registro.actividadpf_ids.include?(35) %>
-  <td>
+  <div class="div-tabla-celda">
     <% col = Cor1440Gen::Actividadpf.where(
       proyectofinanciero_id: Rails.application.config.x.cor1440_pf_comunes) %>
     <%= fasistencia.association :opcioncaracterizacion,
@@ -13,12 +13,18 @@
       class: 'chosen-select',
     }
   %>
-  </td>
+  </div>
 <% end %>
 <% if (@registro.actividadpf_ids & [33, 35]) != [] %>
-  <td>
+  <div class="div-tabla-celda">
     <%= fasistencia.input :numsesiones, label: false %>
-  </td>
+  </div>
 <% end %>
-
+<div class="div-tabla-celda">
+  <%= fpersona.input :tipoaliado_id, 
+    collection: Tipoaliado.habilitados,
+    label_method: lambda {|e| e.presenta_nombre },
+    include_blank: true,
+    label: false %>
+</div>
 
