@@ -49,6 +49,8 @@ module Msip
 
     attr_accessor :am_año, :am_mes  # Para actualizacion masiva
 
+    attr_accessor :ultima_entidad_nombre
+
     validates :detallealiado, length: { maximum: 1000 }
 
     validates :tdocumento_id, presence: true, allow_blank: false

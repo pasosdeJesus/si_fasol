@@ -1,0 +1,10 @@
+<div class='grupo-entidad-persona'>
+  <datalist id='fuente-entidades-persona'></datalist>
+  <%= f.input :ultima_entidad_id, as: :hidden %>
+  <%= f.input :ultima_entidad_nombre, 
+    label: false,
+    placeholder: "Buscar entidad por nombre o por código",
+    input_html: {
+     list: 'fuente-entidades-persona'
+    } %>
+</div>

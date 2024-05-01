@@ -107,6 +107,10 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   window.autocompletaVictimaEntidad = new AutocompletaAjaxEntidad(
     "caso_victima", "nested-fields", "fuente-entidades"
   )
+  window.autocompletaVictimaEntidad = new AutocompletaAjaxEntidad(
+    "persona_ultima", "grupo-entidad-persona", "fuente-entidades-persona"
+  )
+
 
 })
 
