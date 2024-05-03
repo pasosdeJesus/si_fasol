@@ -59,21 +59,6 @@ module Msip
                     message: "Tipo y número de documento repetido"
       }
 
-    validate :sindoc_estandar
-    def sindoc_estandar
-      if tdocumento_id == 11
-        if tdocumento_id == 11 && id && numerodocumento &&
-            numerodocumento.to_s != '' &&
-            numerodocumento.to_i != self.id &&
-            (numerodocumento[-1] < 'A' || numerodocumento[-1] > 'Z')
-          errors.add(:numerodocumento, "Número de documento #{numerodocumento} "\
-                     "con tipo SIN DOCUMENTO  debe ser el "\
-                     "número de la persona (i.e #{self.id}) o "\
-                     "un número seguido de letras (e.g 2190C)")
-        end
-      end
-    end
-
     validate :sin_aportes_tras_desafiliacion
     def sin_aportes_tras_desafiliacion
       if !self.fecha_desafiliacion_aportante
