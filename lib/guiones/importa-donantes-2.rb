@@ -353,7 +353,7 @@ trmes = {
   "jun" => 6,
   "jul" => 7,
   "ago" => 8,
-  "sept" => 9,
+  "sep" => 9,
   "oct" => 10,
   "nov" => 11,
   "dic" => 12
@@ -523,7 +523,7 @@ prob = CSV.generate do |csvprob|
 
       [
         "ene-23","feb-23","mar-23","abr-23","may-23","jun-23","jul-23","ago-23",
-       "sept-23","oct-23","nov-23","dic-23",
+        "sep-23","oct-23","nov-23","dic-23",
         "ene-24","feb-24","mar-24"
       ].each do |ma|
         mad = ma.split("-")
