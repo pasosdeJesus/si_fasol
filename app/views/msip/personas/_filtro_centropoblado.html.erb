@@ -10,18 +10,18 @@
   collection: Msip::Centropoblado.habilitados.where(
     municipio_id: municipio_id
   ),
-  label: false,
-  label_method: :nombre,
-  valud_method: :id,
-  selected: Msip::ModeloHelper.poromision(params, :buscentropoblado),
+  include_blank: true,
   input_html: {
-    'data-enviarautomatico' => '',
     class: 'tom-select',
     data: {
-      "action": "change->msip--geodep#cambiar_centropoblado",
+      action: "change->msip--geodep#cambiar_centropoblado",
+      enviarautomatico: "",
       "msip--geodep-target": "centropoblado"
     },
     value: centropoblado_id
   },
-  include_blank: true
+  label: false,
+  label_method: :nombre,
+  selected: Msip::ModeloHelper.poromision(params, :buscentropoblado),
+  valud_method: :id
 %>

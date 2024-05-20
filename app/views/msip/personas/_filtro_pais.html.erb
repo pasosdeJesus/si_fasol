@@ -2,17 +2,17 @@
   params[:filtro][:buspais].to_i : 0 %>
 <%= f.input :buspais,
   collection: Msip::Pais.habilitados,
-  label: false,
-  label_method: :nombre,
-  valud_method: :id,
-  selected: Msip::ModeloHelper.poromision(params, :buspais),
+  include_blank: true,
   input_html: {
-    'data-enviarautomatico' => '',
     class: 'tom-select',
     data: {
-      "action": "change->msip--geodep#cambiar_pais"
+      "action": "change->msip--geodep#cambiar_pais",
+      enviarautomatico: ''
     },
     value: pais_id
   },
-  include_blank: true
+  label: false,
+  label_method: :nombre,
+  selected: Msip::ModeloHelper.poromision(params, :buspais),
+  valud_method: :id
 %>
