@@ -82,6 +82,7 @@ es:
         region: Regional
       "sivel2_gen/victima":
         entidad_id: Entidad del Estado
+        entidad_nombre: Entidad del Estado
         cargoestado: Cargo con el Estado
         detallevinculoestado: Detalle de la entidad/cargo con el Estado
       "tipoaliado":
