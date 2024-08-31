@@ -16,7 +16,9 @@ import '../../vendor/assets/javascripts/jquery-ui.js'
 
 import 'popper.js'              // Dialogos emergentes usados por bootstrap
 import * as bootstrap from 'bootstrap'              // Maquetacion y elementos de diseño
-import 'chosen-js/chosen.jquery';       // Cuadros de seleccion potenciados
+
+import Msip__Motor from './controllers/msip/motor.js'
+window.Msip__Motor = Msip__Motor
 
 import TomSelect from 'tom-select';
 window.TomSelect = TomSelect
@@ -28,12 +30,6 @@ window.configuracionTomSelect = {
     direction: "asc"
   }
 }
-
-import Msip__Motor from './controllers/msip/motor.js'
-window.Msip__Motor = Msip__Motor
-
-import 'bootstrap-datepicker'
-import 'bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js'
 
 // Apexcharts
 import ApexCharts from 'apexcharts'
@@ -84,12 +80,13 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   var root = window;
 
   msip_prepara_eventos_comunes(root, null, false);
-  window.Msip__Motor.prepararEventosComunes(root, null, false);
   heb412_gen_prepara_eventos_comunes(root);
   mr519_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_comunes(root);
   cor1440_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_unicos(root);
+
+  Msip__Motor.ejecutarAlCargarDocumentoYRecursos()  
 
   var p = new URL(document.URL).pathname.split('/')
   var p2ult = ''

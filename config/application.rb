@@ -23,7 +23,9 @@ Bundler.require(*Rails.groups)
 module Sivel2
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
-    config.load_defaults(7.0)
+    config.load_defaults Rails::VERSION::STRING.to_f
+
+    config.autoload_lib(ignore: %w(assets tasks))
 
     config.action_view.form_with_generates_remote_forms = false
 

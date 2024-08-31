@@ -189,7 +189,7 @@ function seleccionmAsignarOpciones(selector, opciones, seltodo = true) {
     opcionActual.text = opciones[i];
     selector.appendChild(opcionActual);
   }
-  $(selector).trigger('chosen:updated')
+  Msip__Motor.configurarElementoTomSelect(selector)
 }
 
 
