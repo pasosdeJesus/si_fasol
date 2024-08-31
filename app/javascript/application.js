@@ -47,7 +47,7 @@ import 'gridstack'
 var L = require('leaflet');
 var mc= require('leaflet.markercluster');
 
-import plotly_serietiempo_actos from './plotly_actos'
+//import plotly_serietiempo_actos from './plotly_actos'
 
 import {AutocompletaAjaxExpreg} from '@pasosdejesus/autocompleta_ajax'
 window.AutocompletaAjaxExpreg = AutocompletaAjaxExpreg
@@ -95,7 +95,7 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   }
   console.log("p2ult=" + p2ult)
   if (p2ult == 'graficar/actos_individuales') {
-    plotly_serietiempo_actos() 
+    //plotly_serietiempo_actos() 
   }
 
   document.querySelectorAll('.tom-select').forEach((el)=>{

@@ -25,5 +25,14 @@ application.register("sivel2-gen--edad", Sivel2Gen__EdadController)
 import Sivel2Gen__EnviarFichaCasoController from "./sivel2_gen/enviar_ficha_caso_controller"
 application.register("sivel2-gen--enviar-ficha-caso", Sivel2Gen__EnviarFichaCasoController)
 
+import Sivel2Gen__FiltroAvanzadoController from "./sivel2_gen/filtro_avanzado_controller"
+application.register("sivel2-gen--filtro-avanzado", Sivel2Gen__FiltroAvanzadoController)
+
+import Sivel2Gen__MapaosmController from "./sivel2_gen/mapaosm_controller"
+application.register("sivel2-gen--mapaosm", Sivel2Gen__MapaosmController)
+
+import Sivel2Gen__MotorController from "./sivel2_gen/motor_controller"
+application.register("sivel2-gen--motor", Sivel2Gen__MotorController)
+
 import UsuarioConGrupoController from "./usuario_con_grupo_controller"
 application.register("usuario-con-grupo", UsuarioConGrupoController)
