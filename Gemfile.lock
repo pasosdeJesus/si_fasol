@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/styd/apexcharts.rb.git
-  revision: 3c04fbc3eecc07f2b5fd433dae03798f329b1692
+  revision: ff8643ba959fb93998b1c51fd5e6c351379f709b
   branch: master
   specs:
     apexcharts (0.2.0)
@@ -33,10 +33,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: aba2fcfa68000aeccf893e5443199f3832f13b6a
-  branch: main
+  revision: d28e83cc588457a10eb5ba8af07adb04060fdf12
+  branch: v2.2
   specs:
-    cor1440_gen (2.2.0.beta6)
+    cor1440_gen (2.2.0.beta7)
       devise
       heb412_gen
       kt-paperclip
@@ -46,10 +46,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 7eea7af9fade94b84d2ea674eefdf24971815c47
-  branch: main
+  revision: 014767febabfd03080188e2ebbb014d94a654983
+  branch: v2.2
   specs:
-    heb412_gen (2.3.0.alfa2)
+    heb412_gen (2.2.0.beta7)
       mr519_gen
       msip
       redcarpet
@@ -57,27 +57,26 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/jos19.git
-  revision: 6b2183d60eaf4caff5f15fd3e1da087191426dcb
-  branch: main
+  revision: 6aa690977de42995452f2eb24b3c77b915a1d517
+  branch: v2.2
   specs:
     jos19 (2.2.0.beta6)
-      rails (>= 7.0.4)
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 2d58a40a419d5e8b27f0d12b61e72f4420625996
-  branch: main
+  revision: ab2cd1df2c879d54f7ddf6d83feb4ef32084aff9
+  branch: v2.2
   specs:
-    mr519_gen (2.3.0.alfa2)
+    mr519_gen (2.2.0.beta7)
       msip
       rails
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: dc7da1e51a6f00823cfb274f37d67341278fc132
-  branch: main
+  revision: 0ee4fc1a422cc210b805236e18a2753413938d3e
+  branch: v2.2
   specs:
-    msip (2.3.0.alfa2)
+    msip (2.2.0.beta7)
       cancancan (~> 3)
       devise (~> 4)
       devise-i18n (~> 1)
@@ -94,10 +93,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: edaa3c5187823e98080e49fba083b6e4b0cd827b
-  branch: main
+  revision: 08f1cecc045bbe509f06921626a1ca3d545e95bd
+  branch: v2.2
   specs:
-    sivel2_gen (2.3.0.alfa2)
+    sivel2_gen (2.2.0.beta7)
       color
       devise
       rails
@@ -274,7 +273,7 @@ GEM
     irb (1.14.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    jbuilder (2.12.0)
+    jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jsbundling-rails (1.3.1)
@@ -342,7 +341,7 @@ GEM
       racc
     parslet (2.0.0)
     pdf-core (0.10.0)
-    pg (1.5.7)
+    pg (1.5.8)
     prawn (2.5.0)
       matrix (~> 0.4)
       pdf-core (~> 0.10.0)
@@ -439,7 +438,7 @@ GEM
     rubocop-minitest (0.36.0)
       rubocop (>= 1.61, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rails (2.26.0)
+    rubocop-rails (2.26.2)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.52.0, < 2.0)
@@ -596,4 +595,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.5.18
+   2.5.21
