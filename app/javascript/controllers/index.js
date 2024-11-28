@@ -25,5 +25,8 @@ application.register("sivel2-gen--edad", Sivel2Gen__EdadController)
 import Sivel2Gen__EnviarFichaCasoController from "./sivel2_gen/enviar_ficha_caso_controller"
 application.register("sivel2-gen--enviar-ficha-caso", Sivel2Gen__EnviarFichaCasoController)
 
+import Sivel2Gen__PlotlyActosController from "./sivel2_gen/plotly_actos_controller"
+application.register("sivel2-gen--plotly-actos", Sivel2Gen__PlotlyActosController)
+
 import UsuarioConGrupoController from "./usuario_con_grupo_controller"
 application.register("usuario-con-grupo", UsuarioConGrupoController)

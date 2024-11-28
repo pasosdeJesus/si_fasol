@@ -47,6 +47,7 @@ app/javascript/controllers/heb412_gen
 app/javascript/controllers/cor1440_gen
 app/javascript/controllers/sal7711_gen
 app/javascript/controllers/sivel2_gen
+app/javascript/controllers/jos19
 public/fasol/si/csv/
 public/fasol/sipub
 ref
