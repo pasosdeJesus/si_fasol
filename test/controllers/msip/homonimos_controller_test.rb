@@ -204,19 +204,25 @@ module Msip
             id: nil
           }})
       end
-      debugger
 
       assert_redirected_to dedup_ruta(homonimo_path(
         assigns(:homonimo)
       ))
-      debugger
-      idr = response.body.gsub(%r{.*homonimos/}, "").gsub(/">.*/, "").to_i
 
-      homonimo = Msip::Homonimo.all.take
       sign_in @current_usuario
       # Si no se hace nuevamente sign_in produce error:
-      # CanCan::AccessDenied: No está autorizado para show Homonimo.
+      # CanCan::AccessDenied: No está autorizado para index Homonimo.
+
+      get homonimos_path
+      idr = response.body.match(/numregistros">[0-9]*/)[0][14..-1].to_i
+      assert_equal 1, idr
+
+      homonimo = Msip::Homonimo.all.take
       r = dedup_ruta(homonimo_url(homonimo))
+      sign_in @current_usuario
+      # Si no se hace nuevamente sign_in produce error:
+      # CanCan::AccessDenied: No está autorizado para index Homonimo.
+
       get r
 
       assert_response :success
@@ -229,9 +235,8 @@ module Msip
       assert_template :edit
 
       sign_in @current_usuario
-      debugger
       assert_difference("Homonimo.count", -1) do
-        delete dedup_ruta(homonimo_path(Homonimo.find(idr)))
+        delete dedup_ruta(homonimo_path(Homonimo.find(homonimo.id)))
       end
 
       assert_redirected_to dedup_ruta(homonimos_path)

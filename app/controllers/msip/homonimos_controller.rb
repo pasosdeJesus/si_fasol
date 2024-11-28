@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Msip
-  class HomonimosController < Msip::ModelosController
+  class HomonimosController < Heb412Gen::ModelosController
 
     before_action :set_homonimo, only: [:show, :edit, :update, :destroy]
     load_and_authorize_resource class: Msip::Homonimo
@@ -33,6 +33,14 @@ module Msip
     def atributos_form
       a = atributos_show
       a
+    end
+
+    def vistas_manejadas
+      ["Homonimo"]
+    end
+
+    def index
+      super()
     end
 
     def set_homonimo
